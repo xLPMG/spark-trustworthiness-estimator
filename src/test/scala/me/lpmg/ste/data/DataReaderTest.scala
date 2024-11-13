@@ -4,9 +4,10 @@ class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
     val filePath = "src/test/resources/dump/test-dump-1.xml.bz2"
     val revisions = DataReader.parseXMLFile(filePath)
-    // dont add last two revisions as they are not in main namespace
+    // only 4 out of 6 revisions are in the main namespace
     assertEquals(revisions.length, 4)
-    println(revisions)
+
+    // compare the extracted revision data
     revisions.foreach { revision =>
         if (revision.revisionId == "1") {
             assertEquals(revision.pageId, "1")
