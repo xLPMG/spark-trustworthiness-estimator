@@ -9,6 +9,7 @@ lazy val root = project
 
     libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion,
     libraryDependencies += "org.apache.spark" %% "spark-sql" % sparkVersion,
+    libraryDependencies += "org.apache.spark" %% "spark-graphx" % sparkVersion,
     libraryDependencies += "com.databricks" %% "spark-xml" % "0.18.0",
     libraryDependencies += "org.apache.commons" % "commons-compress" % "1.21",
 
