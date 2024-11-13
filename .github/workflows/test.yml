@@ -45,3 +45,9 @@ jobs:
         filename: "./target/scala-2.12/coverage-report/cobertura.xml"
         badge: true
         format: markdown
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
