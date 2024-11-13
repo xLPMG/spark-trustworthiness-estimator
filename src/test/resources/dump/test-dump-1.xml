@@ -1,0 +1,96 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+  <siteinfo>5:~$ ls /mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20220901
+    <sitename>Wikipedia</sitename>
+    <dbname>enwiki</dbname>
+    <base>https://en.wikipedia.org/wiki/Main_Page</base>
+    <generator>MediaWiki 1.39.0-wmf.27</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Page 1</title>
+    <ns>0</ns>
+    <id>1</id>
+    <revision>
+      <id>1</id>
+      <timestamp>2011-01-01T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 1</username>
+        <id>1</id>
+      </contributor>
+      <comment>Comment 1</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+    <revision>
+      <id>3</id>
+      <parentid>1</parentid>
+      <timestamp>2011-01-03T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 3</username>
+        <id>3</id>
+      </contributor>
+      <comment>Comment 3</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Page 2</title>
+    <ns>0</ns>
+    <id>2</id>
+    <revision>
+      <id>2</id>
+      <timestamp>2011-01-02T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 2</username>
+        <id>2</id>
+      </contributor>
+      <comment>Comment 2</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+    <revision>
+      <id>4</id>
+      <parentid>2</parentid>
+      <timestamp>2011-01-04T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 4</username>
+        <id>4</id>
+      </contributor>
+      <comment>Comment 4</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+  <page>
+    <title>Page IGNORE</title>
+    <ns>1</ns>
+    <id>3</id>
+    <revision>
+      <id>998</id>
+      <timestamp>2011-02-07T00:26:36Z</timestamp>
+      <contributor>
+        <username>Contributor 998</username>
+        <id>998</id>
+      </contributor>
+      <comment>Comment 998</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+    <revision>
+      <id>999</id>
+      <timestamp>2012-02-07T00:26:36Z</timestamp>
+      <contributor>
+        <username>Contributor 999</username>
+        <id>999</id>
+      </contributor>
+      <comment>Comment 999</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+</mediawiki>

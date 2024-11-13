@@ -10,15 +10,16 @@ import me.lpmg.ste.data.Revision
   */
 object GraphCreator {
   def createRevisionGraph(spark: SparkSession, revisionsRDD: RDD[Revision]): Graph[Revision, String] = {
-    // Assign each Revision a unique VertexId using its revisionId
+    // Create vertex for each revision. using revisionId as VertexId
     val vertices: RDD[(VertexId, Revision)] = revisionsRDD.map { rev =>
-      (rev.revisionId.toLong, rev)  // Assuming revisionId can be cast to Long for VertexId
+      (rev.revisionId.toLong, rev)
     }
 
-    // Define edges between revisions, for example, linking revisions with their parentId if present
+    // create temporal edges
     val edges: RDD[Edge[String]] = revisionsRDD.flatMap { rev =>
       rev.parentId.map { parentId =>
-        Edge(parentId.toLong, rev.revisionId.toLong, "parent")
+        Edge(parentId.toLong, rev.revisionId.toLong, "isParentOf")
+        Edge(rev.revisionId.toLong, parentId.toLong, "isChildOf")
       }
     }
 

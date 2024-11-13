@@ -4,15 +4,15 @@ import org.xml.sax.helpers.DefaultHandler
 import scala.collection.mutable.ArrayBuffer
 import org.xml.sax.{Attributes, InputSource}
 
-/**
- * SAX handler for parsing MediaWiki XML revisions.
- */
+/** SAX handler for parsing MediaWiki XML revisions.
+  */
 class RevisionSAXHandler extends DefaultHandler {
 
   val revisions = ArrayBuffer[Revision]()
   var currentElement: String = ""
   var insidePage = false
   var insideRevision = false
+  var isMainNamespace = false
 
   var pageId: String = ""
   var revisionId: String = ""
@@ -30,9 +30,11 @@ class RevisionSAXHandler extends DefaultHandler {
     qName match {
       case "page" =>
         insidePage = true
+        isMainNamespace = false // reset
       case "revision" =>
         insideRevision = true
-        parentId = None // Reset parentId for each new revision
+        revisionId = ""
+        parentId = None
       case _ => // No-op for other tags
     }
   }
@@ -46,8 +48,10 @@ class RevisionSAXHandler extends DefaultHandler {
       case "page" =>
         insidePage = false
       case "revision" =>
-        // Add the extracted revision data to the list of revisions
-        revisions += Revision(revisionId, pageId, parentId, timestamp)
+        if (insidePage && isMainNamespace) {
+          // Add the extracted revision data to the list of revisions
+          revisions += Revision(revisionId, pageId, parentId, timestamp)
+        }
         insideRevision = false
       case _ => // No-op for other tags
     }
@@ -60,6 +64,10 @@ class RevisionSAXHandler extends DefaultHandler {
       length: Int
   ): Unit = {
     val content = new String(ch, start, length).trim
+
+    if (insidePage && currentElement == "ns" && content == "0") {
+      isMainNamespace = true
+    }
 
     if (insidePage && !insideRevision && currentElement == "id") {
       pageId = content // Page ID only needs to be set once per page

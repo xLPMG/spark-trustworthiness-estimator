@@ -2,6 +2,7 @@ package me.lpmg.ste
 
 import org.apache.spark.sql.SparkSession
 import me.lpmg.ste.data.DataReader
+import me.lpmg.ste.graph.GraphCreator.createRevisionGraph
 
 object Main {
 
@@ -26,14 +27,13 @@ object Main {
       DataReader.parseXMLFile(path)
     }
 
-    // Action to trigger the processing, e.g., count the revisions extracted
     println(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
 
     // Create the graph
-    // val revisionGraph = createRevisionGraph(spark, revisionsRDD)
+    val revisionGraph = createRevisionGraph(spark, allRevisionsRDD)
 
-    // println(s"Number of vertices: ${revisionGraph.vertices.count}")
-    // println(s"Number of edges: ${revisionGraph.edges.count}")
+    println(s"Number of vertices: ${revisionGraph.vertices.count}")
+    println(s"Number of edges: ${revisionGraph.edges.count}")
 
     spark.stop()
   }
