@@ -20,8 +20,7 @@ object Main {
       .getOrCreate()
 
     // Read all .xml.bz2 files in the folder into an RDD
-    //val filesRDD = spark.sparkContext.binaryFiles(s"$folderPath/*.bz2")
-    val filesRDD = spark.sparkContext.binaryFiles(s"$folderPath/*.bz2").zipWithIndex().filter(_._2 < 2).map(_._1)
+    val filesRDD = spark.sparkContext.binaryFiles(s"$folderPath/*.bz2")
 
     // Process each file in the RDD to extract revisions
     val allRevisionsRDD = filesRDD.flatMap { case (path, _) =>
