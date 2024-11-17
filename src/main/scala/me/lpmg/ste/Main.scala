@@ -47,8 +47,8 @@ object Main {
     }
 
     // Process each file in the RDD to extract revisions
-    val allRevisionsRDD = filesRDD.flatMap { case (path, _) =>
-      DataReader.parseXMLFile(path)
+    val allRevisionsRDD = filesRDD.flatMap { case (_, pds) =>
+      DataReader.getRevisionsFromPDS(pds)
     }
 
     println(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")

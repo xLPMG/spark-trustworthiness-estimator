@@ -6,10 +6,11 @@ import java.io.FileInputStream
 
 class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
-    val filePath = "src/test/resources/dump/test-dump-1.xml.bz2"
-    val revisions = DataReader.parseXMLFile(filePath)
-    // only 4 out of 6 revisions are in the main namespace
-    assertEquals(revisions.length, 4)
+    val filePath = "src/test/resources/dump/test-dump-1.xml"
+    val inputStream: InputStream = new FileInputStream(filePath)
+    val revisions = DataReader.getRevisions(inputStream)
+    // only 5 out of 7 revisions are in the main namespace
+    assertEquals(revisions.length, 5)
 
     // compare the extracted revision data
     revisions.foreach { revision =>

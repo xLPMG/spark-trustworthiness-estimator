@@ -20,25 +20,15 @@ import org.apache.spark.input.PortableDataStream
   */
 object DataReader {
 
-  /** Parse a BZip2 compressed XML file and extract revisions using SAX parser.
+  /** Parse an XML input stream to retrieve a sequence of revisions.
     *
-    * @param filePath
+    * @param inputStream XML input stream
     * @return Sequence of revisions
     */
-  def parseXMLFile(filePath: String): Seq[Revision] = {
-    // Create a FileSystem instance locally on each executor
-    val hadoopConf = new Configuration()
-    val fs = FileSystem.get(hadoopConf)
-
-    // Open the BZip2 compressed file from Hadoop FileSystem
-    val inputStream = fs.open(new Path(filePath))
-    val bz2Stream = new BZip2CompressorInputStream(
-      new BufferedInputStream(inputStream)
-    )
-
-    // Initialize parser
+  def getRevisions(inputStream: InputStream): Seq[Revision] = {
     val saxParserFactory = SAXParserFactory.newInstance()
     saxParserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
+
     val xmlReader = setXMLReaderProperties(
       saxParserFactory.newSAXParser().getXMLReader
     )
@@ -46,17 +36,24 @@ object DataReader {
     val handler = new RevisionSAXHandler()
     xmlReader.setContentHandler(handler)
 
-    // Stream and parse the XML content
-    try {
-      xmlReader.parse(new InputSource(new InputStreamReader(bz2Stream)))
-    } finally {
-      // Close resources
-      bz2Stream.close()
-      inputStream.close()
-      fs.close()
-    }
-
+    val inputSource = new InputSource(
+      new InputStreamReader(inputStream, "UTF-8")
+    )
+    xmlReader.parse(inputSource)
     handler.getRevisions
+  }
+
+  /** Parse a (bz2 zipped) XML PortableDataStream to retrieve a sequence of revisions.
+    *
+    * @param pds PortableDataStream
+    * @return Sequence of revisions
+    */
+  def getRevisionsFromPDS(pds: PortableDataStream): Seq[Revision] = {
+    Using.resource(pds.open()) { inputStream =>
+      val bz2Stream =
+        new BZip2CompressorInputStream(new BufferedInputStream(inputStream))
+      getRevisions(bz2Stream)
+    }
   }
 
   /** Parse an XML input stream to create a dictionary map containing "Page Title -> Page ID".
