@@ -139,6 +139,10 @@
                         <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="class" href="DictionarySAXHandler.html" title="SAX handler creating a dictionary of titles and their corresponding page IDs."></a>
+                        <a href="DictionarySAXHandler.html" title="SAX handler creating a dictionary of titles and their corresponding page IDs.">DictionarySAXHandler</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="class" href="" title="A class to represent a Wikipedia revision."></a>
                         <a href="" title="A class to represent a Wikipedia revision.">Revision</a>
                       </li><li class="current-entities indented4">
@@ -168,13 +172,21 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Revision</span><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parentId">parentId: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Revision</span><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parentId">parentId: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isGroundTruth">isGroundTruth: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Double">Double</span></span>, <span name="outlinks">outlinks: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="isRedirect">isRedirect: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A class to represent a Wikipedia revision.
-</p></div><dl class="paramcmts block"><dt class="param">revisionId</dt><dd class="cmt"><p>the unique identifier of the revision</p></dd><dt class="param">pageId</dt><dd class="cmt"><p>the unique identifier of the page</p></dd><dt class="param">parentId</dt><dd class="cmt"><p>the unique identifier of the parent revision</p></dd><dt class="param">timestamp</dt><dd class="cmt"><p>the timestamp of the revision</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">revisionId</dt><dd class="cmt"><p>
+  the unique identifier of the revision</p></dd><dt class="param">pageId</dt><dd class="cmt"><p>
+  the unique identifier of the page</p></dd><dt class="param">parentId</dt><dd class="cmt"><p>
+  the unique identifier of the parent revision</p></dd><dt class="param">timestamp</dt><dd class="cmt"><p>
+  the timestamp of the revision</p></dd><dt class="param">isGroundTruth</dt><dd class="cmt"><p>
+  whether the revision is a ground truth revision</p></dd><dt class="param">trustScore</dt><dd class="cmt"><p>
+  the trust score of the revision</p></dd><dt class="param">outlinks</dt><dd class="cmt"><p>
+  the outlinks of the revision (revision IDs)</p></dd><dt class="param">isRedirect</dt><dd class="cmt"><p>
+  whether the revision is a redirect</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -225,9 +237,9 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="me.lpmg.ste.data.Revision#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(revisionId:String,pageId:String,parentId:Option[String],timestamp:String):me.lpmg.ste.data.Revision"></a><a id="&lt;init&gt;:Revision"></a>
+      <a id="&lt;init&gt;(revisionId:String,pageId:String,parentId:Option[String],timestamp:String,isGroundTruth:Boolean,trustScore:Double,outlinks:Set[String],isRedirect:Boolean):me.lpmg.ste.data.Revision"></a><a id="&lt;init&gt;:Revision"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#&lt;init&gt;(revisionId:String,pageId:String,parentId:Option[String],timestamp:String):me.lpmg.ste.data.Revision" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/Revision.html#&lt;init&gt;(revisionId:String,pageId:String,parentId:Option[String],timestamp:String,isGroundTruth:Boolean,trustScore:Double,outlinks:Set[String],isRedirect:Boolean):me.lpmg.ste.data.Revision" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -236,10 +248,22 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Revision</span><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parentId">parentId: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">Revision</span><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parentId">parentId: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isGroundTruth">isGroundTruth: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Double">Double</span></span>, <span name="outlinks">outlinks: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="isRedirect">isRedirect: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
       </span>
       
-      <p class="shortcomment cmt">create a new revision with provided revisionId, pageId, parentId, and timestamp</p><div class="fullcomment"><div class="comment cmt"><p>create a new revision with provided revisionId, pageId, parentId, and timestamp</p></div><dl class="paramcmts block"><dt class="param">revisionId</dt><dd class="cmt"><p>the unique identifier of the revision</p></dd><dt class="param">pageId</dt><dd class="cmt"><p>the unique identifier of the page</p></dd><dt class="param">parentId</dt><dd class="cmt"><p>the unique identifier of the parent revision</p></dd><dt class="param">timestamp</dt><dd class="cmt"><p>the timestamp of the revision</p></dd></dl></div>
+      <p class="shortcomment cmt">
+  create a new revision with provided revisionId, pageId, parentId, and
+  timestamp</p><div class="fullcomment"><div class="comment cmt"><p>
+  create a new revision with provided revisionId, pageId, parentId, and
+  timestamp</p></div><dl class="paramcmts block"><dt class="param">revisionId</dt><dd class="cmt"><p>
+  the unique identifier of the revision</p></dd><dt class="param">pageId</dt><dd class="cmt"><p>
+  the unique identifier of the page</p></dd><dt class="param">parentId</dt><dd class="cmt"><p>
+  the unique identifier of the parent revision</p></dd><dt class="param">timestamp</dt><dd class="cmt"><p>
+  the timestamp of the revision</p></dd><dt class="param">isGroundTruth</dt><dd class="cmt"><p>
+  whether the revision is a ground truth revision</p></dd><dt class="param">trustScore</dt><dd class="cmt"><p>
+  the trust score of the revision</p></dd><dt class="param">outlinks</dt><dd class="cmt"><p>
+  the outlinks of the revision (revision IDs)</p></dd><dt class="param">isRedirect</dt><dd class="cmt"><p>
+  whether the revision is a redirect</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -377,6 +401,22 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="me.lpmg.ste.data.Revision#isGroundTruth" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="isGroundTruth:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/Revision.html#isGroundTruth:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isGroundTruth</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
@@ -393,6 +433,22 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="me.lpmg.ste.data.Revision#isRedirect" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="isRedirect:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/Revision.html#isRedirect:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isRedirect</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -451,6 +507,22 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="me.lpmg.ste.data.Revision#outlinks" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="outlinks:Set[String]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/Revision.html#outlinks:Set[String]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">outlinks</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      
+      
     </li><li name="me.lpmg.ste.data.Revision#pageId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="pageId:String"></a>
       <span class="permalink">
@@ -528,6 +600,22 @@
       </span>
       <span class="symbol">
         <span class="name">timestamp</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      
+    </li><li name="me.lpmg.ste.data.Revision#trustScore" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="trustScore:Double"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/Revision.html#trustScore:Double" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">trustScore</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
       </span>
       
       
