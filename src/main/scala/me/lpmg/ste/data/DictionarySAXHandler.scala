@@ -8,14 +8,14 @@ import org.xml.sax.Attributes
   * IDs.
   */
 class DictionarySAXHandler extends DefaultHandler {
-  private val dictionary = new HashMap[String, String]()
+  // Page title -> (Page ID, Redirect title)
+  private val dictionary = new HashMap[String, Seq[String]]()
   private var currentElement: String = ""
   private var currentPageTitle: Option[String] = None
   private var currentPageId: Option[String] = None
+  private var currentRedirectTitle: Option[String] = None
   private var insidePage = false
   private var insideRevision = false
-  private var isTitle: Boolean = false
-  private var isId: Boolean = false
 
   override def startElement(
       uri: String,
@@ -29,7 +29,15 @@ class DictionarySAXHandler extends DefaultHandler {
         insidePage = true
         currentPageTitle = None
         currentPageId = None
+        currentRedirectTitle = None
       case "revision" => insideRevision = true
+      case "redirect" =>
+        if (insidePage && !insideRevision) {
+          val title = attributes.getValue("title")
+          if (title != null) {
+            currentRedirectTitle = Some(title)
+          }
+        }
       case _          => // do nothing
     }
   }
@@ -43,7 +51,7 @@ class DictionarySAXHandler extends DefaultHandler {
       case "page" =>
         insidePage = false
         if (currentPageTitle.isDefined && currentPageId.isDefined) {
-          dictionary += (currentPageTitle.get -> currentPageId.get)
+          dictionary += (currentPageTitle.get -> Seq(currentPageId.get, currentRedirectTitle.getOrElse("")))
         }
       case "revision" =>
         insideRevision = false
@@ -64,5 +72,5 @@ class DictionarySAXHandler extends DefaultHandler {
     }
   }
 
-  def getDictionary: Map[String, String] = dictionary.toMap
+  def getDictionary: Map[String, Seq[String]] = dictionary.toMap
 }

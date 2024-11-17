@@ -93,4 +93,21 @@
       <format>text/x-wiki</format>
     </revision>
   </page>
+  <page>
+    <title>page 1</title>
+    <ns>0</ns>
+    <id>11</id>
+    <redirect title="Page 1" />
+    <revision>
+      <id>11</id>
+      <timestamp>2011-02-07T00:26:36Z</timestamp>
+      <contributor>
+        <username>Contributor 11</username>
+        <id>11</id>
+      </contributor>
+      <comment>Comment 11</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
 </mediawiki>

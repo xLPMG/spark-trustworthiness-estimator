@@ -13,23 +13,23 @@ class DataReaderTest extends munit.FunSuite {
 
     // compare the extracted revision data
     revisions.foreach { revision =>
-        if (revision.revisionId == "1") {
-            assertEquals(revision.pageId, "1")
-            assertEquals(revision.parentId, None)
-            assertEquals(revision.timestamp, "2011-01-01T00:00:01Z")
-        }else if (revision.revisionId == "2") {
-            assertEquals(revision.pageId, "2")
-            assertEquals(revision.parentId, None)
-            assertEquals(revision.timestamp, "2011-01-02T00:00:01Z")
-        }else if (revision.revisionId == "3") {
-            assertEquals(revision.pageId, "1")
-            assertEquals(revision.parentId, Some("1"))
-            assertEquals(revision.timestamp, "2011-01-03T00:00:01Z")
-        }else if (revision.revisionId == "4") {
-            assertEquals(revision.pageId, "2")
-            assertEquals(revision.parentId, Some("2"))
-            assertEquals(revision.timestamp, "2011-01-04T00:00:01Z")
-        }
+      if (revision.revisionId == "1") {
+        assertEquals(revision.pageId, "1")
+        assertEquals(revision.parentId, None)
+        assertEquals(revision.timestamp, "2011-01-01T00:00:01Z")
+      } else if (revision.revisionId == "2") {
+        assertEquals(revision.pageId, "2")
+        assertEquals(revision.parentId, None)
+        assertEquals(revision.timestamp, "2011-01-02T00:00:01Z")
+      } else if (revision.revisionId == "3") {
+        assertEquals(revision.pageId, "1")
+        assertEquals(revision.parentId, Some("1"))
+        assertEquals(revision.timestamp, "2011-01-03T00:00:01Z")
+      } else if (revision.revisionId == "4") {
+        assertEquals(revision.pageId, "2")
+        assertEquals(revision.parentId, Some("2"))
+        assertEquals(revision.timestamp, "2011-01-04T00:00:01Z")
+      }
     }
   }
 
@@ -39,8 +39,9 @@ class DataReaderTest extends munit.FunSuite {
     val dictionary = DataReader.getDictionary(inputStream)
     inputStream.close()
     assert(dictionary.nonEmpty)
-    assertEquals(dictionary.getOrElse("Page 1", ""), "1");
-    assertEquals(dictionary.getOrElse("Page 2", ""), "2");
-    assertEquals(dictionary.getOrElse("Page IGNORE", ""), "3");
+    assertEquals(dictionary.getOrElse("Page 1", ""), Seq("1", ""));
+    assertEquals(dictionary.getOrElse("Page 2", ""), Seq("2", ""));
+    assertEquals(dictionary.getOrElse("Page IGNORE", ""), Seq("3", ""));
+    assertEquals(dictionary.getOrElse("page 1", ""), Seq("11", "Page 1"));
   }
 }

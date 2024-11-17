@@ -64,7 +64,7 @@ object DataReader {
     * @param inputStream XML input stream
     * @return Dictionary map
     */
-  def getDictionary(inputStream: InputStream): Map[String, String] = {
+  def getDictionary(inputStream: InputStream): Map[String, Seq[String]] = {
     val saxParserFactory = SAXParserFactory.newInstance()
     saxParserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
 
@@ -87,7 +87,7 @@ object DataReader {
     * @param pds PortableDataStream
     * @return Dictionary map
     */
-  def getDictionaryFromPDS(pds: PortableDataStream): Map[String, String] = {
+  def getDictionaryFromPDS(pds: PortableDataStream): Map[String, Seq[String]] = {
     Using.resource(pds.open()) { inputStream =>
       val bz2Stream =
         new BZip2CompressorInputStream(new BufferedInputStream(inputStream))

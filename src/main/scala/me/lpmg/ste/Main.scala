@@ -18,6 +18,10 @@ object Main {
     }
 
     val folderPath = args(0)
+    var dictionaryPath = ""
+    if (args.length > 1) {
+      dictionaryPath = args(1)
+    }
 
     val spark = SparkSession
       .builder()
@@ -28,13 +32,15 @@ object Main {
     val filesRDD = spark.sparkContext.binaryFiles(s"$folderPath/*.bz2")
 
     // Create dictionary if not present
-    val dictionaryFile: Path = Path.of(folderPath).resolve("dictionary.csv")
-    if (!dictionaryFile.toFile.exists()) {
+    val dictionaryFile: Path = Path.of(dictionaryPath).resolve("dictionary.csv")
+    if (!dictionaryPath.isEmpty && !dictionaryFile.toFile.exists()) {
       val dictionaryRDD = filesRDD.map { case (_, pds) =>
         DataReader.getDictionaryFromPDS(pds)
       }
       val combinedDictionary = dictionaryRDD.reduce(_ ++ _)
-      val rows = combinedDictionary.toSeq.map{case (key, value) => Seq(key, value)}
+      val rows = combinedDictionary.map { case (title, values) =>
+        Seq(title, values.head, values(1))
+      }.toSeq
       val writer = CSVWriter.open(dictionaryFile.toFile())
       writer.writeAll(rows)
       writer.close()
