@@ -12,6 +12,8 @@ lazy val root = project
     libraryDependencies += "org.apache.spark" %% "spark-graphx" % sparkVersion,
     libraryDependencies += "com.databricks" %% "spark-xml" % "0.18.0",
     libraryDependencies += "org.apache.commons" % "commons-compress" % "1.21",
+
+    libraryDependencies += "com.github.tototoshi" %% "scala-csv" % "2.0.0",
     
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % "test",
 

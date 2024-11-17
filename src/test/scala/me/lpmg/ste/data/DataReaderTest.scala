@@ -1,5 +1,9 @@
 package me.lpmg.ste.data
 
+import org.apache.spark.input.PortableDataStream
+import java.io.InputStream
+import java.io.FileInputStream
+
 class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
     val filePath = "src/test/resources/dump/test-dump-1.xml.bz2"
@@ -27,5 +31,16 @@ class DataReaderTest extends munit.FunSuite {
             assertEquals(revision.timestamp, "2011-01-04T00:00:01Z")
         }
     }
+  }
+
+  test("getDictionary") {
+    val filePath = "src/test/resources/dump/test-dump-1.xml"
+    val inputStream: InputStream = new FileInputStream(filePath)
+    val dictionary = DataReader.getDictionary(inputStream)
+    inputStream.close()
+    assert(dictionary.nonEmpty)
+    assertEquals(dictionary.getOrElse("Page 1", ""), "1");
+    assertEquals(dictionary.getOrElse("Page 2", ""), "2");
+    assertEquals(dictionary.getOrElse("Page IGNORE", ""), "3");
   }
 }

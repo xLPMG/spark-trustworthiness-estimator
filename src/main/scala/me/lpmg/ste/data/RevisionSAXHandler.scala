@@ -7,17 +7,21 @@ import org.xml.sax.{Attributes, InputSource}
 /** SAX handler for parsing MediaWiki XML revisions.
   */
 class RevisionSAXHandler extends DefaultHandler {
+  private val revisions = ArrayBuffer[Revision]()
+  private var currentElement: String = ""
+  private var insidePage = false
+  private var insideRevision = false
+  private var isMainNamespace = false
 
-  val revisions = ArrayBuffer[Revision]()
-  var currentElement: String = ""
-  var insidePage = false
-  var insideRevision = false
-  var isMainNamespace = false
+  private var pageId: String = ""
+  private var revisionId: String = ""
+  private var parentId: Option[String] = None
+  private var timestamp: String = ""
 
-  var pageId: String = ""
-  var revisionId: String = ""
-  var parentId: Option[String] = None
-  var timestamp: String = ""
+  private var isGroundTruth: Boolean = false
+  private var trustScore: Double = 0.0
+  private var outlinks: Set[String] = Set()
+  private var isRedirect: Boolean = false
 
   override def startElement(
       uri: String,
@@ -35,6 +39,8 @@ class RevisionSAXHandler extends DefaultHandler {
         insideRevision = true
         revisionId = ""
         parentId = None
+        outlinks = Set()
+        isRedirect = false
       case _ => // No-op for other tags
     }
   }
@@ -50,7 +56,16 @@ class RevisionSAXHandler extends DefaultHandler {
       case "revision" =>
         if (insidePage && isMainNamespace) {
           // Add the extracted revision data to the list of revisions
-          revisions += Revision(revisionId, pageId, parentId, timestamp)
+          revisions += Revision(
+            revisionId,
+            pageId,
+            parentId,
+            timestamp,
+            isGroundTruth,
+            trustScore,
+            outlinks,
+            isRedirect
+          )
         }
         insideRevision = false
       case _ => // No-op for other tags
@@ -81,8 +96,13 @@ class RevisionSAXHandler extends DefaultHandler {
           parentId = Some(content)
         case "timestamp" =>
           timestamp = content
+        case "text" =>
+          isRedirect = content.startsWith("#REDIRECT")
+        // filter outlinks
         case _ => // No-op for other elements
       }
     }
   }
+
+  def getRevisions: Seq[Revision] = revisions.toSeq
 }
