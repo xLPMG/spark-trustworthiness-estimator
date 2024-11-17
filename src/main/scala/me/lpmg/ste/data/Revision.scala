@@ -1,5 +1,7 @@
 package me.lpmg.ste.data
 
+import java.time.Instant
+
 /** A class to represent a Wikipedia revision.
   *
   * @constructor
@@ -26,7 +28,7 @@ final case class Revision(
     revisionId: String,
     pageId: String,
     parentId: Option[String],
-    timestamp: String,
+    timestamp: Instant,
     isGroundTruth: Boolean,
     trustScore: Double,
     outlinks: Set[String],

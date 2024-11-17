@@ -17,17 +17,31 @@ object GraphCreator {
       (rev.revisionId.toLong, rev)
     }
 
-    // create temporal edges
-    val edges: RDD[Edge[String]] = revisionsRDD.flatMap { rev =>
-      rev.parentId.map { parentId =>
-        Seq(
-          Edge(parentId.toLong, rev.revisionId.toLong, "isParentOf"),
-          Edge(rev.revisionId.toLong, parentId.toLong, "isChildOf")
-        )
-      }.getOrElse(Seq.empty)
+    // Connect revisions of the same page
+    val temporalEdges: RDD[Edge[String]] = revisionsRDD.flatMap { rev =>
+      rev.parentId
+        .map { parentId =>
+          Seq(
+            Edge(parentId.toLong, rev.revisionId.toLong, "isParentOf"),
+            Edge(rev.revisionId.toLong, parentId.toLong, "isChildOf")
+          )
+        }
+        .getOrElse(Seq.empty)
     }
 
+    // Connect revisions with outlinks
+    val outlinkEdges: RDD[Edge[String]] = revisionsRDD.flatMap { rev =>
+      rev.outlinks.flatMap { outlinkId =>
+        Seq(
+          Edge(rev.revisionId.toLong, outlinkId.toLong, "linksTo"),
+          Edge(outlinkId.toLong, rev.revisionId.toLong, "linkedFrom")
+        )
+      }
+    }
+
+    val allEdges = temporalEdges.union(outlinkEdges)
+
     // Create the GraphX graph
-    Graph(vertices, edges)
+    Graph(vertices, allEdges)
   }
 }

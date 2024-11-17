@@ -3,6 +3,7 @@ package me.lpmg.ste.data
 import org.xml.sax.helpers.DefaultHandler
 import scala.collection.mutable.ArrayBuffer
 import org.xml.sax.{Attributes, InputSource}
+import java.time.Instant
 
 /** SAX handler for parsing MediaWiki XML revisions.
   */
@@ -16,7 +17,7 @@ class RevisionSAXHandler extends DefaultHandler {
   private var pageId: String = ""
   private var revisionId: String = ""
   private var parentId: Option[String] = None
-  private var timestamp: String = ""
+  private var timestamp: Instant = null
 
   private var isGroundTruth: Boolean = false
   private var trustScore: Double = 0.0
@@ -95,10 +96,16 @@ class RevisionSAXHandler extends DefaultHandler {
         case "parentid" =>
           parentId = Some(content)
         case "timestamp" =>
-          timestamp = content
+          timestamp = Instant.parse(content)
         case "text" =>
           isRedirect = content.startsWith("#REDIRECT")
-        // filter outlinks
+          if(!isRedirect) {
+            val outlinkPattern = "\\[\\[([^\\]]+)\\]\\]".r
+            outlinks = outlinkPattern
+              .findAllMatchIn(content)
+              .map(_.group(1))
+              .toSet
+          }
         case _ => // No-op for other elements
       }
     }

@@ -8,6 +8,9 @@ import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
 import org.apache.spark.sql.execution.streaming.Source
 import com.github.tototoshi.csv.CSVWriter
+import org.apache.spark.broadcast.Broadcast
+import com.github.tototoshi.csv.CSVReader
+import me.lpmg.ste.data.LinkResolver
 
 object Main {
 
@@ -31,20 +34,37 @@ object Main {
     // Read all .xml.bz2 files in the folder into an RDD
     val filesRDD = spark.sparkContext.binaryFiles(s"$folderPath/*.bz2")
 
-    // Create dictionary if not present
+    var dictionary: Map[String, Seq[String]] = null
+
+    // Create dictionary if not present, read from file if present
     val dictionaryFile: Path = Path.of(dictionaryPath).resolve("dictionary.csv")
+    // WRITE
     if (!dictionaryPath.isEmpty && !dictionaryFile.toFile.exists()) {
-      val dictionaryRDD = filesRDD.map { case (_, pds) =>
-        DataReader.getDictionaryFromPDS(pds)
-      }
-      val combinedDictionary = dictionaryRDD.reduce(_ ++ _)
-      val rows = combinedDictionary.map { case (title, values) =>
+      println(s"Creating dictionary file at: $dictionaryFile")
+      dictionary = filesRDD
+        .map { case (_, pds) =>
+          DataReader.getDictionaryFromPDS(pds)
+        }
+        .reduce(_ ++ _)
+      val rows = dictionary.map { case (title, values) =>
         Seq(title, values.head, values(1))
       }.toSeq
       val writer = CSVWriter.open(dictionaryFile.toFile())
+      writer.writeRow(List("PageTitle", "PageID", "RedirectsTo"))
       writer.writeAll(rows)
       writer.close()
+    } else if (!dictionaryPath.isEmpty && dictionaryFile.toFile.exists()) {
+      // READ
+      println(s"Reading dictionary file from: $dictionaryFile")
+      val reader = CSVReader.open(dictionaryFile.toFile())
+      val csvData = reader.allWithHeaders()
+      dictionary = csvData.foldLeft(Map.empty[String, Seq[String]]) {
+        (acc, row) =>
+          acc + (row("PageTitle") -> Seq(row("PageID"), row("RedirectsTo")))
+      }
     }
+
+    val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
 
     // Process each file in the RDD to extract revisions
     val allRevisionsRDD = filesRDD.flatMap { case (_, pds) =>
@@ -53,8 +73,16 @@ object Main {
 
     println(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
 
+    // Group revisions by their page ID and sort by timestamp
+    val groupedRevisionsRDD = allRevisionsRDD.groupBy(_.pageId).mapValues(_.toSeq.sortBy(_.timestamp)).collect()
+
+    val resolvedRevisionsRDD = allRevisionsRDD.map { revision =>
+      val resolvedTitleRev = LinkResolver.resolvePageTitlesToPageIDs(revision, broadCastedDictionary.value)
+      LinkResolver.resolvePageIDsToRevisionIDs(resolvedTitleRev, groupedRevisionsRDD.toMap)
+    }
+
     // Create the graph
-    val revisionGraph = createRevisionGraph(spark, allRevisionsRDD)
+    val revisionGraph = createRevisionGraph(spark, resolvedRevisionsRDD)
 
     println(s"Number of vertices: ${revisionGraph.vertices.count}")
     println(s"Number of edges: ${revisionGraph.edges.count}")

@@ -3,6 +3,7 @@ package me.lpmg.ste.data
 import org.apache.spark.input.PortableDataStream
 import java.io.InputStream
 import java.io.FileInputStream
+import java.time.Instant
 
 class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
@@ -17,19 +18,19 @@ class DataReaderTest extends munit.FunSuite {
       if (revision.revisionId == "1") {
         assertEquals(revision.pageId, "1")
         assertEquals(revision.parentId, None)
-        assertEquals(revision.timestamp, "2011-01-01T00:00:01Z")
+        assertEquals(revision.timestamp, Instant.parse("2011-01-01T00:00:01Z"))
       } else if (revision.revisionId == "2") {
         assertEquals(revision.pageId, "2")
         assertEquals(revision.parentId, None)
-        assertEquals(revision.timestamp, "2011-01-02T00:00:01Z")
+        assertEquals(revision.timestamp, Instant.parse("2011-01-02T00:00:01Z"))
       } else if (revision.revisionId == "3") {
         assertEquals(revision.pageId, "1")
         assertEquals(revision.parentId, Some("1"))
-        assertEquals(revision.timestamp, "2011-01-03T00:00:01Z")
+        assertEquals(revision.timestamp, Instant.parse("2011-01-03T00:00:01Z"))
       } else if (revision.revisionId == "4") {
         assertEquals(revision.pageId, "2")
         assertEquals(revision.parentId, Some("2"))
-        assertEquals(revision.timestamp, "2011-01-04T00:00:01Z")
+        assertEquals(revision.timestamp, Instant.parse("2011-01-04T00:00:01Z"))
       }
     }
   }
