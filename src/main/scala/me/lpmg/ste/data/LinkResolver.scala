@@ -16,8 +16,8 @@ object LinkResolver {
       dictionary: Map[String, Seq[String]]
   ): Revision = {
     // TODO: Resolve redirects
-    val resolvedPageLinks = revision.outlinks.flatMap { link =>
-      dictionary.getOrElse(link, Seq("0"))
+    val resolvedPageLinks = revision.outlinks.flatMap { pageTitle =>
+      dictionary.getOrElse(pageTitle, Seq.empty).headOption
     }
     revision.copy(outlinks = resolvedPageLinks)
   }
