@@ -380,9 +380,9 @@ files.
               
         </dd></dl></div>
     </li><li name="me.lpmg.ste.data.DataReader#getDictionary" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getDictionary(inputStream:java.io.InputStream):Map[String,String]"></a><a id="getDictionary(InputStream):Map[String,String]"></a>
+      <a id="getDictionary(inputStream:java.io.InputStream):Map[String,Seq[String]]"></a><a id="getDictionary(InputStream):Map[String,Seq[String]]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/DataReader$.html#getDictionary(inputStream:java.io.InputStream):Map[String,String]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/DataReader$.html#getDictionary(inputStream:java.io.InputStream):Map[String,Seq[String]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -391,15 +391,15 @@ files.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getDictionary</span><span class="params">(<span name="inputStream">inputStream: <span class="extype" name="java.io.InputStream">InputStream</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">getDictionary</span><span class="params">(<span name="inputStream">inputStream: <span class="extype" name="java.io.InputStream">InputStream</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]]</span>
       </span>
       
       <p class="shortcomment cmt">Parse an XML input stream to create a dictionary map containing &quot;Page Title -&gt; Page ID&quot;.</p><div class="fullcomment"><div class="comment cmt"><p>Parse an XML input stream to create a dictionary map containing &quot;Page Title -&gt; Page ID&quot;.
 </p></div><dl class="paramcmts block"><dt class="param">inputStream</dt><dd class="cmt"><p>XML input stream</p></dd><dt>returns</dt><dd class="cmt"><p>Dictionary map</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.DataReader#getDictionaryFromPDS" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getDictionaryFromPDS(pds:org.apache.spark.input.PortableDataStream):Map[String,String]"></a><a id="getDictionaryFromPDS(PortableDataStream):Map[String,String]"></a>
+      <a id="getDictionaryFromPDS(pds:org.apache.spark.input.PortableDataStream):Map[String,Seq[String]]"></a><a id="getDictionaryFromPDS(PortableDataStream):Map[String,Seq[String]]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/DataReader$.html#getDictionaryFromPDS(pds:org.apache.spark.input.PortableDataStream):Map[String,String]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/DataReader$.html#getDictionaryFromPDS(pds:org.apache.spark.input.PortableDataStream):Map[String,Seq[String]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -408,7 +408,7 @@ files.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getDictionaryFromPDS</span><span class="params">(<span name="pds">pds: <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">getDictionaryFromPDS</span><span class="params">(<span name="pds">pds: <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]]</span>
       </span>
       
       <p class="shortcomment cmt">Parse a (bz2 zipped) XML PortableDataStream to create a dictionary map containing &quot;Page Title -&gt; Page ID&quot;.</p><div class="fullcomment"><div class="comment cmt"><p>Parse a (bz2 zipped) XML PortableDataStream to create a dictionary map containing &quot;Page Title -&gt; Page ID&quot;.
