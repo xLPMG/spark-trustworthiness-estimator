@@ -477,7 +477,7 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphCreator#removeEdgesWithMissingVertices" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="me.lpmg.ste.graph.GraphCreator#removeEdgesWithMissingVertices" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="removeEdgesWithMissingVertices(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.data.Revision,String]):org.apache.spark.graphx.Graph[me.lpmg.ste.data.Revision,String]"></a><a id="removeEdgesWithMissingVertices(Graph[Revision,String]):Graph[Revision,String]"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/graph/GraphCreator$.html#removeEdgesWithMissingVertices(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.data.Revision,String]):org.apache.spark.graphx.Graph[me.lpmg.ste.data.Revision,String]" title="Permalink">
@@ -492,7 +492,10 @@
         <span class="name">removeEdgesWithMissingVertices</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>, <span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>, <span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Removes edges for which at least one of the vertices is not present in the
+graph.</p><div class="fullcomment"><div class="comment cmt"><p>Removes edges for which at least one of the vertices is not present in the
+graph.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>graph with edges.count() &lt;= original edges.count()</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
