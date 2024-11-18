@@ -9,28 +9,31 @@ class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
     val filePath = "src/test/resources/dump/test-dump-1.xml"
     val inputStream: InputStream = new FileInputStream(filePath)
-    val revisions = DataReader.getRevisions(inputStream)
+    var dictionary: Map[String, Seq[String]] = Map("Page 2" -> Seq("2"))
+    val revisions = DataReader.getRevisions(inputStream, dictionary)
     // only 5 out of 7 revisions are in the main namespace
     assertEquals(revisions.length, 5)
 
     // compare the extracted revision data
     revisions.foreach { revision =>
-      if (revision.revisionId == "1") {
-        assertEquals(revision.pageId, "1")
+      if (revision.revisionId == 1L) {
+        assertEquals(revision.pageId, 1L)
         assertEquals(revision.parentId, None)
-        assertEquals(revision.timestamp, Instant.parse("2011-01-01T00:00:01Z"))
-      } else if (revision.revisionId == "2") {
-        assertEquals(revision.pageId, "2")
+        assertEquals(revision.timestamp, Instant.parse("2011-01-01T00:00:01Z").toEpochMilli())
+      } else if (revision.revisionId == 2L) {
+        assertEquals(revision.pageId, 2L)
         assertEquals(revision.parentId, None)
-        assertEquals(revision.timestamp, Instant.parse("2011-01-02T00:00:01Z"))
-      } else if (revision.revisionId == "3") {
-        assertEquals(revision.pageId, "1")
-        assertEquals(revision.parentId, Some("1"))
-        assertEquals(revision.timestamp, Instant.parse("2011-01-03T00:00:01Z"))
-      } else if (revision.revisionId == "4") {
-        assertEquals(revision.pageId, "2")
-        assertEquals(revision.parentId, Some("2"))
-        assertEquals(revision.timestamp, Instant.parse("2011-01-04T00:00:01Z"))
+        assertEquals(revision.timestamp, Instant.parse("2011-01-02T00:00:01Z").toEpochMilli())
+      } else if (revision.revisionId == 3L) {
+        assertEquals(revision.pageId, 1L)
+        assertEquals(revision.parentId, Some(1L))
+        assertEquals(revision.timestamp, Instant.parse("2011-01-03T00:00:01Z").toEpochMilli())
+        // Revision 2 has link "[[Page 2]]"
+        assertEquals(revision.resolvedPageOutlinks, Set(2L))
+      } else if (revision.revisionId == 4L) {
+        assertEquals(revision.pageId, 2L)
+        assertEquals(revision.parentId, Some(2L))
+        assertEquals(revision.timestamp, Instant.parse("2011-01-04T00:00:01Z").toEpochMilli())
       }
     }
   }

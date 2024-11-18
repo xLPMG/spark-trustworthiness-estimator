@@ -14,6 +14,9 @@ lazy val root = project
     libraryDependencies += "org.apache.commons" % "commons-compress" % "1.21",
 
     libraryDependencies += "com.github.tototoshi" %% "scala-csv" % "2.0.0",
+
+    libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.5.12",
     
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % "test",
 

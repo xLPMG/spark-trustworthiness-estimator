@@ -2,39 +2,55 @@ package me.lpmg.ste.data
 
 object LinkResolver {
 
-  /** Resolve page titles to page IDs in a revision.
-    *
-    * @param revision
-    *   the revision to resolve page titles to page IDs
-    * @param dictionary
-    *   the dictionary map containing "Page Title -> Page ID"
-    * @return
-    *   the revision with resolved page titles to page IDs
-    */
   def resolvePageTitlesToPageIDs(
-      revision: Revision,
+      titles: Set[String],
       dictionary: Map[String, Seq[String]]
-  ): Revision = {
-    // TODO: Resolve redirects
-    val resolvedPageLinks = revision.outlinks.flatMap { pageTitle =>
-      dictionary.getOrElse(pageTitle, Seq.empty).headOption
+  ): Set[Long] = {
+    titles.flatMap { pageTitle =>
+      dictionary.getOrElse(pageTitle, Seq.empty).headOption.map(_.toLong)
     }
-    revision.copy(outlinks = resolvedPageLinks)
   }
 
+  /** Resolve page IDs to revision IDs in a revision.
+    *
+    * @param revision
+    *   the revision to resolve page IDs to revision IDs for
+    * @param groupedRevisions
+    * @param minimize
+    *   whether to minimize the revision after resolving (deleting unnecessary
+    *   data)
+    * @return
+    *   the edited revision
+    */
   def resolvePageIDsToRevisionIDs(
       revision: Revision,
-      groupedRevisions: Map[String, Seq[Revision]]
+      groupedRevisions: Map[Long, Seq[Revision]],
+      minimize: Boolean = true
   ): Revision = {
 
-    val resolvedPageLinks = revision.outlinks.flatMap { pageId =>
-      groupedRevisions
-        .getOrElse(pageId, Seq.empty)
-        .filter((rev: Revision) => rev.timestamp.isBefore(revision.timestamp))
-        .lastOption
-        .map(_.revisionId)
-        .toSeq
+    revision.resolvedRevisionOutlinks = revision.resolvedPageOutlinks.flatMap {
+      pageId =>
+        groupedRevisions
+          .getOrElse(pageId, Seq.empty)
+          .filter((rev: Revision) => rev.timestamp < revision.timestamp)
+          .lastOption
+          .map(_.revisionId)
+          .toSeq
     }
-    revision.copy(outlinks = resolvedPageLinks)
+    val newPageOutlinks =
+      if (minimize) Set.empty[Long] else revision.resolvedPageOutlinks
+
+    new Revision(
+      revision.revisionId,
+      revision.pageId,
+      revision.parentId,
+      revision.timestamp,
+      revision.isGroundTruth,
+      revision.trustScore,
+      newPageOutlinks,
+      revision.resolvedRevisionOutlinks,
+      revision.isRedirect
+    )
+
   }
 }

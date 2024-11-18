@@ -25,7 +25,7 @@ class DictionarySAXHandler extends DefaultHandler {
   ): Unit = {
     currentElement = qName
     qName match {
-      case "page"     => 
+      case "page" =>
         insidePage = true
         currentPageTitle = None
         currentPageId = None
@@ -38,7 +38,7 @@ class DictionarySAXHandler extends DefaultHandler {
             currentRedirectTitle = Some(title)
           }
         }
-      case _          => // do nothing
+      case _ => // do nothing
     }
   }
 
@@ -51,7 +51,10 @@ class DictionarySAXHandler extends DefaultHandler {
       case "page" =>
         insidePage = false
         if (currentPageTitle.isDefined && currentPageId.isDefined) {
-          dictionary += (currentPageTitle.get -> Seq(currentPageId.get, currentRedirectTitle.getOrElse("")))
+          dictionary += (currentPageTitle.get -> Seq(
+            currentPageId.get,
+            currentRedirectTitle.getOrElse("")
+          ))
         }
       case "revision" =>
         insideRevision = false

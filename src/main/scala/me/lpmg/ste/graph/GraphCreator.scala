@@ -22,8 +22,8 @@ object GraphCreator {
       rev.parentId
         .map { parentId =>
           Seq(
-            Edge(parentId.toLong, rev.revisionId.toLong, "isParentOf"),
-            Edge(rev.revisionId.toLong, parentId.toLong, "isChildOf")
+            Edge(parentId, rev.revisionId, "isParentOf"),
+            Edge(rev.revisionId, parentId, "isChildOf")
           )
         }
         .getOrElse(Seq.empty)
@@ -31,10 +31,10 @@ object GraphCreator {
 
     // Connect revisions with outlinks
     val outlinkEdges: RDD[Edge[String]] = revisionsRDD.flatMap { rev =>
-      rev.outlinks.flatMap { outlinkId =>
+      rev.resolvedRevisionOutlinks.flatMap { outlinkId =>
         Seq(
-          Edge(rev.revisionId.toLong, outlinkId.toLong, "linksTo"),
-          Edge(outlinkId.toLong, rev.revisionId.toLong, "linkedFrom")
+          Edge(rev.revisionId, outlinkId, "linksTo"),
+          Edge(outlinkId, rev.revisionId, "linkedFrom")
         )
       }
     }
@@ -43,5 +43,15 @@ object GraphCreator {
 
     // Create the GraphX graph
     Graph(vertices, allEdges)
+  }
+
+  def removeEdgesWithMissingVertices(
+      graph: Graph[Revision, String]
+  ): Graph[Revision, String] = {
+    val validVertices = graph.vertices.map { case (vid, _) => vid }.collect().toSet
+    val validEdges = graph.edges.filter { edge =>
+      validVertices.contains(edge.srcId) && validVertices.contains(edge.dstId)
+    }
+    Graph(graph.vertices, validEdges)
   }
 }

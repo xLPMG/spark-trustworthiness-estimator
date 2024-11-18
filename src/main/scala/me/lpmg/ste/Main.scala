@@ -11,12 +11,15 @@ import com.github.tototoshi.csv.CSVWriter
 import org.apache.spark.broadcast.Broadcast
 import com.github.tototoshi.csv.CSVReader
 import me.lpmg.ste.data.LinkResolver
+import com.typesafe.scalalogging.Logger
+import me.lpmg.ste.graph.GraphCreator.removeEdgesWithMissingVertices
 
 object Main {
 
   def main(args: Array[String]): Unit = {
+    val logger = Logger(getClass.getName)
     if (args.length < 1) {
-      println("Please specify the dump folder path")
+      logger.error("Please specify the dump folder path")
       System.exit(1)
     }
 
@@ -40,7 +43,7 @@ object Main {
     val dictionaryFile: Path = Path.of(dictionaryPath).resolve("dictionary.csv")
     // WRITE
     if (!dictionaryPath.isEmpty && !dictionaryFile.toFile.exists()) {
-      println(s"Creating dictionary file at: $dictionaryFile")
+      logger.info(s"Creating dictionary file at: $dictionaryFile")
       dictionary = filesRDD
         .map { case (_, pds) =>
           DataReader.getDictionaryFromPDS(pds)
@@ -55,7 +58,7 @@ object Main {
       writer.close()
     } else if (!dictionaryPath.isEmpty && dictionaryFile.toFile.exists()) {
       // READ
-      println(s"Reading dictionary file from: $dictionaryFile")
+      logger.info(s"Reading dictionary file from: $dictionaryFile")
       val reader = CSVReader.open(dictionaryFile.toFile())
       val csvData = reader.allWithHeaders()
       dictionary = csvData.foldLeft(Map.empty[String, Seq[String]]) {
@@ -67,22 +70,35 @@ object Main {
     val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
 
     // Process each file in the RDD to extract revisions
-    val allRevisionsRDD = filesRDD.flatMap { case (_, pds) =>
-      DataReader.getRevisionsFromPDS(pds)
-    }
+    val allRevisionsRDD = filesRDD
+      .flatMap { case (_, pds) =>
+        DataReader.getRevisionsFromPDS(pds, broadCastedDictionary.value)
+      }
+      .cache()
 
-    println(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
+    logger.info(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
 
     // Group revisions by their page ID and sort by timestamp
-    val groupedRevisionsRDD = allRevisionsRDD.groupBy(_.pageId).mapValues(_.toSeq.sortBy(_.timestamp)).collect()
+    val groupedRevisionsRDD = allRevisionsRDD
+      .groupBy(_.pageId)
+      .mapValues(_.toSeq.sortBy(_.timestamp))
+      .collectAsMap()
+      .toMap
 
     val resolvedRevisionsRDD = allRevisionsRDD.map { revision =>
-      val resolvedTitleRev = LinkResolver.resolvePageTitlesToPageIDs(revision, broadCastedDictionary.value)
-      LinkResolver.resolvePageIDsToRevisionIDs(resolvedTitleRev, groupedRevisionsRDD.toMap)
+      LinkResolver.resolvePageIDsToRevisionIDs(
+        revision,
+        groupedRevisionsRDD
+      )
     }
 
     // Create the graph
-    val revisionGraph = createRevisionGraph(spark, resolvedRevisionsRDD)
+    var revisionGraph = createRevisionGraph(spark, resolvedRevisionsRDD)
+
+    println(s"Number of vertices: ${revisionGraph.vertices.count}")
+    println(s"Number of edges: ${revisionGraph.edges.count}")
+
+    revisionGraph = removeEdgesWithMissingVertices(revisionGraph)
 
     println(s"Number of vertices: ${revisionGraph.vertices.count}")
     println(s"Number of edges: ${revisionGraph.edges.count}")

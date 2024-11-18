@@ -14,6 +14,7 @@ import org.xml.sax.XMLReader
 import java.io.InputStream
 import scala.util.Using
 import org.apache.spark.input.PortableDataStream
+import com.typesafe.scalalogging.Logger
 
 /** Provides functionality to read and parse XML data from BZip2 compressed
   * files.
@@ -25,7 +26,7 @@ object DataReader {
     * @param inputStream XML input stream
     * @return Sequence of revisions
     */
-  def getRevisions(inputStream: InputStream): Seq[Revision] = {
+  def getRevisions(inputStream: InputStream, dictionary: Map[String, Seq[String]]): Seq[Revision] = {
     val saxParserFactory = SAXParserFactory.newInstance()
     saxParserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
 
@@ -34,6 +35,7 @@ object DataReader {
     )
 
     val handler = new RevisionSAXHandler()
+    handler.setDictionary(dictionary)
     xmlReader.setContentHandler(handler)
 
     val inputSource = new InputSource(
@@ -48,11 +50,11 @@ object DataReader {
     * @param pds PortableDataStream
     * @return Sequence of revisions
     */
-  def getRevisionsFromPDS(pds: PortableDataStream): Seq[Revision] = {
+  def getRevisionsFromPDS(pds: PortableDataStream, dictionary: Map[String, Seq[String]]): Seq[Revision] = {
     Using.resource(pds.open()) { inputStream =>
       val bz2Stream =
         new BZip2CompressorInputStream(new BufferedInputStream(inputStream))
-      getRevisions(bz2Stream)
+      getRevisions(bz2Stream, dictionary)
     }
   }
 
