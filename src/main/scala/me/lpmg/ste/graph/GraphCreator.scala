@@ -45,10 +45,17 @@ object GraphCreator {
     Graph(vertices, allEdges)
   }
 
+  /** Removes edges for which at least one of the vertices is not present in the
+    * graph.
+    *
+    * @param graph
+    * @return graph with edges.count() <= original edges.count()
+    */
   def removeEdgesWithMissingVertices(
       graph: Graph[Revision, String]
   ): Graph[Revision, String] = {
-    val validVertices = graph.vertices.map { case (vid, _) => vid }.collect().toSet
+    val validVertices =
+      graph.vertices.map { case (vid, _) => vid }.collect().toSet
     val validEdges = graph.edges.filter { edge =>
       validVertices.contains(edge.srcId) && validVertices.contains(edge.dstId)
     }
