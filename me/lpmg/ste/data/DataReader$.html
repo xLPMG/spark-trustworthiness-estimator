@@ -143,6 +143,10 @@
                         <a href="DictionarySAXHandler.html" title="SAX handler creating a dictionary of titles and their corresponding page IDs.">DictionarySAXHandler</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="object" href="Filter$.html" title=""></a>
+                        <a href="Filter$.html" title="">Filter</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="object" href="LinkResolver$.html" title=""></a>
                         <a href="LinkResolver$.html" title="">LinkResolver</a>
                       </li><li class="current-entities indented4">
@@ -418,9 +422,9 @@ files.
       <p class="shortcomment cmt">Parse a (bz2 zipped) XML PortableDataStream to create a dictionary map containing &quot;Page Title -&gt; Page ID&quot;.</p><div class="fullcomment"><div class="comment cmt"><p>Parse a (bz2 zipped) XML PortableDataStream to create a dictionary map containing &quot;Page Title -&gt; Page ID&quot;.
 </p></div><dl class="paramcmts block"><dt class="param">pds</dt><dd class="cmt"><p>PortableDataStream</p></dd><dt>returns</dt><dd class="cmt"><p>Dictionary map</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.DataReader#getRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getRevisions(inputStream:java.io.InputStream):Seq[me.lpmg.ste.data.Revision]"></a><a id="getRevisions(InputStream):Seq[Revision]"></a>
+      <a id="getRevisions(inputStream:java.io.InputStream,dictionary:Map[String,Seq[String]]):Seq[me.lpmg.ste.data.Revision]"></a><a id="getRevisions(InputStream,Map[String,Seq[String]]):Seq[Revision]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/DataReader$.html#getRevisions(inputStream:java.io.InputStream):Seq[me.lpmg.ste.data.Revision]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/DataReader$.html#getRevisions(inputStream:java.io.InputStream,dictionary:Map[String,Seq[String]]):Seq[me.lpmg.ste.data.Revision]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -429,15 +433,15 @@ files.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getRevisions</span><span class="params">(<span name="inputStream">inputStream: <span class="extype" name="java.io.InputStream">InputStream</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
+        <span class="name">getRevisions</span><span class="params">(<span name="inputStream">inputStream: <span class="extype" name="java.io.InputStream">InputStream</span></span>, <span name="dictionary">dictionary: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]]</span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Parse an XML input stream to retrieve a sequence of revisions.</p><div class="fullcomment"><div class="comment cmt"><p>Parse an XML input stream to retrieve a sequence of revisions.
 </p></div><dl class="paramcmts block"><dt class="param">inputStream</dt><dd class="cmt"><p>XML input stream</p></dd><dt>returns</dt><dd class="cmt"><p>Sequence of revisions</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.DataReader#getRevisionsFromPDS" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getRevisionsFromPDS(pds:org.apache.spark.input.PortableDataStream):Seq[me.lpmg.ste.data.Revision]"></a><a id="getRevisionsFromPDS(PortableDataStream):Seq[Revision]"></a>
+      <a id="getRevisionsFromPDS(pds:org.apache.spark.input.PortableDataStream,dictionary:Map[String,Seq[String]]):Seq[me.lpmg.ste.data.Revision]"></a><a id="getRevisionsFromPDS(PortableDataStream,Map[String,Seq[String]]):Seq[Revision]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/DataReader$.html#getRevisionsFromPDS(pds:org.apache.spark.input.PortableDataStream):Seq[me.lpmg.ste.data.Revision]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/DataReader$.html#getRevisionsFromPDS(pds:org.apache.spark.input.PortableDataStream,dictionary:Map[String,Seq[String]]):Seq[me.lpmg.ste.data.Revision]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -446,7 +450,7 @@ files.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getRevisionsFromPDS</span><span class="params">(<span name="pds">pds: <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
+        <span class="name">getRevisionsFromPDS</span><span class="params">(<span name="pds">pds: <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span></span>, <span name="dictionary">dictionary: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]]</span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Parse a (bz2 zipped) XML PortableDataStream to retrieve a sequence of revisions.</p><div class="fullcomment"><div class="comment cmt"><p>Parse a (bz2 zipped) XML PortableDataStream to retrieve a sequence of revisions.
