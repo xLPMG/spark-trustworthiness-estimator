@@ -13,11 +13,13 @@ import com.github.tototoshi.csv.CSVReader
 import me.lpmg.ste.data.LinkResolver
 import com.typesafe.scalalogging.Logger
 import me.lpmg.ste.graph.GraphCreator.removeEdgesWithMissingVertices
+import me.lpmg.ste.time.Watch
 
 object Main {
 
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)
+    Watch.start("Main")
     if (args.length < 1) {
       logger.error("Please specify the dump folder path")
       System.exit(1)
@@ -31,7 +33,6 @@ object Main {
 
     val spark = SparkSession
       .builder()
-      .appName("Spark Trustworthiness Estimator")
       .getOrCreate()
 
     // Read all .xml.bz2 files in the folder into an RDD
@@ -104,6 +105,8 @@ object Main {
     println(s"Number of edges: ${revisionGraph.edges.count}")
 
     spark.stop()
+
+    logger.info(s"Total Time: ${Watch.stopFormatted("Main")}")
   }
 
 }
