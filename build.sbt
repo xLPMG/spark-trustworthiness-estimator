@@ -6,6 +6,7 @@ lazy val root = project
   .settings(
     name := "spark-trustworthiness-estimator",
     version := "0.1.0",
+    resolvers += "GitHub Packages" at "https://maven.pkg.github.com/xlpmg/utils",
 
     libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion,
     libraryDependencies += "org.apache.spark" %% "spark-sql" % sparkVersion,
@@ -14,6 +15,7 @@ lazy val root = project
     libraryDependencies += "org.apache.commons" % "commons-compress" % "1.21",
 
     libraryDependencies += "com.github.tototoshi" %% "scala-csv" % "2.0.0",
+    libraryDependencies += "com.github.xlpmg" % "utils" % "1.0.0",
 
     libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
     libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.5.12",

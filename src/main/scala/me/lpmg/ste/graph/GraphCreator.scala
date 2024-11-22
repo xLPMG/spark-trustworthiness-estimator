@@ -41,24 +41,14 @@ object GraphCreator {
 
     val allEdges = temporalEdges.union(outlinkEdges)
 
-    // Create the GraphX graph
-    Graph(vertices, allEdges)
-  }
-
-  /** Removes edges for which at least one of the vertices is not present in the
-    * graph.
-    *
-    * @param graph
-    * @return graph with edges.count() <= original edges.count()
-    */
-  def removeEdgesWithMissingVertices(
-      graph: Graph[Revision, String]
-  ): Graph[Revision, String] = {
-    val validVertices =
-      graph.vertices.map { case (vid, _) => vid }.collect().toSet
-    val validEdges = graph.edges.filter { edge =>
+  // Remove edges with missing vertices
+  // TODO: check if there is a faster way
+    val validVertices = vertices.map(_._1).collect().toSet
+    val filteredEdges = allEdges.filter { edge =>
       validVertices.contains(edge.srcId) && validVertices.contains(edge.dstId)
     }
-    Graph(graph.vertices, validEdges)
+
+    // Create the GraphX graph
+    Graph(vertices, filteredEdges)
   }
 }

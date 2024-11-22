@@ -2,7 +2,7 @@ package me.lpmg.ste
 
 import org.apache.spark.sql.SparkSession
 import me.lpmg.ste.data.DataReader
-import me.lpmg.ste.graph.GraphCreator.createRevisionGraph
+import me.lpmg.ste.graph.GraphCreator
 import java.nio.file.Path
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
@@ -12,8 +12,7 @@ import org.apache.spark.broadcast.Broadcast
 import com.github.tototoshi.csv.CSVReader
 import me.lpmg.ste.data.LinkResolver
 import com.typesafe.scalalogging.Logger
-import me.lpmg.ste.graph.GraphCreator.removeEdgesWithMissingVertices
-import me.lpmg.ste.time.Watch
+import com.github.xlpmg.utils.scala.Watch
 
 object Main {
 
@@ -40,7 +39,9 @@ object Main {
 
     var dictionary: Map[String, Seq[String]] = null
 
-    // Create dictionary if not present, read from file if present
+/////////////////////////////////////////////////////////////////////////////////////////
+/// DICTIONARY
+/////////////////////////////////////////////////////////////////////////////////////////
     val dictionaryFile: Path = Path.of(dictionaryPath).resolve("dictionary.csv")
     // WRITE
     if (!dictionaryPath.isEmpty && !dictionaryFile.toFile.exists()) {
@@ -50,9 +51,11 @@ object Main {
           DataReader.getDictionaryFromPDS(pds)
         }
         .reduce(_ ++ _)
+
       val rows = dictionary.map { case (title, values) =>
         Seq(title, values.head, values(1))
       }.toSeq
+
       val writer = CSVWriter.open(dictionaryFile.toFile())
       writer.writeRow(List("PageTitle", "PageID", "RedirectsTo"))
       writer.writeAll(rows)
@@ -61,16 +64,17 @@ object Main {
       // READ
       logger.info(s"Reading dictionary file from: $dictionaryFile")
       val reader = CSVReader.open(dictionaryFile.toFile())
-      val csvData = reader.allWithHeaders()
-      dictionary = csvData.foldLeft(Map.empty[String, Seq[String]]) {
+      dictionary = reader.allWithHeaders().foldLeft(Map.empty[String, Seq[String]]) {
         (acc, row) =>
           acc + (row("PageTitle") -> Seq(row("PageID"), row("RedirectsTo")))
       }
+      reader.close()
     }
-
     val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
 
-    // Process each file in the RDD to extract revisions
+/////////////////////////////////////////////////////////////////////////////////////////
+// REVISION EXTRACTION
+/////////////////////////////////////////////////////////////////////////////////////////
     val allRevisionsRDD = filesRDD
       .flatMap { case (_, pds) =>
         DataReader.getRevisionsFromPDS(pds, broadCastedDictionary.value)
@@ -86,6 +90,9 @@ object Main {
       .collectAsMap()
       .toMap
 
+/////////////////////////////////////////////////////////////////////////////////////////
+// LINK RESOLUTION
+/////////////////////////////////////////////////////////////////////////////////////////
     val resolvedRevisionsRDD = allRevisionsRDD.map { revision =>
       LinkResolver.resolvePageIDsToRevisionIDs(
         revision,
@@ -93,19 +100,14 @@ object Main {
       )
     }
 
-    // Create the graph
-    var revisionGraph = createRevisionGraph(spark, resolvedRevisionsRDD)
-
+/////////////////////////////////////////////////////////////////////////////////////////
+// GRAPH CREATION
+/////////////////////////////////////////////////////////////////////////////////////////
+    var revisionGraph = GraphCreator.createRevisionGraph(spark, resolvedRevisionsRDD)
     println(s"Number of vertices: ${revisionGraph.vertices.count}")
     println(s"Number of edges: ${revisionGraph.edges.count}")
-
-    revisionGraph = removeEdgesWithMissingVertices(revisionGraph)
-
-    println(s"Number of vertices: ${revisionGraph.vertices.count}")
-    println(s"Number of edges: ${revisionGraph.edges.count}")
-
+    
     spark.stop()
-
     logger.info(s"Total Time: ${Watch.stopFormatted("Main")}")
   }
 
