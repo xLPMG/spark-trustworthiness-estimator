@@ -30,8 +30,10 @@ jobs:
 
     - name: Authenticate with GitHub Packages
       run: |
+        mkdir -p ~/.sbt/1.0
         echo "credentials += Credentials(\"GitHub Package Registry\", \"maven.pkg.github.com\", \"${{ github.actor }}\", \"${{ secrets.GITHUB_TOKEN }}\")" > ~/.sbt/1.0/credentials.sbt
-        echo "credentials += Credentials(\"GitHub Package Registry\", \"maven.pkg.github.com\", \"${{ github.actor }}\", \"${{ secrets.GITHUB_TOKEN }}\")" > ~/.ivy2/.credentials    
+        mkdir -p ~/.ivy2
+        echo "credentials += Credentials(\"GitHub Package Registry\", \"maven.pkg.github.com\", \"${{ github.actor }}\", \"${{ secrets.GITHUB_TOKEN }}\")" > ~/.ivy2/.credentials
 
     - name: Cache SBT
       uses: actions/cache@v4
