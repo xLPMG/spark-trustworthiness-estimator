@@ -25,6 +25,11 @@ jobs:
         distribution: 'adopt'
         java-version: '21'
 
+    - name: Authenticate with GitHub Packages
+      run: |
+        echo "credentials += Credentials(\"GitHub Package Registry\", \"maven.pkg.github.com\", \"${{ github.actor }}\", \"${{ secrets.GITHUB_TOKEN }}\")" > ~/.sbt/1.0/credentials.sbt
+        echo "credentials += Credentials(\"GitHub Package Registry\", \"maven.pkg.github.com\", \"${{ github.actor }}\", \"${{ secrets.GITHUB_TOKEN }}\")" > ~/.ivy2/.credentials
+
     - name: Cache SBT
       uses: actions/cache@v4
       with:
