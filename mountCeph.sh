@@ -1,0 +1,1 @@
+sudo mount -t ceph -o name=webisstud ceph.dw.webis.de:/storage /mnt/ceph/storage

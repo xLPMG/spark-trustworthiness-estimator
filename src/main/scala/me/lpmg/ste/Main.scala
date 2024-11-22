@@ -12,7 +12,7 @@ import org.apache.spark.broadcast.Broadcast
 import com.github.tototoshi.csv.CSVReader
 import me.lpmg.ste.data.LinkResolver
 import com.typesafe.scalalogging.Logger
-import com.github.xlpmg.utils.scala.Watch
+import me.lpmg.ste.time.Watch
 
 object Main {
 
