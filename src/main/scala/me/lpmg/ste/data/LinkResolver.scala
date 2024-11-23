@@ -24,7 +24,7 @@ object LinkResolver {
     */
   def resolvePageIDsToRevisionIDs(
       revision: Revision,
-      groupedRevisions: Map[Long, Seq[Revision]],
+      groupedRevisions: Map[Long, Seq[MinimalRevision]],
       minimize: Boolean = true
   ): Revision = {
 
@@ -32,7 +32,7 @@ object LinkResolver {
       pageId =>
         groupedRevisions
           .getOrElse(pageId, Seq.empty)
-          .filter((rev: Revision) => rev.timestamp < revision.timestamp)
+          .filter((rev: MinimalRevision) => rev.timestamp < revision.timestamp)
           .lastOption
           .map(_.revisionId)
           .toSeq

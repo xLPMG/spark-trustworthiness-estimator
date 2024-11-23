@@ -1,12 +1,7 @@
 package me.lpmg.ste.data
 
-import java.time.Instant
-
 /** A class to represent a Wikipedia revision.
   *
-  * @constructor
-  *   create a new revision with provided revisionId, pageId, parentId, and
-  *   timestamp
   * @param revisionId
   *   the unique identifier of the revision
   * @param pageId

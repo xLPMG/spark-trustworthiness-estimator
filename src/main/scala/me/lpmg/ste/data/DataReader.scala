@@ -120,11 +120,11 @@ object DataReader {
   private final def setXMLReaderProperties(xmlReader: XMLReader): XMLReader = {
     xmlReader.setProperty(
       "http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit",
-      "1000000000"
+      "-1"
     )
     xmlReader.setProperty(
       "http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit",
-      "1000000000"
+      "-1"
     )
     xmlReader
   }

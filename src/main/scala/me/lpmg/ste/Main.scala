@@ -13,6 +13,7 @@ import com.github.tototoshi.csv.CSVReader
 import me.lpmg.ste.data.LinkResolver
 import com.typesafe.scalalogging.Logger
 import me.lpmg.ste.time.Watch
+import me.lpmg.ste.data.MinimalRevision
 
 object Main {
 
@@ -64,10 +65,11 @@ object Main {
       // READ
       logger.info(s"Reading dictionary file from: $dictionaryFile")
       val reader = CSVReader.open(dictionaryFile.toFile())
-      dictionary = reader.allWithHeaders().foldLeft(Map.empty[String, Seq[String]]) {
-        (acc, row) =>
-          acc + (row("PageTitle") -> Seq(row("PageID"), row("RedirectsTo")))
-      }
+      dictionary =
+        reader.allWithHeaders().foldLeft(Map.empty[String, Seq[String]]) {
+          (acc, row) =>
+            acc + (row("PageTitle") -> Seq(row("PageID"), row("RedirectsTo")))
+        }
       reader.close()
     }
     val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
@@ -83,12 +85,17 @@ object Main {
 
     logger.info(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
 
-    // Group revisions by their page ID and sort by timestamp
-    val groupedRevisionsRDD = allRevisionsRDD
-      .groupBy(_.pageId)
-      .mapValues(_.toSeq.sortBy(_.timestamp))
-      .collectAsMap()
-      .toMap
+    // Group revisions by their page ID, sort by timestamp and save as MinimalRevision
+    val groupedRevisionsRDD =
+      allRevisionsRDD
+        .groupBy(_.pageId)
+        .mapValues { revisions =>
+          revisions.toSeq.sortBy(_.timestamp).map { rev =>
+            MinimalRevision(rev.revisionId, rev.timestamp)
+          }
+        }
+        .collectAsMap()
+        .toMap
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // LINK RESOLUTION
@@ -103,10 +110,11 @@ object Main {
 /////////////////////////////////////////////////////////////////////////////////////////
 // GRAPH CREATION
 /////////////////////////////////////////////////////////////////////////////////////////
-    var revisionGraph = GraphCreator.createRevisionGraph(spark, resolvedRevisionsRDD)
+    var revisionGraph =
+      GraphCreator.createRevisionGraph(spark, resolvedRevisionsRDD)
     println(s"Number of vertices: ${revisionGraph.vertices.count}")
     println(s"Number of edges: ${revisionGraph.edges.count}")
-    
+
     spark.stop()
     logger.info(s"Total Time: ${Watch.stopFormatted("Main")}")
   }
