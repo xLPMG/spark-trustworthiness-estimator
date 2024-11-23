@@ -9,7 +9,7 @@ import java.time.Instant
   */
 class RevisionSAXHandler extends DefaultHandler {
   private val revisions = ArrayBuffer[Revision]()
-  private var dictionary: Map[String, Seq[String]] = Map.empty
+  private var dictionary: Map[String, (Long, String)] = Map.empty
 
   private var currentElement: String = ""
   private var insidePage = false
@@ -141,7 +141,7 @@ class RevisionSAXHandler extends DefaultHandler {
     }
   }
 
-  def setDictionary(dictionary: Map[String, Seq[String]]): Unit = {
+  def setDictionary(dictionary: Map[String, (Long, String)]): Unit = {
     this.dictionary = dictionary
   }
   def getRevisions: Seq[Revision] = revisions.toSeq

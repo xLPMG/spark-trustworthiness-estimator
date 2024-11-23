@@ -30,7 +30,7 @@ object DataReader {
     */
   def getRevisions(
       inputStream: InputStream,
-      dictionary: Map[String, Seq[String]]
+      dictionary: Map[String, (Long, String)]
   ): Seq[Revision] = {
     val saxParserFactory = SAXParserFactory.newInstance()
     saxParserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
@@ -63,7 +63,7 @@ object DataReader {
     */
   def getRevisionsFromPDS(
       pds: PortableDataStream,
-      dictionary: Map[String, Seq[String]]
+      dictionary: Map[String, (Long, String)]
   ): Seq[Revision] = {
     Using.resource(pds.open()) { inputStream =>
       val bz2Stream =
@@ -81,7 +81,7 @@ object DataReader {
     * @return
     *   Dictionary map
     */
-  def getDictionary(inputStream: InputStream): Map[String, Seq[String]] = {
+  def getDictionary(inputStream: InputStream): Map[String, (Long, String)] = {
     val saxParserFactory = SAXParserFactory.newInstance()
     saxParserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
 
@@ -109,7 +109,7 @@ object DataReader {
     */
   def getDictionaryFromPDS(
       pds: PortableDataStream
-  ): Map[String, Seq[String]] = {
+  ): Map[String, (Long, String)] = {
     Using.resource(pds.open()) { inputStream =>
       val bz2Stream =
         new BZip2CompressorInputStream(new BufferedInputStream(inputStream))

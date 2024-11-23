@@ -9,7 +9,7 @@ class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
     val filePath = "src/test/resources/dump/test-dump-1.xml"
     val inputStream: InputStream = new FileInputStream(filePath)
-    var dictionary: Map[String, Seq[String]] = Map("Page 2" -> Seq("2"))
+    var dictionary: Map[String, (Long, String)] = Map("Page 2" -> (2, ""))
     val revisions = DataReader.getRevisions(inputStream, dictionary)
     // only 5 out of 7 revisions are in the main namespace
     assertEquals(revisions.length, 5)
@@ -44,9 +44,9 @@ class DataReaderTest extends munit.FunSuite {
     val dictionary = DataReader.getDictionary(inputStream)
     inputStream.close()
     assert(dictionary.nonEmpty)
-    assertEquals(dictionary.getOrElse("Page 1", ""), Seq("1", ""));
-    assertEquals(dictionary.getOrElse("Page 2", ""), Seq("2", ""));
-    assertEquals(dictionary.getOrElse("Page IGNORE", ""), Seq("3", ""));
-    assertEquals(dictionary.getOrElse("page 1", ""), Seq("11", "Page 1"));
+    assertEquals(dictionary.getOrElse("Page 1", ""), (1L, ""));
+    assertEquals(dictionary.getOrElse("Page 2", ""), (2L, ""));
+    assertEquals(dictionary.getOrElse("Page IGNORE", ""), (3L, ""));
+    assertEquals(dictionary.getOrElse("page 1", ""), (11L, "Page 1"));
   }
 }

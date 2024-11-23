@@ -9,10 +9,10 @@ import org.xml.sax.Attributes
   */
 class DictionarySAXHandler extends DefaultHandler {
   // Page title -> (Page ID, Redirect title)
-  private val dictionary = new HashMap[String, Seq[String]]()
+  private val dictionary = new HashMap[String, (Long, String)]()
   private var currentElement: String = ""
   private var currentPageTitle: Option[String] = None
-  private var currentPageId: Option[String] = None
+  private var currentPageId: Option[Long] = None
   private var currentRedirectTitle: Option[String] = None
   private var insidePage = false
   private var insideRevision = false
@@ -51,7 +51,7 @@ class DictionarySAXHandler extends DefaultHandler {
       case "page" =>
         insidePage = false
         if (currentPageTitle.isDefined && currentPageId.isDefined) {
-          dictionary += (currentPageTitle.get -> Seq(
+          dictionary += (currentPageTitle.get -> (
             currentPageId.get,
             currentRedirectTitle.getOrElse("")
           ))
@@ -69,11 +69,11 @@ class DictionarySAXHandler extends DefaultHandler {
     if (insidePage && !insideRevision) {
       currentElement match {
         case "title" => currentPageTitle = Some(content)
-        case "id"    => currentPageId = Some(content)
+        case "id"    => currentPageId = Some(content.toLong)
         case _       => // do nothing
       }
     }
   }
 
-  def getDictionary: Map[String, Seq[String]] = dictionary.toMap
+  def getDictionary: Map[String, (Long, String)] = dictionary.toMap
 }

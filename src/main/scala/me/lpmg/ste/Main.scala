@@ -39,7 +39,7 @@ object Main {
     // Read all .xml.bz2 files in the folder into an RDD
     val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
 
-    var dictionary: Map[String, Seq[String]] = null
+    var dictionary: Map[String, (Long, String)] = Map()
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /// DICTIONARY
@@ -55,7 +55,7 @@ object Main {
         .reduce(_ ++ _)
 
       val rows = dictionary.map { case (title, values) =>
-        Seq(title, values.head, values(1))
+        Seq(title, values._1, values._2)
       }.toSeq
 
       val writer = CSVWriter.open(dictionaryFile.toFile())
@@ -67,9 +67,9 @@ object Main {
       logger.info(s"Reading dictionary file from: $dictionaryFile")
       val reader = CSVReader.open(dictionaryFile.toFile())
       dictionary =
-        reader.allWithHeaders().foldLeft(Map.empty[String, Seq[String]]) {
+        reader.allWithHeaders().foldLeft(Map.empty[String, (Long, String)]) {
           (acc, row) =>
-            acc + (row("PageTitle") -> Seq(row("PageID"), row("RedirectsTo")))
+            acc + (row("PageTitle") -> (row("PageID").toLong, row("RedirectsTo")))
         }
       reader.close()
     }

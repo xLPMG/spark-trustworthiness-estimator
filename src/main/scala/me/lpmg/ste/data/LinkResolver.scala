@@ -2,12 +2,20 @@ package me.lpmg.ste.data
 
 object LinkResolver {
 
+  /** Resolve page titles to page IDs.
+    *
+    * @param titles
+    *   set of page titles
+    * @param dictionary
+    *   dictionary mapping page titles to page IDs
+    * @return
+    */
   def resolvePageTitlesToPageIDs(
       titles: Set[String],
-      dictionary: Map[String, Seq[String]]
+      dictionary: Map[String, (Long, String)]
   ): Set[Long] = {
     titles.flatMap { pageTitle =>
-      dictionary.getOrElse(pageTitle, Seq.empty).headOption.map(_.toLong)
+      dictionary.get(pageTitle).map(_._1)
     }
   }
 
