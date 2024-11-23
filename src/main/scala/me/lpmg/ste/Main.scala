@@ -48,11 +48,10 @@ object Main {
     // WRITE
     if (!dataFolderPath.isEmpty && !dictionaryFile.toFile.exists()) {
       logger.info(s"Creating dictionary file at: $dictionaryFile")
-      dictionary = filesRDD
-        .map { case (_, pds) =>
-          DataReader.getDictionaryFromPDS(pds)
-        }
-        .reduce(_ ++ _)
+      dictionary = filesRDD.aggregate(Map.empty[String, (Long, String)])(
+        (acc, value) => acc ++ DataReader.getDictionaryFromPDS(value._2),
+        (acc1, acc2) => acc1 ++ acc2
+      )
 
       val rows = dictionary.map { case (title, values) =>
         Seq(title, values._1, values._2)
@@ -69,7 +68,9 @@ object Main {
       dictionary =
         reader.allWithHeaders().foldLeft(Map.empty[String, (Long, String)]) {
           (acc, row) =>
-            acc + (row("PageTitle") -> (row("PageID").toLong, row("RedirectsTo")))
+            acc + (row("PageTitle") -> (row("PageID").toLong, row(
+              "RedirectsTo"
+            )))
         }
       reader.close()
     }
