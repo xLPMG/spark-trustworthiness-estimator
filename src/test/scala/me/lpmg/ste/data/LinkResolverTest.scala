@@ -56,8 +56,12 @@ class LinkResolverTest extends munit.FunSuite {
 
     // group revisions by page ID
     val groupedRevisions = Map(
-      1L -> Seq(revisionWithLink),
-      2L -> Seq(firstRevision, secondRevision, thirdRevision)
+      1L -> Seq(revisionWithLink.toMinimalRevision),
+      2L -> Seq(
+        firstRevision.toMinimalRevision,
+        secondRevision.toMinimalRevision,
+        thirdRevision.toMinimalRevision
+      )
     )
 
     val resolvedRevision =

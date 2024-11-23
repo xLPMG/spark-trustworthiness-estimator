@@ -31,4 +31,6 @@ class Revision(
     var resolvedPageOutlinks: Set[Long],
     var resolvedRevisionOutlinks: Set[Long],
     var isRedirect: Boolean
-) extends Serializable
+) extends Serializable {
+  def toMinimalRevision = new MinimalRevision(revisionId, timestamp)
+}
