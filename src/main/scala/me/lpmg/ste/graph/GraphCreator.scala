@@ -14,7 +14,7 @@ object GraphCreator {
   ): Graph[Revision, String] = {
     // Create vertex for each revision. using revisionId as VertexId
     val vertices: RDD[(VertexId, Revision)] = revisionsRDD.map { rev =>
-      (rev.revisionId.toLong, rev)
+      (rev.revisionId, rev)
     }
 
     // Connect revisions of the same page

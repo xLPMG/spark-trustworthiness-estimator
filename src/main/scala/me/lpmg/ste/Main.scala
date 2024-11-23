@@ -23,29 +23,30 @@ object Main {
     if (args.length < 1) {
       logger.error("Please specify the dump folder path")
       System.exit(1)
+    } else if (args.length < 2) {
+      logger.error("Please specify the data folder path")
+      System.exit(1)
     }
 
-    val folderPath = args(0)
-    var dictionaryPath = ""
-    if (args.length > 1) {
-      dictionaryPath = args(1)
-    }
+    val dumpFolderPath = args(0)
+    val dataFolderPath = args(1)
 
     val spark = SparkSession
       .builder()
       .getOrCreate()
+    import spark.implicits._
 
     // Read all .xml.bz2 files in the folder into an RDD
-    val filesRDD = spark.sparkContext.binaryFiles(s"$folderPath/*.bz2")
+    val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
 
     var dictionary: Map[String, Seq[String]] = null
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /// DICTIONARY
 /////////////////////////////////////////////////////////////////////////////////////////
-    val dictionaryFile: Path = Path.of(dictionaryPath).resolve("dictionary.csv")
+    val dictionaryFile: Path = Path.of(dataFolderPath).resolve("dictionary.csv")
     // WRITE
-    if (!dictionaryPath.isEmpty && !dictionaryFile.toFile.exists()) {
+    if (!dataFolderPath.isEmpty && !dictionaryFile.toFile.exists()) {
       logger.info(s"Creating dictionary file at: $dictionaryFile")
       dictionary = filesRDD
         .map { case (_, pds) =>
@@ -61,7 +62,7 @@ object Main {
       writer.writeRow(List("PageTitle", "PageID", "RedirectsTo"))
       writer.writeAll(rows)
       writer.close()
-    } else if (!dictionaryPath.isEmpty && dictionaryFile.toFile.exists()) {
+    } else if (!dataFolderPath.isEmpty && dictionaryFile.toFile.exists()) {
       // READ
       logger.info(s"Reading dictionary file from: $dictionaryFile")
       val reader = CSVReader.open(dictionaryFile.toFile())
@@ -94,8 +95,7 @@ object Main {
             new MinimalRevision(rev.revisionId, rev.timestamp)
           }
         }
-        .collectAsMap()
-        .toMap
+    val groupedRevisionsMap = groupedRevisionsRDD.collectAsMap().toMap
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // LINK RESOLUTION
@@ -103,9 +103,10 @@ object Main {
     val resolvedRevisionsRDD = allRevisionsRDD.map { revision =>
       LinkResolver.resolvePageIDsToRevisionIDs(
         revision,
-        groupedRevisionsRDD
+        groupedRevisionsMap
       )
     }
+    allRevisionsRDD.unpersist()
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // GRAPH CREATION
@@ -114,6 +115,56 @@ object Main {
       GraphCreator.createRevisionGraph(spark, resolvedRevisionsRDD)
     println(s"Number of vertices: ${revisionGraph.vertices.count}")
     println(s"Number of edges: ${revisionGraph.edges.count}")
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// GRAPH SAVING
+/////////////////////////////////////////////////////////////////////////////////////////
+
+    val graphFolderPath = Path.of(dataFolderPath).resolve("graph")
+    if (!graphFolderPath.toFile.exists()) {
+      graphFolderPath.toFile.mkdirs()
+    }
+    // Number of partitions for scalability
+    val numPartitions = 50
+
+    // Convert vertices to DataFrame with flattened fields
+    val verticesDF = revisionGraph.vertices
+      .map { case (id, rev) =>
+        (
+          id,
+          rev.pageId,
+          rev.timestamp,
+          rev.isGroundTruth,
+          rev.trustScore,
+          rev.isRedirect
+        )
+      }
+      .toDF(
+        "id",
+        "pageId",
+        "timestamp",
+        "isGroundTruth",
+        "trustScore",
+        "isRedirect"
+      )
+
+    // Convert edges to DataFrame
+    val edgesDF = revisionGraph.edges.toDF("src", "dst", "attr")
+
+    // Save vertices with partitioning and compression
+    verticesDF.write
+      .mode("overwrite")
+      .option("compression", "snappy")
+      .parquet(graphFolderPath.resolve("vertices_parquet").toString)
+
+    // Save edges with partitioning and compression
+    edgesDF.write
+      .mode("overwrite")
+      .option("compression", "snappy")
+      .partitionBy("src")
+      .parquet(graphFolderPath.resolve("edges_parquet").toString)
+
+    println("Graph saved successfully.")
 
     spark.stop()
     logger.info(s"Total Time: ${Watch.stopFormatted("Main")}")
