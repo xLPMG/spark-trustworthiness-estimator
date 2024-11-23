@@ -91,7 +91,7 @@ object Main {
         .groupBy(_.pageId)
         .mapValues { revisions =>
           revisions.toSeq.sortBy(_.timestamp).map { rev =>
-            MinimalRevision(rev.revisionId, rev.timestamp)
+            new MinimalRevision(rev.revisionId, rev.timestamp)
           }
         }
         .collectAsMap()
