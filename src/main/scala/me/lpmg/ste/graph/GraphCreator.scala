@@ -11,44 +11,44 @@ object GraphCreator {
   def createRevisionGraph(
       spark: SparkSession,
       revisionsRDD: RDD[Revision]
-  ): Graph[Revision, String] = {
+  ): Graph[Revision, Byte] = {
     // Create vertex for each revision. using revisionId as VertexId
     val vertices: RDD[(VertexId, Revision)] = revisionsRDD.map { rev =>
       (rev.revisionId, rev)
     }
 
     // Connect revisions of the same page
-    val temporalEdges: RDD[Edge[String]] = revisionsRDD.flatMap { rev =>
+    val temporalEdges: RDD[Edge[Byte]] = revisionsRDD.flatMap { rev =>
       rev.parentId
         .map { parentId =>
           Seq(
-            Edge(parentId, rev.revisionId, "isParentOf"),
-            Edge(rev.revisionId, parentId, "isChildOf")
+            Edge(parentId, rev.revisionId, EdgeType.isParentOf),
+            Edge(rev.revisionId, parentId, EdgeType.isChildOf)
           )
         }
         .getOrElse(Seq.empty)
     }
 
     // Connect revisions with outlinks
-    val outlinkEdges: RDD[Edge[String]] = revisionsRDD.flatMap { rev =>
+    val outlinkEdges: RDD[Edge[Byte]] = revisionsRDD.flatMap { rev =>
       rev.resolvedRevisionOutlinks.flatMap { outlinkId =>
         Seq(
-          Edge(rev.revisionId, outlinkId, "linksTo"),
-          Edge(outlinkId, rev.revisionId, "linkedFrom")
+          Edge(rev.revisionId, outlinkId, EdgeType.linksTo),
+          Edge(outlinkId, rev.revisionId, EdgeType.linkedFrom)
         )
       }
     }
 
     val allEdges = temporalEdges.union(outlinkEdges)
 
-  // Remove edges with missing vertices
-  // TODO: check if there is a faster way
-    val validVertices = vertices.map(_._1).collect().toSet
-    val filteredEdges = allEdges.filter { edge =>
-      validVertices.contains(edge.srcId) && validVertices.contains(edge.dstId)
-    }
-
     // Create the GraphX graph
-    Graph(vertices, filteredEdges)
+    Graph(vertices, allEdges)
+  }
+
+  final object EdgeType {
+    final val isParentOf: Byte = 0.toByte
+    final val isChildOf: Byte = 1.toByte
+    final val linksTo: Byte = 2.toByte
+    final val linkedFrom: Byte = 3.toByte
   }
 }

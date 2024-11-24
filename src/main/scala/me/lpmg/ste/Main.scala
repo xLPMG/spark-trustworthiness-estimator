@@ -37,7 +37,15 @@ object Main {
     import spark.implicits._
 
     // Read all .xml.bz2 files in the folder into an RDD
-    val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
+    // val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
+
+    val filesRDD = spark.sparkContext
+      .binaryFiles(s"$dumpFolderPath/*.bz2")
+      .zipWithIndex()
+      .filter(_._2 < 3)
+      .map(_._1)
+
+    logger.info(s"Total files found: ${filesRDD.count()}")
 
     var dictionary: Map[String, (Long, String)] = Map()
 
@@ -48,6 +56,7 @@ object Main {
     // WRITE
     if (!dataFolderPath.isEmpty && !dictionaryFile.toFile.exists()) {
       logger.info(s"Creating dictionary file at: $dictionaryFile")
+      // value = (filePath: String, fileContent: PortableDataStream)
       dictionary = filesRDD.aggregate(Map.empty[String, (Long, String)])(
         (acc, value) => acc ++ DataReader.getDictionaryFromPDS(value._2),
         (acc1, acc2) => acc1 ++ acc2
@@ -93,7 +102,7 @@ object Main {
         .groupBy(_.pageId)
         .mapValues { revisions =>
           revisions.toSeq.sortBy(_.timestamp).map { rev =>
-            new MinimalRevision(rev.revisionId, rev.timestamp)
+            rev.toMinimalRevision
           }
         }
     val groupedRevisionsMap = groupedRevisionsRDD.collectAsMap().toMap
@@ -107,13 +116,13 @@ object Main {
         groupedRevisionsMap
       )
     }
-    allRevisionsRDD.unpersist()
 
 /////////////////////////////////////////////////////////////////////////////////////////
 // GRAPH CREATION
 /////////////////////////////////////////////////////////////////////////////////////////
     var revisionGraph =
       GraphCreator.createRevisionGraph(spark, resolvedRevisionsRDD)
+    allRevisionsRDD.unpersist()
     println(s"Number of vertices: ${revisionGraph.vertices.count}")
     println(s"Number of edges: ${revisionGraph.edges.count}")
 
@@ -125,8 +134,6 @@ object Main {
     if (!graphFolderPath.toFile.exists()) {
       graphFolderPath.toFile.mkdirs()
     }
-    // Number of partitions for scalability
-    val numPartitions = 50
 
     // Convert vertices to DataFrame with flattened fields
     val verticesDF = revisionGraph.vertices
