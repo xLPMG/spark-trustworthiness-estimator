@@ -524,6 +524,28 @@
 </p></div><dl class="paramcmts block"><dt class="param">titles</dt><dd class="cmt"><p>
   set of page titles</p></dd><dt class="param">dictionary</dt><dd class="cmt"><p>
   dictionary mapping page titles to page IDs</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.data.LinkResolver#resolveRedirect" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="resolveRedirect(pageTitle:String,dictionary:Map[String,(Long,String)]):Long"></a><a id="resolveRedirect(String,Map[String,(Long,String)]):Long"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/LinkResolver$.html#resolveRedirect(pageTitle:String,dictionary:Map[String,(Long,String)]):Long" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">resolveRedirect</span><span class="params">(<span name="pageTitle">pageTitle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dictionary">dictionary: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, (<span class="extype" name="scala.Long">Long</span>, <span class="extype" name="scala.Predef.String">String</span>)]</span>)</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Gets the real page ID for a redirect page title.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the real page ID for a redirect page title. If the page title is not
+a redirect, the function returns -1. If the real page is also a redirect,
+it will resolve it recursively up to a depth of 2.
+</p></div><dl class="paramcmts block"><dt class="param">pageTitle</dt><dd class="cmt"><p>
+  the page title to get the redirect ID for</p></dd><dt class="param">dictionary</dt><dd class="cmt"><p>
+  dictionary mapping page titles to page IDs</p></dd><dt>returns</dt><dd class="cmt"><p>
+  the redirect ID if the page title is a redirect, -1 otherwise</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
