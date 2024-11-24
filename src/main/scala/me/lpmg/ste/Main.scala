@@ -14,6 +14,7 @@ import me.lpmg.ste.data.LinkResolver
 import com.typesafe.scalalogging.Logger
 import me.lpmg.ste.time.Watch
 import me.lpmg.ste.data.MinimalRevision
+import org.apache.spark.sql.DataFrame
 
 object Main {
 
@@ -52,8 +53,9 @@ object Main {
 /////////////////////////////////////////////////////////////////////////////////////////
 /// DICTIONARY
 /////////////////////////////////////////////////////////////////////////////////////////
-    val dictionaryFile: Path = Path.of(dataFolderPath).resolve("dictionary.csv")
-    // WRITE
+    val dictionaryFile: Path =
+      Path.of(dataFolderPath).resolve("dictionary.parquet")
+  // WRITE
     if (!dataFolderPath.isEmpty && !dictionaryFile.toFile.exists()) {
       logger.info(s"Creating dictionary file at: $dictionaryFile")
       // value = (filePath: String, fileContent: PortableDataStream)
@@ -62,26 +64,24 @@ object Main {
         (acc1, acc2) => acc1 ++ acc2
       )
 
-      val rows = dictionary.map { case (title, values) =>
-        Seq(title, values._1, values._2)
-      }.toSeq
+      // Convert dictionary to DataFrame
+      val dictionaryDF: DataFrame =
+        dictionary.toSeq.toDF("PageTitle", "PageID", "RedirectsTo")
 
-      val writer = CSVWriter.open(dictionaryFile.toFile())
-      writer.writeRow(List("PageTitle", "PageID", "RedirectsTo"))
-      writer.writeAll(rows)
-      writer.close()
+      // Write DataFrame to Parquet
+      dictionaryDF.write.parquet(dictionaryFile.toString)
     } else if (!dataFolderPath.isEmpty && dictionaryFile.toFile.exists()) {
-      // READ
+  // READ
       logger.info(s"Reading dictionary file from: $dictionaryFile")
-      val reader = CSVReader.open(dictionaryFile.toFile())
-      dictionary =
-        reader.allWithHeaders().foldLeft(Map.empty[String, (Long, String)]) {
-          (acc, row) =>
-            acc + (row("PageTitle") -> (row("PageID").toLong, row(
-              "RedirectsTo"
-            )))
-        }
-      reader.close()
+
+      // Read DataFrame from Parquet
+      val dictionaryDF: DataFrame = spark.read.parquet(dictionaryFile.toString)
+
+      // Convert DataFrame to Map
+      dictionary = dictionaryDF
+        .collect()
+        .map(row => row.getString(0) -> (row.getLong(1), row.getString(2)))
+        .toMap
     }
     val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
 
