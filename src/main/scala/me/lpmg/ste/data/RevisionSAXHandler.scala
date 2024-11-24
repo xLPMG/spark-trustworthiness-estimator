@@ -9,6 +9,8 @@ import java.time.Instant
   */
 class RevisionSAXHandler extends DefaultHandler {
   private val revisions = ArrayBuffer[Revision]()
+  private val outlinkPattern = "\\[\\[([^\\]]+)\\]\\]".r
+
   private var dictionary: Map[String, (Long, String)] = Map.empty
 
   private var currentElement: String = ""
@@ -17,12 +19,11 @@ class RevisionSAXHandler extends DefaultHandler {
   private var isMainNamespace = false
 
   private var pageId: Long = 0
+  private var currentPageTitle: Option[String] = None
   private var revisionId: Long = 0
   private var parentId: Option[Long] = None
   private var timestamp: Long = 0
 
-  private var isGroundTruth: Boolean = false
-  private var trustScore: Double = 0.0
   private var outlinkPageIds: Set[Long] = Set()
   private var isRedirect: Boolean = false
 
@@ -40,6 +41,7 @@ class RevisionSAXHandler extends DefaultHandler {
     qName match {
       case "page" =>
         insidePage = true
+        currentPageTitle = None
         isMainNamespace = false // reset
       case "revision" =>
         insideRevision = true
@@ -77,10 +79,9 @@ class RevisionSAXHandler extends DefaultHandler {
           if (!isRedirect) {
             /* As soon as the links are found, they are resolved to page IDs.
              * While that might seem impractical, it was absolutely necessary
-             * because storing all the strings required an extremely large 
+             * because storing all the strings required an extremely large
              * amount of memory.
              */
-            val outlinkPattern = "\\[\\[([^\\]]+)\\]\\]".r
             val fullLinks = outlinkPattern
               .findAllMatchIn(content)
               .map(_.group(1))
@@ -93,8 +94,20 @@ class RevisionSAXHandler extends DefaultHandler {
             }.toSet
             outlinkPageIds =
               LinkResolver.resolvePageTitlesToPageIDs(pageTitles, dictionary)
+          } else if (currentPageTitle.isDefined) {
+            // for redirects, we resolve the redirect target and store it as the only outlink
+            val redirectTarget =
+              LinkResolver.resolveRedirect(currentPageTitle.get, dictionary)
+            if (redirectTarget != -1) {
+              outlinkPageIds = Set(redirectTarget)
+            }
           }
         case _ => // No-op for other elements
+      }
+    } else if (insidePage && !insideRevision) {
+      currentElement match {
+        case "title" => currentPageTitle = Some(charBuffer.toString.trim)
+        case _       => // No-op for other elements
       }
     }
 
@@ -109,8 +122,8 @@ class RevisionSAXHandler extends DefaultHandler {
             pageId,
             parentId,
             timestamp,
-            isGroundTruth,
-            trustScore,
+            false,
+            0.0,
             outlinkPageIds,
             Set.empty,
             isRedirect

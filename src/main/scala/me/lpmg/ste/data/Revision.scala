@@ -22,15 +22,15 @@ package me.lpmg.ste.data
   *   whether the revision is a redirect
   */
 class Revision(
-    var revisionId: Long,
-    var pageId: Long,
-    var parentId: Option[Long],
-    var timestamp: Long,
+    val revisionId: Long,
+    val pageId: Long,
+    val parentId: Option[Long],
+    val timestamp: Long,
     var isGroundTruth: Boolean,
     var trustScore: Double,
     var resolvedPageOutlinks: Set[Long],
     var resolvedRevisionOutlinks: Set[Long],
-    var isRedirect: Boolean
+    val isRedirect: Boolean
 ) extends Serializable {
   def toMinimalRevision = new MinimalRevision(revisionId, timestamp)
 }

@@ -55,7 +55,7 @@ object Main {
 /////////////////////////////////////////////////////////////////////////////////////////
     val dictionaryFile: Path =
       Path.of(dataFolderPath).resolve("dictionary.parquet")
-  // WRITE
+    // WRITE
     if (!dataFolderPath.isEmpty && !dictionaryFile.toFile.exists()) {
       logger.info(s"Creating dictionary file at: $dictionaryFile")
       // value = (filePath: String, fileContent: PortableDataStream)
@@ -66,12 +66,16 @@ object Main {
 
       // Convert dictionary to DataFrame
       val dictionaryDF: DataFrame =
-        dictionary.toSeq.toDF("PageTitle", "PageID", "RedirectsTo")
+        dictionary.toSeq
+          .map { case (pageTitle, (pageID, redirectTo)) =>
+            (pageTitle, pageID, redirectTo)
+          }
+          .toDF("PageTitle", "PageID", "RedirectsTo")
 
       // Write DataFrame to Parquet
       dictionaryDF.write.parquet(dictionaryFile.toString)
     } else if (!dataFolderPath.isEmpty && dictionaryFile.toFile.exists()) {
-  // READ
+      // READ
       logger.info(s"Reading dictionary file from: $dictionaryFile")
 
       // Read DataFrame from Parquet

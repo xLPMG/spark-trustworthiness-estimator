@@ -74,4 +74,26 @@ class LinkResolverTest extends munit.FunSuite {
 
   }
 
+  test("resolveRedirect") {
+    val dictionary = Map(
+      "ThisIsARedirect" -> (2L, "RealPage"),
+      "RealPage" -> (1L, "")
+    )
+
+    val realPageId = LinkResolver.resolveRedirect("ThisIsARedirect", dictionary)
+    assertEquals(realPageId, 1L)
+  }
+
+  test("resolveRedirectToRedirect") {
+
+    val dictionary = Map(
+      "ThisIsARedirect" -> (3L, "ThisIsARedirect2"),
+      "ThisIsARedirect2" -> (2L, "RealPage"),
+      "RealPage" -> (1L, "")
+    )
+
+    val realPageId = LinkResolver.resolveRedirect("ThisIsARedirect", dictionary)
+    assertEquals(realPageId, 1L)
+  }
+
 }
