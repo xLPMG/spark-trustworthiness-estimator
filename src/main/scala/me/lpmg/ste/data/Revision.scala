@@ -23,12 +23,12 @@ package me.lpmg.ste.data
   */
 class Revision(
     val revisionId: Long,
-    val pageId: Long,
+    val pageId: Int,
     val parentId: Long,
     val timestamp: Long,
     var isGroundTruth: Boolean,
-    var trustScore: Double,
-    var resolvedPageOutlinks: Set[Long],
+    var trustScore: Float,
+    var resolvedPageOutlinks: Set[Int],
     var resolvedRevisionOutlinks: Set[Long],
     val isRedirect: Boolean
 ) extends Serializable {

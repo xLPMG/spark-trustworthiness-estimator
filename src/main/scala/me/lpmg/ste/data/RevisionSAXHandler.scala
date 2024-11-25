@@ -11,19 +11,19 @@ class RevisionSAXHandler extends DefaultHandler {
   private val revisions = ArrayBuffer[Revision]()
   private val outlinkPattern = "\\[\\[([^\\]]+)\\]\\]".r
 
-  private var dictionary: Map[String, (Long, String)] = Map.empty
+  private var dictionary: Types.DictType = Map.empty
 
   private var insidePage = false
   private var insideRevision = false
   private var isMainNamespace = false
 
   private var pageTitle: String = ""
-  private var pageId: Long = 0
+  private var pageId: Int = 0
   private var revisionId: Long = 0
   private var parentId: Option[Long] = None
   private var timestamp: Long = 0
 
-  private var outlinkPageIds: Set[Long] = Set.empty
+  private var outlinkPageIds: Set[Int] = Set.empty
   private var isRedirect: Boolean = false
 
   private val charBuffer = new StringBuilder
@@ -46,7 +46,7 @@ class RevisionSAXHandler extends DefaultHandler {
         revisionId = 0
         parentId = None
         timestamp = 0
-        outlinkPageIds = Set.empty[Long]
+        outlinkPageIds = Set.empty[Int]
         isRedirect = false
       case _ => // No-op for other tags
     }
@@ -67,7 +67,7 @@ class RevisionSAXHandler extends DefaultHandler {
         case "page"  => insidePage = false
         case "ns" =>
           if ("0".equals(getBuffer)) isMainNamespace = true
-        case "id" => pageId = getBuffer.toLong
+        case "id" => pageId = getBuffer.toInt
         case _    => // No-op for other elements
       }
     }
@@ -138,7 +138,7 @@ class RevisionSAXHandler extends DefaultHandler {
             parentId.getOrElse(-1),
             timestamp,
             false,
-            0.0,
+            0.0f,
             outlinkPageIds,
             Set.empty,
             isRedirect
@@ -151,7 +151,7 @@ class RevisionSAXHandler extends DefaultHandler {
 
   private def getBuffer: String = charBuffer.toString.trim
 
-  def setDictionary(dictionary: Map[String, (Long, String)]): Unit = {
+  def setDictionary(dictionary: Types.DictType): Unit = {
     this.dictionary = dictionary
   }
   def getRevisions: Seq[Revision] = revisions

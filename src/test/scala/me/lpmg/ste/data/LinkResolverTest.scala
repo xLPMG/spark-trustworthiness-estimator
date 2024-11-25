@@ -8,12 +8,12 @@ class LinkResolverTest extends munit.FunSuite {
     // Revision for which we want to resolve page IDs to revision IDs
     val revisionWithLink = new Revision(
       1L,
-      1L,
+      1,
       -1L,
       Instant.parse("2011-01-03T00:00:01Z").toEpochMilli(),
       false,
-      0.0,
-      Set(2L),
+      0.0f,
+      Set(2),
       Set.empty,
       false
     )
@@ -21,22 +21,22 @@ class LinkResolverTest extends munit.FunSuite {
     // Grouped revisions by page ID
     val firstRevision = new Revision(
       2L,
-      2L,
+      2,
       -1L,
       Instant.parse("2011-01-01T00:00:01Z").toEpochMilli(),
       false,
-      0.0,
+      0.0f,
       Set.empty,
       Set.empty,
       false
     )
     val secondRevision = new Revision(
       3L,
-      2L,
+      2,
       2L,
       Instant.parse("2011-01-02T00:00:01Z").toEpochMilli(),
       false,
-      0.0,
+      0.0f,
       Set.empty,
       Set.empty,
       false
@@ -44,11 +44,11 @@ class LinkResolverTest extends munit.FunSuite {
     // this revision is not before the revisionWithLink timestamp
     val thirdRevision = new Revision(
       4L,
-      2L,
+      2,
       3L,
       Instant.parse("2011-01-04T00:00:01Z").toEpochMilli(),
       false,
-      0.0,
+      0.0f,
       Set.empty,
       Set.empty,
       false
@@ -56,8 +56,8 @@ class LinkResolverTest extends munit.FunSuite {
 
     // group revisions by page ID
     val groupedRevisions = Map(
-      1L -> Seq(revisionWithLink.toMinimalRevision),
-      2L -> Seq(
+      1 -> Seq(revisionWithLink.toMinimalRevision),
+      2 -> Seq(
         firstRevision.toMinimalRevision,
         secondRevision.toMinimalRevision,
         thirdRevision.toMinimalRevision
@@ -76,24 +76,24 @@ class LinkResolverTest extends munit.FunSuite {
 
   test("resolveRedirect") {
     val dictionary = Map(
-      "ThisIsARedirect" -> (2L, "RealPage"),
-      "RealPage" -> (1L, "")
+      "ThisIsARedirect" -> (2, "RealPage"),
+      "RealPage" -> (1, "")
     )
 
     val realPageId = LinkResolver.resolveRedirect("ThisIsARedirect", dictionary)
-    assertEquals(realPageId, 1L)
+    assertEquals(realPageId, 1)
   }
 
   test("resolveRedirectToRedirect") {
 
     val dictionary = Map(
-      "ThisIsARedirect" -> (3L, "ThisIsARedirect2"),
-      "ThisIsARedirect2" -> (2L, "RealPage"),
-      "RealPage" -> (1L, "")
+      "ThisIsARedirect" -> (3, "ThisIsARedirect2"),
+      "ThisIsARedirect2" -> (2, "RealPage"),
+      "RealPage" -> (1, "")
     )
 
     val realPageId = LinkResolver.resolveRedirect("ThisIsARedirect", dictionary)
-    assertEquals(realPageId, 1L)
+    assertEquals(realPageId, 1)
   }
 
 }

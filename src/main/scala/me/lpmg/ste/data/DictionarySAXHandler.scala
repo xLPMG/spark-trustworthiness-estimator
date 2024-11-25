@@ -10,10 +10,10 @@ import spire.std.char
   */
 class DictionarySAXHandler extends DefaultHandler {
   // Page title -> (Page ID, Redirect title)
-  private val dictionary = new HashMap[String, (Long, String)]()
+  private val dictionary = new HashMap[String, (Int, String)]()
 
   private var currentPageTitle: String = ""
-  private var currentPageId: Long = -1
+  private var currentPageId: Int = -1
   private var currentRedirectTitle: Option[String] = None
 
   private var insidePage = false
@@ -63,7 +63,7 @@ class DictionarySAXHandler extends DefaultHandler {
             ))
           }
         case "title" => currentPageTitle = getBuffer
-        case "id"    => currentPageId = getBuffer.toLong
+        case "id"    => currentPageId = getBuffer.toInt
         case _       => // do nothing
       }
     } else {
@@ -85,5 +85,5 @@ class DictionarySAXHandler extends DefaultHandler {
 
   private def getBuffer: String = charBuffer.toString.trim
 
-  def getDictionary: Map[String, (Long, String)] = dictionary.toMap
+  def getDictionary: Types.DictType = dictionary.toMap
 }

@@ -9,7 +9,7 @@ class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
     val filePath = "src/test/resources/dump/test-dump-1.xml"
     val inputStream: InputStream = new FileInputStream(filePath)
-    var dictionary: Map[String, (Long, String)] = Map("Page 2" -> (2, ""))
+    var dictionary: Types.DictType = Map("Page 2" -> (2, ""))
     val revisions = DataReader.getRevisions(inputStream, dictionary)
     // only 5 out of 7 revisions are in the main namespace
     assertEquals(revisions.length, 5)
@@ -17,21 +17,21 @@ class DataReaderTest extends munit.FunSuite {
     // compare the extracted revision data
     revisions.foreach { revision =>
       if (revision.revisionId == 1L) {
-        assertEquals(revision.pageId, 1L)
+        assertEquals(revision.pageId, 1)
         assertEquals(revision.parentId, -1L)
         assertEquals(revision.timestamp, Instant.parse("2011-01-01T00:00:01Z").toEpochMilli())
       } else if (revision.revisionId == 2L) {
-        assertEquals(revision.pageId, 2L)
+        assertEquals(revision.pageId, 2)
         assertEquals(revision.parentId, -1L)
         assertEquals(revision.timestamp, Instant.parse("2011-01-02T00:00:01Z").toEpochMilli())
       } else if (revision.revisionId == 3L) {
-        assertEquals(revision.pageId, 1L)
+        assertEquals(revision.pageId, 1)
         assertEquals(revision.parentId, 1L)
         assertEquals(revision.timestamp, Instant.parse("2011-01-03T00:00:01Z").toEpochMilli())
         // Revision 2 has link "[[Page 2]]"
-        assertEquals(revision.resolvedPageOutlinks, Set(2L))
+        assertEquals(revision.resolvedPageOutlinks, Set(2))
       } else if (revision.revisionId == 4L) {
-        assertEquals(revision.pageId, 2L)
+        assertEquals(revision.pageId, 2)
         assertEquals(revision.parentId, 2L)
         assertEquals(revision.timestamp, Instant.parse("2011-01-04T00:00:01Z").toEpochMilli())
       }

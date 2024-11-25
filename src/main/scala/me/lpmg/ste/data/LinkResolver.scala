@@ -12,8 +12,8 @@ object LinkResolver {
     */
   def resolvePageTitlesToPageIDs(
       titles: Set[String],
-      dictionary: Map[String, (Long, String)]
-  ): Set[Long] = {
+      dictionary: Types.DictType
+  ): Set[Int] = {
     titles.flatMap { pageTitle =>
       dictionary.get(pageTitle).map(_._1)
     }
@@ -32,9 +32,9 @@ object LinkResolver {
     */
   def resolveRedirect(
       pageTitle: String,
-      dictionary: Map[String, (Long, String)]
-  ): Long = {
-    def getRedirectIDHelper(title: String, depth: Int): Long = {
+      dictionary: Types.DictType
+  ): Int = {
+    def getRedirectIDHelper(title: String, depth: Int): Int = {
       if (depth > 2) -1
       else {
         dictionary.get(title) match {
@@ -61,7 +61,7 @@ object LinkResolver {
     */
   def resolvePageIDsToRevisionIDs(
       revision: Revision,
-      groupedRevisions: Map[Long, Seq[MinimalRevision]],
+      groupedRevisions: Map[Int, Seq[MinimalRevision]],
       minimize: Boolean = true
   ): Revision = {
 
@@ -75,7 +75,7 @@ object LinkResolver {
           .toSeq
     }
     val newPageOutlinks =
-      if (minimize) Set.empty[Long] else revision.resolvedPageOutlinks
+      if (minimize) Set.empty[Int] else revision.resolvedPageOutlinks
 
     new Revision(
       revision.revisionId,

@@ -15,6 +15,7 @@ import com.typesafe.scalalogging.Logger
 import me.lpmg.ste.time.Watch
 import me.lpmg.ste.data.MinimalRevision
 import org.apache.spark.sql.DataFrame
+import me.lpmg.ste.data.Types
 
 object Main {
 
@@ -48,7 +49,7 @@ object Main {
 
     logger.info(s"Total files found: ${filesRDD.count()}")
 
-    var dictionary: Map[String, (Long, String)] = Map.empty
+    var dictionary: Types.DictType = Map.empty
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /// DICTIONARY
@@ -59,7 +60,7 @@ object Main {
     if (!dataFolderPath.isEmpty && !dictionaryFile.toFile.exists()) {
       logger.info(s"Creating dictionary file at: $dictionaryFile")
       // value = (filePath: String, fileContent: PortableDataStream)
-      dictionary = filesRDD.aggregate(Map.empty[String, (Long, String)])(
+      dictionary = filesRDD.aggregate(Map.empty[String, (Int, String)])(
         (acc, value) => acc ++ DataReader.getDictionaryFromPDS(value._2),
         (acc1, acc2) => acc1 ++ acc2
       )
@@ -84,7 +85,7 @@ object Main {
       // Convert DataFrame to Map
       dictionary = dictionaryDF
         .collect()
-        .map(row => row.getString(0) -> (row.getLong(1), row.getString(2)))
+        .map(row => row.getString(0) -> (row.getLong(1).toInt, row.getString(2)))
         .toMap
     }
     val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
