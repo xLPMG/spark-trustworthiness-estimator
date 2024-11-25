@@ -151,8 +151,8 @@
                         <a href="LinkResolver$.html" title="">LinkResolver</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="MinimalRevision.html" title="A class to represent minimal information about a Wikipedia revision."></a>
-                        <a href="MinimalRevision.html" title="A class to represent minimal information about a Wikipedia revision.">MinimalRevision</a>
+                        <a class="class" href="MinimalRevision.html" title="Represents minimal information about a Wikipedia revision."></a>
+                        <a href="MinimalRevision.html" title="Represents minimal information about a Wikipedia revision.">MinimalRevision</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="class" href="Revision.html" title="A class to represent a Wikipedia revision."></a>
@@ -273,22 +273,25 @@
       
       <p class="shortcomment cmt">SAX handler creating a dictionary of titles and their corresponding page
 IDs.</p>
-    </li><li name="me.lpmg.ste.data.MinimalRevision" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="MinimalRevisionextendsSerializable"></a><a id="MinimalRevision:MinimalRevision"></a>
+    </li><li name="me.lpmg.ste.data.MinimalRevision" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MinimalRevisionextendsSerializablewithProduct"></a><a id="MinimalRevision:MinimalRevision"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/MinimalRevision.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">class</span>
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a title="A class to represent minimal information about a Wikipedia revision." href="MinimalRevision.html"><span class="name">MinimalRevision</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a title="Represents minimal information about a Wikipedia revision." href="MinimalRevision.html"><span class="name">MinimalRevision</span></a><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Long">Long</span></span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
       </span>
       
-      <p class="shortcomment cmt">A class to represent minimal information about a Wikipedia revision.</p>
+      <p class="shortcomment cmt">Represents minimal information about a Wikipedia revision.</p><div class="fullcomment"><div class="comment cmt"><p>Represents minimal information about a Wikipedia revision.
+</p></div><dl class="paramcmts block"><dt class="param">revisionId</dt><dd class="cmt"><p>
+  the unique identifier of the revision</p></dd><dt class="param">timestamp</dt><dd class="cmt"><p>
+  the timestamp of the revision</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.Revision" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="RevisionextendsSerializable"></a><a id="Revision:Revision"></a>
       <span class="permalink">
