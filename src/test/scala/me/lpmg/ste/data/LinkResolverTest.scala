@@ -9,7 +9,7 @@ class LinkResolverTest extends munit.FunSuite {
     val revisionWithLink = new Revision(
       1L,
       1L,
-      None,
+      -1L,
       Instant.parse("2011-01-03T00:00:01Z").toEpochMilli(),
       false,
       0.0,
@@ -22,7 +22,7 @@ class LinkResolverTest extends munit.FunSuite {
     val firstRevision = new Revision(
       2L,
       2L,
-      None,
+      -1L,
       Instant.parse("2011-01-01T00:00:01Z").toEpochMilli(),
       false,
       0.0,
@@ -33,7 +33,7 @@ class LinkResolverTest extends munit.FunSuite {
     val secondRevision = new Revision(
       3L,
       2L,
-      Some(2L),
+      2L,
       Instant.parse("2011-01-02T00:00:01Z").toEpochMilli(),
       false,
       0.0,
@@ -45,7 +45,7 @@ class LinkResolverTest extends munit.FunSuite {
     val thirdRevision = new Revision(
       4L,
       2L,
-      Some(3L),
+      3L,
       Instant.parse("2011-01-04T00:00:01Z").toEpochMilli(),
       false,
       0.0,

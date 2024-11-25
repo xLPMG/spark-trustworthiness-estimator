@@ -24,7 +24,7 @@ package me.lpmg.ste.data
 class Revision(
     val revisionId: Long,
     val pageId: Long,
-    val parentId: Option[Long],
+    val parentId: Long,
     val timestamp: Long,
     var isGroundTruth: Boolean,
     var trustScore: Double,

@@ -45,6 +45,7 @@ class RevisionSAXHandler extends DefaultHandler {
         insideRevision = true
         revisionId = 0
         parentId = None
+        timestamp = 0
         outlinkPageIds = Set.empty[Long]
         isRedirect = false
       case _ => // No-op for other tags
@@ -134,7 +135,7 @@ class RevisionSAXHandler extends DefaultHandler {
           revisions += new Revision(
             revisionId,
             pageId,
-            parentId,
+            parentId.getOrElse(-1),
             timestamp,
             false,
             0.0,

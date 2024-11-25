@@ -11,20 +11,18 @@ object GraphCreator {
       revisionsRDD: RDD[Revision]
   ): Graph[Revision, Byte] = {
     // Create vertex for each revision. using revisionId as VertexId
-    val vertices: RDD[(VertexId, Revision)] = revisionsRDD.map { rev =>
-      (rev.revisionId, rev)
-    }
+    val vertices: RDD[(VertexId, Revision)] = revisionsRDD.keyBy(_.revisionId)
 
     // Connect revisions of the same page
     val temporalEdges: RDD[Edge[Byte]] = revisionsRDD.flatMap { rev =>
-      rev.parentId
-        .map { parentId =>
-          Seq(
-            Edge(parentId, rev.revisionId, EdgeType.isParentOf),
-            Edge(rev.revisionId, parentId, EdgeType.isChildOf)
-          )
-        }
-        .getOrElse(Seq.empty)
+      if (rev.parentId != -1) {
+        Seq(
+          Edge(rev.parentId, rev.revisionId, EdgeType.isParentOf),
+          Edge(rev.revisionId, rev.parentId, EdgeType.isChildOf)
+        )
+      } else {
+        Seq.empty
+      }
     }
 
     // Connect revisions with outlinks
