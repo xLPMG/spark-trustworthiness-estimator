@@ -17,7 +17,7 @@ class RevisionSAXHandler extends DefaultHandler {
   private var insideRevision = false
   private var isMainNamespace = false
 
-  private var pageTitle: Option[String] = None
+  private var pageTitle: String = ""
   private var pageId: Long = 0
   private var revisionId: Long = 0
   private var parentId: Option[Long] = None
@@ -40,6 +40,7 @@ class RevisionSAXHandler extends DefaultHandler {
       case "page" =>
         insidePage = true
         isMainNamespace = false // reset
+        pageTitle = ""
       case "revision" =>
         insideRevision = true
         revisionId = 0
@@ -61,11 +62,11 @@ class RevisionSAXHandler extends DefaultHandler {
     } else if (insidePage && !insideRevision) {
       // page specific data
       qName match {
-        case "title" => pageTitle = Some(charBuffer.toString.trim)
+        case "title" => pageTitle = getBuffer
         case "page"  => insidePage = false
         case "ns" =>
-          if ("0".equals(charBuffer.toString.trim)) isMainNamespace = true
-        case "id" => pageId = charBuffer.toString.trim.toLong
+          if ("0".equals(getBuffer)) isMainNamespace = true
+        case "id" => pageId = getBuffer.toLong
         case _    => // No-op for other elements
       }
     }
@@ -86,20 +87,20 @@ class RevisionSAXHandler extends DefaultHandler {
   private def handleRevision(currentElement: String): Unit = {
     currentElement match {
       case "id" if revisionId == 0 =>
-        revisionId = charBuffer.toString.trim.toLong
+        revisionId = getBuffer.toLong
       case "parentid" =>
-        parentId = Some(charBuffer.toString.trim.toLong)
+        parentId = Some(getBuffer.toLong)
       case "timestamp" =>
         try {
-          timestamp = Instant.parse(charBuffer.toString.trim).toEpochMilli()
+          timestamp = Instant.parse(getBuffer).toEpochMilli()
         } catch {
           case e: Exception =>
             println(
-              s"Error parsing timestamp: ${charBuffer.toString.trim} for revision: $revisionId in page: $pageId"
+              s"Error parsing timestamp: ${getBuffer} for revision: $revisionId in page: $pageId"
             )
         }
       case "text" =>
-        val content = charBuffer.toString.trim
+        val content = getBuffer
         isRedirect = content.startsWith("#REDIRECT")
         if (!isRedirect) {
           /* As soon as the links are found, they are resolved to page IDs.
@@ -119,10 +120,10 @@ class RevisionSAXHandler extends DefaultHandler {
           }
           outlinkPageIds =
             LinkResolver.resolvePageTitlesToPageIDs(pageTitles, dictionary)
-        } else if (pageTitle.isDefined) {
+        } else if (pageTitle.length() > 0) {
           // for redirects, we resolve the redirect target and store it as the only outlink
           val redirectTarget =
-            LinkResolver.resolveRedirect(pageTitle.get, dictionary)
+            LinkResolver.resolveRedirect(pageTitle, dictionary)
           if (redirectTarget != -1) {
             outlinkPageIds = Set(redirectTarget)
           }
@@ -146,6 +147,8 @@ class RevisionSAXHandler extends DefaultHandler {
       case _ => // No-op for other elements
     }
   }
+
+  private def getBuffer: String = charBuffer.toString.trim
 
   def setDictionary(dictionary: Map[String, (Long, String)]): Unit = {
     this.dictionary = dictionary
