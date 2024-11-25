@@ -1,6 +1,5 @@
 package me.lpmg.ste.graph
 
-import org.apache.spark.sql.SparkSession
 import org.apache.spark.graphx.{Graph, Edge, VertexId}
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
@@ -9,7 +8,6 @@ import me.lpmg.ste.data.Revision
   */
 object GraphCreator {
   def createRevisionGraph(
-      spark: SparkSession,
       revisionsRDD: RDD[Revision]
   ): Graph[Revision, Byte] = {
     // Create vertex for each revision. using revisionId as VertexId

@@ -48,7 +48,7 @@ object Main {
 
     logger.info(s"Total files found: ${filesRDD.count()}")
 
-    var dictionary: Map[String, (Long, String)] = Map()
+    var dictionary: Map[String, (Long, String)] = Map.empty
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /// DICTIONARY
@@ -124,8 +124,8 @@ object Main {
 /////////////////////////////////////////////////////////////////////////////////////////
 // GRAPH CREATION
 /////////////////////////////////////////////////////////////////////////////////////////
-    var revisionGraph =
-      GraphCreator.createRevisionGraph(spark, resolvedRevisionsRDD)
+    val revisionGraph =
+      GraphCreator.createRevisionGraph(resolvedRevisionsRDD)
     allRevisionsRDD.unpersist()
     println(s"Number of vertices: ${revisionGraph.vertices.count}")
     println(s"Number of edges: ${revisionGraph.edges.count}")

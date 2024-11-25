@@ -23,7 +23,7 @@ class RevisionSAXHandler extends DefaultHandler {
   private var parentId: Option[Long] = None
   private var timestamp: Long = 0
 
-  private var outlinkPageIds: Set[Long] = Set()
+  private var outlinkPageIds: Set[Long] = Set.empty
   private var isRedirect: Boolean = false
 
   private val charBuffer = new StringBuilder
@@ -116,7 +116,7 @@ class RevisionSAXHandler extends DefaultHandler {
             val parts = link.split("\\|")
             if (parts.nonEmpty && parts.head.nonEmpty) Some(parts.head)
             else None
-          }.toSet
+          }
           outlinkPageIds =
             LinkResolver.resolvePageTitlesToPageIDs(pageTitles, dictionary)
         } else if (pageTitle.isDefined) {
@@ -150,5 +150,5 @@ class RevisionSAXHandler extends DefaultHandler {
   def setDictionary(dictionary: Map[String, (Long, String)]): Unit = {
     this.dictionary = dictionary
   }
-  def getRevisions: Seq[Revision] = revisions.toSeq
+  def getRevisions: Seq[Revision] = revisions
 }

@@ -1,13 +1,13 @@
 package me.lpmg.ste.data
 
-/** A class to represent minimal information about a Wikipedia revision.
+/** Represents minimal information about a Wikipedia revision.
   *
   * @param revisionId
   *   the unique identifier of the revision
   * @param timestamp
   *   the timestamp of the revision
   */
-class MinimalRevision(
-    var revisionId: Long,
-    var timestamp: Long
+final case class MinimalRevision(
+    val revisionId: Long,
+    val timestamp: Long
 ) extends Serializable
