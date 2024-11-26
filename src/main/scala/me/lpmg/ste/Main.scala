@@ -16,6 +16,7 @@ import me.lpmg.ste.time.Watch
 import me.lpmg.ste.data.MinimalRevision
 import org.apache.spark.sql.DataFrame
 import me.lpmg.ste.data.Types
+import org.apache.parquet.hadoop.codec.CodecConfig
 
 object Main {
 
@@ -47,18 +48,19 @@ object Main {
       .filter(_._2 < 3)
       .map(_._1)
 
-    logger.info(s"Total files found: ${filesRDD.count()}")
+    logger.warn(s"Total files found: ${filesRDD.count()}")
 
     var dictionary: Types.DictType = Map.empty
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /// DICTIONARY
 /////////////////////////////////////////////////////////////////////////////////////////
+    Watch.start("dictionary")
     val dictionaryFile: Path =
       Path.of(dataFolderPath).resolve("dictionary.parquet")
     // WRITE
     if (!dataFolderPath.isEmpty && !dictionaryFile.toFile.exists()) {
-      logger.info(s"Creating dictionary file at: $dictionaryFile")
+      logger.warn(s"Creating dictionary file at: $dictionaryFile")
       // value = (filePath: String, fileContent: PortableDataStream)
       dictionary = filesRDD.aggregate(Map.empty[String, (Int, String)])(
         (acc, value) => acc ++ DataReader.getDictionaryFromPDS(value._2),
@@ -77,7 +79,7 @@ object Main {
       dictionaryDF.write.parquet(dictionaryFile.toString)
     } else if (!dataFolderPath.isEmpty && dictionaryFile.toFile.exists()) {
       // READ
-      logger.info(s"Reading dictionary file from: $dictionaryFile")
+      logger.warn(s"Reading dictionary file from: $dictionaryFile")
 
       // Read DataFrame from Parquet
       val dictionaryDF: DataFrame = spark.read.parquet(dictionaryFile.toString)
@@ -85,11 +87,24 @@ object Main {
       // Convert DataFrame to Map
       dictionary = dictionaryDF
         .collect()
-        .map(row => row.getString(0) -> (row.getLong(1).toInt, row.getString(2)))
+        .map(row =>
+          row.getString(0) -> (row.getInt(1), row.getString(2))
+        )
         .toMap
     }
     val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
+    logger.warn(s"Finished processing dictionary (${Watch.stopFormatted("dictionary")})")
 
+
+val dictionaryDF: DataFrame =
+        dictionary.toSeq
+          .map { case (pageTitle, (pageID, redirectTo)) =>
+            (pageTitle, pageID, redirectTo)
+          }
+          .toDF("PageTitle", "PageID", "RedirectsTo")
+
+      // Write DataFrame to Parquet
+      dictionaryDF.write.mode("overwrite").parquet(Path.of(dataFolderPath).resolve("dictionaryFAKE.parquet").toString)
 /////////////////////////////////////////////////////////////////////////////////////////
 // REVISION EXTRACTION
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +114,7 @@ object Main {
       }
       .cache()
 
-    logger.info(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
+    logger.warn(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
 
     // Group revisions by their page ID, sort by timestamp and save as MinimalRevision
     val groupedRevisionsRDD =
@@ -180,7 +195,7 @@ object Main {
     println("Graph saved successfully.")
 
     spark.stop()
-    logger.info(s"Total Time: ${Watch.stopFormatted("Main")}")
+    logger.warn(s"Total Time: ${Watch.stopFormatted("Main")}")
   }
 
 }
