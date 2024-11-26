@@ -26,11 +26,35 @@ class Revision(
     val pageId: Int,
     val parentId: Long,
     val timestamp: Long,
-    var isGroundTruth: Boolean,
-    var trustScore: Float,
-    var resolvedPageOutlinks: Set[Int],
-    var resolvedRevisionOutlinks: Set[Long],
+    val isGroundTruth: Boolean,
+    val trustScore: Float,
+    val resolvedPageOutlinks: Set[Int],
+    val resolvedRevisionOutlinks: Set[Long],
     val isRedirect: Boolean
 ) extends Serializable {
   def toMinimalRevision = new MinimalRevision(revisionId, timestamp)
+
+  def copy(
+      revisionId: Long = this.revisionId,
+      pageId: Int = this.pageId,
+      parentId: Long = this.parentId,
+      timestamp: Long = this.timestamp,
+      isGroundTruth: Boolean = this.isGroundTruth,
+      trustScore: Float = this.trustScore,
+      resolvedPageOutlinks: Set[Int] = this.resolvedPageOutlinks,
+      resolvedRevisionOutlinks: Set[Long] = this.resolvedRevisionOutlinks,
+      isRedirect: Boolean = this.isRedirect
+  ): Revision = {
+    new Revision(
+      revisionId,
+      pageId,
+      parentId,
+      timestamp,
+      isGroundTruth,
+      trustScore,
+      resolvedPageOutlinks,
+      resolvedRevisionOutlinks,
+      isRedirect
+    )
+  }
 }

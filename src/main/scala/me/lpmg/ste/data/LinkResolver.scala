@@ -65,7 +65,7 @@ object LinkResolver {
       minimize: Boolean = true
   ): Revision = {
 
-    revision.resolvedRevisionOutlinks = revision.resolvedPageOutlinks.flatMap {
+    val newResolvedRevisionOutlinks = revision.resolvedPageOutlinks.flatMap {
       pageId =>
         groupedRevisions
           .getOrElse(pageId, Seq.empty)
@@ -77,17 +77,9 @@ object LinkResolver {
     val newPageOutlinks =
       if (minimize) Set.empty[Int] else revision.resolvedPageOutlinks
 
-    new Revision(
-      revision.revisionId,
-      revision.pageId,
-      revision.parentId,
-      revision.timestamp,
-      revision.isGroundTruth,
-      revision.trustScore,
-      newPageOutlinks,
-      revision.resolvedRevisionOutlinks,
-      revision.isRedirect
+    revision.copy(
+      resolvedRevisionOutlinks = newResolvedRevisionOutlinks,
+      resolvedPageOutlinks = newPageOutlinks
     )
-
   }
 }
