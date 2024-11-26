@@ -94,17 +94,6 @@ object Main {
     }
     val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
     logger.warn(s"Finished processing dictionary (${Watch.stopFormatted("dictionary")})")
-
-
-val dictionaryDF: DataFrame =
-        dictionary.toSeq
-          .map { case (pageTitle, (pageID, redirectTo)) =>
-            (pageTitle, pageID, redirectTo)
-          }
-          .toDF("PageTitle", "PageID", "RedirectsTo")
-
-      // Write DataFrame to Parquet
-      dictionaryDF.write.mode("overwrite").parquet(Path.of(dataFolderPath).resolve("dictionaryFAKE.parquet").toString)
 /////////////////////////////////////////////////////////////////////////////////////////
 // REVISION EXTRACTION
 /////////////////////////////////////////////////////////////////////////////////////////
