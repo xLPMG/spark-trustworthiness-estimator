@@ -151,20 +151,8 @@
                         <a href="" title="">LinkResolver</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="MinimalRevision.html" title="Represents minimal information about a Wikipedia revision."></a>
-                        <a href="MinimalRevision.html" title="Represents minimal information about a Wikipedia revision.">MinimalRevision</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="class" href="Revision.html" title="A class to represent a Wikipedia revision."></a>
-                        <a href="Revision.html" title="A class to represent a Wikipedia revision.">Revision</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
                         <a class="class" href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions."></a>
                         <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions.">RevisionSAXHandler</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="object" href="Types$.html" title=""></a>
-                        <a href="Types$.html" title="">Types</a>
                       </li>
               </ul>
             </div>
@@ -489,9 +477,9 @@
               
         </dd></dl></div>
     </li><li name="me.lpmg.ste.data.LinkResolver#resolvePageIDsToRevisionIDs" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="resolvePageIDsToRevisionIDs(revision:me.lpmg.ste.data.Revision,groupedRevisions:Map[Int,Seq[me.lpmg.ste.data.MinimalRevision]],minimize:Boolean):me.lpmg.ste.data.Revision"></a><a id="resolvePageIDsToRevisionIDs(Revision,Map[Int,Seq[MinimalRevision]],Boolean):Revision"></a>
+      <a id="resolvePageIDsToRevisionIDs(revision:me.lpmg.ste.types.Revision,groupedRevisions:Map[Int,Seq[(Long,Long)]],minimize:Boolean):me.lpmg.ste.types.Revision"></a><a id="resolvePageIDsToRevisionIDs(Revision,Map[Int,Seq[(Long,Long)]],Boolean):Revision"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/LinkResolver$.html#resolvePageIDsToRevisionIDs(revision:me.lpmg.ste.data.Revision,groupedRevisions:Map[Int,Seq[me.lpmg.ste.data.MinimalRevision]],minimize:Boolean):me.lpmg.ste.data.Revision" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/LinkResolver$.html#resolvePageIDsToRevisionIDs(revision:me.lpmg.ste.types.Revision,groupedRevisions:Map[Int,Seq[(Long,Long)]],minimize:Boolean):me.lpmg.ste.types.Revision" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -500,7 +488,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">resolvePageIDsToRevisionIDs</span><span class="params">(<span name="revision">revision: <a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a></span>, <span name="groupedRevisions">groupedRevisions: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Seq">Seq</span>[<a href="MinimalRevision.html" class="extype" name="me.lpmg.ste.data.MinimalRevision">MinimalRevision</a>]]</span>, <span name="minimize">minimize: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">true</span></span>)</span><span class="result">: <a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a></span>
+        <span class="name">resolvePageIDsToRevisionIDs</span><span class="params">(<span name="revision">revision: <a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a></span>, <span name="groupedRevisions">groupedRevisions: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Seq">Seq</span>[(<span class="extype" name="scala.Long">Long</span>, <span class="extype" name="scala.Long">Long</span>)]]</span>, <span name="minimize">minimize: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">true</span></span>)</span><span class="result">: <a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a></span>
       </span>
       
       <p class="shortcomment cmt">Resolve page IDs to revision IDs in a revision.</p><div class="fullcomment"><div class="comment cmt"><p>Resolve page IDs to revision IDs in a revision.
@@ -510,9 +498,9 @@
   data)</p></dd><dt>returns</dt><dd class="cmt"><p>
   the edited revision</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.LinkResolver#resolvePageTitlesToPageIDs" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="resolvePageTitlesToPageIDs(titles:Set[String],dictionary:me.lpmg.ste.data.Types.DictType):Set[Int]"></a><a id="resolvePageTitlesToPageIDs(Set[String],DictType):Set[Int]"></a>
+      <a id="resolvePageTitlesToPageIDs(titles:Set[String],dictionary:me.lpmg.ste.types.Types.DictType):Set[Int]"></a><a id="resolvePageTitlesToPageIDs(Set[String],DictType):Set[Int]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/LinkResolver$.html#resolvePageTitlesToPageIDs(titles:Set[String],dictionary:me.lpmg.ste.data.Types.DictType):Set[Int]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/LinkResolver$.html#resolvePageTitlesToPageIDs(titles:Set[String],dictionary:me.lpmg.ste.types.Types.DictType):Set[Int]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -521,7 +509,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">resolvePageTitlesToPageIDs</span><span class="params">(<span name="titles">titles: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="dictionary">dictionary: <a href="Types$.html#DictType=Map[String,(Int,String)]" class="extmbr" name="me.lpmg.ste.data.Types.DictType">DictType</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Int">Int</span>]</span>
+        <span class="name">resolvePageTitlesToPageIDs</span><span class="params">(<span name="titles">titles: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="dictionary">dictionary: <a href="../types/Types$.html#DictType=Map[String,(Int,String)]" class="extmbr" name="me.lpmg.ste.types.Types.DictType">DictType</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Int">Int</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Resolve page titles to page IDs.</p><div class="fullcomment"><div class="comment cmt"><p>Resolve page titles to page IDs.
@@ -529,9 +517,9 @@
   set of page titles</p></dd><dt class="param">dictionary</dt><dd class="cmt"><p>
   dictionary mapping page titles to page IDs</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.LinkResolver#resolveRedirect" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="resolveRedirect(pageTitle:String,dictionary:me.lpmg.ste.data.Types.DictType):Int"></a><a id="resolveRedirect(String,DictType):Int"></a>
+      <a id="resolveRedirect(pageTitle:String,dictionary:me.lpmg.ste.types.Types.DictType):Int"></a><a id="resolveRedirect(String,DictType):Int"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/LinkResolver$.html#resolveRedirect(pageTitle:String,dictionary:me.lpmg.ste.data.Types.DictType):Int" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/LinkResolver$.html#resolveRedirect(pageTitle:String,dictionary:me.lpmg.ste.types.Types.DictType):Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -540,7 +528,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">resolveRedirect</span><span class="params">(<span name="pageTitle">pageTitle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dictionary">dictionary: <a href="Types$.html#DictType=Map[String,(Int,String)]" class="extmbr" name="me.lpmg.ste.data.Types.DictType">DictType</a></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">resolveRedirect</span><span class="params">(<span name="pageTitle">pageTitle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dictionary">dictionary: <a href="../types/Types$.html#DictType=Map[String,(Int,String)]" class="extmbr" name="me.lpmg.ste.types.Types.DictType">DictType</a></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       
       <p class="shortcomment cmt">Gets the real page ID for a redirect page title.</p><div class="fullcomment"><div class="comment cmt"><p>Gets the real page ID for a redirect page title. If the page title is not

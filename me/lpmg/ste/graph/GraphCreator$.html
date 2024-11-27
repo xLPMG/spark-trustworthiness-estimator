@@ -137,6 +137,10 @@
                         <span class="separator"></span>
                         <a class="object" href="" title="Provides functionality to create a revision graph using GraphX."></a>
                         <a href="" title="Provides functionality to create a revision graph using GraphX.">GraphCreator</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="GraphManager.html" title=""></a>
+                        <a href="GraphManager.html" title="">GraphManager</a>
                       </li>
               </ul>
             </div>
@@ -313,10 +317,10 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphCreator#createRevisionGraph" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="createRevisionGraph(revisionsRDD:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):org.apache.spark.graphx.Graph[me.lpmg.ste.data.Revision,Byte]"></a><a id="createRevisionGraph(RDD[Revision]):Graph[Revision,Byte]"></a>
+    </li><li name="me.lpmg.ste.graph.GraphCreator#createRevisionGraph" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="createRevisionGraph(revisionsRDD:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="createRevisionGraph(RDD[Revision]):Graph[RevisionVertex,Byte]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphCreator$.html#createRevisionGraph(revisionsRDD:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):org.apache.spark.graphx.Graph[me.lpmg.ste.data.Revision,Byte]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/GraphCreator$.html#createRevisionGraph(revisionsRDD:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -325,10 +329,11 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">createRevisionGraph</span><span class="params">(<span name="revisionsRDD">revisionsRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
+        <span class="name">createRevisionGraph</span><span class="params">(<span name="revisionsRDD">revisionsRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Create a revision graph from a sequence of revisions.</p><div class="fullcomment"><div class="comment cmt"><p>Create a revision graph from a sequence of revisions.
+</p></div><dl class="paramcmts block"><dt class="param">revisionsRDD</dt><dd class="cmt"><p>RDD of revisions</p></dd><dt>returns</dt><dd class="cmt"><p>GraphX graph</p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -575,22 +580,6 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphCreator.EdgeType" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="EdgeType"></a><a id="EdgeType:EdgeType"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphCreator$$EdgeType$.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="GraphCreator$$EdgeType$.html"><span class="name">EdgeType</span></a>
-      </span>
-      
-      
     </li>
               </ol>
             </div>
