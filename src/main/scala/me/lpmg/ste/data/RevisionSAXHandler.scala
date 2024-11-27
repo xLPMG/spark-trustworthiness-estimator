@@ -25,6 +25,7 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private var revisionId: Long = 0
   private var parentId: Option[Long] = None
   private var timestamp: Long = 0
+  private var templateBitset: BitSet = null
 
   private var outlinkPageIds: Set[Int] = Set.empty
   private var isRedirect: Boolean = false
@@ -51,6 +52,7 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
         timestamp = 0
         outlinkPageIds = Set.empty[Int]
         isRedirect = false
+        templateBitset = new BitSet(TemplateBitPositions.size)
       case _ => // No-op for other tags
     }
   }
@@ -127,13 +129,13 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
 
           // set template bits
           //TODO: check for things like {{Unreferenced|date=March 2019}}
-          // TemplateBitPositions.foreach(
-          //   template =>
-          //     if (content.contains("{{" + template._1 + "}}") ||
-          //         content.contains("{{" + template._1.toLowerCase + "}}")) {
-          //       templateBitset.set(template._2)
-          //     }
-          // )
+          TemplateBitPositions.foreach(
+            template =>
+              if (content.contains("{{" + template._1 + "}}") ||
+                  content.contains("{{" + template._1.toLowerCase + "}}")) {
+                templateBitset.set(template._2)
+              }
+          )
           
         } else if (pageTitle.length() > 0) {
           // for redirects, we resolve the redirect target and store it as the only outlink
@@ -155,6 +157,9 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               outlinkPageIds,
               Set.empty,
               isRedirect,
+              templateBitset,
+              new BitSet(TemplateBitPositions.size),
+              new BitSet(TemplateBitPositions.size)
             )
           }
         }

@@ -15,7 +15,10 @@ class LinkResolverTest extends munit.FunSuite {
       Instant.parse("2011-01-03T00:00:01Z").toEpochMilli(),
       Set(2),
       Set.empty,
-      false
+      false,
+      null,
+      null,
+      null
     )
 
     // Grouped revisions by page ID
@@ -26,8 +29,12 @@ class LinkResolverTest extends munit.FunSuite {
       Instant.parse("2011-01-01T00:00:01Z").toEpochMilli(),
       Set.empty,
       Set.empty,
-      false
+      false,
+      null,
+      null,
+      null
     )
+    
     val secondRevision = new Revision(
       3L,
       2,
@@ -35,8 +42,12 @@ class LinkResolverTest extends munit.FunSuite {
       Instant.parse("2011-01-02T00:00:01Z").toEpochMilli(),
       Set.empty,
       Set.empty,
-      false
+      false,
+      null,
+      null,
+      null
     )
+
     // this revision is not before the revisionWithLink timestamp
     val thirdRevision = new Revision(
       4L,
@@ -45,7 +56,10 @@ class LinkResolverTest extends munit.FunSuite {
       Instant.parse("2011-01-04T00:00:01Z").toEpochMilli(),
       Set.empty,
       Set.empty,
-      false
+      false,
+      null,
+      null,
+      null
     )
 
     // group revisions by page ID

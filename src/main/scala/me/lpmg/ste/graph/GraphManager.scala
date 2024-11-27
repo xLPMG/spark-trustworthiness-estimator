@@ -14,6 +14,8 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZonedDateTime
 import me.lpmg.ste.types.RevisionVertex
+import org.apache.spark.util.collection.BitSet
+import me.lpmg.ste.data.TemplateUpdater
 
 class GraphManager(
     spark: SparkSession,
@@ -146,6 +148,21 @@ class GraphManager(
         }
       }
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // TEMPLATE TRACKING
+    /////////////////////////////////////////////////////////////////////////////////////////
+    // Create a map of revision IDs to revisions for quick lookup
+    val revisionMap =
+      updatedRevisionsRDD.map(rev => rev.revisionId -> rev).collectAsMap().toMap
+
+    // Update the templateAdded and templateRemoved BitSets for each revision
+    val updatedTemplateRevisionsRDD = updatedRevisionsRDD.mapPartitions {
+      partition =>
+        val revisions = partition.toSeq
+        TemplateUpdater.updateTemplateBitSets(revisions, revisionMap).iterator
+    }
+
     allRevisionsRDD.unpersist()
 
     val groupedRevisionsMap = groupedRevisionsRDD.collectAsMap().toMap
@@ -153,7 +170,7 @@ class GraphManager(
     /////////////////////////////////////////////////////////////////////////////////////////
     // LINK RESOLUTION
     /////////////////////////////////////////////////////////////////////////////////////////
-    val resolvedRevisionsRDD = updatedRevisionsRDD.map { revision =>
+    val resolvedRevisionsRDD = updatedTemplateRevisionsRDD.map { revision =>
       LinkResolver.resolvePageIDsToRevisionIDs(
         revision,
         groupedRevisionsMap

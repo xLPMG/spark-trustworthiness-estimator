@@ -32,13 +32,21 @@ object Main {
       .getOrCreate()
 
     val graphManager = new GraphManager(spark, dumpFolderPath, dataFolderPath)
-    graphManager.setDateLimit(
-      ZonedDateTime.of(2022, 1, 1, 0, 0, 0, 0, ZoneId.of("UTC"))
-    )
+    // graphManager.setDateLimit(
+    //   ZonedDateTime.of(2022, 1, 1, 0, 0, 0, 0, ZoneId.of("UTC"))
+    // )
     val revisionGraph = graphManager.initializeGraph()
 
     logger.warn(s"Graph vertices: ${revisionGraph.vertices.count()}")
     logger.warn(s"Graph edges: ${revisionGraph.edges.count()}")
+
+    revisionGraph.vertices.collect().foreach { case (id, vertex) =>
+      println(s"Vertex ID: $id, Data: $vertex")
+    }
+
+    revisionGraph.edges.collect().foreach { edge =>
+      println(s"Edge: ${edge.srcId} -> ${edge.dstId}, Attr: ${edge.attr}")
+    }
 
     // graphManager.saveGraph("editedGraph", editedGraph)
 

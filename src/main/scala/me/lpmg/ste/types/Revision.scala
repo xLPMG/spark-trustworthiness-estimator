@@ -1,5 +1,8 @@
 package me.lpmg.ste.types
 
+import org.apache.spark.util.collection.BitSet
+import me.lpmg.ste.types.Types.TemplateBitPositions
+
 /** A class to represent a Wikipedia revision.
   *
   * @param revisionId
@@ -16,6 +19,12 @@ package me.lpmg.ste.types
   *   the outlinks of the revision (revision IDs)
   * @param isRedirect
   *   whether the revision is a redirect
+  * @param templatePresence
+  *   the presence of templates in the revision
+  * @param templateAdded
+  *   whether templates were added in the revision
+  * @param templateRemoved
+  *   whether templates were removed in the revision
   */
 class Revision(
     val revisionId: Long,
@@ -25,7 +34,11 @@ class Revision(
     val resolvedPageOutlinks: Set[Int],
     val resolvedRevisionOutlinks: Set[Long],
     val isRedirect: Boolean,
+    val templatePresence: BitSet = new BitSet(TemplateBitPositions.size),
+    val templateAdded: BitSet = new BitSet(TemplateBitPositions.size),
+    val templateRemoved: BitSet = new BitSet(TemplateBitPositions.size)
 ) extends Serializable {
+
   /** Copy the revision with the specified values. All unspecified values are
     * copied from the original revision.
     *
@@ -36,6 +49,9 @@ class Revision(
     * @param resolvedPageOutlinks
     * @param resolvedRevisionOutlinks
     * @param isRedirect
+    * @param templatePresence
+    * @param templateAdded
+    * @param templateRemoved
     * @return
     *   a new revision with the specified values
     */
@@ -47,6 +63,9 @@ class Revision(
       resolvedPageOutlinks: Set[Int] = this.resolvedPageOutlinks,
       resolvedRevisionOutlinks: Set[Long] = this.resolvedRevisionOutlinks,
       isRedirect: Boolean = this.isRedirect,
+      templatePresence: BitSet = this.templatePresence,
+      templateAdded: BitSet = this.templateAdded,
+      templateRemoved: BitSet = this.templateRemoved
   ): Revision = {
     new Revision(
       revisionId,
@@ -56,6 +75,9 @@ class Revision(
       resolvedPageOutlinks,
       resolvedRevisionOutlinks,
       isRedirect,
+      templatePresence,
+      templateAdded,
+      templateRemoved
     )
   }
 
@@ -67,5 +89,22 @@ class Revision(
     *   the revision vertex
     */
   def toRevisionVertex =
-    new RevisionVertex(false, 0.0f, isRedirect)
+    new RevisionVertex(
+      0.0f,
+      isRedirect,
+      templatePresence,
+      templateAdded,
+      templateRemoved
+    )
+
+  override def toString(): String = {
+    s"Revision(revisionId=${revisionId}, pageId=${pageId}, parentId=${parentId}, timestamp=${timestamp}, isRedirect=${isRedirect}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)})"
+  }
+
+  private def bitSetToBinaryString(bitSet: BitSet): String = {
+    val binaryString = (0 until bitSet.capacity).map { bit =>
+      if (bitSet.get(bit)) '1' else '0'
+    }.mkString
+    binaryString.reverse.dropWhile(_ == '0').reverse
+  }
 }

@@ -36,6 +36,8 @@
       <comment>Comment 2</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">{{Unreferenced}} {{Contradict}}
+      </text>
     </revision>
     <revision>
       <id>13</id>
@@ -48,6 +50,8 @@
       <comment>Comment 3</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">{{Unreferenced}}
+      </text>
     </revision>
     <revision>
       <id>14</id>
@@ -60,6 +64,8 @@
       <comment>Comment 4</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">{{Unreferenced}}{{Disputed}}
+      </text>
     </revision>
     <revision>
       <id>15</id>

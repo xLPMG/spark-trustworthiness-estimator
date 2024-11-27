@@ -5,6 +5,7 @@ import java.io.InputStream
 import java.io.FileInputStream
 import java.time.Instant
 import me.lpmg.ste.types.Types.DictType
+import me.lpmg.ste.types.Types.TemplateBitPositions
 
 class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
@@ -16,30 +17,43 @@ class DataReaderTest extends munit.FunSuite {
     assertEquals(revisions.length, 5)
 
     // compare the extracted revision data
-    //val unreferencedPosition: Int = TemplateBitPositions.get("Unreferenced").get.toInt
+    val unreferencedPosition: Int =
+      TemplateBitPositions.get("Unreferenced").get.toInt
     revisions.foreach { revision =>
       if (revision.revisionId == 1L) {
         assertEquals(revision.pageId, 1)
         assertEquals(revision.parentId, -1L)
-        assertEquals(revision.timestamp, Instant.parse("2011-01-01T00:00:01Z").toEpochMilli())
-        //assertEquals(revision.templateBitset.get(unreferencedPosition), true)
+        assertEquals(
+          revision.timestamp,
+          Instant.parse("2011-01-01T00:00:01Z").toEpochMilli()
+        )
+        assertEquals(revision.templatePresence.get(unreferencedPosition), false)
       } else if (revision.revisionId == 2L) {
         assertEquals(revision.pageId, 2)
         assertEquals(revision.parentId, -1L)
-        assertEquals(revision.timestamp, Instant.parse("2011-01-02T00:00:01Z").toEpochMilli())
-        //assertEquals(revision.templateBitset.get(unreferencedPosition), false)
+        assertEquals(
+          revision.timestamp,
+          Instant.parse("2011-01-02T00:00:01Z").toEpochMilli()
+        )
+        assertEquals(revision.templatePresence.get(unreferencedPosition), true)
       } else if (revision.revisionId == 3L) {
         assertEquals(revision.pageId, 1)
         assertEquals(revision.parentId, 1L)
-        assertEquals(revision.timestamp, Instant.parse("2011-01-03T00:00:01Z").toEpochMilli())
+        assertEquals(
+          revision.timestamp,
+          Instant.parse("2011-01-03T00:00:01Z").toEpochMilli()
+        )
         // Revision 2 has link "[[Page 2]]"
         assertEquals(revision.resolvedPageOutlinks, Set(2))
-        //assertEquals(revision.templateBitset.get(unreferencedPosition), false)
+        assertEquals(revision.templatePresence.get(unreferencedPosition), false)
       } else if (revision.revisionId == 4L) {
         assertEquals(revision.pageId, 2)
         assertEquals(revision.parentId, 2L)
-        assertEquals(revision.timestamp, Instant.parse("2011-01-04T00:00:01Z").toEpochMilli())
-        //assertEquals(revision.templateBitset.get(unreferencedPosition), false)
+        assertEquals(
+          revision.timestamp,
+          Instant.parse("2011-01-04T00:00:01Z").toEpochMilli()
+        )
+        assertEquals(revision.templatePresence.get(unreferencedPosition), false)
       }
     }
   }
