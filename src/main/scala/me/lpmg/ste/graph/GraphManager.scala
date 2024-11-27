@@ -2,14 +2,18 @@ package me.lpmg.ste.graph
 
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.SparkSession
-import me.lpmg.ste.data.Types
+import me.lpmg.ste.types.Types
 import me.lpmg.ste.time.Watch
 import java.nio.file.Path
 import me.lpmg.ste.data.DataReader
 import org.apache.spark.sql.DataFrame
 import me.lpmg.ste.data.LinkResolver
 import org.apache.spark.graphx.Graph
-import me.lpmg.ste.data.Revision
+import me.lpmg.ste.types.Revision
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZonedDateTime
+import me.lpmg.ste.types.RevisionVertex
 
 class GraphManager(
     spark: SparkSession,
@@ -18,13 +22,32 @@ class GraphManager(
 ) {
   import spark.implicits._
   val logger = Logger(getClass.getName)
+  var dateLimit: Long = 0
 
-  /**
-    * Initializes the graph by reading all revisions from the dump folder.
+  /** Sets the date limit for the graph. Only revisions after this date will be
+    * included in the graph.
     *
-    * @return The revision graph
+    * @param date
     */
-  def initializeGraph(): Graph[Revision, Byte] = {
+  def setDateLimit(date: ZonedDateTime): Unit = {
+    setDateLimit(date.toInstant().toEpochMilli())
+  }
+
+  /** Sets the date limit for the graph. Only revisions after this date will be
+    * included in the graph.
+    *
+    * @param date
+    */
+  def setDateLimit(date: Long): Unit = {
+    dateLimit = date
+  }
+
+  /** Initializes the graph by reading all revisions from the dump folder.
+    *
+    * @return
+    *   The revision graph
+    */
+  def initializeGraph(): Graph[RevisionVertex, Byte] = {
     // Read all .xml.bz2 files in the folder into an RDD
     // val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
 
@@ -83,9 +106,14 @@ class GraphManager(
     /////////////////////////////////////////////////////////////////////////////////////////
     // REVISION EXTRACTION
     /////////////////////////////////////////////////////////////////////////////////////////
+    val fixedDateLimit = dateLimit
     val allRevisionsRDD = filesRDD
       .flatMap { case (_, pds) =>
-        DataReader.getRevisionsFromPDS(pds, broadCastedDictionary.value)
+        DataReader.getRevisionsFromPDS(
+          pds,
+          broadCastedDictionary.value,
+          fixedDateLimit
+        )
       }
       .cache()
 
@@ -96,16 +124,36 @@ class GraphManager(
       allRevisionsRDD
         .groupBy(_.pageId)
         .mapValues { revisions =>
+          // [oldest, ..., newest]
           revisions.toSeq.sortBy(_.timestamp).map { rev =>
-            rev.toMinimalRevision
+            rev.toIdTimestampPair
           }
         }
+
+    // set parent ID of oldest revisions to -1
+    // this is only needed in case we limit the graph by date
+    val oldestRevisionIds =
+      groupedRevisionsRDD.mapValues(_.head._1).collect()
+    val updatedRevisionsRDD = if (fixedDateLimit <= 0) {
+      allRevisionsRDD
+    } else {
+      logger.warn("Setting parent ID of oldest revisions to -1")
+      allRevisionsRDD.map { revision =>
+        if (oldestRevisionIds.contains(revision.revisionId)) {
+          revision.copy(parentId = -1)
+        } else {
+          revision
+        }
+      }
+    }
+    allRevisionsRDD.unpersist()
+
     val groupedRevisionsMap = groupedRevisionsRDD.collectAsMap().toMap
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // LINK RESOLUTION
     /////////////////////////////////////////////////////////////////////////////////////////
-    val resolvedRevisionsRDD = allRevisionsRDD.map { revision =>
+    val resolvedRevisionsRDD = updatedRevisionsRDD.map { revision =>
       LinkResolver.resolvePageIDsToRevisionIDs(
         revision,
         groupedRevisionsMap
@@ -115,59 +163,60 @@ class GraphManager(
     /////////////////////////////////////////////////////////////////////////////////////////
     // GRAPH CREATION
     /////////////////////////////////////////////////////////////////////////////////////////
+    logger.warn("Creating revision graph")
     val revisionGraph = GraphCreator.createRevisionGraph(resolvedRevisionsRDD)
-    allRevisionsRDD.unpersist()
     revisionGraph
   }
 
-  /**
-    * Saves the revision graph to the data folder.
-    *
-    * @param graphName The name of the graph
-    */
-  def saveGraph(graphName: String, revisionGraph: Graph[Revision, Byte]): Unit = {
-    val graphFolderPath = Path.of(dataFolderPath).resolve(graphName)
-    if (!graphFolderPath.toFile.exists()) {
-      graphFolderPath.toFile.mkdirs()
-    }
+  // /** Saves the revision graph to the data folder.
+  //   *
+  //   * @param graphName
+  //   *   The name of the graph
+  //   * @param revisionGraph
+  //   *   The revision graph to save
+  //   */
+  // def saveGraph(
+  //     graphName: String,
+  //     revisionGraph: Graph[Revision, Byte]
+  // ): Unit = {
+  //   val graphFolderPath = Path.of(dataFolderPath).resolve(graphName)
+  //   if (!graphFolderPath.toFile.exists()) {
+  //     graphFolderPath.toFile.mkdirs()
+  //   }
 
-    // Convert vertices to DataFrame with flattened fields
-    val verticesDF = revisionGraph.vertices
-      .map { case (id, rev) =>
-        (
-          id,
-          rev.pageId,
-          rev.timestamp,
-          rev.isGroundTruth,
-          rev.trustScore,
-          rev.isRedirect
-        )
-      }
-      .toDF(
-        "id",
-        "pageId",
-        "timestamp",
-        "isGroundTruth",
-        "trustScore",
-        "isRedirect"
-      )
+  //   // Convert vertices to DataFrame with flattened fields
+  //   val verticesDF = revisionGraph.vertices
+  //     .map { case (id, rev) =>
+  //       (
+  //         id,
+  //         rev.pageId,
+  //         rev.timestamp,
+  //         rev.isRedirect
+  //       )
+  //     }
+  //     .toDF(
+  //       "id",
+  //       "pageId",
+  //       "timestamp",
+  //       "isRedirect"
+  //     )
 
-    // Convert edges to DataFrame
-    val edgesDF = revisionGraph.edges.toDF("src", "dst", "attr")
+  //   // Convert edges to DataFrame
+  //   val edgesDF = revisionGraph.edges.toDF("src", "dst", "attr")
 
-    // Save vertices with partitioning and compression
-    verticesDF.write
-      .mode("overwrite")
-      .option("compression", "snappy")
-      .parquet(graphFolderPath.resolve("vertices_parquet").toString)
+  //   // Save vertices with partitioning and compression
+  //   verticesDF.write
+  //     .mode("overwrite")
+  //     .option("compression", "snappy")
+  //     .parquet(graphFolderPath.resolve("vertices_parquet").toString)
 
-    // Save edges with partitioning and compression
-    edgesDF.write
-      .mode("overwrite")
-      .option("compression", "snappy")
-      .partitionBy("src")
-      .parquet(graphFolderPath.resolve("edges_parquet").toString)
+  //   // Save edges with partitioning and compression
+  //   edgesDF.write
+  //     .mode("overwrite")
+  //     .option("compression", "snappy")
+  //     .partitionBy("src")
+  //     .parquet(graphFolderPath.resolve("edges_parquet").toString)
 
-    logger.warn("Graph saved successfully.")
-  }
+  //   logger.warn("Graph saved successfully.")
+  // }
 }

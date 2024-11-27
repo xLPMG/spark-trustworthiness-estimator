@@ -15,7 +15,7 @@
     <ns>0</ns>
     <id>1</id>
     <revision>
-      <id>1</id>
+      <id>11</id>
       <timestamp>2011-01-01T00:00:01Z</timestamp>
       <contributor>
         <username>Contributor 1</username>
@@ -24,30 +24,10 @@
       <comment>Comment 1</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">{{Unreferenced}}
-      </text>
     </revision>
     <revision>
-      <id>3</id>
-      <parentid>1</parentid>
-      <timestamp>2011-01-03T00:00:01Z</timestamp>
-      <contributor>
-        <username>Contributor 3</username>
-        <id>3</id>
-      </contributor>
-      <comment>Comment 3</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">This is an example page with a link to [[Page 2]].
-      </text>
-    </revision>
-  </page>
-  <page>
-    <title>Page 2</title>
-    <ns>0</ns>
-    <id>2</id>
-    <revision>
-      <id>2</id>
+      <id>12</id>
+      <parentid>11</parentid>
       <timestamp>2011-01-02T00:00:01Z</timestamp>
       <contributor>
         <username>Contributor 2</username>
@@ -58,8 +38,20 @@
       <format>text/x-wiki</format>
     </revision>
     <revision>
-      <id>4</id>
-      <parentid>2</parentid>
+      <id>13</id>
+      <parentid>12</parentid>
+      <timestamp>2011-01-03T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 3</username>
+        <id>3</id>
+      </contributor>
+      <comment>Comment 3</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+    <revision>
+      <id>14</id>
+      <parentid>13</parentid>
       <timestamp>2011-01-04T00:00:01Z</timestamp>
       <contributor>
         <username>Contributor 4</username>
@@ -69,47 +61,15 @@
       <model>wikitext</model>
       <format>text/x-wiki</format>
     </revision>
-  </page>
-  <page>
-    <title>Page IGNORE</title>
-    <ns>1</ns>
-    <id>3</id>
     <revision>
-      <id>998</id>
-      <timestamp>2011-02-07T00:26:36Z</timestamp>
+      <id>15</id>
+      <parentid>14</parentid>
+      <timestamp>2011-01-05T00:00:01Z</timestamp>
       <contributor>
-        <username>Contributor 998</username>
-        <id>998</id>
+        <username>Contributor 5</username>
+        <id>5</id>
       </contributor>
-      <comment>Comment 998</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-    </revision>
-    <revision>
-      <id>999</id>
-      <timestamp>2012-02-07T00:26:36Z</timestamp>
-      <contributor>
-        <username>Contributor 999</username>
-        <id>999</id>
-      </contributor>
-      <comment>Comment 999</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-    </revision>
-  </page>
-  <page>
-    <title>page 1</title>
-    <ns>0</ns>
-    <id>11</id>
-    <redirect title="Page 1" />
-    <revision>
-      <id>11</id>
-      <timestamp>2011-02-07T00:26:36Z</timestamp>
-      <contributor>
-        <username>Contributor 11</username>
-        <id>11</id>
-      </contributor>
-      <comment>Comment 11</comment>
+      <comment>Comment 5</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
     </revision>

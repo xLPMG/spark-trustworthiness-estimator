@@ -15,6 +15,8 @@ import java.io.InputStream
 import scala.util.Using
 import org.apache.spark.input.PortableDataStream
 import com.typesafe.scalalogging.Logger
+import me.lpmg.ste.types.Types
+import me.lpmg.ste.types.Revision
 
 /** Provides functionality to read and parse XML data from BZip2 compressed
   * files.
@@ -30,7 +32,8 @@ object DataReader {
     */
   def getRevisions(
       inputStream: InputStream,
-      dictionary: Types.DictType
+      dictionary: Types.DictType,
+      dateLimit: Long = 0
   ): Seq[Revision] = {
     val saxParserFactory = SAXParserFactory.newInstance()
     saxParserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
@@ -38,8 +41,7 @@ object DataReader {
     val xmlReader = setXMLReaderProperties(
       saxParserFactory.newSAXParser().getXMLReader
     )
-
-    val handler = new RevisionSAXHandler()
+    val handler = new RevisionSAXHandler(dateLimit)
     handler.setDictionary(dictionary)
     xmlReader.setContentHandler(handler)
 
@@ -63,12 +65,13 @@ object DataReader {
     */
   def getRevisionsFromPDS(
       pds: PortableDataStream,
-      dictionary: Types.DictType
+      dictionary: Types.DictType,
+      dateLimit: Long = 0
   ): Seq[Revision] = {
     Using.resource(pds.open()) { inputStream =>
       val bz2Stream =
         new BZip2CompressorInputStream(new BufferedInputStream(inputStream))
-      getRevisions(bz2Stream, dictionary)
+      getRevisions(bz2Stream, dictionary, dateLimit)
     }
   }
 
@@ -117,6 +120,12 @@ object DataReader {
     }
   }
 
+  /**
+    * Set properties for the XML reader
+    *
+    * @param xmlReader
+    * @return
+    */
   private def setXMLReaderProperties(xmlReader: XMLReader): XMLReader = {
     xmlReader.setProperty(
       "http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit",

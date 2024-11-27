@@ -1,4 +1,6 @@
 package me.lpmg.ste.data
+import me.lpmg.ste.types.Types
+import me.lpmg.ste.types.Revision
 
 object LinkResolver {
 
@@ -61,7 +63,7 @@ object LinkResolver {
     */
   def resolvePageIDsToRevisionIDs(
       revision: Revision,
-      groupedRevisions: Map[Int, Seq[MinimalRevision]],
+      groupedRevisions: Map[Int, Seq[(Long, Long)]],
       minimize: Boolean = true
   ): Revision = {
 
@@ -69,9 +71,10 @@ object LinkResolver {
       pageId =>
         groupedRevisions
           .getOrElse(pageId, Seq.empty)
-          .filter((rev: MinimalRevision) => rev.timestamp < revision.timestamp)
+          // rev: (rev_id, timestamp)
+          .filter((rev: ((Long, Long))) => rev._2 < revision.timestamp)
           .lastOption
-          .map(_.revisionId)
+          .map(_._1)
           .toSeq
     }
     val newPageOutlinks =

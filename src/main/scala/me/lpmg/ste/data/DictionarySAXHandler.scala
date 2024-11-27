@@ -4,6 +4,7 @@ import org.xml.sax.helpers.DefaultHandler
 import scala.collection.mutable.HashMap
 import org.xml.sax.Attributes
 import spire.std.char
+import me.lpmg.ste.types.Types
 
 /** SAX handler creating a dictionary of titles and their corresponding page
   * IDs.

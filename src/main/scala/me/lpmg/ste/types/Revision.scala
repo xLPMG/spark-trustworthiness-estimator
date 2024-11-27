@@ -1,4 +1,4 @@
-package me.lpmg.ste.data
+package me.lpmg.ste.types
 
 /** A class to represent a Wikipedia revision.
   *
@@ -10,10 +10,6 @@ package me.lpmg.ste.data
   *   the unique identifier of the parent revision
   * @param timestamp
   *   the timestamp of the revision
-  * @param isGroundTruth
-  *   whether the revision is a ground truth revision
-  * @param trustScore
-  *   the trust score of the revision
   * @param resolvedPageOutlinks
   *   the outlinks of the revision (page IDs)
   * @param resolvedRevisionOutlinks
@@ -26,35 +22,50 @@ class Revision(
     val pageId: Int,
     val parentId: Long,
     val timestamp: Long,
-    val isGroundTruth: Boolean,
-    val trustScore: Float,
     val resolvedPageOutlinks: Set[Int],
     val resolvedRevisionOutlinks: Set[Long],
-    val isRedirect: Boolean
+    val isRedirect: Boolean,
 ) extends Serializable {
-  def toMinimalRevision = new MinimalRevision(revisionId, timestamp)
-
+  /** Copy the revision with the specified values. All unspecified values are
+    * copied from the original revision.
+    *
+    * @param revisionId
+    * @param pageId
+    * @param parentId
+    * @param timestamp
+    * @param resolvedPageOutlinks
+    * @param resolvedRevisionOutlinks
+    * @param isRedirect
+    * @return
+    *   a new revision with the specified values
+    */
   def copy(
       revisionId: Long = this.revisionId,
       pageId: Int = this.pageId,
       parentId: Long = this.parentId,
       timestamp: Long = this.timestamp,
-      isGroundTruth: Boolean = this.isGroundTruth,
-      trustScore: Float = this.trustScore,
       resolvedPageOutlinks: Set[Int] = this.resolvedPageOutlinks,
       resolvedRevisionOutlinks: Set[Long] = this.resolvedRevisionOutlinks,
-      isRedirect: Boolean = this.isRedirect
+      isRedirect: Boolean = this.isRedirect,
   ): Revision = {
     new Revision(
       revisionId,
       pageId,
       parentId,
       timestamp,
-      isGroundTruth,
-      trustScore,
       resolvedPageOutlinks,
       resolvedRevisionOutlinks,
-      isRedirect
+      isRedirect,
     )
   }
+
+  def toIdTimestampPair: (Long, Long) = (revisionId, timestamp)
+
+  /** Convert the revision to a revision vertex.
+    *
+    * @return
+    *   the revision vertex
+    */
+  def toRevisionVertex =
+    new RevisionVertex(false, 0.0f, isRedirect)
 }

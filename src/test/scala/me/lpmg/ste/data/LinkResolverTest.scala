@@ -1,6 +1,8 @@
 package me.lpmg.ste.data
 
 import java.time.Instant
+import me.lpmg.ste.types.Revision
+import org.apache.spark.util.collection.BitSet
 
 class LinkResolverTest extends munit.FunSuite {
 
@@ -11,8 +13,6 @@ class LinkResolverTest extends munit.FunSuite {
       1,
       -1L,
       Instant.parse("2011-01-03T00:00:01Z").toEpochMilli(),
-      false,
-      0.0f,
       Set(2),
       Set.empty,
       false
@@ -24,8 +24,6 @@ class LinkResolverTest extends munit.FunSuite {
       2,
       -1L,
       Instant.parse("2011-01-01T00:00:01Z").toEpochMilli(),
-      false,
-      0.0f,
       Set.empty,
       Set.empty,
       false
@@ -35,8 +33,6 @@ class LinkResolverTest extends munit.FunSuite {
       2,
       2L,
       Instant.parse("2011-01-02T00:00:01Z").toEpochMilli(),
-      false,
-      0.0f,
       Set.empty,
       Set.empty,
       false
@@ -47,8 +43,6 @@ class LinkResolverTest extends munit.FunSuite {
       2,
       3L,
       Instant.parse("2011-01-04T00:00:01Z").toEpochMilli(),
-      false,
-      0.0f,
       Set.empty,
       Set.empty,
       false
@@ -56,11 +50,11 @@ class LinkResolverTest extends munit.FunSuite {
 
     // group revisions by page ID
     val groupedRevisions = Map(
-      1 -> Seq(revisionWithLink.toMinimalRevision),
+      1 -> Seq(revisionWithLink.toIdTimestampPair),
       2 -> Seq(
-        firstRevision.toMinimalRevision,
-        secondRevision.toMinimalRevision,
-        thirdRevision.toMinimalRevision
+        firstRevision.toIdTimestampPair,
+        secondRevision.toIdTimestampPair,
+        thirdRevision.toIdTimestampPair
       )
     )
 

@@ -4,14 +4,17 @@ import org.xml.sax.helpers.DefaultHandler
 import scala.collection.mutable.{ArrayBuffer, StringBuilder}
 import org.xml.sax.{Attributes, InputSource}
 import java.time.Instant
+import me.lpmg.ste.types.Types.{DictType, TemplateBitPositions}
+import me.lpmg.ste.types.Revision
+import org.apache.spark.util.collection.BitSet
 
 /** SAX handler for parsing MediaWiki XML revisions.
   */
-class RevisionSAXHandler extends DefaultHandler {
+class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private val revisions = ArrayBuffer[Revision]()
   private val outlinkPattern = "\\[\\[([^\\]]+)\\]\\]".r
 
-  private var dictionary: Types.DictType = Map.empty
+  private var dictionary: DictType = Map.empty
 
   private var insidePage = false
   private var insideRevision = false
@@ -121,6 +124,17 @@ class RevisionSAXHandler extends DefaultHandler {
           }
           outlinkPageIds =
             LinkResolver.resolvePageTitlesToPageIDs(pageTitles, dictionary)
+
+          // set template bits
+          //TODO: check for things like {{Unreferenced|date=March 2019}}
+          // TemplateBitPositions.foreach(
+          //   template =>
+          //     if (content.contains("{{" + template._1 + "}}") ||
+          //         content.contains("{{" + template._1.toLowerCase + "}}")) {
+          //       templateBitset.set(template._2)
+          //     }
+          // )
+          
         } else if (pageTitle.length() > 0) {
           // for redirects, we resolve the redirect target and store it as the only outlink
           val redirectTarget =
@@ -132,17 +146,17 @@ class RevisionSAXHandler extends DefaultHandler {
       case "revision" =>
         // only add the revision if it is in the main namespace
         if (insidePage && isMainNamespace) {
-          revisions += new Revision(
-            revisionId,
-            pageId,
-            parentId.getOrElse(-1),
-            timestamp,
-            false,
-            0.0f,
-            outlinkPageIds,
-            Set.empty,
-            isRedirect
-          )
+          if (timestamp > dateLimit) {
+            revisions += new Revision(
+              revisionId,
+              pageId,
+              parentId.getOrElse(-1),
+              timestamp,
+              outlinkPageIds,
+              Set.empty,
+              isRedirect,
+            )
+          }
         }
         insideRevision = false
       case _ => // No-op for other elements
@@ -151,7 +165,7 @@ class RevisionSAXHandler extends DefaultHandler {
 
   private def getBuffer: String = charBuffer.toString.trim
 
-  def setDictionary(dictionary: Types.DictType): Unit = {
+  def setDictionary(dictionary: DictType): Unit = {
     this.dictionary = dictionary
   }
   def getRevisions: Seq[Revision] = revisions
