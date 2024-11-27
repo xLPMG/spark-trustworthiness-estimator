@@ -42,7 +42,7 @@ object TrustCalculator {
     val numVertices = graph.numVertices
 
     // Initialize the trust scores
-    var trustScores = graph.vertices.mapValues(vertex => vertex.trustScore)
+    val trustScores = graph.vertices.mapValues(vertex => vertex.trustScore)
 
     //////////////////////////////////////////////////////////////
     // TEMPORAL DECAY
@@ -78,7 +78,7 @@ object TrustCalculator {
     val propagatedGraph = graph.pregel(initialMessage)(
       // Vertex Program: Update the vertex trustScore based on incoming message
       (id, vertex, incomingScore) => {
-        if (vertex.trustScore != 0.0)
+        if (math.abs(vertex.trustScore) > 0.0001)
           vertex // Ground truth or already set; retain current vertex
         else
           vertex.copy(trustScore =
@@ -89,10 +89,10 @@ object TrustCalculator {
       // Send Message: Propagate trustScore to neighbors
       triplet => {
         if (
-          triplet.attr == edgeType && triplet.srcAttr.trustScore != 0.0 && math
+          triplet.attr == edgeType && math.abs(triplet.srcAttr.trustScore) > 0.0001 && math
             .abs(
               triplet.srcAttr.trustScore
-            ) > decrement && triplet.dstAttr.trustScore == 0.0
+            ) > decrement && math.abs(triplet.dstAttr.trustScore) <= 0.0001
         ) {
           // Decrease the score by decrement, respecting the sign
           val propagatedScore = triplet.srcAttr.trustScore - math.signum(

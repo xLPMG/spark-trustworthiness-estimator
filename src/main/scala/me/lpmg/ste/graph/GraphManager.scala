@@ -135,7 +135,13 @@ class GraphManager(
     // set parent ID of oldest revisions to -1
     // this is only needed in case we limit the graph by date
     val oldestRevisionIds =
-      groupedRevisionsRDD.mapValues(_.head._1).collect()
+      groupedRevisionsRDD
+        .mapValues(_.headOption.map(_._1))
+        .collect { case (pageId, Some(revisionId)) =>
+          revisionId
+        }
+        .collect()
+        .toSet
     val updatedRevisionsRDD = if (fixedDateLimit <= 0) {
       allRevisionsRDD
     } else {
