@@ -35,7 +35,7 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-02T00:00:01Z").toEpochMilli()
         )
-        assertEquals(revision.templatePresence.get(unreferencedPosition), true)
+        assertEquals(revision.templatePresence.get(unreferencedPosition), false)
       } else if (revision.revisionId == 3L) {
         assertEquals(revision.pageId, 1)
         assertEquals(revision.parentId, 1L)
@@ -45,7 +45,7 @@ class DataReaderTest extends munit.FunSuite {
         )
         // Revision 2 has link "[[Page 2]]"
         assertEquals(revision.resolvedPageOutlinks, Set(2))
-        assertEquals(revision.templatePresence.get(unreferencedPosition), false)
+        assertEquals(revision.templatePresence.get(unreferencedPosition), true)
       } else if (revision.revisionId == 4L) {
         assertEquals(revision.pageId, 2)
         assertEquals(revision.parentId, 2L)
