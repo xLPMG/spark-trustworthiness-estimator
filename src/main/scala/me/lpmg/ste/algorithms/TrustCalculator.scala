@@ -15,12 +15,13 @@ object TrustCalculator {
       graph: Graph[RevisionVertex, Byte]
   ): Graph[RevisionVertex, Byte] = {
     graph.mapVertices { case (id, vertex) =>
-    //   if (vertex.templateBitset.get(0)) {
-    //     vertex.copy(isGroundTruth = true, trustScore = 1.0f)
-    //   } else {
-    //     vertex
-    //   }
-    vertex
+      if (vertex.templateAdded.cardinality() > 0) {
+        vertex.copy(trustScore = -1.0f)
+      } else if (vertex.templateRemoved.cardinality() > 0) {
+        vertex.copy(trustScore = 1.0f)
+      } else {
+        vertex.copy(trustScore = 0.0f)
+      }
     }
   }
 
@@ -29,9 +30,6 @@ object TrustCalculator {
       spark: SparkSession
   ): Graph[RevisionVertex, Byte] = {
     implicit val sc = spark.sparkContext
-    // Define damping factor and number of iterations
-    val dampingFactor = 0.85f
-
     // Compute the out-degree of each vertex
     val outDegreesBroadcast = sc.broadcast(graph.outDegrees.collectAsMap())
 

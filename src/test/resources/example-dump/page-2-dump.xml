@@ -48,6 +48,8 @@
       <comment>Comment 3</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">{{Unreferenced}}
+      </text>
     </revision>
     <revision>
       <id>24</id>
@@ -60,8 +62,18 @@
       <comment>Comment 4</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">{{Unreferenced}}
-      </text>
+    </revision>
+    <revision>
+      <id>25</id>
+      <parentid>24</parentid>
+      <timestamp>2011-01-05T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 5</username>
+        <id>5</id>
+      </contributor>
+      <comment>Comment 5</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
     </revision>
   </page>
 </mediawiki>

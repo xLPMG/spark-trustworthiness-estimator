@@ -40,23 +40,15 @@ object Main {
     logger.warn(s"Graph vertices: ${revisionGraph.vertices.count()}")
     logger.warn(s"Graph edges: ${revisionGraph.edges.count()}")
 
-    revisionGraph.vertices.collect().foreach { case (id, vertex) =>
-      println(s"Vertex ID: $id, Data: $vertex")
-    }
-
-    revisionGraph.edges.collect().foreach { edge =>
-      println(s"Edge: ${edge.srcId} -> ${edge.dstId}, Attr: ${edge.attr}")
-    }
-
     // graphManager.saveGraph("editedGraph", editedGraph)
 
     // trust computation
-    // val initialGraph = TrustCalculator.initializeTrustScores(revisionGraph)
+    val initialGraph = TrustCalculator.initializeTrustScores(revisionGraph)
     // val trustGraph = TrustCalculator.computeTrustRank(initialGraph, spark)
 
-    // initialGraph.vertices.collect().foreach { case (id, vertex) =>
-    //   println(s"Vertex ID: $id, Data: $vertex")
-    // }
+    initialGraph.vertices.collect().foreach { case (id, vertex) =>
+      println(s"Vertex ID: $id, Data: $vertex")
+    }
     // logger.warn("after trust")
     // trustGraph.vertices.collect().foreach { case (id, vertex) =>
     //   println(s"Vertex ID: $id, Data: $vertex")
