@@ -44,19 +44,15 @@ object Main {
 
     // trust computation
     val initialGraph = TrustCalculator.initializeTrustScores(revisionGraph)
-    // val trustGraph = TrustCalculator.computeTrustRank(initialGraph, spark)
+    val trustGraph = TrustCalculator.computeTrustRank(initialGraph, spark)
 
-    initialGraph.vertices.collect().foreach { case (id, vertex) =>
+    initialGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
       println(s"Vertex ID: $id, Data: $vertex")
     }
-    // logger.warn("after trust")
-    // trustGraph.vertices.collect().foreach { case (id, vertex) =>
-    //   println(s"Vertex ID: $id, Data: $vertex")
-    // }
-
-    // trustGraph.edges.collect().foreach { edge =>
-    //   println(s"Edge: ${edge.srcId} -> ${edge.dstId}, Attr: ${edge.attr}")
-    // }
+    logger.warn("after trust")
+     trustGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
+       println(s"Vertex ID: $id, Data: $vertex")
+    }
 
     spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("Main")}")
