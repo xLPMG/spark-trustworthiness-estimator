@@ -316,10 +316,10 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.algorithms.TrustCalculator#computeTrustRank" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="computeTrustRank(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],spark:org.apache.spark.sql.SparkSession):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="computeTrustRank(Graph[RevisionVertex,Byte],SparkSession):Graph[RevisionVertex,Byte]"></a>
+    </li><li name="me.lpmg.ste.algorithms.TrustCalculator#computeTrustScores" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="computeTrustScores(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],spark:org.apache.spark.sql.SparkSession):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="computeTrustScores(Graph[RevisionVertex,Byte],SparkSession):Graph[RevisionVertex,Byte]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/TrustCalculator$.html#computeTrustRank(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],spark:org.apache.spark.sql.SparkSession):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/TrustCalculator$.html#computeTrustScores(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],spark:org.apache.spark.sql.SparkSession):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -328,10 +328,10 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">computeTrustRank</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
+        <span class="name">computeTrustScores</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Compute the trust scores of the vertices in the graph.</p>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -407,9 +407,9 @@
               
         </dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.TrustCalculator#initializeTrustScores" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="initializeTrustScores(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="initializeTrustScores(Graph[RevisionVertex,Byte]):Graph[RevisionVertex,Byte]"></a>
+      <a id="initializeTrustScores(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],initialGroundTruthScore:Float):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="initializeTrustScores(Graph[RevisionVertex,Byte],Float):Graph[RevisionVertex,Byte]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/TrustCalculator$.html#initializeTrustScores(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/TrustCalculator$.html#initializeTrustScores(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],initialGroundTruthScore:Float):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -418,10 +418,10 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">initializeTrustScores</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
+        <span class="name">initializeTrustScores</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="initialGroundTruthScore">initialGroundTruthScore: <span class="extype" name="scala.Float">Float</span> = <span class="symbol">1.0f</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Initialize the trust scores of the vertices in the graph.</p>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
