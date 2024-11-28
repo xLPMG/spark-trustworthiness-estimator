@@ -459,6 +459,25 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="me.lpmg.ste.graph.GraphManager#loadGraph" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="loadGraph(graphName:String):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="loadGraph(String):Graph[RevisionVertex,Byte]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#loadGraph(graphName:String):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">loadGraph</span><span class="params">(<span name="graphName">graphName: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Loads a saved revision graph from the data folder.</p><div class="fullcomment"><div class="comment cmt"><p>Loads a saved revision graph from the data folder.
+</p></div><dl class="paramcmts block"><dt class="param">graphName</dt><dd class="cmt"><p>
+  The name of the graph to load</p></dd><dt>returns</dt><dd class="cmt"><p>
+  The loaded Graph[RevisionVertex, Byte]</p></dd></dl></div>
     </li><li name="me.lpmg.ste.graph.GraphManager#logger" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="logger:com.typesafe.scalalogging.Logger"></a><a id="logger:Logger"></a>
       <span class="permalink">
@@ -533,6 +552,25 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="me.lpmg.ste.graph.GraphManager#saveGraph" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="saveGraph(graphName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit"></a><a id="saveGraph(String,Graph[RevisionVertex,Byte]):Unit"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#saveGraph(graphName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">saveGraph</span><span class="params">(<span name="graphName">graphName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionGraph">revisionGraph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Saves the revision graph to the data folder.</p><div class="fullcomment"><div class="comment cmt"><p>Saves the revision graph to the data folder.
+</p></div><dl class="paramcmts block"><dt class="param">graphName</dt><dd class="cmt"><p>
+  The name of the graph</p></dd><dt class="param">revisionGraph</dt><dd class="cmt"><p>
+  The revision graph to save</p></dd></dl></div>
     </li><li name="me.lpmg.ste.graph.GraphManager#setDateLimit" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setDateLimit(date:Long):Unit"></a><a id="setDateLimit(Long):Unit"></a>
       <span class="permalink">
