@@ -2,7 +2,12 @@ package me.lpmg.ste.graph
 
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.SparkSession
-import me.lpmg.ste.types.Types
+import me.lpmg.ste.types.Types.{
+  DictType,
+  BitSetToByteArray,
+  ByteArrayToBitSet,
+  TemplateBitPositions
+}
 import me.lpmg.ste.time.Watch
 import java.nio.file.Path
 import me.lpmg.ste.data.DataReader
@@ -16,6 +21,7 @@ import java.time.ZonedDateTime
 import me.lpmg.ste.types.RevisionVertex
 import org.apache.spark.util.collection.BitSet
 import me.lpmg.ste.data.TemplateUpdater
+import org.apache.spark.graphx.Edge
 
 class GraphManager(
     spark: SparkSession,
@@ -61,7 +67,7 @@ class GraphManager(
 
     logger.warn(s"Total files found: ${filesRDD.count()}")
 
-    var dictionary: Types.DictType = Map.empty
+    var dictionary: DictType = Map.empty
 
     /////////////////////////////////////////////////////////////////////////////////////////
     /// DICTIONARY
@@ -191,55 +197,133 @@ class GraphManager(
     revisionGraph
   }
 
-  // /** Saves the revision graph to the data folder.
-  //   *
-  //   * @param graphName
-  //   *   The name of the graph
-  //   * @param revisionGraph
-  //   *   The revision graph to save
-  //   */
-  // def saveGraph(
-  //     graphName: String,
-  //     revisionGraph: Graph[Revision, Byte]
-  // ): Unit = {
-  //   val graphFolderPath = Path.of(dataFolderPath).resolve(graphName)
-  //   if (!graphFolderPath.toFile.exists()) {
-  //     graphFolderPath.toFile.mkdirs()
-  //   }
+  /** Saves the revision graph to the data folder.
+    *
+    * @param graphName
+    *   The name of the graph
+    * @param revisionGraph
+    *   The revision graph to save
+    */
+  def saveGraph(
+      graphName: String,
+      revisionGraph: Graph[RevisionVertex, Byte]
+  ): Unit = {
+    val graphFolderPath = Path.of(dataFolderPath).resolve(graphName)
+    if (!graphFolderPath.toFile.exists()) {
+      graphFolderPath.toFile.mkdirs()
+    }
 
-  //   // Convert vertices to DataFrame with flattened fields
-  //   val verticesDF = revisionGraph.vertices
-  //     .map { case (id, rev) =>
-  //       (
-  //         id,
-  //         rev.pageId,
-  //         rev.timestamp,
-  //         rev.isRedirect
-  //       )
-  //     }
-  //     .toDF(
-  //       "id",
-  //       "pageId",
-  //       "timestamp",
-  //       "isRedirect"
-  //     )
+    // Convert vertices to DataFrame with flattened fields
+    val verticesDF = revisionGraph.vertices
+      .map { case (id: Long, rev) =>
+        // Convert BitSets to byte arrays for storage
+        val templatePresenceBytes =
+          BitSetToByteArray(rev.templatePresence)
+        val templateAddedBytes = BitSetToByteArray(rev.templateAdded)
+        val templateRemovedBytes = BitSetToByteArray(rev.templateRemoved)
 
-  //   // Convert edges to DataFrame
-  //   val edgesDF = revisionGraph.edges.toDF("src", "dst", "attr")
+        (
+          id: Long,
+          rev.trustScore,
+          rev.isRedirect,
+          templatePresenceBytes,
+          templateAddedBytes,
+          templateRemovedBytes
+        )
+      }
+      .toDF(
+        "id",
+        "trustScore",
+        "isRedirect",
+        "templatePresence",
+        "templateAdded",
+        "templateRemoved"
+      )
 
-  //   // Save vertices with partitioning and compression
-  //   verticesDF.write
-  //     .mode("overwrite")
-  //     .option("compression", "snappy")
-  //     .parquet(graphFolderPath.resolve("vertices_parquet").toString)
+    // Convert edges to DataFrame
+    val edgesDF = revisionGraph.edges
+      .map { edge =>
+        (edge.srcId: Long, edge.dstId: Long, edge.attr)
+      }
+      .toDF("src", "dst", "attr")
 
-  //   // Save edges with partitioning and compression
-  //   edgesDF.write
-  //     .mode("overwrite")
-  //     .option("compression", "snappy")
-  //     .partitionBy("src")
-  //     .parquet(graphFolderPath.resolve("edges_parquet").toString)
+    // Save vertices with partitioning and compression
+    verticesDF.write
+      .mode("overwrite")
+      .option("compression", "snappy")
+      .parquet(graphFolderPath.resolve("vertices_parquet").toString)
 
-  //   logger.warn("Graph saved successfully.")
-  // }
+    // Save edges with partitioning and compression
+    edgesDF.write
+      .mode("overwrite")
+      .option("compression", "snappy")
+      .partitionBy("src")
+      .parquet(graphFolderPath.resolve("edges_parquet").toString)
+
+    logger.warn("Graph saved successfully.")
+  }
+
+  /** Loads a saved revision graph from the data folder.
+    *
+    * @param graphName
+    *   The name of the graph to load
+    * @return
+    *   The loaded Graph[RevisionVertex, Byte]
+    */
+  def loadGraph(graphName: String): Graph[RevisionVertex, Byte] = {
+    val graphFolderPath = Path.of(dataFolderPath).resolve(graphName)
+
+    // Load vertices DataFrame
+    val verticesDF = spark.read
+      .parquet(graphFolderPath.resolve("vertices_parquet").toString)
+
+    // Convert back to RDD[(VertexId, RevisionVertex)]
+    val vertices = verticesDF.rdd.map { row =>
+      val id = row.getAs[Number]("id").longValue()  // Handle both Int and Long numerically
+      val trustScore = row.getAs[Float]("trustScore")
+      val isRedirect = row.getAs[Boolean]("isRedirect")
+
+      // Convert byte arrays back to BitSets
+      val templatePresenceBytes = row.getAs[Array[Byte]]("templatePresence")
+      val templateAddedBytes = row.getAs[Array[Byte]]("templateAdded")
+      val templateRemovedBytes = row.getAs[Array[Byte]]("templateRemoved")
+
+      val templatePresence = ByteArrayToBitSet(
+        templatePresenceBytes,
+        TemplateBitPositions.size
+      )
+      val templateAdded =
+        ByteArrayToBitSet(templateAddedBytes, TemplateBitPositions.size)
+      val templateRemoved =
+        ByteArrayToBitSet(templateRemovedBytes, TemplateBitPositions.size)
+
+      (
+        id,
+        new RevisionVertex(
+          trustScore,
+          isRedirect,
+          templatePresence,
+          templateAdded,
+          templateRemoved
+        )
+      )
+    }
+
+    // Load edges DataFrame
+    val edgesDF = spark.read
+      .parquet(graphFolderPath.resolve("edges_parquet").toString)
+
+    // Convert back to RDD[Edge[Byte]]
+    val edges = edgesDF.rdd.map { row =>
+      Edge(
+        row.getAs[Number]("src").longValue(),  // Handle both Int and Long numerically
+        row.getAs[Number]("dst").longValue(),  // Handle both Int and Long numerically
+        row.getAs[Byte]("attr")
+      )
+    }
+
+    // Create and return the graph
+    Graph(vertices, edges)
+  }
+
 }

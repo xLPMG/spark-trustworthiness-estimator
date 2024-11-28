@@ -61,8 +61,22 @@ object Main {
        println(s"Vertex ID: $id, Data: $vertex")
     }
 
+    // logger.warn("Saving graph")
+    // graphManager.saveGraph("trustGraph", trustGraph)
+
+    // logger.warn("Loading graph")
+    // val loadedGraph = graphManager.loadGraph("trustGraph")
+
+    // logger.warn("after load")
+    // loadedGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
+    //   println(s"Vertex ID: $id, Data: $vertex")
+    // }
+    // loadedGraph.edges.collect().sortBy(edge => (edge.srcId, edge.dstId)).foreach { edge =>
+    //   println(s"Edge: ${edge.srcId} -> ${edge.dstId} | Type: ${edge.attr}")
+    // }
+
     spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("Main")}")
   }
-
+  
 }
