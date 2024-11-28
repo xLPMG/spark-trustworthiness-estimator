@@ -189,8 +189,8 @@ object TrustCalculator extends Serializable {
 
     val propagatedGraph = initialGraph.pregel(initialMsg, maxIterations = 1)(
       (id, state, msg) => {
-        // Only update score if we received a non-zero message
-        if (msg.score != 0.0f) {
+        // Only update score if we received a non-negligible message
+        if (math.abs(msg.score) > 1e-6f) {
           val newScore = state.vertex.trustScore + msg.score
           val clampedScore = math.max(-1.0f, math.min(1.0f, newScore))
           VertexState(state.vertex.copy(trustScore = clampedScore), true)
