@@ -12,7 +12,6 @@ import me.lpmg.ste.time.Watch
 import java.nio.file.Path
 import me.lpmg.ste.data.DataReader
 import org.apache.spark.sql.DataFrame
-import me.lpmg.ste.data.LinkResolver
 import org.apache.spark.graphx.Graph
 import me.lpmg.ste.types.Revision
 import java.time.Instant
@@ -67,50 +66,6 @@ class GraphManager(
 
     logger.warn(s"Total files found: ${filesRDD.count()}")
 
-    var dictionary: DictType = Map.empty
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /// DICTIONARY
-    /////////////////////////////////////////////////////////////////////////////////////////
-    Watch.start("dictionary")
-    val dictionaryFile: Path =
-      Path.of(dataFolderPath).resolve("dictionary2.parquet")
-    // WRITE
-    if (!dataFolderPath.isEmpty && !dictionaryFile.toFile.exists()) {
-      logger.warn(s"Creating dictionary file at: $dictionaryFile")
-      // value = (filePath: String, fileContent: PortableDataStream)
-      dictionary = filesRDD.aggregate(Map.empty[String, (Int, String)])(
-        (acc, value) => acc ++ DataReader.getDictionaryFromPDS(value._2),
-        (acc1, acc2) => acc1 ++ acc2
-      )
-
-      // Convert dictionary to DataFrame
-      val dictionaryDF: DataFrame =
-        dictionary.toSeq
-          .map { case (pageTitle, (pageID, redirectTo)) =>
-            (pageTitle, pageID, redirectTo)
-          }
-          .toDF("PageTitle", "PageID", "RedirectsTo")
-
-      // Write DataFrame to Parquet
-      dictionaryDF.write.parquet(dictionaryFile.toString)
-    } else if (!dataFolderPath.isEmpty && dictionaryFile.toFile.exists()) {
-      // READ
-      logger.warn(s"Reading dictionary file from: $dictionaryFile")
-
-      // Read DataFrame from Parquet
-      val dictionaryDF: DataFrame = spark.read.parquet(dictionaryFile.toString)
-
-      // Convert DataFrame to Map
-      dictionary = dictionaryDF
-        .collect()
-        .map(row => row.getString(0) -> (row.getInt(1), row.getString(2)))
-        .toMap
-    }
-    val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
-    logger.warn(
-      s"Finished processing dictionary (${Watch.stopFormatted("dictionary")})"
-    )
     /////////////////////////////////////////////////////////////////////////////////////////
     // REVISION EXTRACTION
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +74,6 @@ class GraphManager(
       .flatMap { case (_, pds) =>
         DataReader.getRevisionsFromPDS(
           pds,
-          broadCastedDictionary.value,
           fixedDateLimit
         )
       }
@@ -160,6 +114,7 @@ class GraphManager(
         }
       }
     }
+    allRevisionsRDD.unpersist()
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // TEMPLATE TRACKING
@@ -175,25 +130,11 @@ class GraphManager(
         TemplateUpdater.updateTemplateBitSets(revisions, revisionMap).iterator
     }
 
-    allRevisionsRDD.unpersist()
-
-    val groupedRevisionsMap = groupedRevisionsRDD.collectAsMap().toMap
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    // LINK RESOLUTION
-    /////////////////////////////////////////////////////////////////////////////////////////
-    val resolvedRevisionsRDD = updatedTemplateRevisionsRDD.map { revision =>
-      LinkResolver.resolvePageIDsToRevisionIDs(
-        revision,
-        groupedRevisionsMap
-      )
-    }
-
     /////////////////////////////////////////////////////////////////////////////////////////
     // GRAPH CREATION
     /////////////////////////////////////////////////////////////////////////////////////////
     logger.warn("Creating revision graph")
-    val revisionGraph = GraphCreator.createRevisionGraph(resolvedRevisionsRDD)
+    val revisionGraph = GraphCreator.createRevisionGraph(updatedTemplateRevisionsRDD)
     revisionGraph
   }
 
@@ -225,7 +166,6 @@ class GraphManager(
         (
           id: Long,
           rev.trustScore,
-          rev.isRedirect,
           templatePresenceBytes,
           templateAddedBytes,
           templateRemovedBytes
@@ -234,7 +174,6 @@ class GraphManager(
       .toDF(
         "id",
         "trustScore",
-        "isRedirect",
         "templatePresence",
         "templateAdded",
         "templateRemoved"
@@ -301,7 +240,6 @@ class GraphManager(
         id,
         new RevisionVertex(
           trustScore,
-          isRedirect,
           templatePresence,
           templateAdded,
           templateRemoved

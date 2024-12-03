@@ -37,29 +37,13 @@ object GraphCreator {
       }
     }
 
-    // Connect revisions with outlinks
-    val outlinkEdges: RDD[Edge[Byte]] = revisionsRDD.flatMap { rev =>
-      rev.resolvedRevisionOutlinks.flatMap { outlinkId =>
-        Seq(
-          Edge(rev.revisionId, outlinkId, EdgeType.linksTo),
-          Edge(outlinkId, rev.revisionId, EdgeType.linkedFrom)
-        )
-      }
-    }
-
     // remove edges for which at least one of the vertices is not present
     val validVertexIds = vertices.map(_._1).collect().toSet
     val filteredTemporalEdges = temporalEdges.filter { edge =>
       validVertexIds.contains(edge.srcId) && validVertexIds.contains(edge.dstId)
     }
-    val filteredOutlinkEdges = outlinkEdges.filter { edge =>
-      validVertexIds.contains(edge.srcId) && validVertexIds.contains(edge.dstId)
-    }
-
-    // Combine all edges
-    val allEdges = filteredTemporalEdges.union(filteredOutlinkEdges)
 
     // Create the GraphX graph
-    Graph(vertices, allEdges)
+    Graph(vertices, filteredTemporalEdges)
   }
 }

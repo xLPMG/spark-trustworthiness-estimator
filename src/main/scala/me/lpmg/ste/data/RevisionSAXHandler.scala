@@ -12,9 +12,6 @@ import org.apache.spark.util.collection.BitSet
   */
 class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private val revisions = ArrayBuffer[Revision]()
-  private val outlinkPattern = "\\[\\[([^\\]]+)\\]\\]".r
-
-  private var dictionary: DictType = Map.empty
 
   private var insidePage = false
   private var insideRevision = false
@@ -26,8 +23,6 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private var parentId: Option[Long] = None
   private var timestamp: Long = 0
   private var templateBitset: BitSet = null
-
-  private var outlinkPageIds: Set[Int] = Set.empty
   private var isRedirect: Boolean = false
 
   private val charBuffer = new StringBuilder
@@ -50,7 +45,6 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
         revisionId = 0
         parentId = None
         timestamp = 0
-        outlinkPageIds = Set.empty[Int]
         isRedirect = false
         templateBitset = new BitSet(TemplateBitPositions.size)
       case _ => // No-op for other tags
@@ -109,24 +103,6 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
         val content = getBuffer
         isRedirect = content.startsWith("#REDIRECT")
         if (!isRedirect) {
-          /* As soon as the links are found, they are resolved to page IDs.
-           * While that might seem impractical, it was absolutely necessary
-           * because storing all the strings required an extremely large
-           * amount of memory.
-           */
-          val fullLinks = outlinkPattern
-            .findAllMatchIn(content)
-            .map(_.group(1))
-            .filter(Filter.isArticleTitle)
-            .toSet
-          val pageTitles = fullLinks.flatMap { link =>
-            val parts = link.split("\\|")
-            if (parts.nonEmpty && parts.head.nonEmpty) Some(parts.head)
-            else None
-          }
-          outlinkPageIds =
-            LinkResolver.resolvePageTitlesToPageIDs(pageTitles, dictionary)
-
           // set template bits
           //TODO: check for things like {{Unreferenced|date=March 2019}}
           TemplateBitPositions.foreach(
@@ -137,26 +113,16 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               }
           )
           
-        } else if (pageTitle.length() > 0) {
-          // for redirects, we resolve the redirect target and store it as the only outlink
-          val redirectTarget =
-            LinkResolver.resolveRedirect(pageTitle, dictionary)
-          if (redirectTarget != -1) {
-            outlinkPageIds = Set(redirectTarget)
-          }
         }
       case "revision" =>
         // only add the revision if it is in the main namespace
-        if (insidePage && isMainNamespace) {
+        if (!isRedirect && insidePage && isMainNamespace) {
           if (timestamp > dateLimit) {
             revisions += new Revision(
               revisionId,
               pageId,
               parentId.getOrElse(-1),
               timestamp,
-              outlinkPageIds,
-              Set.empty,
-              isRedirect,
               templateBitset,
               new BitSet(TemplateBitPositions.size),
               new BitSet(TemplateBitPositions.size)
@@ -170,8 +136,5 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
 
   private def getBuffer: String = charBuffer.toString.trim
 
-  def setDictionary(dictionary: DictType): Unit = {
-    this.dictionary = dictionary
-  }
   def getRevisions: Seq[Revision] = revisions
 }

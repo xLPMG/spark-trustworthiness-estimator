@@ -11,8 +11,7 @@ class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
     val filePath = "src/test/resources/dump/test-dump-1.xml"
     val inputStream: InputStream = new FileInputStream(filePath)
-    var dictionary: DictType = Map("Page 2" -> (2, ""))
-    val revisions = DataReader.getRevisions(inputStream, dictionary)
+    val revisions = DataReader.getRevisions(inputStream)
     // only 5 out of 7 revisions are in the main namespace
     assertEquals(revisions.length, 5)
 
@@ -43,8 +42,6 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-03T00:00:01Z").toEpochMilli()
         )
-        // Revision 2 has link "[[Page 2]]"
-        assertEquals(revision.resolvedPageOutlinks, Set(2))
         assertEquals(revision.templatePresence.get(unreferencedPosition), true)
       } else if (revision.revisionId == 4L) {
         assertEquals(revision.pageId, 2)
@@ -56,17 +53,5 @@ class DataReaderTest extends munit.FunSuite {
         assertEquals(revision.templatePresence.get(unreferencedPosition), false)
       }
     }
-  }
-
-  test("getDictionary") {
-    val filePath = "src/test/resources/dump/test-dump-1.xml"
-    val inputStream: InputStream = new FileInputStream(filePath)
-    val dictionary = DataReader.getDictionary(inputStream)
-    inputStream.close()
-    assert(dictionary.nonEmpty)
-    assertEquals(dictionary.getOrElse("Page 1", ""), (1L, ""));
-    assertEquals(dictionary.getOrElse("Page 2", ""), (2L, ""));
-    assertEquals(dictionary.getOrElse("Page IGNORE", ""), (3L, ""));
-    assertEquals(dictionary.getOrElse("page 1", ""), (11L, "Page 1"));
   }
 }

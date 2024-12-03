@@ -18,9 +18,6 @@ class TemplateUpdaterTest extends munit.FunSuite {
       pageId = 1,
       parentId = -1L,
       timestamp = System.currentTimeMillis(),
-      resolvedPageOutlinks = Set.empty[Int],
-      resolvedRevisionOutlinks = Set.empty[Long],
-      isRedirect = false,
       templatePresence = new BitSet(bitSetCapacity),
       templateAdded = new BitSet(bitSetCapacity),
       templateRemoved = new BitSet(bitSetCapacity)
@@ -31,9 +28,6 @@ class TemplateUpdaterTest extends munit.FunSuite {
       pageId = 1,
       parentId = 1L,
       timestamp = System.currentTimeMillis(),
-      resolvedPageOutlinks = Set.empty[Int],
-      resolvedRevisionOutlinks = Set.empty[Long],
-      isRedirect = false,
       templatePresence = new BitSet(bitSetCapacity),
       templateAdded = new BitSet(bitSetCapacity),
       templateRemoved = new BitSet(bitSetCapacity)
@@ -44,9 +38,6 @@ class TemplateUpdaterTest extends munit.FunSuite {
       pageId = 1,
       parentId = 2L,
       timestamp = System.currentTimeMillis(),
-      resolvedPageOutlinks = Set.empty[Int],
-      resolvedRevisionOutlinks = Set.empty[Long],
-      isRedirect = false,
       templatePresence = new BitSet(bitSetCapacity),
       templateAdded = new BitSet(bitSetCapacity),
       templateRemoved = new BitSet(bitSetCapacity)

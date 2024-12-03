@@ -32,7 +32,6 @@ object DataReader {
     */
   def getRevisions(
       inputStream: InputStream,
-      dictionary: Types.DictType,
       dateLimit: Long = 0
   ): Seq[Revision] = {
     val saxParserFactory = SAXParserFactory.newInstance()
@@ -42,7 +41,6 @@ object DataReader {
       saxParserFactory.newSAXParser().getXMLReader
     )
     val handler = new RevisionSAXHandler(dateLimit)
-    handler.setDictionary(dictionary)
     xmlReader.setContentHandler(handler)
 
     val inputSource = new InputSource(
@@ -65,58 +63,12 @@ object DataReader {
     */
   def getRevisionsFromPDS(
       pds: PortableDataStream,
-      dictionary: Types.DictType,
       dateLimit: Long = 0
   ): Seq[Revision] = {
     Using.resource(pds.open()) { inputStream =>
       val bz2Stream =
         new BZip2CompressorInputStream(new BufferedInputStream(inputStream))
-      getRevisions(bz2Stream, dictionary, dateLimit)
-    }
-  }
-
-  /** Parse an XML input stream to create a dictionary map containing "Page
-    * Title -> Page ID". The dictionary map is used to directly resolve page
-    * titles to page IDs.
-    *
-    * @param inputStream
-    *   XML input stream
-    * @return
-    *   Dictionary map
-    */
-  def getDictionary(inputStream: InputStream): Types.DictType = {
-    val saxParserFactory = SAXParserFactory.newInstance()
-    saxParserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
-
-    val xmlReader = setXMLReaderProperties(
-      saxParserFactory.newSAXParser().getXMLReader
-    )
-
-    val handler = new DictionarySAXHandler()
-    xmlReader.setContentHandler(handler)
-
-    val inputSource = new InputSource(
-      new InputStreamReader(inputStream, "UTF-8")
-    )
-    xmlReader.parse(inputSource)
-    handler.getDictionary
-  }
-
-  /** Parse a (bz2 zipped) XML PortableDataStream to create a dictionary map
-    * containing "Page Title -> Page ID".
-    *
-    * @param pds
-    *   PortableDataStream
-    * @return
-    *   Dictionary map
-    */
-  def getDictionaryFromPDS(
-      pds: PortableDataStream
-  ): Types.DictType = {
-    Using.resource(pds.open()) { inputStream =>
-      val bz2Stream =
-        new BZip2CompressorInputStream(new BufferedInputStream(inputStream))
-      getDictionary(bz2Stream)
+      getRevisions(bz2Stream, dateLimit)
     }
   }
 
