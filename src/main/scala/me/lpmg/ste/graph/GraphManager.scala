@@ -3,7 +3,6 @@ package me.lpmg.ste.graph
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.SparkSession
 import me.lpmg.ste.types.Types.{
-  DictType,
   BitSetToByteArray,
   ByteArrayToBitSet,
   TemplateBitPositions
@@ -119,22 +118,28 @@ class GraphManager(
     /////////////////////////////////////////////////////////////////////////////////////////
     // TEMPLATE TRACKING
     /////////////////////////////////////////////////////////////////////////////////////////
-    // Create a map of revision IDs to revisions for quick lookup
-    val revisionMap =
-      updatedRevisionsRDD.map(rev => rev.revisionId -> rev).collectAsMap().toMap
+    // Create a map of revision IDs to their template presence
+    val revisionIdToTemplatesPresenceMap =
+      updatedRevisionsRDD
+        .map(rev => rev.revisionId -> rev.templatePresence)
+        .collectAsMap()
+        .toMap
 
     // Update the templateAdded and templateRemoved BitSets for each revision
-    val updatedTemplateRevisionsRDD = updatedRevisionsRDD.mapPartitions {
+    val revisionsWithTemplateBitSets = updatedRevisionsRDD.mapPartitions {
       partition =>
         val revisions = partition.toSeq
-        TemplateUpdater.updateTemplateBitSets(revisions, revisionMap).iterator
+        TemplateUpdater
+          .updateTemplateBitSets(revisions, revisionIdToTemplatesPresenceMap)
+          .iterator
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // GRAPH CREATION
     /////////////////////////////////////////////////////////////////////////////////////////
     logger.warn("Creating revision graph")
-    val revisionGraph = GraphCreator.createRevisionGraph(updatedTemplateRevisionsRDD)
+    val revisionGraph =
+      GraphCreator.createRevisionGraph(revisionsWithTemplateBitSets)
     revisionGraph
   }
 
@@ -218,7 +223,10 @@ class GraphManager(
 
     // Convert back to RDD[(VertexId, RevisionVertex)]
     val vertices = verticesDF.rdd.map { row =>
-      val id = row.getAs[Number]("id").longValue()  // Handle both Int and Long numerically
+      val id =
+        row
+          .getAs[Number]("id")
+          .longValue() // Handle both Int and Long numerically
       val trustScore = row.getAs[Float]("trustScore")
       val isRedirect = row.getAs[Boolean]("isRedirect")
 
@@ -254,8 +262,12 @@ class GraphManager(
     // Convert back to RDD[Edge[Byte]]
     val edges = edgesDF.rdd.map { row =>
       Edge(
-        row.getAs[Number]("src").longValue(),  // Handle both Int and Long numerically
-        row.getAs[Number]("dst").longValue(),  // Handle both Int and Long numerically
+        row
+          .getAs[Number]("src")
+          .longValue(), // Handle both Int and Long numerically
+        row
+          .getAs[Number]("dst")
+          .longValue(), // Handle both Int and Long numerically
         row.getAs[Byte]("attr")
       )
     }

@@ -5,10 +5,6 @@ import org.apache.spark.util.collection.BitSet
 /** Collector class of different custom types used in the project.
   */
 object Types {
-
-  /** Type alias for a dictionary mapping page titles to page IDs */
-  final type DictType = Map[String, (Int, String)]
-
   /** Map of template names to their position in the template bitset */
   final val TemplateBitPositions: Map[String, Byte] = Map(
     "Contradict" -> 0,

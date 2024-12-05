@@ -47,7 +47,7 @@ class TemplateUpdaterTest extends munit.FunSuite {
     revision_2 = revision_2.copy(templatePresence = bitSetFirstBitPresent)
     
     val revisions = Seq(revision_1, revision_2, revision_3)
-    val revisionMap = revisions.map(revision => (revision.revisionId, revision)).toMap
+    val revisionMap = revisions.map(revision => (revision.revisionId, revision.templatePresence)).toMap
 
     val updatedRevisions = TemplateUpdater.updateTemplateBitSets(revisions, revisionMap)
 

@@ -19,6 +19,8 @@ import me.lpmg.ste.types.Types.TemplateBitPositions
   *   whether templates were added in the revision
   * @param templateRemoved
   *   whether templates were removed in the revision
+  * @param sources
+  *   the sources of the revision
   */
 class Revision(
     val revisionId: Long,
@@ -27,7 +29,8 @@ class Revision(
     val timestamp: Long,
     val templatePresence: BitSet = new BitSet(TemplateBitPositions.size),
     val templateAdded: BitSet = new BitSet(TemplateBitPositions.size),
-    val templateRemoved: BitSet = new BitSet(TemplateBitPositions.size)
+    val templateRemoved: BitSet = new BitSet(TemplateBitPositions.size),
+    val sources: Seq[String] = Seq.empty
 ) extends Serializable {
 
   /** Copy the revision with the specified values. All unspecified values are
@@ -40,6 +43,7 @@ class Revision(
     * @param templatePresence
     * @param templateAdded
     * @param templateRemoved
+    * @param sources
     * @return
     *   a new revision with the specified values
     */
@@ -50,7 +54,8 @@ class Revision(
       timestamp: Long = this.timestamp,
       templatePresence: BitSet = this.templatePresence,
       templateAdded: BitSet = this.templateAdded,
-      templateRemoved: BitSet = this.templateRemoved
+      templateRemoved: BitSet = this.templateRemoved,
+      sources: Seq[String] = this.sources
   ): Revision = {
     new Revision(
       revisionId,
@@ -59,7 +64,8 @@ class Revision(
       timestamp,
       templatePresence,
       templateAdded,
-      templateRemoved
+      templateRemoved,
+      sources
     )
   }
 
@@ -79,7 +85,7 @@ class Revision(
     )
 
   override def toString(): String = {
-    s"Revision(revisionId=${revisionId}, pageId=${pageId}, parentId=${parentId}, timestamp=${timestamp}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)})"
+    s"Revision(revisionId=${revisionId}, pageId=${pageId}, parentId=${parentId}, timestamp=${timestamp}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)}, sources=${sources.mkString(", ")})"
   }
 
   private def bitSetToBinaryString(bitSet: BitSet): String = {

@@ -4,7 +4,7 @@ import org.xml.sax.helpers.DefaultHandler
 import scala.collection.mutable.{ArrayBuffer, StringBuilder}
 import org.xml.sax.{Attributes, InputSource}
 import java.time.Instant
-import me.lpmg.ste.types.Types.{DictType, TemplateBitPositions}
+import me.lpmg.ste.types.Types.{TemplateBitPositions}
 import me.lpmg.ste.types.Revision
 import org.apache.spark.util.collection.BitSet
 
@@ -24,6 +24,7 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private var timestamp: Long = 0
   private var templateBitset: BitSet = null
   private var isRedirect: Boolean = false
+  private var sources: Seq[String] = Seq.empty
 
   private val charBuffer = new StringBuilder
 
@@ -47,6 +48,7 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
         timestamp = 0
         isRedirect = false
         templateBitset = new BitSet(TemplateBitPositions.size)
+        sources = Seq.empty
       case _ => // No-op for other tags
     }
   }
@@ -113,6 +115,9 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               }
           )
           
+          // extract sources
+          sources = SourceExtractor
+            .extractSources(content)
         }
       case "revision" =>
         // only add the revision if it is in the main namespace
@@ -125,7 +130,8 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               timestamp,
               templateBitset,
               new BitSet(TemplateBitPositions.size),
-              new BitSet(TemplateBitPositions.size)
+              new BitSet(TemplateBitPositions.size),
+              sources
             )
           }
         }
