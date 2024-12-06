@@ -453,6 +453,25 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="me.lpmg.ste.data.RevisionManager#loadRevisionsWithTemplateChanges" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="loadRevisionsWithTemplateChanges(inputFolder:String):org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]"></a><a id="loadRevisionsWithTemplateChanges(String):RDD[Revision]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#loadRevisionsWithTemplateChanges(inputFolder:String):org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">loadRevisionsWithTemplateChanges</span><span class="params">(<span name="inputFolder">inputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Loads revisions that were saved with saveRevisionsWithTemplateChanges.</p><div class="fullcomment"><div class="comment cmt"><p>Loads revisions that were saved with saveRevisionsWithTemplateChanges.
+</p></div><dl class="paramcmts block"><dt class="param">inputFolder</dt><dd class="cmt"><p>
+  Folder name where the revisions were saved</p></dd><dt>returns</dt><dd class="cmt"><p>
+  RDD[Revision] containing the loaded revisions</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.RevisionManager#logger" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="logger:com.typesafe.scalalogging.Logger"></a><a id="logger:Logger"></a>
       <span class="permalink">
@@ -545,6 +564,25 @@
       <p class="shortcomment cmt">Initializes the graph by reading all revisions from the dump folder.</p><div class="fullcomment"><div class="comment cmt"><p>Initializes the graph by reading all revisions from the dump folder.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
   The revision graph</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.data.RevisionManager#saveRevisionsWithTemplateChanges" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="saveRevisionsWithTemplateChanges(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],outputFolder:String):Long"></a><a id="saveRevisionsWithTemplateChanges(RDD[Revision],String):Long"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#saveRevisionsWithTemplateChanges(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],outputFolder:String):Long" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">saveRevisionsWithTemplateChanges</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>, <span name="outputFolder">outputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Saves revisions that have at least one template added or removed.</p><div class="fullcomment"><div class="comment cmt"><p>Saves revisions that have at least one template added or removed.
+</p></div><dl class="paramcmts block"><dt class="param">revisions</dt><dd class="cmt"><p>
+  RDD containing the revisions to filter and save</p></dd><dt>returns</dt><dd class="cmt"><p>
+  The number of saved revisions</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.RevisionManager#setDateLimit" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="setDateLimit(date:Long):Unit"></a><a id="setDateLimit(Long):Unit"></a>
       <span class="permalink">

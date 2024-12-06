@@ -357,9 +357,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.SourceEvaluator#evaluateSources" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):Map[String,Float]"></a><a id="evaluateSources(RDD[Revision]):Map[String,Float]"></a>
+      <a id="evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],sourceTemplatePositions:Seq[Int]):Map[String,Float]"></a><a id="evaluateSources(RDD[Revision],Seq[Int]):Map[String,Float]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):Map[String,Float]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],sourceTemplatePositions:Seq[Int]):Map[String,Float]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -368,7 +368,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateSources</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Float">Float</span>]</span>
+        <span class="name">evaluateSources</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>, <span name="sourceTemplatePositions">sourceTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Float">Float</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Evaluates the trust scores of sources.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of sources.
@@ -393,7 +393,7 @@
       <p class="shortcomment cmt">Evaluates the trust scores of sources in a distributed way.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of sources in a distributed way.
 </p></div><dl class="paramcmts block"><dt class="param">revisions</dt><dd class="cmt"><p>
   RDD of revisions</p></dd><dt class="param">sourceTemplatePositions</dt><dd class="cmt"><p>
-  Sequence of template positions related to source quality</p></dd><dt>returns</dt><dd class="cmt"><p>
+  Sequence of template positions</p></dd><dt>returns</dt><dd class="cmt"><p>
   RDD of source URLs and their trust scores</p></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>

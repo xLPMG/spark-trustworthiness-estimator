@@ -356,29 +356,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="me.lpmg.ste.algorithms.ContributorEvaluator#evaluateContributors" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="evaluateContributors(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):Map[Int,Float]"></a><a id="evaluateContributors(RDD[Revision]):Map[Int,Float]"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ContributorEvaluator$.html#evaluateContributors(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):Map[Int,Float]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">evaluateContributors</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Float">Float</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Evaluates the trust scores of contributors.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of contributors.
-</p></div><dl class="paramcmts block"><dt class="param">revisions</dt><dd class="cmt"><p>
-  RDD of revisions</p></dd><dt>returns</dt><dd class="cmt"><p>
-  Map of contributor IDs and their trust scores</p></dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.ContributorEvaluator#evaluateContributorsDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="evaluateContributorsDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],contributorTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(Int,Float)]"></a><a id="evaluateContributorsDistributed(RDD[Revision],Seq[Int]):RDD[(Int,Float)]"></a>
+      <a id="evaluateContributorsDistributed(revisionsGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],contributorTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(Int,Float)]"></a><a id="evaluateContributorsDistributed(Graph[RevisionVertex,Byte],Seq[Int]):RDD[(Int,Float)]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ContributorEvaluator$.html#evaluateContributorsDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],contributorTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(Int,Float)]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ContributorEvaluator$.html#evaluateContributorsDistributed(revisionsGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],contributorTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(Int,Float)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -387,12 +368,11 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateContributorsDistributed</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>, <span name="contributorTemplatePositions">contributorTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Float">Float</span>)]</span>
+        <span class="name">evaluateContributorsDistributed</span><span class="params">(<span name="revisionsGraph">revisionsGraph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="contributorTemplatePositions">contributorTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Float">Float</span>)]</span>
       </span>
       
       <p class="shortcomment cmt">Evaluates the trust scores of contributors in a distributed way.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of contributors in a distributed way.
-</p></div><dl class="paramcmts block"><dt class="param">revisions</dt><dd class="cmt"><p>
-  RDD of revisions</p></dd><dt class="param">contributorTemplatePositions</dt><dd class="cmt"><p>
+</p></div><dl class="paramcmts block"><dt class="param">contributorTemplatePositions</dt><dd class="cmt"><p>
   Sequence of template positions related to contributor trustworthiness</p></dd><dt>returns</dt><dd class="cmt"><p>
   RDD of contributor IDs and their trust scores</p></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
