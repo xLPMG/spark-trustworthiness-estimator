@@ -15,6 +15,7 @@ import me.lpmg.ste.data.RevisionManager
 import me.lpmg.ste.graph.GraphCreator
 import javax.xml.transform.Source
 import me.lpmg.ste.algorithms.SourceEvaluator
+import java.nio.file.Path
 
 object Main {
 
@@ -38,32 +39,68 @@ object Main {
 
     val revisionManager =
       new RevisionManager(spark, dumpFolderPath, dataFolderPath)
-    // revisionManager.setDateLimit(
-    //   ZonedDateTime.of(2022, 1, 1, 0, 0, 0, 0, ZoneId.of("UTC"))
-    // )
+
     val revisions = revisionManager.retrieveRevisions()
-    val revisionGraph = GraphCreator.createRevisionGraph(revisions)
 
-    logger.warn(s"Graph vertices: ${revisionGraph.vertices.count()}")
-    logger.warn(s"Graph edges: ${revisionGraph.edges.count()}")
+    val numsaved = revisionManager.saveRevisionsWithTemplateChanges(
+      revisions,
+      "revisions_with_template_changes"
+    )
+    logger.warn(s"Saved $numsaved revisions with template changes")
 
-    // trust computation
-    val initialGraph = TrustCalculator.initializeTrustScores(revisionGraph)
-    val trustGraph = TrustCalculator.computeTrustScores(initialGraph, spark)
-
-    // source evaluation
-    val sourcesRDD =
-      SourceEvaluator.evaluateSourcesDistributed(
-        revisions,
-        Seq(0, 1, 2, 3, 4, 5, 6)
+    val loadedRevisions =
+      revisionManager.loadRevisionsWithTemplateChanges(
+        "revisions_with_template_changes"
       )
 
-    // contributor evaluation
-    val contributorsRDD =
-      ContributorEvaluator.evaluateContributorsDistributed(
-        revisions,
-        Seq(7, 8, 9, 10, 11, 12, 13, 14)
+    // Check if we have any revisions
+    val revisionCount = loadedRevisions.count()
+    logger.warn(s"Loaded $revisionCount revisions with template changes")
+
+    // calculate source scores
+    val sourceSpecificSourceScores = SourceEvaluator.evaluateSources(
+      loadedRevisions,
+      Seq(0, 1, 2, 3, 4, 5, 6)
+    )
+
+    val generalSourceScores = SourceEvaluator.evaluateSources(
+      loadedRevisions,
+      Seq(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+    )
+
+    // Calculate total score for each revision by summing up source scores
+    val sourceSpecificRevisionScores = loadedRevisions.map { revision =>
+      val totalScore = revision.sources
+        .map(source => sourceSpecificSourceScores.getOrElse(source, 0.0f))
+        .sum
+      (revision.revisionId, totalScore)
+    }
+
+    val generalRevisionScores = loadedRevisions.map { revision =>
+      val totalScore = revision.sources
+        .map(source => generalSourceScores.getOrElse(source, 0.0f))
+        .sum
+      (revision.revisionId, totalScore)
+    }
+
+    // Convert RDDs to DataFrames and save as single CSV
+    import spark.implicits._
+    
+    val sourceScoresOutputPath = Path.of(dataFolderPath).resolve("revision_scores")
+
+    sourceSpecificRevisionScores
+      .toDF("revision_id", "source_specific_score")
+      .join(
+        generalRevisionScores.toDF("revision_id", "general_score"),
+        Seq("revision_id")
       )
+      .coalesce(1)
+      .write
+      .option("header", "true")
+      .mode("overwrite")
+      .csv(sourceScoresOutputPath.toString())
+
+    logger.info(s"CSV file saved: ${sourceScoresOutputPath.toString()} with headers: revision_id,source_specific_score,general_score")
 
     spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("Main")}")

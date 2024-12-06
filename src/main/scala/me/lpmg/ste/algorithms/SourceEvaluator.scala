@@ -15,9 +15,10 @@ object SourceEvaluator extends Serializable {
     *   Map of source URLs and their trust scores
     */
   def evaluateSources(
-      revisions: RDD[Revision]
+      revisions: RDD[Revision],
+      sourceTemplatePositions: Seq[Int]
   ): Map[String, Float] = {
-    evaluateSourcesDistributed(revisions, Seq.empty).collect().toMap
+    evaluateSourcesDistributed(revisions, sourceTemplatePositions).collect().toMap
   }
 
   /** Evaluates the trust scores of sources in a distributed way.
@@ -25,7 +26,7 @@ object SourceEvaluator extends Serializable {
     * @param revisions
     *   RDD of revisions
     * @param sourceTemplatePositions
-    *   Sequence of template positions related to source quality
+    *   Sequence of template positions
     * @return
     *   RDD of source URLs and their trust scores
     */
@@ -46,14 +47,16 @@ object SourceEvaluator extends Serializable {
     }.cache()
 
     // find maximum absolute value for normalization
-    val maxAbs = sourceImpacts
+    val maxAbsOpt = sourceImpacts
       .map { case (_, score) => math.abs(score) }
-      .max()
+      .takeOrdered(1)
+      .headOption
+      .getOrElse(0.0f)
 
     // normalize scores and combine impacts for each source
     val normalizedSourceScores = sourceImpacts
       .mapValues(score =>
-        if (maxAbs > 0) score / maxAbs
+        if (maxAbsOpt > 0) score / maxAbsOpt
         else score
       )
       .reduceByKey(_ + _)
@@ -61,5 +64,7 @@ object SourceEvaluator extends Serializable {
 
     normalizedSourceScores
   }
+
+
 
 }

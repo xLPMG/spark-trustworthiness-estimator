@@ -34,29 +34,17 @@ object Types {
     // Indicates that the article has a large number of references in need of verification
     "Verify sources" -> 6,
     //////////////////////////////////////////////////////////////////////
-    // CONTRIBUTOR
+    // wong
     //////////////////////////////////////////////////////////////////////
-    // Indicates that the contributor of the article may have a conflict of interest 
-    "COI" -> 7,
-
-    // Disputed neutrality
-    "POV" -> 8,
-    "political POV" -> 9,
-
-    // Factual accuracy is disputed 
-    "Disputed" -> 10,
-
-    // Article contains promotional content
-    "Advert" -> 11,
-
-    // Article written subjectively
-    "Peacock" -> 12,
-
-    // Contradictory claims
-    "Contradict" -> 13,
-
-    // Hoax
-    "Hoax" -> 14,
+    "Unreferenced" -> 7,
+    "One source" -> 8,
+    "Original research" -> 9,
+    "More citations needed" -> 10,
+    "Disputed" -> 11,
+    "POV" -> 12,
+    "Third-party" -> 13,
+    "Contradict" -> 14,
+    "Hoax" -> 15
   )
 
   /** Converts a BitSet to a byte array for storage

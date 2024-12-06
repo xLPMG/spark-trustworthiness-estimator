@@ -9,7 +9,6 @@ import me.lpmg.ste.types.Types.{
 }
 import me.lpmg.ste.time.Watch
 import java.nio.file.Path
-import me.lpmg.ste.data.DataReader
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.graphx.Graph
 import me.lpmg.ste.types.Revision
@@ -18,10 +17,10 @@ import java.time.LocalDateTime
 import java.time.ZonedDateTime
 import me.lpmg.ste.types.RevisionVertex
 import org.apache.spark.util.collection.BitSet
-import me.lpmg.ste.data.TemplateUpdater
 import org.apache.spark.graphx.Edge
 import me.lpmg.ste.types.EdgeType
 import org.apache.spark.rdd.RDD
+import me.lpmg.ste.types.Types
 
 class RevisionManager(
     spark: SparkSession,
@@ -118,5 +117,119 @@ class RevisionManager(
     // TEMPLATE TRACKING
     /////////////////////////////////////////////////////////////////////////////////////////
     TemplateUpdater.updateTemplateBitSetsDistributed(updatedRevisionsRDD)
+  }
+
+  /** Saves revisions that have at least one template added or removed.
+    *
+    * @param revisions
+    *   RDD containing the revisions to filter and save
+    * @param outputPath
+    *   Path where the filtered revisions should be saved
+    * @return
+    *   The number of saved revisions
+    */
+  def saveRevisionsWithTemplateChanges(
+      revisions: RDD[Revision],
+      outputFolder: String
+  ): Long = {
+    import spark.implicits._
+
+    val outputPath = Path.of(dataFolderPath).resolve(outputFolder)
+    if (!outputPath.toFile.exists()) {
+      outputPath.toFile.mkdirs()
+    }
+
+    val filteredRevisions = revisions.filter(revision =>
+      revision.templateAdded.cardinality() > 0 || revision.templateRemoved
+        .cardinality() > 0
+    )
+
+    // Convert BitSets to byte arrays for storage
+    val serializedRevisions = filteredRevisions
+      .map { case (rev: Revision) =>
+        val templatePresenceBytes =
+          bitSetToByteArray(rev.templatePresence)
+        val templateAddedBytes = bitSetToByteArray(rev.templateAdded)
+        val templateRemovedBytes = bitSetToByteArray(rev.templateRemoved)
+        (
+          rev.revisionId,
+          rev.pageId,
+          rev.parentId,
+          rev.timestamp,
+          rev.contributorId,
+          templatePresenceBytes,
+          templateAddedBytes,
+          templateRemovedBytes,
+          rev.sources
+        )
+      }
+      .toDF(
+        "revisionId",
+        "pageId",
+        "parentId",
+        "timestamp",
+        "contributorId",
+        "templatePresence",
+        "templateAdded",
+        "templateRemoved",
+        "sources"
+      )
+
+    serializedRevisions.write
+      .mode("overwrite")
+      .option("compression", "snappy")
+      .parquet(outputPath.toString())
+
+    // Return count of saved revisions
+    filteredRevisions.count()
+  }
+
+  /** Loads revisions that were saved with saveRevisionsWithTemplateChanges.
+    *
+    * @param inputFolder
+    *   Folder name where the revisions were saved
+    * @return
+    *   RDD[Revision] containing the loaded revisions
+    */
+  def loadRevisionsWithTemplateChanges(
+      inputFolder: String
+  ): RDD[Revision] = {
+    import spark.implicits._
+
+    val inputPath = Path.of(dataFolderPath).resolve(inputFolder)
+    if (!inputPath.toFile.exists()) {
+      throw new IllegalArgumentException(s"Input folder does not exist: $inputPath")
+    }
+
+    // Read the parquet file
+    val serializedRevisionsDF = spark.read.parquet(inputPath.toString())
+
+    // Convert back to RDD[Revision]
+    serializedRevisionsDF.rdd.map { row =>
+      val templatePresence = byteArrayToBitSet(
+        row.getAs[Array[Byte]]("templatePresence"),
+        Types.TemplateBitPositions.size
+      )
+      val templateAdded = byteArrayToBitSet(
+        row.getAs[Array[Byte]]("templateAdded"),
+        Types.TemplateBitPositions.size
+      )
+      val templateRemoved = byteArrayToBitSet(
+        row.getAs[Array[Byte]]("templateRemoved"),
+        Types.TemplateBitPositions.size
+      )
+
+      new Revision(
+        row.getAs[Long]("revisionId"),
+        row.getAs[Int]("pageId"),
+        row.getAs[Long]("parentId"),
+        row.getAs[Long]("timestamp"),
+        row.getAs[Int]("contributorId"),
+        templatePresence,
+        templateAdded,
+        templateRemoved,
+        row.getAs[Seq[String]]("sources")
+      )
+    }
   }
 }
