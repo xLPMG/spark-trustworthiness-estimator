@@ -230,9 +230,9 @@ information for the trust algorithm.
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="me.lpmg.ste.types.RevisionVertex#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(trustScore:Float,isRedirect:Boolean,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.RevisionVertex"></a><a id="&lt;init&gt;:RevisionVertex"></a>
+      <a id="&lt;init&gt;(trustScore:Float,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.RevisionVertex"></a><a id="&lt;init&gt;:RevisionVertex"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#&lt;init&gt;(trustScore:Float,isRedirect:Boolean,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.RevisionVertex" title="Permalink">
+      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#&lt;init&gt;(trustScore:Float,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.RevisionVertex" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -241,7 +241,7 @@ information for the trust algorithm.
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">RevisionVertex</span><span class="params">(<span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="isRedirect">isRedirect: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>)</span>
+        <span class="name">RevisionVertex</span><span class="params">(<span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="contributorId">contributorId: <span class="extype" name="scala.Int">Int</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>)</span>
       </span>
       
       
@@ -345,10 +345,26 @@ information for the trust algorithm.
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.types.RevisionVertex#copy" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="copy(trustScore:Float,isRedirect:Boolean,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.RevisionVertex"></a><a id="copy(Float,Boolean,BitSet,BitSet,BitSet):RevisionVertex"></a>
+    </li><li name="me.lpmg.ste.types.RevisionVertex#contributorId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="contributorId:Int"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#copy(trustScore:Float,isRedirect:Boolean,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.RevisionVertex" title="Permalink">
+      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#contributorId:Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">contributorId</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      
+    </li><li name="me.lpmg.ste.types.RevisionVertex#copy" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="copy(trustScore:Float,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.RevisionVertex"></a><a id="copy(Float,Int,BitSet,BitSet,BitSet):RevisionVertex"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#copy(trustScore:Float,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.RevisionVertex" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -357,7 +373,7 @@ information for the trust algorithm.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">copy</span><span class="params">(<span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span> = <span class="symbol"><span class="name"><a href="#trustScore:Float">this.trustScore</a></span></span></span>, <span name="isRedirect">isRedirect: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol"><span class="name"><a href="#isRedirect:Boolean">this.isRedirect</a></span></span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templatePresence:org.apache.spark.util.collection.BitSet">this.templatePresence</a></span></span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateAdded:org.apache.spark.util.collection.BitSet">this.templateAdded</a></span></span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateRemoved:org.apache.spark.util.collection.BitSet">this.templateRemoved</a></span></span></span>)</span><span class="result">: <a href="" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a></span>
+        <span class="name">copy</span><span class="params">(<span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span> = <span class="symbol"><span class="name"><a href="#trustScore:Float">this.trustScore</a></span></span></span>, <span name="contributorId">contributorId: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="#contributorId:Int">this.contributorId</a></span></span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templatePresence:org.apache.spark.util.collection.BitSet">this.templatePresence</a></span></span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateAdded:org.apache.spark.util.collection.BitSet">this.templateAdded</a></span></span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateRemoved:org.apache.spark.util.collection.BitSet">this.templateRemoved</a></span></span></span>)</span><span class="result">: <a href="" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a></span>
       </span>
       
       
@@ -451,22 +467,6 @@ information for the trust algorithm.
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="me.lpmg.ste.types.RevisionVertex#isRedirect" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="isRedirect:Boolean"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#isRedirect:Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">isRedirect</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">

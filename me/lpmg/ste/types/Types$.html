@@ -228,26 +228,7 @@
         <div id="allMembers">
         
 
-        <div id="types" class="types members">
-              <h3>Type Members</h3>
-              <ol><li name="me.lpmg.ste.types.Types.DictType" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="DictType=Map[String,(Int,String)]"></a><a id="DictType:DictType"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/Types$.html#DictType=Map[String,(Int,String)]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier">final </span>
-        <span class="kind">type</span>
-      </span>
-      <span class="symbol">
-        <span class="name">DictType</span><span class="result alias"> = <span class="extype" name="scala.collection.immutable.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, (<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Predef.String">String</span>)]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Type alias for a dictionary mapping page titles to page IDs</p>
-    </li></ol>
-            </div>
+        
 
         
 
@@ -302,47 +283,6 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="me.lpmg.ste.types.Types#BitSetToByteArray" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="BitSetToByteArray(bitSet:org.apache.spark.util.collection.BitSet):Array[Byte]"></a><a id="BitSetToByteArray(BitSet):Array[Byte]"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/Types$.html#BitSetToByteArray(bitSet:org.apache.spark.util.collection.BitSet):Array[Byte]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">BitSetToByteArray</span><span class="params">(<span name="bitSet">bitSet: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>)</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Converts a BitSet to a byte array for storage
-</p><div class="fullcomment"><div class="comment cmt"><p>Converts a BitSet to a byte array for storage
-</p></div><dl class="paramcmts block"><dt class="param">bitSet</dt><dd class="cmt"><p>
-  The BitSet to convert</p></dd><dt>returns</dt><dd class="cmt"><p>
-  Array of bytes representing the BitSet</p></dd></dl></div>
-    </li><li name="me.lpmg.ste.types.Types#ByteArrayToBitSet" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ByteArrayToBitSet(bytes:Array[Byte],capacity:Int):org.apache.spark.util.collection.BitSet"></a><a id="ByteArrayToBitSet(Array[Byte],Int):BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/Types$.html#ByteArrayToBitSet(bytes:Array[Byte],capacity:Int):org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">ByteArrayToBitSet</span><span class="params">(<span name="bytes">bytes: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="capacity">capacity: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Converts a byte array back to a BitSet
-</p><div class="fullcomment"><div class="comment cmt"><p>Converts a byte array back to a BitSet
-</p></div><dl class="paramcmts block"><dt class="param">bytes</dt><dd class="cmt"><p>
-  The byte array to convert</p></dd><dt class="param">capacity</dt><dd class="cmt"><p>
-  The capacity of the original BitSet</p></dd><dt>returns</dt><dd class="cmt"><p>
-  BitSet reconstructed from the byte array</p></dd></dl></div>
     </li><li name="me.lpmg.ste.types.Types#TemplateBitPositions" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TemplateBitPositions:Map[String,Byte]"></a>
       <span class="permalink">
@@ -375,6 +315,47 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="me.lpmg.ste.types.Types#bitSetToByteArray" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bitSetToByteArray(bitSet:org.apache.spark.util.collection.BitSet):Array[Byte]"></a><a id="bitSetToByteArray(BitSet):Array[Byte]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/types/Types$.html#bitSetToByteArray(bitSet:org.apache.spark.util.collection.BitSet):Array[Byte]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bitSetToByteArray</span><span class="params">(<span name="bitSet">bitSet: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>)</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Converts a BitSet to a byte array for storage
+</p><div class="fullcomment"><div class="comment cmt"><p>Converts a BitSet to a byte array for storage
+</p></div><dl class="paramcmts block"><dt class="param">bitSet</dt><dd class="cmt"><p>
+  The BitSet to convert</p></dd><dt>returns</dt><dd class="cmt"><p>
+  Array of bytes representing the BitSet</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.types.Types#byteArrayToBitSet" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="byteArrayToBitSet(bytes:Array[Byte],capacity:Int):org.apache.spark.util.collection.BitSet"></a><a id="byteArrayToBitSet(Array[Byte],Int):BitSet"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/types/Types$.html#byteArrayToBitSet(bytes:Array[Byte],capacity:Int):org.apache.spark.util.collection.BitSet" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">byteArrayToBitSet</span><span class="params">(<span name="bytes">bytes: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="capacity">capacity: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Converts a byte array back to a BitSet
+</p><div class="fullcomment"><div class="comment cmt"><p>Converts a byte array back to a BitSet
+</p></div><dl class="paramcmts block"><dt class="param">bytes</dt><dd class="cmt"><p>
+  The byte array to convert</p></dd><dt class="param">capacity</dt><dd class="cmt"><p>
+  The capacity of the original BitSet</p></dd><dt>returns</dt><dd class="cmt"><p>
+  BitSet reconstructed from the byte array</p></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
