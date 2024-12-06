@@ -47,23 +47,6 @@ object Main {
     val initialGraph = TrustCalculator.initializeTrustScores(revisionGraph)
     val trustGraph = TrustCalculator.computeTrustScores(initialGraph, spark)
 
-    initialGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
-      println(s"Vertex ID: $id, Data: $vertex")
-    }
-
-    logger.warn("edges")
-    trustGraph.edges
-      .collect()
-      .sortBy(edge => (edge.srcId, edge.dstId))
-      .foreach { edge =>
-        println(s"Edge: ${edge.srcId} -> ${edge.dstId} | Type: ${edge.attr}")
-      }
-
-    logger.warn("after trust")
-    trustGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
-      println(s"Vertex ID: $id, Data: $vertex")
-    }
-
     // contributor evaluation
     val contributorsRDD =
       ContributorEvaluator.evaluateContributorsDistributed(trustGraph)
@@ -73,16 +56,6 @@ object Main {
         contributorsRDD,
         0.2f
       )
-
-    logger.warn("contributors")
-    contributorsRDD.collect().sortBy(_._1).foreach { case (id, score) =>
-      println(s"Contributor ID: $id, Trust Score: $score")
-    }
-
-    logger.warn("after contributors")
-    editedGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
-      println(s"Vertex ID: $id, Data: $vertex")
-    }
 
     graphManager.saveTrustScores("trustScores", editedGraph)
 
