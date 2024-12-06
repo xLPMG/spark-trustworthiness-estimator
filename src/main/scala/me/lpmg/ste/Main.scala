@@ -74,6 +74,18 @@ object Main {
         0.2f
       )
 
+    logger.warn("contributors")
+    contributorsRDD.collect().sortBy(_._1).foreach { case (id, score) =>
+      println(s"Contributor ID: $id, Trust Score: $score")
+    }
+
+    logger.warn("after contributors")
+    editedGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
+      println(s"Vertex ID: $id, Data: $vertex")
+    }
+
+    graphManager.saveTrustScores("trustScores", editedGraph)
+
     spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("Main")}")
   }

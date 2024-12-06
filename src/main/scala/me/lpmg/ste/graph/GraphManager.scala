@@ -97,17 +97,17 @@ class GraphManager(
       allRevisionsRDD
     } else {
       logger.warn("Setting parent ID of oldest revisions to -1")
-      
+
       // Create an RDD of oldest revision IDs with a marker
       val oldestRevisionsRDD = groupedRevisionsRDD
-        .flatMap { case (pageId, revisions) => 
+        .flatMap { case (pageId, revisions) =>
           revisions.headOption.map(rev => (rev._1, true))
         }
-        .persist()  // Cache since we'll use this RDD twice
-      
+        .persist() // Cache since we'll use this RDD twice
+
       // Use leftOuterJoin to efficiently mark oldest revisions
       allRevisionsRDD
-        .keyBy(_.revisionId)  // Create key-value pairs for join
+        .keyBy(_.revisionId) // Create key-value pairs for join
         .leftOuterJoin(oldestRevisionsRDD)
         .map { case (revId, (revision, isOldest)) =>
           if (isOldest.isDefined) {
@@ -116,16 +116,17 @@ class GraphManager(
             revision
           }
         }
-        .persist()  // Cache the result as it will be used for template tracking
+        .persist() // Cache the result as it will be used for template tracking
     }
-    
+
     // Clean up cached RDD
     allRevisionsRDD.unpersist()
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // TEMPLATE TRACKING
     /////////////////////////////////////////////////////////////////////////////////////////
-    val revisionsWithTemplateBitSets = TemplateUpdater.updateTemplateBitSetsDistributed(updatedRevisionsRDD)
+    val revisionsWithTemplateBitSets =
+      TemplateUpdater.updateTemplateBitSetsDistributed(updatedRevisionsRDD)
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // GRAPH CREATION
@@ -256,10 +257,10 @@ class GraphManager(
       Edge(
         row
           .getAs[Number]("src")
-          .longValue(), // Handle both Int and Long numerically
+          .longValue(),
         row
           .getAs[Number]("dst")
-          .longValue(), // Handle both Int and Long numerically
+          .longValue(),
         row.getAs[Byte]("attr")
       )
     }
@@ -268,4 +269,30 @@ class GraphManager(
     Graph(vertices, edges)
   }
 
+  /** Saves the trust scores of revisions to a Parquet file
+    *
+    * @param fileName
+    * @param revisionGraph
+    */
+  def saveTrustScores(
+      fileName: String,
+      revisionGraph: Graph[RevisionVertex, Byte]
+  ): Unit = {
+    val trustScoresFolderPath = Path.of(dataFolderPath).resolve(fileName)
+    import spark.implicits._
+    val trustScoresDF = revisionGraph.vertices
+      .map { case (revisionId, vertex) =>
+        (
+          revisionId,
+          vertex.trustScore
+        )
+      }
+      .toDF(
+        "revisionId",
+        "trustScore"
+      )
+    trustScoresDF.write
+      .mode("overwrite")
+      .parquet(trustScoresFolderPath.toString())
+  }
 }

@@ -47,8 +47,8 @@ object TrustCalculator extends Serializable {
     //////////////////////////////////////////////////////////////
     // TEMPORAL DECAY
     //////////////////////////////////////////////////////////////
-    val parent = propagateTemporalTrustScores(graph, EdgeType.isParentOf, 0.1f)
-    val child = propagateTemporalTrustScores(graph, EdgeType.isChildOf, 0.2f)
+    val parent = propagateTemporalTrustScores(graph, EdgeType.isParentOf, 0.3f)
+    val child = propagateTemporalTrustScores(graph, EdgeType.isChildOf, 0.4f)
 
     // Combine the trust scores from parent and child graphs
     val combinedTrustScores = parent.vertices.innerJoin(child.vertices) {
@@ -60,8 +60,9 @@ object TrustCalculator extends Serializable {
           // Don't modify vertices that have template changes (ground truths)
           parentVertex
         } else {
+          // Apply dampening factor for non-ground truth nodes
           parentVertex.copy(trustScore =
-            parentVertex.trustScore + childVertex.trustScore
+            (parentVertex.trustScore + childVertex.trustScore)
           )
         }
     }

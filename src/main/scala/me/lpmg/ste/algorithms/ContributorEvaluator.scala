@@ -37,7 +37,7 @@ object ContributorEvaluator extends Serializable {
       .map(triplet => (triplet.dstId, triplet.srcAttr.trustScore))
       .cache()
 
-    // trust score changes from parent rev
+    // calculate impact based on templates added/removed and trust score changes
     val changes = graph.vertices
       .leftOuterJoin(parentScores)
       .map { case (_, (vertex, parentScoreOpt)) =>
@@ -45,7 +45,26 @@ object ContributorEvaluator extends Serializable {
           case Some(parentScore) => vertex.trustScore - parentScore
           case None => vertex.trustScore // For root vertices with no parent
         }
-        (vertex.contributorId, trustScoreChange)
+
+        // calculate template impact
+        val templateAddedCount = vertex.templateAdded.cardinality()
+        val templateRemovedCount = vertex.templateRemoved.cardinality()
+        val templateImpact =
+          if (templateAddedCount > 0 || templateRemovedCount > 0) {
+            // negative impact for adding templates, positive for removing
+            (-templateAddedCount + templateRemovedCount).toFloat
+          } else 0.0f
+
+        // combine trust score change with template impact
+        val totalImpact =
+          if (templateImpact != 0) {
+            // weight template changes more heavily for ground truth nodes
+            trustScoreChange * 0.25f + templateImpact * 0.75f
+          } else {
+            trustScoreChange
+          }
+
+        (vertex.contributorId, totalImpact)
       }
       .cache()
 
@@ -82,16 +101,31 @@ object ContributorEvaluator extends Serializable {
       contributorScores: RDD[(Int, Float)],
       contributorScoreImportance: Float
   ): Graph[RevisionVertex, Byte] = {
-    graph.mapVertices { case (id, vertex) =>
-      val contributorScore = contributorScores
-        .lookup(vertex.contributorId)
-        .headOption
-        .getOrElse(0.0f)
-      vertex.copy(
-        trustScore =
-          vertex.trustScore * (1 - contributorScoreImportance) + contributorScore * contributorScoreImportance
-      )
+    // Create vertices RDD with contributor IDs
+    val verticesWithContributors = graph.vertices.map { case (id, vertex) =>
+      (vertex.contributorId, (id, vertex))
     }
+
+    // Join with contributor scores
+    val joinedScores = verticesWithContributors
+      .leftOuterJoin(contributorScores)
+      .map { case (contributorId, ((vertexId, vertex), contributorScoreOpt)) =>
+        (vertexId, (vertex, contributorScoreOpt.getOrElse(0.0f)))
+      }
+
+    // Create new graph with updated scores
+    Graph(
+      joinedScores.map { case (vertexId, (vertex, contributorScore)) =>
+        (
+          vertexId,
+          vertex.copy(
+            trustScore =
+              vertex.trustScore * (1 - contributorScoreImportance) + contributorScore * contributorScoreImportance
+          )
+        )
+      },
+      graph.edges
+    )
   }
 
   /** Applies the trust scores of contributors to the graph without applying
@@ -111,20 +145,39 @@ object ContributorEvaluator extends Serializable {
       contributorScores: RDD[(Int, Float)],
       contributorScoreImportance: Float
   ): Graph[RevisionVertex, Byte] = {
-    graph.mapVertices { case (id, vertex) =>
-      if (vertex.templateAdded.cardinality() > 0 || vertex.templateRemoved.cardinality() > 0) {
-        vertex
-      } else {
-        val contributorScore = contributorScores
-          .lookup(vertex.contributorId)
-          .headOption
-          .getOrElse(0.0f)
-        vertex.copy(
-          trustScore =
-            vertex.trustScore * (1 - contributorScoreImportance) + contributorScore * contributorScoreImportance
-        )
-      }
+    // Create vertices RDD with contributor IDs
+    val verticesWithContributors = graph.vertices.map { case (id, vertex) =>
+      (vertex.contributorId, (id, vertex))
     }
+
+    // Join with contributor scores
+    val joinedScores = verticesWithContributors
+      .leftOuterJoin(contributorScores)
+      .map { case (contributorId, ((vertexId, vertex), contributorScoreOpt)) =>
+        (vertexId, (vertex, contributorScoreOpt.getOrElse(0.0f)))
+      }
+
+    // Create new graph with updated scores
+    Graph(
+      joinedScores.map { case (vertexId, (vertex, contributorScore)) =>
+        if (
+          vertex.templateAdded.cardinality() > 0 || vertex.templateRemoved
+            .cardinality() > 0
+        ) {
+          // Don't modify ground truth vertices
+          (vertexId, vertex)
+        } else {
+          (
+            vertexId,
+            vertex.copy(
+              trustScore =
+                vertex.trustScore * (1 - contributorScoreImportance) + contributorScore * contributorScoreImportance
+            )
+          )
+        }
+      },
+      graph.edges
+    )
   }
 
 }
