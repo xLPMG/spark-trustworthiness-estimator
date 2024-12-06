@@ -13,6 +13,8 @@ import me.lpmg.ste.types.Types.TemplateBitPositions
   *   the unique identifier of the parent revision
   * @param timestamp
   *   the timestamp of the revision
+  * @param contributorId
+  *   the unique identifier of the contributor
   * @param templatePresence
   *   the presence of templates in the revision
   * @param templateAdded
@@ -27,6 +29,7 @@ class Revision(
     val pageId: Int,
     val parentId: Long,
     val timestamp: Long,
+    val contributorId: Int,
     val templatePresence: BitSet = new BitSet(TemplateBitPositions.size),
     val templateAdded: BitSet = new BitSet(TemplateBitPositions.size),
     val templateRemoved: BitSet = new BitSet(TemplateBitPositions.size),
@@ -40,6 +43,7 @@ class Revision(
     * @param pageId
     * @param parentId
     * @param timestamp
+    * @param contributorId
     * @param templatePresence
     * @param templateAdded
     * @param templateRemoved
@@ -62,6 +66,7 @@ class Revision(
       pageId,
       parentId,
       timestamp,
+      contributorId,
       templatePresence,
       templateAdded,
       templateRemoved,
@@ -79,13 +84,14 @@ class Revision(
   def toRevisionVertex =
     new RevisionVertex(
       0.0f,
+      contributorId,
       templatePresence,
       templateAdded,
       templateRemoved
     )
 
   override def toString(): String = {
-    s"Revision(revisionId=${revisionId}, pageId=${pageId}, parentId=${parentId}, timestamp=${timestamp}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)}, sources=${sources.mkString(", ")})"
+    s"Revision(revisionId=${revisionId}, pageId=${pageId}, parentId=${parentId}, timestamp=${timestamp}, contributorId=${contributorId}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)}, sources=${sources.mkString(", ")})"
   }
 
   private def bitSetToBinaryString(bitSet: BitSet): String = {

@@ -11,18 +11,21 @@ import org.apache.spark.util.collection.BitSet
   */
 class RevisionVertex(
     val trustScore: Float,
+    val contributorId: Int,
     val templatePresence: BitSet,
     val templateAdded: BitSet,
     val templateRemoved: BitSet
 ) extends Serializable {
   def copy(
       trustScore: Float = this.trustScore,
+      contributorId: Int = this.contributorId,
       templatePresence: BitSet = this.templatePresence,
       templateAdded: BitSet = this.templateAdded,
       templateRemoved: BitSet = this.templateRemoved
   ): RevisionVertex = {
     new RevisionVertex(
       trustScore,
+      contributorId,
       templatePresence,
       templateAdded,
       templateRemoved
@@ -30,7 +33,7 @@ class RevisionVertex(
   }
 
   override def toString(): String = {
-    s"Revision(trustScore=${trustScore}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)})"
+    s"Revision(trustScore=${trustScore}, contributorId=${contributorId}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)})"
   }
 
   private def bitSetToBinaryString(bitSet: BitSet): String = {

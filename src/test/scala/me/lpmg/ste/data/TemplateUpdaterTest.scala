@@ -17,6 +17,7 @@ class TemplateUpdaterTest extends munit.FunSuite {
       revisionId = 1L,
       pageId = 1,
       parentId = -1L,
+      contributorId = 1,
       timestamp = System.currentTimeMillis(),
       templatePresence = new BitSet(bitSetCapacity),
       templateAdded = new BitSet(bitSetCapacity),
@@ -28,6 +29,7 @@ class TemplateUpdaterTest extends munit.FunSuite {
       pageId = 1,
       parentId = 1L,
       timestamp = System.currentTimeMillis(),
+      contributorId = 2,
       templatePresence = new BitSet(bitSetCapacity),
       templateAdded = new BitSet(bitSetCapacity),
       templateRemoved = new BitSet(bitSetCapacity)
@@ -38,6 +40,7 @@ class TemplateUpdaterTest extends munit.FunSuite {
       pageId = 1,
       parentId = 2L,
       timestamp = System.currentTimeMillis(),
+      contributorId = 3,
       templatePresence = new BitSet(bitSetCapacity),
       templateAdded = new BitSet(bitSetCapacity),
       templateRemoved = new BitSet(bitSetCapacity)

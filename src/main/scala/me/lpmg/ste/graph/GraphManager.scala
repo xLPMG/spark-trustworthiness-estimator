@@ -20,6 +20,7 @@ import me.lpmg.ste.types.RevisionVertex
 import org.apache.spark.util.collection.BitSet
 import me.lpmg.ste.data.TemplateUpdater
 import org.apache.spark.graphx.Edge
+import me.lpmg.ste.types.EdgeType
 
 class GraphManager(
     spark: SparkSession,
@@ -91,48 +92,40 @@ class GraphManager(
           }
         }
 
-    // set parent ID of oldest revisions to -1
-    // this is only needed in case we limit the graph by date
-    val oldestRevisionIds =
-      groupedRevisionsRDD
-        .mapValues(_.headOption.map(_._1))
-        .collect { case (pageId, Some(revisionId)) =>
-          revisionId
-        }
-        .collect()
-        .toSet
+    // Find oldest revisions and update parent IDs in a distributed way
     val updatedRevisionsRDD = if (fixedDateLimit <= 0) {
       allRevisionsRDD
     } else {
       logger.warn("Setting parent ID of oldest revisions to -1")
-      allRevisionsRDD.map { revision =>
-        if (oldestRevisionIds.contains(revision.revisionId)) {
-          revision.copy(parentId = -1)
-        } else {
-          revision
+      
+      // Create an RDD of oldest revision IDs with a marker
+      val oldestRevisionsRDD = groupedRevisionsRDD
+        .flatMap { case (pageId, revisions) => 
+          revisions.headOption.map(rev => (rev._1, true))
         }
-      }
+        .persist()  // Cache since we'll use this RDD twice
+      
+      // Use leftOuterJoin to efficiently mark oldest revisions
+      allRevisionsRDD
+        .keyBy(_.revisionId)  // Create key-value pairs for join
+        .leftOuterJoin(oldestRevisionsRDD)
+        .map { case (revId, (revision, isOldest)) =>
+          if (isOldest.isDefined) {
+            revision.copy(parentId = -1)
+          } else {
+            revision
+          }
+        }
+        .persist()  // Cache the result as it will be used for template tracking
     }
+    
+    // Clean up cached RDD
     allRevisionsRDD.unpersist()
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // TEMPLATE TRACKING
     /////////////////////////////////////////////////////////////////////////////////////////
-    // Create a map of revision IDs to their template presence
-    val revisionIdToTemplatesPresenceMap =
-      updatedRevisionsRDD
-        .map(rev => rev.revisionId -> rev.templatePresence)
-        .collectAsMap()
-        .toMap
-
-    // Update the templateAdded and templateRemoved BitSets for each revision
-    val revisionsWithTemplateBitSets = updatedRevisionsRDD.mapPartitions {
-      partition =>
-        val revisions = partition.toSeq
-        TemplateUpdater
-          .updateTemplateBitSets(revisions, revisionIdToTemplatesPresenceMap)
-          .iterator
-    }
+    val revisionsWithTemplateBitSets = TemplateUpdater.updateTemplateBitSetsDistributed(updatedRevisionsRDD)
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // GRAPH CREATION
@@ -171,6 +164,7 @@ class GraphManager(
         (
           id: Long,
           rev.trustScore,
+          rev.contributorId,
           templatePresenceBytes,
           templateAddedBytes,
           templateRemovedBytes
@@ -179,6 +173,7 @@ class GraphManager(
       .toDF(
         "id",
         "trustScore",
+        "contributorId",
         "templatePresence",
         "templateAdded",
         "templateRemoved"
@@ -228,7 +223,7 @@ class GraphManager(
           .getAs[Number]("id")
           .longValue() // Handle both Int and Long numerically
       val trustScore = row.getAs[Float]("trustScore")
-      val isRedirect = row.getAs[Boolean]("isRedirect")
+      val contributorId = row.getAs[Int]("contributorId")
 
       // Convert byte arrays back to BitSets
       val templatePresenceBytes = row.getAs[Array[Byte]]("templatePresence")
@@ -248,6 +243,7 @@ class GraphManager(
         id,
         new RevisionVertex(
           trustScore,
+          contributorId,
           templatePresence,
           templateAdded,
           templateRemoved

@@ -16,12 +16,14 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private var insidePage = false
   private var insideRevision = false
   private var isMainNamespace = false
+  private var insideContributor = false
 
   private var pageTitle: String = ""
   private var pageId: Int = 0
   private var revisionId: Long = 0
   private var parentId: Option[Long] = None
   private var timestamp: Long = 0
+  private var contributorId: Int = -1
   private var templateBitset: BitSet = null
   private var isRedirect: Boolean = false
   private var sources: Seq[String] = Seq.empty
@@ -46,9 +48,13 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
         revisionId = 0
         parentId = None
         timestamp = 0
+        contributorId = -1
         isRedirect = false
         templateBitset = new BitSet(TemplateBitPositions.size)
         sources = Seq.empty
+        insideContributor = false
+      case "contributor" =>
+        insideContributor = true
       case _ => // No-op for other tags
     }
   }
@@ -101,20 +107,25 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               s"Error parsing timestamp: ${getBuffer} for revision: $revisionId in page: $pageId"
             )
         }
+      case "id" if insideContributor =>
+        contributorId = getBuffer.toInt
+      case "contributor" =>
+        insideContributor = false
       case "text" =>
         val content = getBuffer
         isRedirect = content.startsWith("#REDIRECT")
         if (!isRedirect) {
           // set template bits
-          //TODO: check for things like {{Unreferenced|date=March 2019}}
-          TemplateBitPositions.foreach(
-            template =>
-              if (content.contains("{{" + template._1 + "}}") ||
-                  content.contains("{{" + template._1.toLowerCase + "}}")) {
-                templateBitset.set(template._2)
-              }
+          // TODO: check for things like {{Unreferenced|date=March 2019}}
+          TemplateBitPositions.foreach(template =>
+            if (
+              content.contains("{{" + template._1 + "}}") ||
+              content.contains("{{" + template._1.toLowerCase + "}}")
+            ) {
+              templateBitset.set(template._2)
+            }
           )
-          
+
           // extract sources
           sources = SourceExtractor
             .extractSources(content)
@@ -128,6 +139,7 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               pageId,
               parentId.getOrElse(-1),
               timestamp,
+              contributorId,
               templateBitset,
               new BitSet(TemplateBitPositions.size),
               new BitSet(TemplateBitPositions.size),
