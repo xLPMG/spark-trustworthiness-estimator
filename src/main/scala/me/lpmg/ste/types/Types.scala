@@ -20,7 +20,7 @@ object Types {
     * @return
     *   Array of bytes representing the BitSet
     */
-  def BitSetToByteArray(bitSet: BitSet): Array[Byte] = {
+  def bitSetToByteArray(bitSet: BitSet): Array[Byte] = {
     val numBytes = (bitSet.capacity + 7) / 8 // Round up to nearest byte
     val bytes = new Array[Byte](numBytes)
 
@@ -44,7 +44,7 @@ object Types {
     * @return
     *   BitSet reconstructed from the byte array
     */
-  def ByteArrayToBitSet(bytes: Array[Byte], capacity: Int): BitSet = {
+  def byteArrayToBitSet(bytes: Array[Byte], capacity: Int): BitSet = {
     val bitSet = new BitSet(capacity)
     for (i <- 0 until capacity) {
       val byteIndex = i / 8

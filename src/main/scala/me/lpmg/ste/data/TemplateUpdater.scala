@@ -58,8 +58,10 @@ object TemplateUpdater {
   ): Seq[Revision] = {
     revisions.map { revision =>
       val parentTemplatePresence = revisionIdToTemplatesPresenceMap
-        .get(revision.parentId)
-        .getOrElse(new BitSet(revision.templatePresence.capacity))
+        .getOrElse(
+          revision.parentId,
+          new BitSet(revision.templatePresence.capacity)
+        )
 
       updateRevisionTemplateBitSets(revision, parentTemplatePresence)
     }

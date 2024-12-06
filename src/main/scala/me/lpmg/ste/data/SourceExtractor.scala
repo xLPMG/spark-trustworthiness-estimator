@@ -84,6 +84,6 @@ object SourceExtractor {
       extractDomain(m.group(1)).foreach(sources += _)
     }
     
-    sources.distinct.toSeq
+    sources.distinct
   }
 }

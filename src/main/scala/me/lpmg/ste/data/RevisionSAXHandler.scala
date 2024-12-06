@@ -24,7 +24,7 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private var parentId: Option[Long] = None
   private var timestamp: Long = 0
   private var contributorId: Int = -1
-  private var templateBitset: BitSet = null
+  private var templateBitset: BitSet = new BitSet(TemplateBitPositions.size)
   private var isRedirect: Boolean = false
   private var sources: Seq[String] = Seq.empty
 

@@ -9,7 +9,7 @@ import org.apache.spark.graphx.VertexRDD
 import org.apache.spark.graphx.EdgeDirection
 import me.lpmg.ste.types.EdgeType
 
-case class TrustMessage(score: Float, steps: Int)
+final case class TrustMessage(score: Float, steps: Int)
 
 object TrustCalculator extends Serializable {
 
@@ -79,7 +79,7 @@ object TrustCalculator extends Serializable {
       decrement: Float
   ): Graph[RevisionVertex, Byte] = {
     // for tracking if the vertex has been visited
-    case class VertexState(vertex: RevisionVertex, visited: Boolean)
+    final case class VertexState(vertex: RevisionVertex, visited: Boolean)
     val initialMsg = TrustMessage(0.0f, 0)
     def isGroundTruth(vertex: RevisionVertex): Boolean = {
       vertex.templateAdded.cardinality() > 0 || vertex.templateRemoved

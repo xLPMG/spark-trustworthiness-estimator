@@ -3,8 +3,8 @@ package me.lpmg.ste.graph
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.SparkSession
 import me.lpmg.ste.types.Types.{
-  BitSetToByteArray,
-  ByteArrayToBitSet,
+  bitSetToByteArray,
+  byteArrayToBitSet,
   TemplateBitPositions
 }
 import me.lpmg.ste.time.Watch
@@ -130,10 +130,7 @@ class GraphManager(
     /////////////////////////////////////////////////////////////////////////////////////////
     // GRAPH CREATION
     /////////////////////////////////////////////////////////////////////////////////////////
-    logger.warn("Creating revision graph")
-    val revisionGraph =
-      GraphCreator.createRevisionGraph(revisionsWithTemplateBitSets)
-    revisionGraph
+    GraphCreator.createRevisionGraph(revisionsWithTemplateBitSets)
   }
 
   /** Saves the revision graph to the data folder.
@@ -157,9 +154,9 @@ class GraphManager(
       .map { case (id: Long, rev) =>
         // Convert BitSets to byte arrays for storage
         val templatePresenceBytes =
-          BitSetToByteArray(rev.templatePresence)
-        val templateAddedBytes = BitSetToByteArray(rev.templateAdded)
-        val templateRemovedBytes = BitSetToByteArray(rev.templateRemoved)
+          bitSetToByteArray(rev.templatePresence)
+        val templateAddedBytes = bitSetToByteArray(rev.templateAdded)
+        val templateRemovedBytes = bitSetToByteArray(rev.templateRemoved)
 
         (
           id: Long,
@@ -229,14 +226,14 @@ class GraphManager(
       val templateAddedBytes = row.getAs[Array[Byte]]("templateAdded")
       val templateRemovedBytes = row.getAs[Array[Byte]]("templateRemoved")
 
-      val templatePresence = ByteArrayToBitSet(
+      val templatePresence = byteArrayToBitSet(
         templatePresenceBytes,
         TemplateBitPositions.size
       )
       val templateAdded =
-        ByteArrayToBitSet(templateAddedBytes, TemplateBitPositions.size)
+        byteArrayToBitSet(templateAddedBytes, TemplateBitPositions.size)
       val templateRemoved =
-        ByteArrayToBitSet(templateRemovedBytes, TemplateBitPositions.size)
+        byteArrayToBitSet(templateRemovedBytes, TemplateBitPositions.size)
 
       (
         id,
