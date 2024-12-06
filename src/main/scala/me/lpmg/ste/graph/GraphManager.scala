@@ -56,14 +56,7 @@ class GraphManager(
     */
   def initializeGraph(): Graph[RevisionVertex, Byte] = {
     // Read all .xml.bz2 files in the folder into an RDD
-    // val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
-
-    val filesRDD = spark.sparkContext
-      .binaryFiles(s"$dumpFolderPath/*.bz2")
-      .zipWithIndex()
-      .filter(_._2 < 3)
-      .map(_._1)
-
+    val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
     logger.warn(s"Total files found: ${filesRDD.count()}")
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -81,22 +74,22 @@ class GraphManager(
 
     logger.warn(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
 
-    // Group revisions by their page ID, sort by timestamp and save as MinimalRevision
-    val groupedRevisionsRDD =
-      allRevisionsRDD
-        .groupBy(_.pageId)
-        .mapValues { revisions =>
-          // [oldest, ..., newest]
-          revisions.toSeq.sortBy(_.timestamp).map { rev =>
-            rev.toIdTimestampPair
-          }
-        }
-
     // Find oldest revisions and update parent IDs in a distributed way
     val updatedRevisionsRDD = if (fixedDateLimit <= 0) {
       allRevisionsRDD
     } else {
       logger.warn("Setting parent ID of oldest revisions to -1")
+
+      // Group revisions by their page ID and sort by timestamp
+      val groupedRevisionsRDD =
+        allRevisionsRDD
+          .groupBy(_.pageId)
+          .mapValues { revisions =>
+            // [oldest, ..., newest]
+            revisions.toSeq.sortBy(_.timestamp).map { rev =>
+              rev.toIdTimestampPair
+            }
+          }
 
       // Create an RDD of oldest revision IDs with a marker
       val oldestRevisionsRDD = groupedRevisionsRDD
@@ -105,7 +98,7 @@ class GraphManager(
         }
         .persist() // Cache since we'll use this RDD twice
 
-      // Use leftOuterJoin to efficiently mark oldest revisions
+      // Use leftOuterJoin to mark oldest revisions
       allRevisionsRDD
         .keyBy(_.revisionId) // Create key-value pairs for join
         .leftOuterJoin(oldestRevisionsRDD)
@@ -116,7 +109,7 @@ class GraphManager(
             revision
           }
         }
-        .persist() // Cache the result as it will be used for template tracking
+        .persist()
     }
 
     // Clean up cached RDD

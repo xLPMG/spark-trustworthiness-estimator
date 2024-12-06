@@ -57,8 +57,7 @@ object ContributorEvaluator extends Serializable {
 
         // combine trust score change with template impact
         val totalImpact =
-          if (templateImpact != 0) {
-            // weight template changes more heavily for ground truth nodes
+          if (Math.abs(templateImpact) > 0.01f) {
             trustScoreChange * 0.25f + templateImpact * 0.75f
           } else {
             trustScoreChange
@@ -66,6 +65,7 @@ object ContributorEvaluator extends Serializable {
 
         (vertex.contributorId, totalImpact)
       }
+      .filter(_._1 != -1) // Filter out anonymous contributors
       .cache()
 
     // find maximum absolute value for normalization
@@ -150,14 +150,12 @@ object ContributorEvaluator extends Serializable {
       (vertex.contributorId, (id, vertex))
     }
 
-    // Join with contributor scores
     val joinedScores = verticesWithContributors
       .leftOuterJoin(contributorScores)
       .map { case (contributorId, ((vertexId, vertex), contributorScoreOpt)) =>
         (vertexId, (vertex, contributorScoreOpt.getOrElse(0.0f)))
       }
 
-    // Create new graph with updated scores
     Graph(
       joinedScores.map { case (vertexId, (vertex, contributorScore)) =>
         if (
