@@ -46,34 +46,34 @@ object Main {
     val initialGraph = TrustCalculator.initializeTrustScores(revisionGraph)
     val trustGraph = TrustCalculator.computeTrustScores(initialGraph, spark)
 
-    initialGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
-      println(s"Vertex ID: $id, Data: $vertex")
-    }
+    // initialGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
+    //   println(s"Vertex ID: $id, Data: $vertex")
+    // }
 
-    logger.warn("edges")
-    trustGraph.edges.collect().sortBy(edge => (edge.srcId, edge.dstId)).foreach { edge =>
-      println(s"Edge: ${edge.srcId} -> ${edge.dstId} | Type: ${edge.attr}")
-    }
+    // logger.warn("edges")
+    // trustGraph.edges.collect().sortBy(edge => (edge.srcId, edge.dstId)).foreach { edge =>
+    //   println(s"Edge: ${edge.srcId} -> ${edge.dstId} | Type: ${edge.attr}")
+    // }
     
 
-    logger.warn("after trust")
-     trustGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
-       println(s"Vertex ID: $id, Data: $vertex")
-    }
+    // logger.warn("after trust")
+    //  trustGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
+    //    println(s"Vertex ID: $id, Data: $vertex")
+    // }
 
-    logger.warn("Saving graph")
-    graphManager.saveGraph("trustGraph", trustGraph)
+    // logger.warn("Saving graph")
+    // graphManager.saveGraph("trustGraph", trustGraph)
 
-    logger.warn("Loading graph")
-    val loadedGraph = graphManager.loadGraph("trustGraph")
+    // logger.warn("Loading graph")
+    // val loadedGraph = graphManager.loadGraph("trustGraph")
 
-    logger.warn("after load")
-    loadedGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
-      println(s"Vertex ID: $id, Data: $vertex")
-    }
-    loadedGraph.edges.collect().sortBy(edge => (edge.srcId, edge.dstId)).foreach { edge =>
-      println(s"Edge: ${edge.srcId} -> ${edge.dstId} | Type: ${edge.attr}")
-    }
+    // logger.warn("after load")
+    // loadedGraph.vertices.collect().sortBy(_._1).foreach { case (id, vertex) =>
+    //   println(s"Vertex ID: $id, Data: $vertex")
+    // }
+    // loadedGraph.edges.collect().sortBy(edge => (edge.srcId, edge.dstId)).foreach { edge =>
+    //   println(s"Edge: ${edge.srcId} -> ${edge.dstId} | Type: ${edge.attr}")
+    // }
 
     spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("Main")}")

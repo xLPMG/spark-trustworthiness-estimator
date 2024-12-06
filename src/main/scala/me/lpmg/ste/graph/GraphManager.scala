@@ -196,7 +196,6 @@ class GraphManager(
     edgesDF.write
       .mode("overwrite")
       .option("compression", "snappy")
-      .partitionBy("src")
       .parquet(graphFolderPath.resolve("edges_parquet").toString)
 
     logger.warn("Graph saved successfully.")
