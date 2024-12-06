@@ -30,8 +30,8 @@
       <parentid>11</parentid>
       <timestamp>2011-01-02T00:00:01Z</timestamp>
       <contributor>
-        <username>Contributor 2</username>
-        <id>2</id>
+        <username>Contributor 1</username>
+        <id>1</id>
       </contributor>
       <comment>Comment 2</comment>
       <model>wikitext</model>
@@ -44,8 +44,8 @@
       <parentid>12</parentid>
       <timestamp>2011-01-03T00:00:01Z</timestamp>
       <contributor>
-        <username>Contributor 3</username>
-        <id>3</id>
+        <username>Contributor 2</username>
+        <id>2</id>
       </contributor>
       <comment>Comment 3</comment>
       <model>wikitext</model>
@@ -58,8 +58,8 @@
       <parentid>13</parentid>
       <timestamp>2011-01-04T00:00:01Z</timestamp>
       <contributor>
-        <username>Contributor 4</username>
-        <id>4</id>
+        <username>Contributor 3</username>
+        <id>3</id>
       </contributor>
       <comment>Comment 4</comment>
       <model>wikitext</model>

@@ -23,13 +23,13 @@ object TrustCalculator extends Serializable {
       initialGroundTruthScore: Float = 1.0f
   ): Graph[RevisionVertex, Byte] = {
     graph.mapVertices { case (id, vertex) =>
-      if (vertex.templateAdded.cardinality() > 0) {
-        vertex.copy(trustScore = -initialGroundTruthScore)
-      } else if (vertex.templateRemoved.cardinality() > 0) {
-        vertex.copy(trustScore = initialGroundTruthScore)
-      } else {
-        vertex.copy(trustScore = 0.0f)
-      }
+      val templateAddedScore =
+        vertex.templateAdded.cardinality() * -initialGroundTruthScore
+      val templateRemovedScore =
+        vertex.templateRemoved.cardinality() * initialGroundTruthScore
+
+      val trustScore = templateAddedScore + templateRemovedScore
+      vertex.copy(trustScore = trustScore)
     }
   }
 
@@ -53,9 +53,17 @@ object TrustCalculator extends Serializable {
     // Combine the trust scores from parent and child graphs
     val combinedTrustScores = parent.vertices.innerJoin(child.vertices) {
       case (id, parentVertex, childVertex) =>
-        val combinedScore = parentVertex.trustScore + childVertex.trustScore
-        val clampedScore = math.max(-1.0f, math.min(1.0f, combinedScore))
-        parentVertex.copy(trustScore = clampedScore)
+        if (
+          parentVertex.templateAdded
+            .cardinality() > 0 || parentVertex.templateRemoved.cardinality() > 0
+        ) {
+          // Don't modify vertices that have template changes (ground truths)
+          parentVertex
+        } else {
+          parentVertex.copy(trustScore =
+            parentVertex.trustScore + childVertex.trustScore
+          )
+        }
     }
 
     // Create a new graph with the combined trust scores
