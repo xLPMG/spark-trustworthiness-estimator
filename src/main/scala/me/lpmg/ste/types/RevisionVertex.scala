@@ -14,26 +14,29 @@ class RevisionVertex(
     val contributorId: Int,
     val templatePresence: BitSet,
     val templateAdded: BitSet,
-    val templateRemoved: BitSet
+    val templateRemoved: BitSet,
+    val isGroundTruth: Boolean = false
 ) extends Serializable {
   def copy(
       trustScore: Float = this.trustScore,
       contributorId: Int = this.contributorId,
       templatePresence: BitSet = this.templatePresence,
       templateAdded: BitSet = this.templateAdded,
-      templateRemoved: BitSet = this.templateRemoved
+      templateRemoved: BitSet = this.templateRemoved,
+      isGroundTruth: Boolean = this.isGroundTruth
   ): RevisionVertex = {
     new RevisionVertex(
       trustScore,
       contributorId,
       templatePresence,
       templateAdded,
-      templateRemoved
+      templateRemoved,
+      isGroundTruth
     )
   }
 
   override def toString(): String = {
-    s"Revision(trustScore=${trustScore}, contributorId=${contributorId}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)})"
+    s"Revision(trustScore=${trustScore}, contributorId=${contributorId}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)}, isGroundTruth=${isGroundTruth})"
   }
 
   private def bitSetToBinaryString(bitSet: BitSet): String = {

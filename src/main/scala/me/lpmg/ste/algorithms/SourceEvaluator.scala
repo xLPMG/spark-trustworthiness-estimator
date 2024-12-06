@@ -1,0 +1,65 @@
+package me.lpmg.ste.algorithms
+
+import org.apache.spark.rdd.RDD
+import me.lpmg.ste.types.Revision
+import org.apache.spark.graphx.Graph
+import me.lpmg.ste.types.RevisionVertex
+
+object SourceEvaluator extends Serializable {
+
+  /** Evaluates the trust scores of sources.
+    *
+    * @param revisions
+    *   RDD of revisions
+    * @return
+    *   Map of source URLs and their trust scores
+    */
+  def evaluateSources(
+      revisions: RDD[Revision]
+  ): Map[String, Float] = {
+    evaluateSourcesDistributed(revisions, Seq.empty).collect().toMap
+  }
+
+  /** Evaluates the trust scores of sources in a distributed way.
+    *
+    * @param revisions
+    *   RDD of revisions
+    * @param sourceTemplatePositions
+    *   Sequence of template positions related to source quality
+    * @return
+    *   RDD of source URLs and their trust scores
+    */
+  def evaluateSourcesDistributed(
+      revisions: RDD[Revision],
+      sourceTemplatePositions: Seq[Int]
+  ): RDD[(String, Float)] = {
+    // For each revision, get (source, templateImpact) pairs
+    val sourceImpacts = revisions.flatMap { revision =>
+      // Only consider specified template positions
+      val templateAddedCount = sourceTemplatePositions.count(pos => revision.templateAdded.get(pos))
+      val templateRemovedCount = sourceTemplatePositions.count(pos => revision.templateRemoved.get(pos))
+      
+      // Calculate impact: negative for adding templates, positive for removing
+      val templateImpact = (-templateAddedCount + templateRemovedCount).toFloat
+      
+      revision.sources.map(source => (source, templateImpact))
+    }.cache()
+
+    // find maximum absolute value for normalization
+    val maxAbs = sourceImpacts
+      .map { case (_, score) => math.abs(score) }
+      .max()
+
+    // normalize scores and combine impacts for each source
+    val normalizedSourceScores = sourceImpacts
+      .mapValues(score =>
+        if (maxAbs > 0) score / maxAbs
+        else score
+      )
+      .reduceByKey(_ + _)
+      .mapValues(sum => math.max(-1.0f, math.min(1.0f, sum)))
+
+    normalizedSourceScores
+  }
+
+}

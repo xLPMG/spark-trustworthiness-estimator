@@ -5,12 +5,58 @@ import org.apache.spark.util.collection.BitSet
 /** Collector class of different custom types used in the project.
   */
 object Types {
-  /** Map of template names to their position in the template bitset */
+
+  /** Map of template names to their position in the template bitset Source:
+    * https://en.wikipedia.org/wiki/Wikipedia:Template_index/Cleanup
+    */
   final val TemplateBitPositions: Map[String, Byte] = Map(
-    "Contradict" -> 0,
-    "Disputed" -> 1,
-    "Hoax" -> 2,
-    "Unreferenced" -> 3
+    //////////////////////////////////////////////////////////////////////
+    // SOURCES
+    //////////////////////////////////////////////////////////////////////
+    // Indicates that an article relies on sources that may not be reliable or reputable.
+    "Unreliable sources" -> 0,
+
+    // Warns that the article or section cites self-published sources (blogs, personal websites, etc.) which may not meet Wikipedia’s reliability standards.
+    "Self-published source" -> 1,
+
+    // Flags situations where a source is citing Wikipedia or another circular reference, leading to reliability issues.
+    "Circular source" -> 2,
+
+    // Notes that the article relies heavily on primary sources, which may be biased or incomplete without secondary analysis.
+    "Primary sources" -> 3,
+
+    // Used in articles to indicate inline citations that link to insufficiently reliable sources
+    "Better source needed" -> 4,
+
+    // Article contains improper references to user-generated content
+    "user-generated" -> 5,
+
+    // Indicates that the article has a large number of references in need of verification
+    "Verify sources" -> 6,
+    //////////////////////////////////////////////////////////////////////
+    // CONTRIBUTOR
+    //////////////////////////////////////////////////////////////////////
+    // Indicates that the contributor of the article may have a conflict of interest 
+    "COI" -> 7,
+
+    // Disputed neutrality
+    "POV" -> 8,
+    "political POV" -> 9,
+
+    // Factual accuracy is disputed 
+    "Disputed" -> 10,
+
+    // Article contains promotional content
+    "Advert" -> 11,
+
+    // Article written subjectively
+    "Peacock" -> 12,
+
+    // Contradictory claims
+    "Contradict" -> 13,
+
+    // Hoax
+    "Hoax" -> 14,
   )
 
   /** Converts a BitSet to a byte array for storage

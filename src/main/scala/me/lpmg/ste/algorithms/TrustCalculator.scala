@@ -8,6 +8,7 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.graphx.VertexRDD
 import org.apache.spark.graphx.EdgeDirection
 import me.lpmg.ste.types.EdgeType
+import me.lpmg.ste.types.Types
 
 final case class TrustMessage(score: Float, steps: Int)
 
@@ -24,9 +25,11 @@ object TrustCalculator extends Serializable {
   ): Graph[RevisionVertex, Byte] = {
     graph.mapVertices { case (id, vertex) =>
       val templateAddedScore =
-        vertex.templateAdded.cardinality() * -initialGroundTruthScore
+        (vertex.templateAdded
+          .cardinality() * -initialGroundTruthScore) / Types.TemplateBitPositions.size
       val templateRemovedScore =
-        vertex.templateRemoved.cardinality() * initialGroundTruthScore
+        (vertex.templateRemoved
+          .cardinality() * initialGroundTruthScore) / Types.TemplateBitPositions.size
 
       val trustScore = templateAddedScore + templateRemovedScore
       vertex.copy(trustScore = trustScore)
@@ -53,10 +56,7 @@ object TrustCalculator extends Serializable {
     // Combine the trust scores from parent and child graphs
     val combinedTrustScores = parent.vertices.innerJoin(child.vertices) {
       case (id, parentVertex, childVertex) =>
-        if (
-          parentVertex.templateAdded
-            .cardinality() > 0 || parentVertex.templateRemoved.cardinality() > 0
-        ) {
+        if (parentVertex.isGroundTruth) {
           // Don't modify vertices that have template changes (ground truths)
           parentVertex
         } else {
@@ -90,14 +90,10 @@ object TrustCalculator extends Serializable {
     // for tracking if the vertex has been visited
     final case class VertexState(vertex: RevisionVertex, visited: Boolean)
     val initialMsg = TrustMessage(0.0f, 0)
-    def isGroundTruth(vertex: RevisionVertex): Boolean = {
-      vertex.templateAdded.cardinality() > 0 || vertex.templateRemoved
-        .cardinality() > 0
-    }
 
     // Ground Truth nodes
     val initialGraph = graph.mapVertices { case (id, vertex) =>
-      VertexState(vertex, isGroundTruth(vertex))
+      VertexState(vertex, vertex.isGroundTruth)
     }
     val propagatedGraph = initialGraph.pregel(initialMsg)(
       (id, state, msg) => {
@@ -105,7 +101,7 @@ object TrustCalculator extends Serializable {
           state
         } else {
           val currentScore = state.vertex.trustScore
-          if (isGroundTruth(state.vertex)) {
+          if (state.vertex.isGroundTruth) {
             state
           } else if (math.abs(msg.score) > math.abs(currentScore)) {
             VertexState(state.vertex.copy(trustScore = msg.score), true)
@@ -128,7 +124,7 @@ object TrustCalculator extends Serializable {
           // or if the destination vertex is a ground truth
           if (math.abs(srcScore) <= decrement) {
             Iterator.empty
-          } else if (isGroundTruth(dstVertex)) {
+          } else if (dstVertex.isGroundTruth) {
             Iterator.empty
           } else {
             val newAbsScore = math.abs(srcScore) - decrement

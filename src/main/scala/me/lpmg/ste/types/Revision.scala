@@ -87,7 +87,8 @@ class Revision(
       contributorId,
       templatePresence,
       templateAdded,
-      templateRemoved
+      templateRemoved,
+      templateAdded.cardinality() > 0 || templateRemoved.cardinality() > 0
     )
 
   override def toString(): String = {

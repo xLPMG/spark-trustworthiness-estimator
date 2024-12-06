@@ -11,6 +11,10 @@ import java.time.ZonedDateTime
 import java.time.ZoneId
 import me.lpmg.ste.types.RevisionVertex
 import me.lpmg.ste.algorithms.ContributorEvaluator
+import me.lpmg.ste.data.RevisionManager
+import me.lpmg.ste.graph.GraphCreator
+import javax.xml.transform.Source
+import me.lpmg.ste.algorithms.SourceEvaluator
 
 object Main {
 
@@ -32,32 +36,34 @@ object Main {
       .builder()
       .getOrCreate()
 
-    val graphManager = new GraphManager(spark, dumpFolderPath, dataFolderPath)
-    // graphManager.setDateLimit(
+    val revisionManager =
+      new RevisionManager(spark, dumpFolderPath, dataFolderPath)
+    // revisionManager.setDateLimit(
     //   ZonedDateTime.of(2022, 1, 1, 0, 0, 0, 0, ZoneId.of("UTC"))
     // )
-    val revisionGraph = graphManager.initializeGraph()
+    val revisions = revisionManager.retrieveRevisions()
+    val revisionGraph = GraphCreator.createRevisionGraph(revisions)
 
     logger.warn(s"Graph vertices: ${revisionGraph.vertices.count()}")
     logger.warn(s"Graph edges: ${revisionGraph.edges.count()}")
-
-    // graphManager.saveGraph("editedGraph", editedGraph)
 
     // trust computation
     val initialGraph = TrustCalculator.initializeTrustScores(revisionGraph)
     val trustGraph = TrustCalculator.computeTrustScores(initialGraph, spark)
 
-    // contributor evaluation
-    val contributorsRDD =
-      ContributorEvaluator.evaluateContributorsDistributed(trustGraph)
-    val editedGraph =
-      ContributorEvaluator.applyContributorTrustScoresWithoutGroundTruths(
-        trustGraph,
-        contributorsRDD,
-        0.2f
+    // source evaluation
+    val sourcesRDD =
+      SourceEvaluator.evaluateSourcesDistributed(
+        revisions,
+        Seq(0, 1, 2, 3, 4, 5, 6)
       )
 
-    graphManager.saveTrustScores("trustScores", editedGraph)
+    // contributor evaluation
+    val contributorsRDD =
+      ContributorEvaluator.evaluateContributorsDistributed(
+        revisions,
+        Seq(7, 8, 9, 10, 11, 12, 13, 14)
+      )
 
     spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("Main")}")
