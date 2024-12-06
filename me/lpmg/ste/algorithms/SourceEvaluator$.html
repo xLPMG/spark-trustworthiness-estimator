@@ -117,10 +117,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="me.lpmg">lpmg</a></dd></dl></div>
-    </li><li name="me.lpmg.ste.graph" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="graph"></a><a id="graph:graph"></a>
+    </li><li name="me.lpmg.ste.algorithms" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="algorithms"></a><a id="algorithms:algorithms"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/index.html" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -129,29 +129,37 @@
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="" href="index.html"><span class="name">graph</span></a>
+        <a title="" href="index.html"><span class="name">algorithms</span></a>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="GraphCreator$.html" title="Provides functionality to create a revision graph using GraphX."></a>
-                        <a href="GraphCreator$.html" title="Provides functionality to create a revision graph using GraphX.">GraphCreator</a>
+                        <a class="object" href="ContributorEvaluator$.html" title=""></a>
+                        <a href="ContributorEvaluator$.html" title="">ContributorEvaluator</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="" title=""></a>
-                        <a href="" title="">GraphManager</a>
+                        <a class="object" href="" title=""></a>
+                        <a href="" title="">SourceEvaluator</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="object" href="TrustCalculator$.html" title=""></a>
+                        <a href="TrustCalculator$.html" title="">TrustCalculator</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="TrustMessage.html" title=""></a>
+                        <a href="TrustMessage.html" title="">TrustMessage</a>
                       </li>
               </ul>
             </div>
           </div>
           <div id="content">
-            <body class="class type">
+            <body class="object value">
       <div id="definition">
-        <div class="big-circle class">c</div>
-        <p id="owner"><a href="../../../index.html" class="extype" name="me">me</a>.<a href="../../index.html" class="extype" name="me.lpmg">lpmg</a>.<a href="../index.html" class="extype" name="me.lpmg.ste">ste</a>.<a href="index.html" class="extype" name="me.lpmg.ste.graph">graph</a></p>
-        <h1>GraphManager<span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html" title="Permalink">
+        <div class="big-circle object">o</div>
+        <p id="owner"><a href="../../../index.html" class="extype" name="me">me</a>.<a href="../../index.html" class="extype" name="me.lpmg">lpmg</a>.<a href="../index.html" class="extype" name="me.lpmg.ste">ste</a>.<a href="index.html" class="extype" name="me.lpmg.ste.algorithms">algorithms</a></p>
+        <h1>SourceEvaluator<span class="permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
@@ -161,10 +169,10 @@
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">class</span>
+        <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">GraphManager</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <span class="name">SourceEvaluator</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
@@ -173,7 +181,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -199,7 +207,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="me.lpmg.ste.graph.GraphManager"><span>GraphManager</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="me.lpmg.ste.algorithms.SourceEvaluator"><span>SourceEvaluator</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -217,26 +225,7 @@
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="me.lpmg.ste.graph.GraphManager#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,dumpFolderPath:String,dataFolderPath:String):me.lpmg.ste.graph.GraphManager"></a><a id="&lt;init&gt;:GraphManager"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,dumpFolderPath:String,dataFolderPath:String):me.lpmg.ste.graph.GraphManager" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">GraphManager</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="dumpFolderPath">dumpFolderPath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dataFolderPath">dataFolderPath: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
-      </span>
-      
-      
-    </li></ol>
-            </div>
+        
 
         
 
@@ -248,7 +237,7 @@
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -264,7 +253,7 @@
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html###():Int" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -280,7 +269,7 @@
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -296,7 +285,7 @@
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -312,7 +301,7 @@
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#clone():Object" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -335,26 +324,10 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphManager#dateLimit" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="dateLimit:Long"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#dateLimit:Long" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">var</span>
-      </span>
-      <span class="symbol">
-        <span class="name">dateLimit</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -370,7 +343,7 @@
     </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#equals(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#equals(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -383,10 +356,49 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="me.lpmg.ste.algorithms.SourceEvaluator#evaluateSources" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):Map[String,Float]"></a><a id="evaluateSources(RDD[Revision]):Map[String,Float]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):Map[String,Float]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">evaluateSources</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Float">Float</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Evaluates the trust scores of sources.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of sources.
+</p></div><dl class="paramcmts block"><dt class="param">revisions</dt><dd class="cmt"><p>
+  RDD of revisions</p></dd><dt>returns</dt><dd class="cmt"><p>
+  Map of source URLs and their trust scores</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.algorithms.SourceEvaluator#evaluateSourcesDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],sourceTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(String,Float)]"></a><a id="evaluateSourcesDistributed(RDD[Revision],Seq[Int]):RDD[(String,Float)]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],sourceTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(String,Float)]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">evaluateSourcesDistributed</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>, <span name="sourceTemplatePositions">sourceTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Float">Float</span>)]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Evaluates the trust scores of sources in a distributed way.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of sources in a distributed way.
+</p></div><dl class="paramcmts block"><dt class="param">revisions</dt><dd class="cmt"><p>
+  RDD of revisions</p></dd><dt class="param">sourceTemplatePositions</dt><dd class="cmt"><p>
+  Sequence of template positions related to source quality</p></dd><dt>returns</dt><dd class="cmt"><p>
+  RDD of source URLs and their trust scores</p></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#getClass():Class[_]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -407,7 +419,7 @@
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#hashCode():Int" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#hashCode():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -425,28 +437,10 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphManager#initializeGraph" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="initializeGraph():org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="initializeGraph():Graph[RevisionVertex,Byte]"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#initializeGraph():org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">initializeGraph</span><span class="params">()</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Initializes the graph by reading all revisions from the dump folder.</p><div class="fullcomment"><div class="comment cmt"><p>Initializes the graph by reading all revisions from the dump folder.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
-  The revision graph</p></dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -459,45 +453,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphManager#loadGraph" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="loadGraph(graphName:String):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="loadGraph(String):Graph[RevisionVertex,Byte]"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#loadGraph(graphName:String):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">loadGraph</span><span class="params">(<span name="graphName">graphName: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Loads a saved revision graph from the data folder.</p><div class="fullcomment"><div class="comment cmt"><p>Loads a saved revision graph from the data folder.
-</p></div><dl class="paramcmts block"><dt class="param">graphName</dt><dd class="cmt"><p>
-  The name of the graph to load</p></dd><dt>returns</dt><dd class="cmt"><p>
-  The loaded Graph[RevisionVertex, Byte]</p></dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphManager#logger" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="logger:com.typesafe.scalalogging.Logger"></a><a id="logger:Logger"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#logger:com.typesafe.scalalogging.Logger" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">logger</span><span class="result">: <span class="extype" name="com.typesafe.scalalogging.Logger">Logger</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -513,7 +472,7 @@
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#notify():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -534,7 +493,7 @@
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#notifyAll():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -552,82 +511,10 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphManager#saveGraph" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="saveGraph(graphName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit"></a><a id="saveGraph(String,Graph[RevisionVertex,Byte]):Unit"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#saveGraph(graphName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">saveGraph</span><span class="params">(<span name="graphName">graphName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionGraph">revisionGraph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Saves the revision graph to the data folder.</p><div class="fullcomment"><div class="comment cmt"><p>Saves the revision graph to the data folder.
-</p></div><dl class="paramcmts block"><dt class="param">graphName</dt><dd class="cmt"><p>
-  The name of the graph</p></dd><dt class="param">revisionGraph</dt><dd class="cmt"><p>
-  The revision graph to save</p></dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphManager#saveTrustScores" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="saveTrustScores(fileName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit"></a><a id="saveTrustScores(String,Graph[RevisionVertex,Byte]):Unit"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#saveTrustScores(fileName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">saveTrustScores</span><span class="params">(<span name="fileName">fileName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionGraph">revisionGraph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Saves the trust scores of revisions to a Parquet file
-</p>
-    </li><li name="me.lpmg.ste.graph.GraphManager#setDateLimit" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setDateLimit(date:Long):Unit"></a><a id="setDateLimit(Long):Unit"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#setDateLimit(date:Long):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">setDateLimit</span><span class="params">(<span name="date">date: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Sets the date limit for the graph.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the date limit for the graph. Only revisions after this date will be
-included in the graph.
-</p></div></div>
-    </li><li name="me.lpmg.ste.graph.GraphManager#setDateLimit" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setDateLimit(date:java.time.ZonedDateTime):Unit"></a><a id="setDateLimit(ZonedDateTime):Unit"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#setDateLimit(date:java.time.ZonedDateTime):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">setDateLimit</span><span class="params">(<span name="date">date: <span class="extype" name="java.time.ZonedDateTime">ZonedDateTime</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Sets the date limit for the graph.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the date limit for the graph. Only revisions after this date will be
-included in the graph.
-</p></div></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -643,7 +530,7 @@ included in the graph.
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#toString():String" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -659,7 +546,7 @@ included in the graph.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -681,7 +568,7 @@ included in the graph.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -703,7 +590,7 @@ included in the graph.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#wait():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -733,7 +620,7 @@ included in the graph.
               <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager.html#finalize():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -759,7 +646,11 @@ included in the graph.
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.Serializable">
+              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>

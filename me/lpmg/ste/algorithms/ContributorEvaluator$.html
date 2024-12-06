@@ -139,6 +139,10 @@
                         <a href="" title="">ContributorEvaluator</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="object" href="SourceEvaluator$.html" title=""></a>
+                        <a href="SourceEvaluator$.html" title="">SourceEvaluator</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="object" href="TrustCalculator$.html" title=""></a>
                         <a href="TrustCalculator$.html" title="">TrustCalculator</a>
                       </li><li class="current-entities indented4">
@@ -278,51 +282,6 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="me.lpmg.ste.algorithms.ContributorEvaluator#applyContributorTrustScores" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="applyContributorTrustScores(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],contributorScores:org.apache.spark.rdd.RDD[(Int,Float)],contributorScoreImportance:Float):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="applyContributorTrustScores(Graph[RevisionVertex,Byte],RDD[(Int,Float)],Float):Graph[RevisionVertex,Byte]"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ContributorEvaluator$.html#applyContributorTrustScores(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],contributorScores:org.apache.spark.rdd.RDD[(Int,Float)],contributorScoreImportance:Float):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">applyContributorTrustScores</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="contributorScores">contributorScores: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Float">Float</span>)]</span>, <span name="contributorScoreImportance">contributorScoreImportance: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Applies the trust scores of contributors to the graph.</p><div class="fullcomment"><div class="comment cmt"><p>Applies the trust scores of contributors to the graph.
-</p></div><dl class="paramcmts block"><dt class="param">graph</dt><dd class="cmt"><p>
-  Graph of revisions</p></dd><dt class="param">contributorScores</dt><dd class="cmt"><p>
-  RDD of contributor IDs and their trust scores</p></dd><dt class="param">contributorScoreImportance</dt><dd class="cmt"><p>
-  Importance of contributor trust scores</p></dd><dt>returns</dt><dd class="cmt"><p>
-  Graph with contributor trust scores applied</p></dd></dl></div>
-    </li><li name="me.lpmg.ste.algorithms.ContributorEvaluator#applyContributorTrustScoresWithoutGroundTruths" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="applyContributorTrustScoresWithoutGroundTruths(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],contributorScores:org.apache.spark.rdd.RDD[(Int,Float)],contributorScoreImportance:Float):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="applyContributorTrustScoresWithoutGroundTruths(Graph[RevisionVertex,Byte],RDD[(Int,Float)],Float):Graph[RevisionVertex,Byte]"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ContributorEvaluator$.html#applyContributorTrustScoresWithoutGroundTruths(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte],contributorScores:org.apache.spark.rdd.RDD[(Int,Float)],contributorScoreImportance:Float):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">applyContributorTrustScoresWithoutGroundTruths</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="contributorScores">contributorScores: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Float">Float</span>)]</span>, <span name="contributorScoreImportance">contributorScoreImportance: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Applies the trust scores of contributors to the graph without applying
-trust scores to ground truth nodes
-</p><div class="fullcomment"><div class="comment cmt"><p>Applies the trust scores of contributors to the graph without applying
-trust scores to ground truth nodes
-</p></div><dl class="paramcmts block"><dt class="param">graph</dt><dd class="cmt"><p>
-  Graph of revisions</p></dd><dt class="param">contributorScores</dt><dd class="cmt"><p>
-  RDD of contributor IDs and their trust scores</p></dd><dt class="param">contributorScoreImportance</dt><dd class="cmt"><p>
-  Importance of contributor trust scores</p></dd><dt>returns</dt><dd class="cmt"><p>
-  Graph with contributor trust scores applied</p></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -398,9 +357,9 @@ trust scores to ground truth nodes
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.ContributorEvaluator#evaluateContributors" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="evaluateContributors(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Map[Int,Float]"></a><a id="evaluateContributors(Graph[RevisionVertex,Byte]):Map[Int,Float]"></a>
+      <a id="evaluateContributors(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):Map[Int,Float]"></a><a id="evaluateContributors(RDD[Revision]):Map[Int,Float]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ContributorEvaluator$.html#evaluateContributors(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Map[Int,Float]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ContributorEvaluator$.html#evaluateContributors(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):Map[Int,Float]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -409,17 +368,17 @@ trust scores to ground truth nodes
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateContributors</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Float">Float</span>]</span>
+        <span class="name">evaluateContributors</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Float">Float</span>]</span>
       </span>
       
-      <p class="shortcomment cmt">Evaluates the trust scores of contributors in the graph.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of contributors in the graph.
-</p></div><dl class="paramcmts block"><dt class="param">graph</dt><dd class="cmt"><p>
-  Graph of revisions</p></dd><dt>returns</dt><dd class="cmt"><p>
+      <p class="shortcomment cmt">Evaluates the trust scores of contributors.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of contributors.
+</p></div><dl class="paramcmts block"><dt class="param">revisions</dt><dd class="cmt"><p>
+  RDD of revisions</p></dd><dt>returns</dt><dd class="cmt"><p>
   Map of contributor IDs and their trust scores</p></dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.ContributorEvaluator#evaluateContributorsDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="evaluateContributorsDistributed(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):org.apache.spark.rdd.RDD[(Int,Float)]"></a><a id="evaluateContributorsDistributed(Graph[RevisionVertex,Byte]):RDD[(Int,Float)]"></a>
+      <a id="evaluateContributorsDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],contributorTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(Int,Float)]"></a><a id="evaluateContributorsDistributed(RDD[Revision],Seq[Int]):RDD[(Int,Float)]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ContributorEvaluator$.html#evaluateContributorsDistributed(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):org.apache.spark.rdd.RDD[(Int,Float)]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ContributorEvaluator$.html#evaluateContributorsDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],contributorTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(Int,Float)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -428,14 +387,13 @@ trust scores to ground truth nodes
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateContributorsDistributed</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Float">Float</span>)]</span>
+        <span class="name">evaluateContributorsDistributed</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>, <span name="contributorTemplatePositions">contributorTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Float">Float</span>)]</span>
       </span>
       
-      <p class="shortcomment cmt">Evaluates the trust scores of contributors in the graph in a distributed
-way.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of contributors in the graph in a distributed
-way.
-</p></div><dl class="paramcmts block"><dt class="param">graph</dt><dd class="cmt"><p>
-  Graph of revisions</p></dd><dt>returns</dt><dd class="cmt"><p>
+      <p class="shortcomment cmt">Evaluates the trust scores of contributors in a distributed way.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of contributors in a distributed way.
+</p></div><dl class="paramcmts block"><dt class="param">revisions</dt><dd class="cmt"><p>
+  RDD of revisions</p></dd><dt class="param">contributorTemplatePositions</dt><dd class="cmt"><p>
+  Sequence of template positions related to contributor trustworthiness</p></dd><dt>returns</dt><dd class="cmt"><p>
   RDD of contributor IDs and their trust scores</p></dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
