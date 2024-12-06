@@ -9,7 +9,7 @@ import org.apache.spark.graphx.VertexRDD
 import org.apache.spark.graphx.EdgeDirection
 import me.lpmg.ste.types.EdgeType
 
-case class TrustMessage(score: Float, steps: Int)
+final case class TrustMessage(score: Float, steps: Int)
 
 object TrustCalculator extends Serializable {
 
@@ -59,36 +59,7 @@ object TrustCalculator extends Serializable {
     }
 
     // Create a new graph with the combined trust scores
-    val combinedGraph = Graph(combinedTrustScores, graph.edges)
-
-    //////////////////////////////////////////////////////////////
-    // LINK BASED PROPAGATION
-    //////////////////////////////////////////////////////////////
-
-    // Debug: Print initial scores
-    println("Initial scores:")
-    combinedGraph.vertices.collect().foreach { case (id, vertex) =>
-      println(s"Vertex $id: score = ${vertex.trustScore}")
-    }
-
-    var linkBased = propagateLinkBasedTrustScores(
-      combinedGraph,
-      EdgeType.linkedFrom,
-      0.7f
-    )
-    linkBased = propagateLinkBasedTrustScores(
-      linkBased,
-      EdgeType.linkedFrom,
-      0.2f
-    )
-
-    // Debug: Print final scores
-    println("Final scores after link propagation:")
-    linkBased.vertices.collect().foreach { case (id, vertex) =>
-      println(s"Vertex $id: score = ${vertex.trustScore}")
-    }
-
-    linkBased
+    Graph(combinedTrustScores, graph.edges)
   }
 
   /** Propagate trust scores along temporal edges
@@ -108,7 +79,7 @@ object TrustCalculator extends Serializable {
       decrement: Float
   ): Graph[RevisionVertex, Byte] = {
     // for tracking if the vertex has been visited
-    case class VertexState(vertex: RevisionVertex, visited: Boolean)
+    final case class VertexState(vertex: RevisionVertex, visited: Boolean)
     val initialMsg = TrustMessage(0.0f, 0)
     def isGroundTruth(vertex: RevisionVertex): Boolean = {
       vertex.templateAdded.cardinality() > 0 || vertex.templateRemoved
@@ -171,52 +142,6 @@ object TrustCalculator extends Serializable {
     )
 
     // return only the vertex data
-    propagatedGraph.mapVertices { case (id, state) => state.vertex }
-  }
-
-  private def propagateLinkBasedTrustScores(
-      graph: Graph[RevisionVertex, Byte],
-      edgeType: Byte,
-      dampingFactor: Float
-  ): Graph[RevisionVertex, Byte] = {
-    case class VertexState(vertex: RevisionVertex, visited: Boolean)
-    val initialMsg = TrustMessage(0.0f, 0)
-
-    // initially no verices have been visited
-    val initialGraph = graph.mapVertices { case (id, vertex) =>
-      VertexState(vertex, false)
-    }
-
-    val propagatedGraph = initialGraph.pregel(initialMsg, maxIterations = 1)(
-      (id, state, msg) => {
-        // Only update score if we received a non-negligible message
-        if (math.abs(msg.score) > 1e-6f) {
-          val newScore = state.vertex.trustScore + msg.score
-          val clampedScore = math.max(-1.0f, math.min(1.0f, newScore))
-          VertexState(state.vertex.copy(trustScore = clampedScore), true)
-        } else {
-          state
-        }
-      },
-      // message sending along edge type - only send once per vertex
-      triplet => {
-        if (triplet.attr == edgeType && !triplet.srcAttr.visited) {
-          Iterator(
-            (
-              triplet.dstId,
-              TrustMessage(triplet.srcAttr.vertex.trustScore * dampingFactor, 1)
-            )
-          )
-        } else {
-          Iterator.empty
-        }
-      },
-      // message merging
-      (msg1, msg2) => {
-        if (math.abs(msg1.score) > math.abs(msg2.score)) msg1 else msg2
-      }
-    )
-
     propagatedGraph.mapVertices { case (id, state) => state.vertex }
   }
 }

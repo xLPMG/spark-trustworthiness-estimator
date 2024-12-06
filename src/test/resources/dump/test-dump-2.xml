@@ -1,0 +1,256 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+  <siteinfo>5:~$ ls /mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20220901
+    <sitename>Wikipedia</sitename>
+    <dbname>enwiki</dbname>
+    <base>https://en.wikipedia.org/wiki/Main_Page</base>
+    <generator>MediaWiki 1.39.0-wmf.27</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Flute</title>
+    <ns>0</ns>
+    <id>1</id>
+      <revision>
+        <id>74623597</id>
+        <parentid>74602188</parentid>
+        <timestamp>2006-09-09T00:13:15Z</timestamp>
+        <contributor>
+          <username>Pgray@pgray.net</username>
+          <id>1341316</id>
+        </contributor>
+        <comment>/* External links */</comment>
+        <model>wikitext</model>
+        <format>text/x-wiki</format>
+        <text bytes="21878" xml:space="preserve">{{dablink|This article is about the family of musical instruments. For the specific instrument, see [[Western concert flute]]. For the sailing ship, see [[Fluyt]]. For the drinkware, see [[Champagne flute]].}}
+
+{{limitedgeographicscope}}
+
+The '''flute''' is a [[musical instrument]] of the [[woodwind]] family. Unlike other woodwind instruments, a flute produces its sound from the flow of air against an edge, instead of using a [[Reed (music)|reed]]. A [[musician]] who plays the flute is generally referred to as either a [[flautist|''flautist'']] (common term) or a ''flutist'' (american term).  
+
+Flute tones are sweet in character and blend well with other instruments. The flute's pitch, and various aspects of its [[timbre]] are flexible, allowing a very high degree of instantaneous expressive control.
+
+[[Image:Flute 1911.jpg|thumb|300px|right|An illustration of a [[Western concert flute]]]]
+
+==History== 
+[[Image:Boneflute.jpg|thumb|Early flutes were made of carved [[bone]].]]
+
+The flute has appeared in many different forms in many different locations around the world. A flute made from a [[mammoth]] tusk, found in the [[Swabian Alb]] and dated to 30,000 to 37,000 years ago&lt;ref name=&quot;CBCArts&quot;&gt;CBC Arts&lt;/ref&gt; and one seven-hole flute made from a swan's bone in the Geissenklosterle Cave in Germany to circa 36,000 years ago&lt;ref name=&quot;JiahuBoneFlutes&quot;&gt;Zhang et. al.&lt;/ref&gt; are among the oldest known musical instruments. A bone fragment of a juvenile [[cave bear]] with a pair of holes found at [[Divje Babe]] in [[Slovenia]] and dated to about 50,000 years ago may also be an early flute.&lt;ref name=&quot;WhyFiles&quot;&gt;Tenenbaum&lt;/ref&gt;
+
+==Flute acoustics==
+A flute produces [[sound]] when a stream of air directed across the top of a hole bounces in and out of the hole.&lt;ref name=&quot;FluteAcoustics&quot;&gt;Wolfe&lt;/ref&gt; Some engineers have called this a [[fluid]]ic multivibrator, because it forms a mechanical analogy to an [[electronics|electronic]] circuit called a [[multivibrator]].  
+
+The stream beats against the air in a resonator, usually a tube.  The player changes the pitch of the flute by changing the effective length of the resonator.  This is done either by closing holes, or more rarely, with a slide similar to a [[trombone]]'s slide.
+
+Because the air-stream has a lower mass than most resonators used in musical instruments, it can beat faster, but with less momentum.  As a result, flutes tend to be softer, but higher-pitched, than other sound generators of the same size.
+
+To be louder, a flute must use a larger resonator and a wider air-stream.  A flute can generally be made louder by making its resonator and tone-holes larger.  This is why police whistles, a form of flute, are very wide for their pitch, and why organs can be far louder than concert flutes: an organ pipe's tone-hole may be several [[inch]]es wide, while a concert flute's is a fraction of an inch.
+
+The air-stream must be flat, and precisely aimed at the correct angle and velocity, or else it will not vibrate.  In fippled flutes, a precisely machined slot extrudes the air.  In organs, the air is supplied by a regulated blower.
+
+In non-fipple flutes, especially the concert flute and piccolo, the player must form and direct the stream with his or her lips, which is called an [[embouchure]].  This allows the player a wide range of expressions in pitch, volume, and timbre, especially in comparison to fipple flutes.  However, it also makes the transverse flute immensely more difficult for a beginner to get a full sound out of than fipple flutes such as the [[recorder]]. Transverse flutes also take more air to play, which requires deeper breathing and makes [[circular breathing]] trickier, but still not impossible.
+
+Generally, the quality called &quot;tone colour&quot; or &quot;timbre&quot; varies because the flute produces harmonics in different intensities.  A [[harmonic]] is a frequency that is a whole number multiple of a lower register, or &quot;fundamental&quot; tone of the flute. Generally the air-stream is thinner (to vibrate in more modes), faster (providing more energy to vibrate), and aimed across the hole more shallowly (permitting a more shallow deflection of the airstream to resonate).  
+
+Almost all flutes can be played in fundamental, octave, tierce, quatre and cinque modes simply by blowing harder and making the air-stream move more quickly and at a more shallow angle.  Flute players select their instrument's resonant mode with embouchure and breath control, much as brass players do.
+
+Many believe that the timbre is also affected by the material from which the instrument is made.  For instance, instruments made of wood are usually less bright than metal instruments.  Different metals are also thought to influence the tone. However, a study in which professional players were blindfolded could find no significant differences between instruments made from a variety of different metals.&lt;ref name=&quot;SilverGoldPlatinum&quot;&gt;Widholm, G., et. al.&lt;/ref&gt; In two different sets of blind listening, no instrument was correctly identified in a first listening, and in a second, only the silver instrument was identified by a significant fraction of the listeners. The study concluded that there was 'no evidence that the wall material has any appreciable effect on the sound color or dynamic range of the instrument'. Physicists who study flutes usually agree that relatively small differences in shape are more important than differences in material, because the waves in the air couple only weakly to vibrations in the body. Wooden flutes usually have different shapes from metal instruments. For instance, the junction between the tone hole risers and the bore are usually sharper in wooden instruments, and these sharper edges are expected to have a substantial effect on sound. This does not mean that a gold flute is no better than, say, a brass one, as the gold flute is likely to have been hand-finished by a more proficient craftsman, and by that merit, possess superior acoustic qualities.
+
+==Categories of flute==
+[[Image:Zampoña.jpg|thumb|right|Playing the ''zampoña'', an [[Inca]] instrument and type of [[pan pipes]].]]
+In its most basic form, a flute can be an open tube which is blown like a bottle. Over time, the increasing demands of musical performance have led to the development of what many people consider ''the'' flute, the [[Western concert flute]], which has a complex array of keys and holes.
+
+There are several broad classes of flutes. With most flutes, the musician blows directly onto the edge of the flute. However, some flutes, such as the [[recorder]], [[tin whistle]], [[whistle]], [[fujara]], and [[ocarina]] have a duct that directs the air onto the edge (an arrangement that is termed a &quot;[[fipple]]&quot;). This gives the instrument a distinct timbre which is different from non-fipple flutes and makes the instrument easier to play, but takes a degree of control away from the musician. Usually, fipple flutes are not referred to as flutes, even though the physics, technique and sound are similar.
+
+Another division is between '''side-blown''' (or '''transverse''') flutes, such as the Western concert flute, [[piccolo]], [[fife (musical instrument)|fife]], [[dizi]], and [[bansuri]]; and [[end-blown flute]]s, such as the [[recorder]], [[ney]], [[kaval]], [[quena]], [[shakuhachi]] and [[tonette]]. The player of a side-blown flute uses a hole on the side of the tube to produce a tone, instead of blowing on an end of the tube. The earliest transverse flute is a ''chi'' ([[wiktionary:篪|篪]]) flute discovered in the [[Tomb of Marquis Yi of Zeng]] at the [[Suizhou]] site, [[Hubei]] province, [[China]]. It dates from [[433 BC]], of the later [[Zhou Dynasty]]. It is of lacquered bamboo with closed ends. It has five stops that are at the flute's side instead of top. Chi flutes are mentioned in [[Shi Jing]], compiled and edited by [[Confucius]].
+
+Flutes may be open on one or both of their ends. The [[ocarina]], [[pan pipes]], [[police whistle]], and [[bosun's whistle]] are closed-ended.  Open-ended flutes such as the concert flute and the recorder have more harmonics, and thus more flexibility for the player, and brighter timbres. An organ pipe may be either open or closed, depending on the sound desired.
+
+Flutes can be played with several different air sources. Conventional flutes are blown with the mouth, although some cultures use [[nose flute]]s. [[Organ (music)|Organs]] are blown by bellows or fans.
+
+===The Western concert flutes===
+[[Image:ModernFlute.jpg|thumb|right|400px|A modern, closed hole (&quot;Plateau&quot;) model flute.]]
+[[Image:Flute player.jpg|thumb|right|200px|Playing a transverse flute.]]
+
+The [[Western concert flute]] is a transverse flute which is closed at the top. Near the top is the ''embouchure hole'', against which the player blows. The flute has circular finger-holes, various combinations of which can be opened or closed by the flautist, by means of a mechanism of keys, to produce the various notes in the flute's [[playing range]]. The note produced depends on which finger-holes are opened or closed by the flautist and on how the flute is blown by the flautist. With rare exceptions (i.e., flutes with custom-made fingering-systems), the [[Boehm system]] is the fingering-system in correspondence with which Western concert flutes are designed and manufactured.
+
+The standard concert flute is [[Pitch (music)|pitch]]ed in C and has a range of 3 and one half [[octave]]s starting from [[middle C]].  However, many professional flutes have an extra key to reach the B directly below middle C. This means that the concert flute is one of the highest orchestral instruments, with only the piccolo being higher.{{fact}} Also commonly used in [[orchestra]]s is the [[piccolo]], a small flute usually pitched one octave above the concert flute. Alto and bass flutes, respectively pitched a perfect fourth and an octave below the concert flute, are used occasionally.  Parts for the alto flute are more common than for the bass.  Many other sizes of flute and piccolo are used from time to time.  A much-less common instrument of the current pitching system is the treble G flute. An older pitching system, used principally in older wind-band music, includes D-flat piccolos, E-flat soprano flutes (the primary instrument, equivalent to today's concert C flutes), F alto flutes, and B-flat bass flutes.
+
+The modern professional concert flute is generally made of [[silver]], [[gold]], or combinations of the two.  Student instruments are usually made of nickel silver, or silver-plated [[brass]]. Curved headjoints are also available for student flutes which make the flute shorter making it possible for children as young as 3 years old to play the flute. Wooden flutes and headjoints are more widely available than in the past.
+
+The modern concert flute comes with various options.  The B-flat thumb key (invented and pioneered by [[Briccialdi]]) is practically standard. The B foot joint, however, is an optional extra available on middle-upper end models.
+
+Open hole flutes (where some keys have a circular hole through the middle that the player must cover with fingertips) are common among concert-level players, though some flautists (particularly students, but sometimes even professional flutists as well) select closed-hole &quot;plateau&quot; keys. Students often use temporary plugs to cover the holes in the keys until they master the more exact finger-placement that open-hole keys demand.  Some people believe that open-hole keys permit louder and clearer sound projection in the flute's lower range.  Open-hole keys are also needed for some modern &quot;extended&quot; avant garde pieces, including those requiring the player to play harmonic overtones, or to manipulate &quot;breathy&quot; sounds in addition to the traditional &quot;pure&quot; tone.
+
+Open-hole keys are typical of French technique, championed by the [[Paris Conservatoire]], which dominated in the 20th century.  However, the century has changed, and the French school is under fire; specifically, the placement of the G-key (previously offset in student models and inline in professional models) may or may not be moving, depending on whom you ask.  Less controversial options include the amusingly named &quot;gizmo key&quot;, which facilitates C7.
+
+To play the Western concert flute, one holds the flute in a transverse position, and blows across the hole in the mouthpiece.  To distinguish separate notes, one pushes down the keys of the flute in distinct [http://www.wfg.woodwind.org/flute/ fingerings].  However, there are a few alternate fingerings (called trill fingerings) that will assist one in playing difficult passages.
+
+
+
+====Members of the concert flute family====
+From high to low, the members of the concert flute family include:
+*[[Piccolo]] in C or D-flat
+*[[Treble flute]] in G
+*[[Soprano flute]] in Eb
+*[[Western concert flute|Concert flute]] (also called '''C flute''', '''boehm flute''', '''silver flute''', or simply '''flute''')
+*[[Flûte d'amour]] (also called '''tenor flute''') in B-flat or A
+*[[Alto flute]] in G
+*[[Bass flute]] in C
+*[[Contra-alto flute]] in G
+*[[Contrabass flute]] in C (also called '''octobass flute''')
+*[[Subcontrabass flute]] in G (also called '''double contra-alto flute''') or C (also called '''double contrabass flute''')
+*[[Double contrabass flute]] in C (also called '''octobass flute''' or '''subcontrabass flute''')
+*[[Hyperbass flute]] in C (also spelled '''hyper-bass flute''')
+
+Each of the above instruments has its own range.  The piccolo is an octave higher in pitch than the concert flute.  Like the concert flute, it reads music in C, but sounds one octave higher.  The alto flute is in the key of G, and extends the low register range of the flute to the G below middle C.  Its highest note is a high G (4 ledger lines above the treble clef staff). The bass flute is an octave lower than the concert flute, and the contrabass flute is an octave lower than the bass flute.
+
+Less commonly seen flutes include the [[treble flute]] in G, pitched one octave higher than the alto flute; the [[soprano flute]], between the treble and concert; and the tenor flute or [[flûte d'amour]] in B flat or A, pitched between the concert and alto.
+
+The lowest sizes (larger than the bass flute) have all been developed in the 20th century; these include the [[sub-bass flute]] is pitched in F, between the bass and contrabass; the [[subcontrabass flute]] (pitched in G or C), the [[contra-alto flute]] (pitched in G, one octave below the alto), and the [[double contrabass flute]] in C, one octave lower than the contrabass. The flute sizes other than the concert flute and piccolo are sometimes called [[harmony flutes]].
+
+===The Indian flutes===
+The Indian flute, one of the oldest instruments of [[Indian classical music]], developed independently of the western flute.  The [[Hindu]] god [[Krishna]] is said to be a master of the instrument.  The Indian flutes are very simple instruments when compared with their western counterparts; they are made of [[bamboo]] and are keyless. The Indian concert flutes are available in standard pitches. In Carnatic Music, the pitches are referred by numbers such as 3 1/2, 4, 5, etc., which is counting upwards from the note C which is taken as 1. However, the pitch of a composition is itself not fixed and hence any of the flutes may be used for the concert (as long as the accompanying instruments, if any, are tuned appropriately) and is largely left to the personal preference of the artist.
+
+Two main varieties of Indian flutes are currently used.  The first is the ''[[Bansuri]]'', which has six finger holes and one blowing hole, is used predominantly in [[Hindustani music]], the music of north India.  The second is [[Venu]] or ''[[Pullanguzhal]]'', which has eight finger holes, is predominantly used in [[Carnatic music]], the music of south India.  The south Indian flute had only seven finger holes till the 8-holed flute and the current fingering standard was developed by Sharaba Shastri of the Palladam school, in the beginning of the 20th century.
+
+The quality of the sound from the flute depends on the specific [[bamboo]] used to make it, and it is supposed that the best bamboos are from the [[Nagarcoil]] area in South India.
+===Dvojanka (Double Flute)===
+A double flute made of a single piece of wood, with six sound holes on one side. It is most frequently made of ash-wood, plum tree, pear tree, cornel or boxwood. The tune is played on the one pipe, which is accompanied by a flat tone on the other pipe. This kind of playing is similar by structure to music played on the [[kaval]]. It is also a favorite instrument of shepherds. Line-dances and lively melodies are frequently played on the dvoyanka. It is a known fact that shepherds directed their flocks by their playing, since sheep remember and recognize a melody in time. A shepherd could “teach” his flock to start from the pen towards the pasture at one melody, and to return to the village in the evening at another. The dvoyanka is similar to the dvojnica, an instrument typical for the regions of Central and Western Serbia and Serbian regions across the river Drina, which is made and played somewhat differently.
+
+==Notes==
+&lt;references/&gt;
+
+==References==
+* {{cite news
+  | url=http://www.cbc.ca/story/arts/national/2004/12/30/Arts/flute-prehistoric041230.html
+  | title=Archeologists discover ice age dwellers' flute
+  | work=CBC Arts
+  | publisher=Canadian Broadcasting Corporation
+  | date=[[2004-12-30]]
+  | accessdate=2006-03-14
+}}
+*[[Theobald Boehm]], ''The Flute and Flute-Playing'' (Dover Publications, 1964)
+*[[James Phelan]], ''The Complete Guide to the Flute and Piccolo'' (Burkart-Phelan, Inc., 2004)
+* {{cite web
+ | author = Tenenbaum, David
+ | year = June 2000
+ | url = http://whyfiles.org/114music/4.html
+ | title = Neanderthal jam
+ | work = The Why Files
+ | publisher = University of Wisconsin, Board of Regents
+ | accessdate = 14 March
+ | accessyear = 2006
+}}
+{{cite book 
+ |last=Toff 
+ |first=Nancy 
+ |title=The Flute Book 
+ |publisher=Charles's Scribners Sons 
+ |year=1985 
+ |isbn=0-684-18241-3
+ |chapter=The Development of the Modern Flute}}
+*Nancy Toff, ''The Flute Book: A Complete Guide for Students and Performers'' (Second Edition, Oxford University Press, 1996). 520 pages.
+* {{cite journal
+ | author = Widholm, G.
+ | coauthors = Linortner, R., Kausel, W. and Bertsch, M.
+ | year = 2001
+ | title = Silver, gold, platinum—and the sound of the flute
+ | journal = Proc. International Symposium on Musical Acoustics
+ | pages = 277-280
+ | url = http://iwk.mdw.ac.at/Forschung/english/linortner/linortner_e.htm
+ }}
+* {{cite web | author=Wolfe, Joe | title=Introduction to flute acoustics | work=UNSW Music Acoustics | url=http://www.phys.unsw.edu.au/music/flute/ | accessdate=16 January | accessyear=2006 }}
+* {{cite journal
+ | author = Zhang, Juzhong
+ | coauthors = Xiao, Xinghua, Lee, Yun Kuen
+ | year = 2004
+ | month = December
+ | title = The early development of music. Analysis of the Jiahu bone flutes
+ | journal = Antiquity
+ | volume = 78
+ | issue = 302
+ | pages = 769–778
+ | url = http://antiquity.ac.uk/ant/078/Ant0780769.htm
+ }}
+
+== See also ==
+* [[Carnatic Music]]
+* [[Diple]]
+* [[Divje Babe]]
+* [[Flute repertory]]
+* [[Irish flute]]
+* [[Western concert flute]]
+*[[Alto flute]]
+*[[Contra-alto flute]]
+*[[Contrabass flute]]
+*[[Subcontrabass flute]]
+*[[Double contrabass flute]]
+*[[Hyperbass flute]]
+*[[Suling]]
+*[[Palendag]]
+*[[Tumpong]]
+* [[Ney]] 
+* [[Duduk]]
+* [[Kaval]]
+
+== External links ==
+{{commonscat|Flutes}}
+*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.
+*[http://memory.loc.gov/ammem/dcmhtml/dmhome.html The Dayton C. Miller Flute Collection] has many pictures of flutes through the ages, among other useful information.
+*[http://www.flutehistory.com FluteHistory.com]
+*[http://www.flutes.tk Flutes.tk]
+*[http://www.thegalwaynetwork.com/index.html The Galway Network], home page of the popular Sir [[James Galway]]
+*[http://www.larrykrantz.com Larry Krantz Flute Pages] Wide range of flute related information contributed by many professional flute players. Access to information about FLUTE - email discussion group.
+*[http://www3.telus.net/Garry_McKevitt/articles.htm Jennifer Cluff flute articles] Extensive list of articles on hard-to-find flute topics.
+*[http://www.johnmcmurtery.com/ET/index.html Extended Techniques for Flute by John McMurtery]
+*[http://www.neyneva.com/eng/ Ney Nevâ] is a site about the Turkish reed flute.
+*[http://www.wfg.woodwind.org/flute/ The Woodwind Fingering Guide] - A large, easy-to-navigate listing of flute fingerings
+*[http://www.webindia123.com/music/instru/flute.htm Indian Flutes]
+*[http://ronkorb.com/instrument.html Ron Korb World Music Instruments and Flute Gallery] Profiles and sketches of Chinese flutes, Japanese flutes, Celtic flutes, and flutes from the Americas from world renowned flutist Ron Korb's collection of over 100 flutes and woodwind instruments.
+*[http://www.bansuriflute.com Bansuriflute.com]
+*[http://www.pnoyandthecity.blogspot.com Traditional Music of the Southern Philippines] - An online textbook about Southern Pilipino Kulintang Music with an extensive section devoted to the Philippine flutes: the palendag, tumpong and the suling.
+*[http://beloplatno.rastko.net/instrumenti/instrumenti_en.html]
+[[Category:Flutes| ]]
+[[Category:Woodwind instruments]]
+
+{{Link FA|sr}}
+
+[[ar:فلوت]]
+[[bg:Флейта]]
+[[ca:Flauta]]
+[[cy:Ffliwt]]
+[[de:Flöte]]
+[[et:Flööt]]
+[[es:Flauta]]
+[[eo:Fluto]]
+[[fr:Flûte]]
+[[ko:플루트]]
+[[hr:Flauta]]
+[[id:Flute]]
+[[it:Flauto]]
+[[he:חליל]]
+[[nl:Fluit (muziekinstrument)]]
+[[ja:笛]]
+[[no:Fløyte]]
+[[nn:Fløyte]]
+[[ug:بالعمان]]
+[[pl:Flet]]
+[[pt:Flauta]]
+[[ru:Флейта]]
+[[simple:Flute]]
+[[sr:Флаута]]
+[[fi:Huilu]]
+[[sv:Flöjt]]
+[[th:ฟลุต]]
+[[vi:Sáo ngang]]
+[[tr:Flüt]]
+[[uk:Флейта]]
+[[zh:长笛]]</text>
+      <sha1>f4vryp70frau2m8ngxbj4xne58pd2ql</sha1>
+    </revision>
+  </page>
+</mediawiki>

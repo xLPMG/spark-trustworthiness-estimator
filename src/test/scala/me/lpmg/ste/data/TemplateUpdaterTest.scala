@@ -1,83 +1,68 @@
 package me.lpmg.ste.data
 
-import me.lpmg.ste.types.Revision
-import me.lpmg.ste.types.Types
-import org.apache.spark.util.collection.BitSet
+import org.junit.Test
+import org.junit.Assert._
+import me.lpmg.ste.types.Types.TemplateBitPositions
+import me.lpmg.ste.rules.RevisionTestRule
 
 class TemplateUpdaterTest extends munit.FunSuite {
-  test("updateTemplateBitSets") {
+  test("testUpdateTemplateBitSets") {
+    val templateBitPosition: Int = 0
 
-    val bitSetCapacity = Types.TemplateBitPositions.size
-    val bitSetFirstBitPresent = new BitSet(bitSetCapacity)
-    bitSetFirstBitPresent.set(0)
-    val emptyBitSet = new BitSet(bitSetCapacity)
-
-    // initialize revisions with empty bitsets
-    var revision_1 = new Revision(
+    val revision1 = RevisionTestRule.createRevision(
       revisionId = 1L,
       pageId = 1,
       parentId = -1L,
-      timestamp = System.currentTimeMillis(),
-      resolvedPageOutlinks = Set.empty[Int],
-      resolvedRevisionOutlinks = Set.empty[Long],
-      isRedirect = false,
-      templatePresence = new BitSet(bitSetCapacity),
-      templateAdded = new BitSet(bitSetCapacity),
-      templateRemoved = new BitSet(bitSetCapacity)
+      contributorId = 1,
+      timestamp = System.currentTimeMillis()
     )
 
-    var revision_2 = new Revision(
+    val revision2 = RevisionTestRule.createRevision(
       revisionId = 2L,
       pageId = 1,
       parentId = 1L,
-      timestamp = System.currentTimeMillis(),
-      resolvedPageOutlinks = Set.empty[Int],
-      resolvedRevisionOutlinks = Set.empty[Long],
-      isRedirect = false,
-      templatePresence = new BitSet(bitSetCapacity),
-      templateAdded = new BitSet(bitSetCapacity),
-      templateRemoved = new BitSet(bitSetCapacity)
+      contributorId = 2,
+      timestamp = System.currentTimeMillis()
     )
 
-    var revision_3 = new Revision(
+    val revision3 = RevisionTestRule.createRevision(
       revisionId = 3L,
       pageId = 1,
       parentId = 2L,
-      timestamp = System.currentTimeMillis(),
-      resolvedPageOutlinks = Set.empty[Int],
-      resolvedRevisionOutlinks = Set.empty[Long],
-      isRedirect = false,
-      templatePresence = new BitSet(bitSetCapacity),
-      templateAdded = new BitSet(bitSetCapacity),
-      templateRemoved = new BitSet(bitSetCapacity)
+      contributorId = 3,
+      timestamp = System.currentTimeMillis()
     )
 
-    // Test case: set a templace presence on revision_2
-    revision_2 = revision_2.copy(templatePresence = bitSetFirstBitPresent)
-    
-    val revisions = Seq(revision_1, revision_2, revision_3)
-    val revisionMap = revisions.map(revision => (revision.revisionId, revision)).toMap
+    // Set template presence for revision 2
+    revision2.templatePresence.set(templateBitPosition)
 
-    val updatedRevisions = TemplateUpdater.updateTemplateBitSets(revisions, revisionMap)
+    val revisions = Seq(revision1, revision2, revision3)
+    val revisionIdToTemplatesPresenceMap = revisions
+      .map(revision => (revision.revisionId, revision.templatePresence))
+      .toMap
+    val updatedRevisions = TemplateUpdater.updateTemplateBitSets(
+      revisions,
+      revisionIdToTemplatesPresenceMap
+    )
 
+    // Check template changes
     updatedRevisions.foreach { revision =>
-        if(revision.revisionId == 1L) {
-            // revision_1 - untouched
-            assertEquals(revision.templatePresence.equals(emptyBitSet), true)
-            assertEquals(revision.templateAdded.equals(emptyBitSet), true)
-            assertEquals(revision.templateRemoved.equals(emptyBitSet), true)
-        } else if(revision.revisionId == 2L) {
-            // revision_2 - presence was set, now added should be set
-            assertEquals(revision.templatePresence.equals(bitSetFirstBitPresent), true)
-            assertEquals(revision.templateAdded.equals(bitSetFirstBitPresent), true)
-            assertEquals(revision.templateRemoved.equals(emptyBitSet), true)
-        } else if(revision.revisionId == 3L) {
-            // revision_3 - presence was not set, now removed should be set
-            assertEquals(revision.templatePresence.equals(emptyBitSet), true)
-            assertEquals(revision.templateAdded.equals(emptyBitSet), true)
-            assertEquals(revision.templateRemoved.equals(bitSetFirstBitPresent), true)
-
-        }
+      if (revision.revisionId == 1L) {
+        // revision_1 - untouched
+        assertEquals(revision.templatePresence.get(templateBitPosition), false)
+        assertEquals(revision.templateAdded.get(templateBitPosition), false)
+        assertEquals(revision.templateRemoved.get(templateBitPosition), false)
+      } else if (revision.revisionId == 2L) {
+        // revision_2 - presence was set, now added should be set
+        assertEquals(revision.templatePresence.get(templateBitPosition), true)
+        assertEquals(revision.templateAdded.get(templateBitPosition), true)
+        assertEquals(revision.templateRemoved.get(templateBitPosition), false)
+      } else if (revision.revisionId == 3L) {
+        // revision_3 - presence was not set, now removed should be set
+        assertEquals(revision.templatePresence.get(templateBitPosition), false)
+        assertEquals(revision.templateAdded.get(templateBitPosition), false)
+        assertEquals(revision.templateRemoved.get(templateBitPosition), true)
+      }
     }
   }
 }

@@ -4,7 +4,7 @@ import org.xml.sax.helpers.DefaultHandler
 import scala.collection.mutable.{ArrayBuffer, StringBuilder}
 import org.xml.sax.{Attributes, InputSource}
 import java.time.Instant
-import me.lpmg.ste.types.Types.{DictType, TemplateBitPositions}
+import me.lpmg.ste.types.Types.{TemplateBitPositions}
 import me.lpmg.ste.types.Revision
 import org.apache.spark.util.collection.BitSet
 
@@ -12,23 +12,21 @@ import org.apache.spark.util.collection.BitSet
   */
 class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private val revisions = ArrayBuffer[Revision]()
-  private val outlinkPattern = "\\[\\[([^\\]]+)\\]\\]".r
-
-  private var dictionary: DictType = Map.empty
 
   private var insidePage = false
   private var insideRevision = false
   private var isMainNamespace = false
+  private var insideContributor = false
 
   private var pageTitle: String = ""
   private var pageId: Int = 0
   private var revisionId: Long = 0
   private var parentId: Option[Long] = None
   private var timestamp: Long = 0
-  private var templateBitset: BitSet = null
-
-  private var outlinkPageIds: Set[Int] = Set.empty
+  private var contributorId: Int = -1
+  private var templateBitset: BitSet = new BitSet(TemplateBitPositions.size)
   private var isRedirect: Boolean = false
+  private var sources: Seq[String] = Seq.empty
 
   private val charBuffer = new StringBuilder
 
@@ -50,9 +48,13 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
         revisionId = 0
         parentId = None
         timestamp = 0
-        outlinkPageIds = Set.empty[Int]
+        contributorId = -1
         isRedirect = false
         templateBitset = new BitSet(TemplateBitPositions.size)
+        sources = Seq.empty
+        insideContributor = false
+      case "contributor" =>
+        insideContributor = true
       case _ => // No-op for other tags
     }
   }
@@ -105,61 +107,43 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               s"Error parsing timestamp: ${getBuffer} for revision: $revisionId in page: $pageId"
             )
         }
+      case "id" if insideContributor =>
+        contributorId = getBuffer.toInt
+      case "contributor" =>
+        insideContributor = false
       case "text" =>
         val content = getBuffer
         isRedirect = content.startsWith("#REDIRECT")
         if (!isRedirect) {
-          /* As soon as the links are found, they are resolved to page IDs.
-           * While that might seem impractical, it was absolutely necessary
-           * because storing all the strings required an extremely large
-           * amount of memory.
-           */
-          val fullLinks = outlinkPattern
-            .findAllMatchIn(content)
-            .map(_.group(1))
-            .filter(Filter.isArticleTitle)
-            .toSet
-          val pageTitles = fullLinks.flatMap { link =>
-            val parts = link.split("\\|")
-            if (parts.nonEmpty && parts.head.nonEmpty) Some(parts.head)
-            else None
-          }
-          outlinkPageIds =
-            LinkResolver.resolvePageTitlesToPageIDs(pageTitles, dictionary)
-
           // set template bits
-          //TODO: check for things like {{Unreferenced|date=March 2019}}
-          TemplateBitPositions.foreach(
-            template =>
-              if (content.contains("{{" + template._1 + "}}") ||
-                  content.contains("{{" + template._1.toLowerCase + "}}")) {
-                templateBitset.set(template._2)
-              }
+          // TODO: check for things like {{Unreferenced|date=March 2019}}
+          TemplateBitPositions.foreach(template =>
+            if (
+              content.contains("{{" + template._1 + "}}") ||
+              content.contains("{{" + template._1.toLowerCase + "}}")
+            ) {
+              templateBitset.set(template._2)
+            }
           )
-          
-        } else if (pageTitle.length() > 0) {
-          // for redirects, we resolve the redirect target and store it as the only outlink
-          val redirectTarget =
-            LinkResolver.resolveRedirect(pageTitle, dictionary)
-          if (redirectTarget != -1) {
-            outlinkPageIds = Set(redirectTarget)
-          }
+
+          // extract sources
+          sources = SourceExtractor
+            .extractSources(content)
         }
       case "revision" =>
         // only add the revision if it is in the main namespace
-        if (insidePage && isMainNamespace) {
+        if (!isRedirect && insidePage && isMainNamespace) {
           if (timestamp > dateLimit) {
             revisions += new Revision(
               revisionId,
               pageId,
               parentId.getOrElse(-1),
               timestamp,
-              outlinkPageIds,
-              Set.empty,
-              isRedirect,
+              contributorId,
               templateBitset,
               new BitSet(TemplateBitPositions.size),
-              new BitSet(TemplateBitPositions.size)
+              new BitSet(TemplateBitPositions.size),
+              sources
             )
           }
         }
@@ -170,8 +154,5 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
 
   private def getBuffer: String = charBuffer.toString.trim
 
-  def setDictionary(dictionary: DictType): Unit = {
-    this.dictionary = dictionary
-  }
   def getRevisions: Seq[Revision] = revisions
 }

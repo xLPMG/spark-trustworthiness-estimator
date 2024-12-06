@@ -3,16 +3,14 @@ package me.lpmg.ste.graph
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.SparkSession
 import me.lpmg.ste.types.Types.{
-  DictType,
-  BitSetToByteArray,
-  ByteArrayToBitSet,
+  bitSetToByteArray,
+  byteArrayToBitSet,
   TemplateBitPositions
 }
 import me.lpmg.ste.time.Watch
 import java.nio.file.Path
 import me.lpmg.ste.data.DataReader
 import org.apache.spark.sql.DataFrame
-import me.lpmg.ste.data.LinkResolver
 import org.apache.spark.graphx.Graph
 import me.lpmg.ste.types.Revision
 import java.time.Instant
@@ -22,6 +20,7 @@ import me.lpmg.ste.types.RevisionVertex
 import org.apache.spark.util.collection.BitSet
 import me.lpmg.ste.data.TemplateUpdater
 import org.apache.spark.graphx.Edge
+import me.lpmg.ste.types.EdgeType
 
 class GraphManager(
     spark: SparkSession,
@@ -67,50 +66,6 @@ class GraphManager(
 
     logger.warn(s"Total files found: ${filesRDD.count()}")
 
-    var dictionary: DictType = Map.empty
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    /// DICTIONARY
-    /////////////////////////////////////////////////////////////////////////////////////////
-    Watch.start("dictionary")
-    val dictionaryFile: Path =
-      Path.of(dataFolderPath).resolve("dictionary2.parquet")
-    // WRITE
-    if (!dataFolderPath.isEmpty && !dictionaryFile.toFile.exists()) {
-      logger.warn(s"Creating dictionary file at: $dictionaryFile")
-      // value = (filePath: String, fileContent: PortableDataStream)
-      dictionary = filesRDD.aggregate(Map.empty[String, (Int, String)])(
-        (acc, value) => acc ++ DataReader.getDictionaryFromPDS(value._2),
-        (acc1, acc2) => acc1 ++ acc2
-      )
-
-      // Convert dictionary to DataFrame
-      val dictionaryDF: DataFrame =
-        dictionary.toSeq
-          .map { case (pageTitle, (pageID, redirectTo)) =>
-            (pageTitle, pageID, redirectTo)
-          }
-          .toDF("PageTitle", "PageID", "RedirectsTo")
-
-      // Write DataFrame to Parquet
-      dictionaryDF.write.parquet(dictionaryFile.toString)
-    } else if (!dataFolderPath.isEmpty && dictionaryFile.toFile.exists()) {
-      // READ
-      logger.warn(s"Reading dictionary file from: $dictionaryFile")
-
-      // Read DataFrame from Parquet
-      val dictionaryDF: DataFrame = spark.read.parquet(dictionaryFile.toString)
-
-      // Convert DataFrame to Map
-      dictionary = dictionaryDF
-        .collect()
-        .map(row => row.getString(0) -> (row.getInt(1), row.getString(2)))
-        .toMap
-    }
-    val broadCastedDictionary = spark.sparkContext.broadcast(dictionary)
-    logger.warn(
-      s"Finished processing dictionary (${Watch.stopFormatted("dictionary")})"
-    )
     /////////////////////////////////////////////////////////////////////////////////////////
     // REVISION EXTRACTION
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +74,6 @@ class GraphManager(
       .flatMap { case (_, pds) =>
         DataReader.getRevisionsFromPDS(
           pds,
-          broadCastedDictionary.value,
           fixedDateLimit
         )
       }
@@ -138,63 +92,45 @@ class GraphManager(
           }
         }
 
-    // set parent ID of oldest revisions to -1
-    // this is only needed in case we limit the graph by date
-    val oldestRevisionIds =
-      groupedRevisionsRDD
-        .mapValues(_.headOption.map(_._1))
-        .collect { case (pageId, Some(revisionId)) =>
-          revisionId
-        }
-        .collect()
-        .toSet
+    // Find oldest revisions and update parent IDs in a distributed way
     val updatedRevisionsRDD = if (fixedDateLimit <= 0) {
       allRevisionsRDD
     } else {
       logger.warn("Setting parent ID of oldest revisions to -1")
-      allRevisionsRDD.map { revision =>
-        if (oldestRevisionIds.contains(revision.revisionId)) {
-          revision.copy(parentId = -1)
-        } else {
-          revision
+      
+      // Create an RDD of oldest revision IDs with a marker
+      val oldestRevisionsRDD = groupedRevisionsRDD
+        .flatMap { case (pageId, revisions) => 
+          revisions.headOption.map(rev => (rev._1, true))
         }
-      }
+        .persist()  // Cache since we'll use this RDD twice
+      
+      // Use leftOuterJoin to efficiently mark oldest revisions
+      allRevisionsRDD
+        .keyBy(_.revisionId)  // Create key-value pairs for join
+        .leftOuterJoin(oldestRevisionsRDD)
+        .map { case (revId, (revision, isOldest)) =>
+          if (isOldest.isDefined) {
+            revision.copy(parentId = -1)
+          } else {
+            revision
+          }
+        }
+        .persist()  // Cache the result as it will be used for template tracking
     }
+    
+    // Clean up cached RDD
+    allRevisionsRDD.unpersist()
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // TEMPLATE TRACKING
     /////////////////////////////////////////////////////////////////////////////////////////
-    // Create a map of revision IDs to revisions for quick lookup
-    val revisionMap =
-      updatedRevisionsRDD.map(rev => rev.revisionId -> rev).collectAsMap().toMap
-
-    // Update the templateAdded and templateRemoved BitSets for each revision
-    val updatedTemplateRevisionsRDD = updatedRevisionsRDD.mapPartitions {
-      partition =>
-        val revisions = partition.toSeq
-        TemplateUpdater.updateTemplateBitSets(revisions, revisionMap).iterator
-    }
-
-    allRevisionsRDD.unpersist()
-
-    val groupedRevisionsMap = groupedRevisionsRDD.collectAsMap().toMap
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    // LINK RESOLUTION
-    /////////////////////////////////////////////////////////////////////////////////////////
-    val resolvedRevisionsRDD = updatedTemplateRevisionsRDD.map { revision =>
-      LinkResolver.resolvePageIDsToRevisionIDs(
-        revision,
-        groupedRevisionsMap
-      )
-    }
+    val revisionsWithTemplateBitSets = TemplateUpdater.updateTemplateBitSetsDistributed(updatedRevisionsRDD)
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // GRAPH CREATION
     /////////////////////////////////////////////////////////////////////////////////////////
-    logger.warn("Creating revision graph")
-    val revisionGraph = GraphCreator.createRevisionGraph(resolvedRevisionsRDD)
-    revisionGraph
+    GraphCreator.createRevisionGraph(revisionsWithTemplateBitSets)
   }
 
   /** Saves the revision graph to the data folder.
@@ -218,14 +154,14 @@ class GraphManager(
       .map { case (id: Long, rev) =>
         // Convert BitSets to byte arrays for storage
         val templatePresenceBytes =
-          BitSetToByteArray(rev.templatePresence)
-        val templateAddedBytes = BitSetToByteArray(rev.templateAdded)
-        val templateRemovedBytes = BitSetToByteArray(rev.templateRemoved)
+          bitSetToByteArray(rev.templatePresence)
+        val templateAddedBytes = bitSetToByteArray(rev.templateAdded)
+        val templateRemovedBytes = bitSetToByteArray(rev.templateRemoved)
 
         (
           id: Long,
           rev.trustScore,
-          rev.isRedirect,
+          rev.contributorId,
           templatePresenceBytes,
           templateAddedBytes,
           templateRemovedBytes
@@ -234,7 +170,7 @@ class GraphManager(
       .toDF(
         "id",
         "trustScore",
-        "isRedirect",
+        "contributorId",
         "templatePresence",
         "templateAdded",
         "templateRemoved"
@@ -257,7 +193,6 @@ class GraphManager(
     edgesDF.write
       .mode("overwrite")
       .option("compression", "snappy")
-      .partitionBy("src")
       .parquet(graphFolderPath.resolve("edges_parquet").toString)
 
     logger.warn("Graph saved successfully.")
@@ -279,29 +214,32 @@ class GraphManager(
 
     // Convert back to RDD[(VertexId, RevisionVertex)]
     val vertices = verticesDF.rdd.map { row =>
-      val id = row.getAs[Number]("id").longValue()  // Handle both Int and Long numerically
+      val id =
+        row
+          .getAs[Number]("id")
+          .longValue() // Handle both Int and Long numerically
       val trustScore = row.getAs[Float]("trustScore")
-      val isRedirect = row.getAs[Boolean]("isRedirect")
+      val contributorId = row.getAs[Int]("contributorId")
 
       // Convert byte arrays back to BitSets
       val templatePresenceBytes = row.getAs[Array[Byte]]("templatePresence")
       val templateAddedBytes = row.getAs[Array[Byte]]("templateAdded")
       val templateRemovedBytes = row.getAs[Array[Byte]]("templateRemoved")
 
-      val templatePresence = ByteArrayToBitSet(
+      val templatePresence = byteArrayToBitSet(
         templatePresenceBytes,
         TemplateBitPositions.size
       )
       val templateAdded =
-        ByteArrayToBitSet(templateAddedBytes, TemplateBitPositions.size)
+        byteArrayToBitSet(templateAddedBytes, TemplateBitPositions.size)
       val templateRemoved =
-        ByteArrayToBitSet(templateRemovedBytes, TemplateBitPositions.size)
+        byteArrayToBitSet(templateRemovedBytes, TemplateBitPositions.size)
 
       (
         id,
         new RevisionVertex(
           trustScore,
-          isRedirect,
+          contributorId,
           templatePresence,
           templateAdded,
           templateRemoved
@@ -316,8 +254,12 @@ class GraphManager(
     // Convert back to RDD[Edge[Byte]]
     val edges = edgesDF.rdd.map { row =>
       Edge(
-        row.getAs[Number]("src").longValue(),  // Handle both Int and Long numerically
-        row.getAs[Number]("dst").longValue(),  // Handle both Int and Long numerically
+        row
+          .getAs[Number]("src")
+          .longValue(), // Handle both Int and Long numerically
+        row
+          .getAs[Number]("dst")
+          .longValue(), // Handle both Int and Long numerically
         row.getAs[Byte]("attr")
       )
     }
