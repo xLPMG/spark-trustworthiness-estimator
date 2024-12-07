@@ -32,11 +32,11 @@ object SourceExtractor {
       val domainParts = if (parts(0) == "www" || parts(0) == "www3") parts.tail else parts
       if (domainParts.length >= 3) {
         // For domains with subdomain(s), return rightmost subdomain plus main domain
-        domainParts.takeRight(3).mkString(".").toLowerCase()
+        domainParts.takeRight(3).mkString(".").toLowerCase().intern()
       } else if (domainParts.length == 2) {
-        domainParts.takeRight(2).mkString(".").toLowerCase()
+        domainParts.takeRight(2).mkString(".").toLowerCase().intern()
       } else {
-        domainParts.mkString(".").toLowerCase()
+        domainParts.mkString(".").toLowerCase().intern()
       }
     }.toOption
   }

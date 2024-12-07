@@ -129,6 +129,7 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
           // extract sources
           sources = SourceExtractor
             .extractSources(content)
+            .map(_.intern())
         }
       case "revision" =>
         // only add the revision if it is in the main namespace
