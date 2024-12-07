@@ -21,6 +21,7 @@ import org.apache.spark.graphx.Edge
 import me.lpmg.ste.types.EdgeType
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.types.Types
+import org.apache.spark.storage.StorageLevel
 
 class RevisionManager(
     spark: SparkSession,
@@ -69,7 +70,7 @@ class RevisionManager(
           fixedDateLimit
         )
       }
-      .cache()
+      .persist(StorageLevel.MEMORY_AND_DISK)
 
     logger.warn(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
 
@@ -107,7 +108,6 @@ class RevisionManager(
             revision
           }
         }
-        .persist()
     }
 
     // Clean up cached RDD

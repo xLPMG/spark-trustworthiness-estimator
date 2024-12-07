@@ -16,6 +16,7 @@ import me.lpmg.ste.graph.GraphCreator
 import javax.xml.transform.Source
 import me.lpmg.ste.algorithms.SourceEvaluator
 import java.nio.file.Path
+import org.apache.spark.storage.StorageLevel
 
 object Main {
 
@@ -51,7 +52,7 @@ object Main {
     val loadedRevisions =
       revisionManager.loadRevisionsWithTemplateChanges(
         "revisions_with_template_changes"
-      )
+      ).persist(StorageLevel.MEMORY_AND_DISK)
 
     // Check if we have any revisions
     val revisionCount = loadedRevisions.count()

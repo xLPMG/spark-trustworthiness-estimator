@@ -4,6 +4,7 @@ import org.apache.spark.rdd.RDD
 import me.lpmg.ste.types.Revision
 import org.apache.spark.graphx.Graph
 import me.lpmg.ste.types.RevisionVertex
+import org.apache.spark.storage.StorageLevel
 
 object SourceEvaluator extends Serializable {
 
@@ -44,7 +45,7 @@ object SourceEvaluator extends Serializable {
       val templateImpact = (-templateAddedCount + templateRemovedCount).toFloat
       
       revision.sources.map(source => (source, templateImpact))
-    }.cache()
+    }.persist(StorageLevel.MEMORY_AND_DISK)
 
     // find maximum absolute value for normalization
     val maxAbsOpt = sourceImpacts
