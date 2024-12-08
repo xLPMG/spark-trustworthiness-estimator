@@ -40,6 +40,18 @@ object Main {
 
     val revisionManager =
       new RevisionManager(spark, dumpFolderPath, dataFolderPath)
+    // revisionManager.setDateLimit(
+    //   ZonedDateTime.of(
+    //     2021,
+    //     1,
+    //     1,
+    //     0,
+    //     0,
+    //     0,
+    //     0,
+    //     ZoneId.of("UTC")
+    //   )
+    // )
 
     val revisions = revisionManager.retrieveRevisions()
 
@@ -50,9 +62,11 @@ object Main {
     logger.warn(s"Saved $numsaved revisions with template changes")
 
     val loadedRevisions =
-      revisionManager.loadRevisionsWithTemplateChanges(
-        "revisions_with_template_changes"
-      ).persist(StorageLevel.MEMORY_AND_DISK)
+      revisionManager
+        .loadRevisionsWithTemplateChanges(
+          "revisions_with_template_changes"
+        )
+        .persist(StorageLevel.MEMORY_AND_DISK)
 
     // Check if we have any revisions
     val revisionCount = loadedRevisions.count()
@@ -86,8 +100,9 @@ object Main {
 
     // Convert RDDs to DataFrames and save as single CSV
     import spark.implicits._
-    
-    val sourceScoresOutputPath = Path.of(dataFolderPath).resolve("revision_scores")
+
+    val sourceScoresOutputPath =
+      Path.of(dataFolderPath).resolve("revision_scores")
 
     sourceSpecificRevisionScores
       .toDF("revision_id", "source_specific_score")
@@ -101,7 +116,9 @@ object Main {
       .mode("overwrite")
       .csv(sourceScoresOutputPath.toString())
 
-    logger.info(s"CSV file saved: ${sourceScoresOutputPath.toString()} with headers: revision_id,source_specific_score,general_score")
+    logger.warn(
+      s"CSV file saved: ${sourceScoresOutputPath.toString()} with headers: revision_id,source_specific_score,general_score"
+    )
 
     spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("Main")}")
