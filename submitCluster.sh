@@ -6,18 +6,7 @@ spark-submit \
   --properties-file spark-defaults.conf \
   --deploy-mode cluster \
   --verbose \
-  --packages com.github.tototoshi:scala-csv_2.12:2.0.0,\
-  com.typesafe.scala-logging:scala-logging_2.12:3.9.5,\
-  org.scala-lang:scala-reflect:2.12.15,\
-  org.scala-lang:scala-library:2.12.15,\
-  org.scala-lang:scala-compiler:2.12.15,\
-  org.slf4j:slf4j-api:1.7.33,\
-  ch.qos.logback:logback-classic:1.2.13,\
-  ch.qos.logback:logback-core:1.2.13,\
-  org.apache.parquet:parquet-common:1.15.0,\
-  org.apache.parquet:parquet-encoding:1.15.0,\
-  org.apache.parquet:parquet-column:1.15.0,\
-  org.apache.parquet:parquet-hadoop:1.15.0 \
+  --packages com.typesafe.scala-logging:scala-logging_2.12:3.9.5,\
   target/scala-2.12/spark-trustworthiness-estimator_2.12-0.1.0.jar \
   /mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20220901/ \
   /mnt/ceph/storage/data-tmp/current/li83keq/ste-data/

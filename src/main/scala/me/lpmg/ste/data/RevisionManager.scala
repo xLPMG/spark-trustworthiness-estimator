@@ -57,13 +57,14 @@ class RevisionManager(
   def retrieveRevisions(): RDD[Revision] = {
     // Read all .xml.bz2 files in the folder into an RDD
     val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
-    logger.warn(s"Total files found: ${filesRDD.count()}")
+    val file1RDD = spark.sparkContext.parallelize(filesRDD.take(1))
+    logger.warn(s"Total files found: ${file1RDD.count()}")
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // REVISION EXTRACTION
     /////////////////////////////////////////////////////////////////////////////////////////
     val fixedDateLimit = dateLimit
-    val allRevisionsRDD = filesRDD
+    val allRevisionsRDD = file1RDD
       .flatMap { case (_, pds) =>
         DataReader.getRevisionsFromPDS(
           pds,
