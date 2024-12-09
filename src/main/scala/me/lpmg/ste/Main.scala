@@ -23,16 +23,9 @@ object Main {
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)
     Watch.start("Main")
-    if (args.length < 1) {
-      logger.error("Please specify the dump folder path")
-      System.exit(1)
-    } else if (args.length < 2) {
-      logger.error("Please specify the data folder path")
-      System.exit(1)
-    }
 
-    val dumpFolderPath = args(0)
-    val dataFolderPath = args(1)
+    val dumpFolderPath = "/mnt/ceph/storage/data-tmp/current/li83keq/test-data"
+    val dataFolderPath = "/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data"
 
     implicit val spark = SparkSession
       .builder()

@@ -35,7 +35,7 @@ object ContributorEvaluator extends Serializable {
             0.0f
           }
           
-          if (score != 0.0f) {
+          if (Math.abs(score) >= 0.0001f) {
             // Find edges to parent revisions (isChildOf)
             val parentEdges = revisionsGraph.edges
               .filter(e => e.srcId == revId && e.attr == EdgeType.isChildOf)

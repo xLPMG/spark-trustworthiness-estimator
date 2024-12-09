@@ -1,231 +1,152 @@
-:: loading settings :: url = jar:file:/opt/apache/spark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
-Ivy Default Cache set to: /home/spark/.ivy2/cache
-The jars for the packages stored in: /home/spark/.ivy2/jars
-com.typesafe.scala-logging#scala-logging_2.12 added as a dependency
-:: resolving dependencies :: org.apache.spark#spark-submit-parent-2cfa0407-c7c5-4b9c-80dc-714924b98163;1.0
-	confs: [default]
-	found com.typesafe.scala-logging#scala-logging_2.12;3.9.5 in central
-	found org.scala-lang#scala-reflect;2.12.15 in central
-	found org.slf4j#slf4j-api;1.7.36 in central
-downloading https://repo1.maven.org/maven2/com/typesafe/scala-logging/scala-logging_2.12/3.9.5/scala-logging_2.12-3.9.5.jar ...
-	[SUCCESSFUL ] com.typesafe.scala-logging#scala-logging_2.12;3.9.5!scala-logging_2.12.jar(bundle) (95ms)
-downloading https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.15/scala-reflect-2.12.15.jar ...
-	[SUCCESSFUL ] org.scala-lang#scala-reflect;2.12.15!scala-reflect.jar (303ms)
-downloading https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar ...
-	[SUCCESSFUL ] org.slf4j#slf4j-api;1.7.36!slf4j-api.jar (75ms)
-:: resolution report :: resolve 2017ms :: artifacts dl 486ms
-	:: modules in use:
-	com.typesafe.scala-logging#scala-logging_2.12;3.9.5 from central in [default]
-	org.scala-lang#scala-reflect;2.12.15 from central in [default]
-	org.slf4j#slf4j-api;1.7.36 from central in [default]
-	---------------------------------------------------------------------
-	|                  |            modules            ||   artifacts   |
-	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
-	---------------------------------------------------------------------
-	|      default     |   3   |   3   |   3   |   0   ||   3   |   3   |
-	---------------------------------------------------------------------
-:: retrieving :: org.apache.spark#spark-submit-parent-2cfa0407-c7c5-4b9c-80dc-714924b98163
-	confs: [default]
-	3 artifacts copied, 0 already retrieved (3691kB/16ms)
-24/12/08 17:22:23 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-Files file:///mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-7c7055be-98a0-486f-92a5-8edb743c1e98/spark-trustworthiness-estimator_2.12-0.1.0.jar from /mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-7c7055be-98a0-486f-92a5-8edb743c1e98/spark-trustworthiness-estimator_2.12-0.1.0.jar to /tmp/spark-trustworthiness-estimator_2.12-0.1.0.jar
-Files file:///home/spark/.ivy2/jars/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar from /home/spark/.ivy2/jars/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar to /tmp/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar
-Files file:///home/spark/.ivy2/jars/org.scala-lang_scala-reflect-2.12.15.jar from /home/spark/.ivy2/jars/org.scala-lang_scala-reflect-2.12.15.jar to /tmp/org.scala-lang_scala-reflect-2.12.15.jar
-Files file:///home/spark/.ivy2/jars/org.slf4j_slf4j-api-1.7.36.jar from /home/spark/.ivy2/jars/org.slf4j_slf4j-api-1.7.36.jar to /tmp/org.slf4j_slf4j-api-1.7.36.jar
-Files file:///home/spark/.ivy2/jars/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar from /home/spark/.ivy2/jars/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar to /tmp/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar
-Files file:///home/spark/.ivy2/jars/org.scala-lang_scala-reflect-2.12.15.jar from /home/spark/.ivy2/jars/org.scala-lang_scala-reflect-2.12.15.jar to /tmp/org.scala-lang_scala-reflect-2.12.15.jar
-Files file:///home/spark/.ivy2/jars/org.slf4j_slf4j-api-1.7.36.jar from /home/spark/.ivy2/jars/org.slf4j_slf4j-api-1.7.36.jar to /tmp/org.slf4j_slf4j-api-1.7.36.jar
-24/12/08 17:22:24 INFO SparkContext: Running Spark version 3.5.0
-24/12/08 17:22:24 INFO SparkContext: OS info Linux, 6.5.0-44-generic, amd64
-24/12/08 17:22:24 INFO SparkContext: Java version 11.0.21
-24/12/08 17:22:24 INFO ResourceUtils: ==============================================================
-24/12/08 17:22:24 INFO ResourceUtils: No custom resources configured for spark.driver.
-24/12/08 17:22:24 INFO ResourceUtils: ==============================================================
-24/12/08 17:22:24 INFO SparkContext: Submitted application: Spark-Trustworthiness-Estimator
-24/12/08 17:22:24 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 2048, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
-24/12/08 17:22:24 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
-24/12/08 17:22:24 INFO ResourceProfileManager: Added ResourceProfile id: 0
-24/12/08 17:22:25 INFO SecurityManager: Changing view acls to: spark,lpmg
-24/12/08 17:22:25 INFO SecurityManager: Changing modify acls to: spark,lpmg
-24/12/08 17:22:25 INFO SecurityManager: Changing view acls groups to: 
-24/12/08 17:22:25 INFO SecurityManager: Changing modify acls groups to: 
-24/12/08 17:22:25 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark, lpmg; groups with view permissions: EMPTY; users with modify permissions: spark, lpmg; groups with modify permissions: EMPTY
-24/12/08 17:22:25 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
-24/12/08 17:22:26 INFO SparkEnv: Registering MapOutputTracker
-24/12/08 17:22:26 INFO SparkEnv: Registering BlockManagerMaster
-24/12/08 17:22:26 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-24/12/08 17:22:26 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-24/12/08 17:22:26 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
-24/12/08 17:22:26 INFO DiskBlockManager: Created local directory at /var/data/spark-cd96997e-7312-481f-ab56-cb4493c21eb8/blockmgr-aa67efb4-f14e-4952-8e06-c6ba138bc0f5
-24/12/08 17:22:26 INFO MemoryStore: MemoryStore started with capacity 6.8 GiB
-24/12/08 17:22:26 INFO SparkEnv: Registering OutputCommitCoordinator
-24/12/08 17:22:26 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
-24/12/08 17:22:27 INFO Utils: Successfully started service 'SparkUI' on port 4040.
-24/12/08 17:22:27 INFO SparkContext: Added JAR file:/mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-7c7055be-98a0-486f-92a5-8edb743c1e98/spark-trustworthiness-estimator_2.12-0.1.0.jar at spark://spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7078/jars/spark-trustworthiness-estimator_2.12-0.1.0.jar with timestamp 1733678544518
-24/12/08 17:22:27 INFO SparkContext: Added JAR file:/home/spark/.ivy2/jars/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar at spark://spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7078/jars/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar with timestamp 1733678544518
-24/12/08 17:22:27 INFO SparkContext: Added JAR file:/home/spark/.ivy2/jars/org.scala-lang_scala-reflect-2.12.15.jar at spark://spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7078/jars/org.scala-lang_scala-reflect-2.12.15.jar with timestamp 1733678544518
-24/12/08 17:22:27 INFO SparkContext: Added JAR file:/home/spark/.ivy2/jars/org.slf4j_slf4j-api-1.7.36.jar at spark://spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7078/jars/org.slf4j_slf4j-api-1.7.36.jar with timestamp 1733678544518
-24/12/08 17:22:27 INFO SparkContext: Added file file:/home/spark/.ivy2/jars/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar at spark://spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7078/files/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar with timestamp 1733678544518
-24/12/08 17:22:27 INFO Utils: Copying /home/spark/.ivy2/jars/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar to /var/data/spark-cd96997e-7312-481f-ab56-cb4493c21eb8/spark-e33e8df0-8e96-4014-866b-25186f6d0f94/userFiles-d82126b3-0bde-405f-829c-315caee3ad8a/com.typesafe.scala-logging_scala-logging_2.12-3.9.5.jar
-24/12/08 17:22:27 INFO SparkContext: Added file file:/home/spark/.ivy2/jars/org.scala-lang_scala-reflect-2.12.15.jar at spark://spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7078/files/org.scala-lang_scala-reflect-2.12.15.jar with timestamp 1733678544518
-24/12/08 17:22:27 INFO Utils: Copying /home/spark/.ivy2/jars/org.scala-lang_scala-reflect-2.12.15.jar to /var/data/spark-cd96997e-7312-481f-ab56-cb4493c21eb8/spark-e33e8df0-8e96-4014-866b-25186f6d0f94/userFiles-d82126b3-0bde-405f-829c-315caee3ad8a/org.scala-lang_scala-reflect-2.12.15.jar
-24/12/08 17:22:27 INFO SparkContext: Added file file:/home/spark/.ivy2/jars/org.slf4j_slf4j-api-1.7.36.jar at spark://spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7078/files/org.slf4j_slf4j-api-1.7.36.jar with timestamp 1733678544518
-24/12/08 17:22:27 INFO Utils: Copying /home/spark/.ivy2/jars/org.slf4j_slf4j-api-1.7.36.jar to /var/data/spark-cd96997e-7312-481f-ab56-cb4493c21eb8/spark-e33e8df0-8e96-4014-866b-25186f6d0f94/userFiles-d82126b3-0bde-405f-829c-315caee3ad8a/org.slf4j_slf4j-api-1.7.36.jar
-24/12/08 17:22:27 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
-24/12/08 17:22:30 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
-24/12/08 17:22:31 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
-24/12/08 17:22:31 INFO NettyBlockTransferService: Server created on spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc 10.23.202.136:7079
-24/12/08 17:22:31 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-24/12/08 17:22:31 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc, 7079, None)
-24/12/08 17:22:31 INFO BlockManagerMasterEndpoint: Registering block manager spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7079 with 6.8 GiB RAM, BlockManagerId(driver, spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc, 7079, None)
-24/12/08 17:22:31 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc, 7079, None)
-24/12/08 17:22:31 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc, 7079, None)
-24/12/08 17:22:31 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
-24/12/08 17:22:31 INFO ExecutorAllocationManager: Dynamic allocation is enabled without a shuffle service.
-24/12/08 17:22:31 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
-24/12/08 17:22:33 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 192.5 KiB, free 6.8 GiB)
-24/12/08 17:22:33 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 32.6 KiB, free 6.8 GiB)
-24/12/08 17:22:33 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7079 (size: 32.6 KiB, free: 6.8 GiB)
-24/12/08 17:22:33 INFO SparkContext: Created broadcast 0 from binaryFiles at RevisionManager.scala:59
-24/12/08 17:22:34 INFO FileInputFormat: Total input files to process : 770
-24/12/08 17:22:34 INFO FileInputFormat: Total input files to process : 770
-24/12/08 17:22:35 INFO SparkContext: Starting job: take at RevisionManager.scala:60
-24/12/08 17:22:35 INFO DAGScheduler: Got job 0 (take at RevisionManager.scala:60) with 1 output partitions
-24/12/08 17:22:35 INFO DAGScheduler: Final stage: ResultStage 0 (take at RevisionManager.scala:60)
-24/12/08 17:22:35 INFO DAGScheduler: Parents of final stage: List()
-24/12/08 17:22:35 INFO DAGScheduler: Missing parents: List()
-24/12/08 17:22:35 INFO DAGScheduler: Submitting ResultStage 0 (/mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20220901//*.bz2 BinaryFileRDD[0] at binaryFiles at RevisionManager.scala:59), which has no missing parents
-24/12/08 17:22:35 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 3.7 KiB, free 6.8 GiB)
-24/12/08 17:22:35 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 2.2 KiB, free 6.8 GiB)
-24/12/08 17:22:35 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on spark-trustworthiness-estimator-583a0b93a74af110-driver-svc.spark-jobs.svc:7079 (size: 2.2 KiB, free: 6.8 GiB)
-24/12/08 17:22:35 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1580
-24/12/08 17:22:35 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (/mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20220901//*.bz2 BinaryFileRDD[0] at binaryFiles at RevisionManager.scala:59) (first 15 tasks are for partitions Vector(0))
-24/12/08 17:22:35 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
-24/12/08 17:22:36 INFO ExecutorAllocationManager: Requesting 1 new executor because tasks are backlogged (new desired total will be 1 for resource profile id: 0)
-24/12/08 17:22:36 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
-24/12/08 17:22:36 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-24/12/08 17:22:36 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-24/12/08 17:22:47 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.19:52616
-24/12/08 17:22:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.53.19:52632) with ID 1,  ResourceProfileId 0
-24/12/08 17:22:49 INFO ExecutorMonitor: New executor 1 has registered (new total is 1)
-24/12/08 17:22:49 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.53.19:41105 with 1007.8 MiB RAM, BlockManagerId(1, 10.23.53.19, 41105, None)
-24/12/08 17:22:49 ERROR TaskSchedulerImpl: Lost executor 1 on 10.23.53.19: Unable to create executor due to ./org.slf4j_slf4j-api-1.7.36.jar
-24/12/08 17:22:49 INFO ExecutorMonitor: Executor 1 is removed. Remove reason statistics: (gracefully decommissioned: 0, decommision unfinished: 0, driver killed: 0, unexpectedly exited: 1).
-24/12/08 17:22:49 INFO DAGScheduler: Executor lost: 1 (epoch 0)
-24/12/08 17:22:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.19:52632
-24/12/08 17:22:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.19:52636
-24/12/08 17:22:49 INFO BlockManagerMasterEndpoint: Trying to remove executor 1 from BlockManagerMaster.
-24/12/08 17:22:49 INFO BlockManagerMasterEndpoint: Removing block manager BlockManagerId(1, 10.23.53.19, 41105, None)
-24/12/08 17:22:49 INFO BlockManagerMaster: Removed 1 successfully in removeExecutor
-24/12/08 17:22:49 INFO DAGScheduler: Shuffle files lost for executor: 1 (epoch 0)
-24/12/08 17:22:50 INFO BlockManagerMasterEndpoint: Trying to remove executor 1 from BlockManagerMaster.
-24/12/08 17:22:50 INFO BlockManagerMaster: Removal of executor 1 requested
-24/12/08 17:22:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asked to remove non-existent executor 1
-24/12/08 17:22:50 WARN ExecutorPodsAllocator: 1 new failed executors.
-24/12/08 17:22:50 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
-24/12/08 17:22:50 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-24/12/08 17:22:50 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-24/12/08 17:23:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.31:53268
-24/12/08 17:23:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.53.31:53284) with ID 2,  ResourceProfileId 0
-24/12/08 17:23:02 INFO ExecutorMonitor: New executor 2 has registered (new total is 1)
-24/12/08 17:23:02 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.53.31:44237 with 1007.8 MiB RAM, BlockManagerId(2, 10.23.53.31, 44237, None)
-24/12/08 17:23:02 ERROR TaskSchedulerImpl: Lost executor 2 on 10.23.53.31: Unable to create executor due to ./org.slf4j_slf4j-api-1.7.36.jar
-24/12/08 17:23:02 INFO DAGScheduler: Executor lost: 2 (epoch 1)
-24/12/08 17:23:02 INFO BlockManagerMasterEndpoint: Trying to remove executor 2 from BlockManagerMaster.
-24/12/08 17:23:02 INFO ExecutorMonitor: Executor 2 is removed. Remove reason statistics: (gracefully decommissioned: 0, decommision unfinished: 0, driver killed: 0, unexpectedly exited: 2).
-24/12/08 17:23:02 INFO BlockManagerMasterEndpoint: Removing block manager BlockManagerId(2, 10.23.53.31, 44237, None)
-24/12/08 17:23:02 INFO BlockManagerMaster: Removed 2 successfully in removeExecutor
-24/12/08 17:23:02 INFO DAGScheduler: Shuffle files lost for executor: 2 (epoch 1)
-24/12/08 17:23:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.31:53284
-24/12/08 17:23:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.31:53300
-24/12/08 17:23:04 WARN ExecutorPodsAllocator: 1 new failed executors.
-24/12/08 17:23:04 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
-24/12/08 17:23:04 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-24/12/08 17:23:04 INFO BlockManagerMaster: Removal of executor 2 requested
-24/12/08 17:23:04 INFO BlockManagerMasterEndpoint: Trying to remove executor 2 from BlockManagerMaster.
-24/12/08 17:23:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asked to remove non-existent executor 2
-24/12/08 17:23:04 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-24/12/08 17:23:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.4:57498
-24/12/08 17:23:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.53.4:33150) with ID 3,  ResourceProfileId 0
-24/12/08 17:23:15 INFO ExecutorMonitor: New executor 3 has registered (new total is 1)
-24/12/08 17:23:15 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.53.4:42709 with 1007.8 MiB RAM, BlockManagerId(3, 10.23.53.4, 42709, None)
-24/12/08 17:23:15 ERROR TaskSchedulerImpl: Lost an executor 3 (already removed): Unable to create executor due to ./org.slf4j_slf4j-api-1.7.36.jar
-24/12/08 17:23:15 INFO ExecutorMonitor: Executor 3 is removed. Remove reason statistics: (gracefully decommissioned: 0, decommision unfinished: 0, driver killed: 0, unexpectedly exited: 3).
-24/12/08 17:23:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.4:33150
-24/12/08 17:23:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.4:33156
-24/12/08 17:23:17 WARN ExecutorPodsAllocator: 1 new failed executors.
-24/12/08 17:23:17 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
-24/12/08 17:23:17 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-24/12/08 17:23:17 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-24/12/08 17:23:17 INFO BlockManagerMaster: Removal of executor 3 requested
-24/12/08 17:23:17 INFO BlockManagerMasterEndpoint: Trying to remove executor 3 from BlockManagerMaster.
-24/12/08 17:23:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asked to remove non-existent executor 3
-24/12/08 17:23:17 INFO BlockManagerMasterEndpoint: Removing block manager BlockManagerId(3, 10.23.53.4, 42709, None)
-24/12/08 17:23:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.30:45366
-24/12/08 17:23:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.53.30:45376) with ID 4,  ResourceProfileId 0
-24/12/08 17:23:27 INFO ExecutorMonitor: New executor 4 has registered (new total is 1)
-24/12/08 17:23:28 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.53.30:40089 with 1007.8 MiB RAM, BlockManagerId(4, 10.23.53.30, 40089, None)
-24/12/08 17:23:28 ERROR TaskSchedulerImpl: Lost an executor 4 (already removed): Unable to create executor due to ./org.slf4j_slf4j-api-1.7.36.jar
-24/12/08 17:23:28 INFO ExecutorMonitor: Executor 4 is removed. Remove reason statistics: (gracefully decommissioned: 0, decommision unfinished: 0, driver killed: 0, unexpectedly exited: 4).
-24/12/08 17:23:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.30:45376
-24/12/08 17:23:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.30:45382
-24/12/08 17:23:29 WARN ExecutorPodsAllocator: 1 new failed executors.
-24/12/08 17:23:29 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
-24/12/08 17:23:29 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-24/12/08 17:23:29 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-24/12/08 17:23:29 INFO BlockManagerMaster: Removal of executor 4 requested
-24/12/08 17:23:29 INFO BlockManagerMasterEndpoint: Trying to remove executor 4 from BlockManagerMaster.
-24/12/08 17:23:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asked to remove non-existent executor 4
-24/12/08 17:23:29 INFO BlockManagerMasterEndpoint: Removing block manager BlockManagerId(4, 10.23.53.30, 40089, None)
-24/12/08 17:23:39 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.25:37642
-24/12/08 17:23:40 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.53.25:37656) with ID 5,  ResourceProfileId 0
-24/12/08 17:23:40 INFO ExecutorMonitor: New executor 5 has registered (new total is 1)
-24/12/08 17:23:40 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.53.25:40965 with 1007.8 MiB RAM, BlockManagerId(5, 10.23.53.25, 40965, None)
-24/12/08 17:23:40 ERROR TaskSchedulerImpl: Lost executor 5 on 10.23.53.25: Unable to create executor due to ./org.slf4j_slf4j-api-1.7.36.jar
-24/12/08 17:23:40 INFO DAGScheduler: Executor lost: 5 (epoch 2)
-24/12/08 17:23:40 INFO ExecutorMonitor: Executor 5 is removed. Remove reason statistics: (gracefully decommissioned: 0, decommision unfinished: 0, driver killed: 0, unexpectedly exited: 5).
-24/12/08 17:23:40 INFO BlockManagerMasterEndpoint: Trying to remove executor 5 from BlockManagerMaster.
-24/12/08 17:23:40 INFO BlockManagerMasterEndpoint: Removing block manager BlockManagerId(5, 10.23.53.25, 40965, None)
-24/12/08 17:23:40 INFO BlockManagerMaster: Removed 5 successfully in removeExecutor
-24/12/08 17:23:40 INFO DAGScheduler: Shuffle files lost for executor: 5 (epoch 2)
-24/12/08 17:23:40 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.25:37656
-24/12/08 17:23:40 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.25:37672
-24/12/08 17:23:42 WARN ExecutorPodsAllocator: 1 new failed executors.
-24/12/08 17:23:42 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
-24/12/08 17:23:42 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-24/12/08 17:23:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-24/12/08 17:23:42 INFO BlockManagerMaster: Removal of executor 5 requested
-24/12/08 17:23:42 INFO BlockManagerMasterEndpoint: Trying to remove executor 5 from BlockManagerMaster.
-24/12/08 17:23:42 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asked to remove non-existent executor 5
-24/12/08 17:23:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.2:50604
-24/12/08 17:23:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.53.2:50610) with ID 6,  ResourceProfileId 0
-24/12/08 17:23:53 INFO ExecutorMonitor: New executor 6 has registered (new total is 1)
-24/12/08 17:23:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.53.2:43293 with 1007.8 MiB RAM, BlockManagerId(6, 10.23.53.2, 43293, None)
-24/12/08 17:23:53 ERROR TaskSchedulerImpl: Lost an executor 6 (already removed): Unable to create executor due to ./org.slf4j_slf4j-api-1.7.36.jar
-24/12/08 17:23:53 INFO ExecutorMonitor: Executor 6 is removed. Remove reason statistics: (gracefully decommissioned: 0, decommision unfinished: 0, driver killed: 0, unexpectedly exited: 6).
-24/12/08 17:23:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.2:50610
-24/12/08 17:23:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.2:33916
-24/12/08 17:23:54 WARN ExecutorPodsAllocator: 1 new failed executors.
-24/12/08 17:23:54 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
-24/12/08 17:23:54 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-24/12/08 17:23:54 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-24/12/08 17:23:54 INFO BlockManagerMaster: Removal of executor 6 requested
-24/12/08 17:23:54 INFO BlockManagerMasterEndpoint: Trying to remove executor 6 from BlockManagerMaster.
-24/12/08 17:23:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asked to remove non-existent executor 6
-24/12/08 17:23:54 INFO BlockManagerMasterEndpoint: Removing block manager BlockManagerId(6, 10.23.53.2, 43293, None)
-24/12/08 17:24:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.18:43504
-24/12/08 17:24:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.53.18:43510) with ID 7,  ResourceProfileId 0
-24/12/08 17:24:06 INFO ExecutorMonitor: New executor 7 has registered (new total is 1)
-24/12/08 17:24:06 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.53.18:37489 with 1007.8 MiB RAM, BlockManagerId(7, 10.23.53.18, 37489, None)
-24/12/08 17:24:06 ERROR TaskSchedulerImpl: Lost an executor 7 (already removed): Unable to create executor due to ./org.slf4j_slf4j-api-1.7.36.jar
-24/12/08 17:24:06 INFO ExecutorMonitor: Executor 7 is removed. Remove reason statistics: (gracefully decommissioned: 0, decommision unfinished: 0, driver killed: 0, unexpectedly exited: 7).
-24/12/08 17:24:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.18:43510
-24/12/08 17:24:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.18:43526
-24/12/08 17:24:08 WARN ExecutorPodsAllocator: 1 new failed executors.
-24/12/08 17:24:08 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
-24/12/08 17:24:08 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-24/12/08 17:24:08 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-24/12/08 17:24:08 INFO BlockManagerMasterEndpoint: Trying to remove executor 7 from BlockManagerMaster.
-24/12/08 17:24:08 INFO BlockManagerMaster: Removal of executor 7 requested
-24/12/08 17:24:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asked to remove non-existent executor 7
-24/12/08 17:24:08 INFO BlockManagerMasterEndpoint: Removing block manager BlockManagerId(7, 10.23.53.18, 37489, None)
+24/12/09 07:52:25 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Files file:///mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-9706b583-9d65-439d-8d2e-9e18efada7f9/spark-trustworthiness-estimator-assembly-0.1.0.jar from /mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-9706b583-9d65-439d-8d2e-9e18efada7f9/spark-trustworthiness-estimator-assembly-0.1.0.jar to /tmp/spark-trustworthiness-estimator-assembly-0.1.0.jar
+24/12/09 07:52:42 INFO SparkContext: Running Spark version 3.5.0
+24/12/09 07:52:42 INFO SparkContext: OS info Linux, 6.8.0-47-generic, amd64
+24/12/09 07:52:42 INFO SparkContext: Java version 11.0.21
+24/12/09 07:52:42 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+24/12/09 07:52:42 INFO ResourceUtils: ==============================================================
+24/12/09 07:52:42 INFO ResourceUtils: No custom resources configured for spark.driver.
+24/12/09 07:52:42 INFO ResourceUtils: ==============================================================
+24/12/09 07:52:42 INFO SparkContext: Submitted application: Spark-Trustworthiness-Estimator
+24/12/09 07:52:43 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 2048, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+24/12/09 07:52:43 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+24/12/09 07:52:43 INFO ResourceProfileManager: Added ResourceProfile id: 0
+24/12/09 07:52:43 INFO SecurityManager: Changing view acls to: spark,lpmg
+24/12/09 07:52:43 INFO SecurityManager: Changing modify acls to: spark,lpmg
+24/12/09 07:52:43 INFO SecurityManager: Changing view acls groups to: 
+24/12/09 07:52:43 INFO SecurityManager: Changing modify acls groups to: 
+24/12/09 07:52:43 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark, lpmg; groups with view permissions: EMPTY; users with modify permissions: spark, lpmg; groups with modify permissions: EMPTY
+24/12/09 07:52:44 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
+24/12/09 07:52:44 INFO SparkEnv: Registering MapOutputTracker
+24/12/09 07:52:44 INFO SparkEnv: Registering BlockManagerMaster
+24/12/09 07:52:44 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+24/12/09 07:52:44 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+24/12/09 07:52:44 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+24/12/09 07:52:44 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-4ff8511e-ff74-493d-be94-268a5ba61468
+24/12/09 07:52:44 INFO MemoryStore: MemoryStore started with capacity 6.8 GiB
+24/12/09 07:52:44 INFO SparkEnv: Registering OutputCommitCoordinator
+24/12/09 07:52:45 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+24/12/09 07:52:45 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+24/12/09 07:52:45 INFO SparkContext: Added JAR file:/mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-9706b583-9d65-439d-8d2e-9e18efada7f9/spark-trustworthiness-estimator-assembly-0.1.0.jar at spark://spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc:7078/jars/spark-trustworthiness-estimator-assembly-0.1.0.jar with timestamp 1733730762807
+24/12/09 07:52:45 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
+24/12/09 07:52:49 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
+24/12/09 07:52:50 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+24/12/09 07:52:50 INFO NettyBlockTransferService: Server created on spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc 10.23.147.226:7079
+24/12/09 07:52:50 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+24/12/09 07:52:50 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc, 7079, None)
+24/12/09 07:52:50 INFO BlockManagerMasterEndpoint: Registering block manager spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc:7079 with 6.8 GiB RAM, BlockManagerId(driver, spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc, 7079, None)
+24/12/09 07:52:50 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc, 7079, None)
+24/12/09 07:52:50 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc, 7079, None)
+24/12/09 07:52:50 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
+24/12/09 07:52:50 INFO ExecutorAllocationManager: Dynamic allocation is enabled without a shuffle service.
+24/12/09 07:52:50 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+24/12/09 07:52:52 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 192.4 KiB, free 6.8 GiB)
+24/12/09 07:52:52 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 32.6 KiB, free 6.8 GiB)
+24/12/09 07:52:52 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc:7079 (size: 32.6 KiB, free: 6.8 GiB)
+24/12/09 07:52:52 INFO SparkContext: Created broadcast 0 from binaryFiles at Main.scala:51
+24/12/09 07:52:52 INFO FileInputFormat: Total input files to process : 1
+24/12/09 07:52:52 INFO FileInputFormat: Total input files to process : 1
+24/12/09 07:52:52 INFO SparkContext: Starting job: count at Main.scala:52
+24/12/09 07:52:52 INFO DAGScheduler: Got job 0 (count at Main.scala:52) with 1 output partitions
+24/12/09 07:52:52 INFO DAGScheduler: Final stage: ResultStage 0 (count at Main.scala:52)
+24/12/09 07:52:52 INFO DAGScheduler: Parents of final stage: List()
+24/12/09 07:52:52 INFO DAGScheduler: Missing parents: List()
+24/12/09 07:52:52 INFO DAGScheduler: Submitting ResultStage 0 (/mnt/ceph/storage/data-tmp/current/li83keq/test-data/*.bz2 BinaryFileRDD[0] at binaryFiles at Main.scala:51), which has no missing parents
+24/12/09 07:52:53 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 3.6 KiB, free 6.8 GiB)
+24/12/09 07:52:53 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 2.2 KiB, free 6.8 GiB)
+24/12/09 07:52:53 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc:7079 (size: 2.2 KiB, free: 6.8 GiB)
+24/12/09 07:52:53 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1580
+24/12/09 07:52:53 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (/mnt/ceph/storage/data-tmp/current/li83keq/test-data/*.bz2 BinaryFileRDD[0] at binaryFiles at Main.scala:51) (first 15 tasks are for partitions Vector(0))
+24/12/09 07:52:53 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+24/12/09 07:52:54 INFO ExecutorAllocationManager: Requesting 1 new executor because tasks are backlogged (new desired total will be 1 for resource profile id: 0)
+24/12/09 07:52:54 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
+24/12/09 07:52:54 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+24/12/09 07:52:54 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+24/12/09 07:53:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.140:34894
+24/12/09 07:53:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.202.140:49470) with ID 1,  ResourceProfileId 0
+24/12/09 07:53:07 INFO ExecutorMonitor: New executor 1 has registered (new total is 1)
+24/12/09 07:53:08 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.202.140:34999 with 1007.8 MiB RAM, BlockManagerId(1, 10.23.202.140, 34999, None)
+24/12/09 07:53:13 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (10.23.202.140, executor 1, partition 0, PROCESS_LOCAL, 8118 bytes) 
+24/12/09 07:53:13 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.202.140:34999 (size: 2.2 KiB, free: 1007.8 MiB)
+24/12/09 07:53:14 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.202.140:34999 (size: 32.6 KiB, free: 1007.8 MiB)
+24/12/09 07:53:15 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 2553 ms on 10.23.202.140 (executor 1) (1/1)
+24/12/09 07:53:15 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+24/12/09 07:53:15 INFO DAGScheduler: ResultStage 0 (count at Main.scala:52) finished in 22.678 s
+24/12/09 07:53:15 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+24/12/09 07:53:15 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+24/12/09 07:53:15 INFO DAGScheduler: Job 0 finished: count at Main.scala:52, took 22.892862 s
+24/12/09 07:53:15 WARN Main$: Total files found: 1
+24/12/09 07:53:15 INFO SparkContext: Starting job: count at RevisionManager.scala:75
+24/12/09 07:53:15 INFO DAGScheduler: Got job 1 (count at RevisionManager.scala:75) with 1 output partitions
+24/12/09 07:53:15 INFO DAGScheduler: Final stage: ResultStage 1 (count at RevisionManager.scala:75)
+24/12/09 07:53:15 INFO DAGScheduler: Parents of final stage: List()
+24/12/09 07:53:15 INFO DAGScheduler: Missing parents: List()
+24/12/09 07:53:15 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[1] at flatMap at RevisionManager.scala:67), which has no missing parents
+24/12/09 07:53:15 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 4.9 KiB, free 6.8 GiB)
+24/12/09 07:53:16 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 2.9 KiB, free 6.8 GiB)
+24/12/09 07:53:16 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc:7079 (size: 2.9 KiB, free: 6.8 GiB)
+24/12/09 07:53:16 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1580
+24/12/09 07:53:16 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[1] at flatMap at RevisionManager.scala:67) (first 15 tasks are for partitions Vector(0))
+24/12/09 07:53:16 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
+24/12/09 07:53:16 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (10.23.202.140, executor 1, partition 0, PROCESS_LOCAL, 8118 bytes) 
+24/12/09 07:53:16 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.202.140:34999 (size: 2.9 KiB, free: 1007.8 MiB)
+24/12/09 07:54:43 INFO BlockManagerInfo: Removed broadcast_1_piece0 on spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc:7079 in memory (size: 2.2 KiB, free: 6.8 GiB)
+24/12/09 07:54:43 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 10.23.202.140:34999 in memory (size: 2.2 KiB, free: 1007.8 MiB)
+24/12/09 07:55:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.140:49472
+24/12/09 08:41:38 INFO BlockManagerInfo: Added rdd_1_0 in memory on 10.23.202.140:34999 (size: 680.5 MiB, free: 327.3 MiB)
+24/12/09 08:41:38 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 2902297 ms on 10.23.202.140 (executor 1) (1/1)
+24/12/09 08:41:38 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+24/12/09 08:41:38 INFO DAGScheduler: ResultStage 1 (count at RevisionManager.scala:75) finished in 2902.463 s
+24/12/09 08:41:38 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+24/12/09 08:41:38 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+24/12/09 08:41:38 INFO DAGScheduler: Job 1 finished: count at RevisionManager.scala:75, took 2902.478794 s
+24/12/09 08:41:38 WARN RevisionManager: Total Revisions Extracted: 1147923
+24/12/09 08:41:38 INFO MapPartitionsRDD: Removing RDD 1 from persistence list
+24/12/09 08:41:38 INFO BlockManager: Removing RDD 1
+24/12/09 08:41:44 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+24/12/09 08:41:44 INFO SharedState: Warehouse path is 'file:/tmp/spark-warehouse'.
+24/12/09 08:41:51 INFO ParquetUtils: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+24/12/09 08:41:51 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+24/12/09 08:41:51 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+24/12/09 08:41:51 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+24/12/09 08:41:51 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+24/12/09 08:41:51 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+24/12/09 08:41:51 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+24/12/09 08:41:52 INFO CodeGenerator: Code generated in 981.852703 ms
+24/12/09 08:41:52 INFO SparkContext: Starting job: parquet at RevisionManager.scala:181
+24/12/09 08:41:52 INFO DAGScheduler: Registering RDD 3 (map at TemplateUpdater.scala:87) as input to shuffle 0
+24/12/09 08:41:52 INFO DAGScheduler: Registering RDD 2 (map at TemplateUpdater.scala:83) as input to shuffle 1
+24/12/09 08:41:52 INFO DAGScheduler: Got job 2 (parquet at RevisionManager.scala:181) with 1 output partitions
+24/12/09 08:41:52 INFO DAGScheduler: Final stage: ResultStage 4 (parquet at RevisionManager.scala:181)
+24/12/09 08:41:52 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 2, ShuffleMapStage 3)
+24/12/09 08:41:53 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 2, ShuffleMapStage 3)
+24/12/09 08:41:53 INFO DAGScheduler: Submitting ShuffleMapStage 2 (MapPartitionsRDD[3] at map at TemplateUpdater.scala:87), which has no missing parents
+24/12/09 08:41:53 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 5.9 KiB, free 6.8 GiB)
+24/12/09 08:41:53 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 3.5 KiB, free 6.8 GiB)
+24/12/09 08:41:53 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc:7079 (size: 3.5 KiB, free: 6.8 GiB)
+24/12/09 08:41:53 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1580
+24/12/09 08:41:53 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 2 (MapPartitionsRDD[3] at map at TemplateUpdater.scala:87) (first 15 tasks are for partitions Vector(0))
+24/12/09 08:41:53 INFO TaskSchedulerImpl: Adding task set 2.0 with 1 tasks resource profile 0
+24/12/09 08:41:53 INFO DAGScheduler: Submitting ShuffleMapStage 3 (MapPartitionsRDD[2] at map at TemplateUpdater.scala:83), which has no missing parents
+24/12/09 08:41:53 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 2) (10.23.202.140, executor 1, partition 0, PROCESS_LOCAL, 8107 bytes) 
+24/12/09 08:41:53 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 5.9 KiB, free 6.8 GiB)
+24/12/09 08:41:53 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 3.5 KiB, free 6.8 GiB)
+24/12/09 08:41:53 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc:7079 (size: 3.5 KiB, free: 6.8 GiB)
+24/12/09 08:41:53 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:1580
+24/12/09 08:41:53 INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 3 (MapPartitionsRDD[2] at map at TemplateUpdater.scala:83) (first 15 tasks are for partitions Vector(0))
+24/12/09 08:41:53 INFO TaskSchedulerImpl: Adding task set 3.0 with 1 tasks resource profile 0
+24/12/09 08:41:53 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.202.140:34999 (size: 3.5 KiB, free: 1007.8 MiB)
+24/12/09 08:41:54 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 2 for resource profile id: 0)
+24/12/09 08:41:54 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 2, known: 1, sharedSlotFromPendingPods: 2147483647.
+24/12/09 08:41:54 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+24/12/09 08:41:54 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+24/12/09 08:42:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.190:44514
+24/12/09 08:42:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.202.190:44524) with ID 2,  ResourceProfileId 0
+24/12/09 08:42:05 INFO ExecutorMonitor: New executor 2 has registered (new total is 2)
+24/12/09 08:42:06 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.202.190:46677 with 1007.8 MiB RAM, BlockManagerId(2, 10.23.202.190, 46677, None)
+24/12/09 08:42:10 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 3) (10.23.202.190, executor 2, partition 0, PROCESS_LOCAL, 8107 bytes) 
+24/12/09 08:42:11 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.202.190:46677 (size: 3.5 KiB, free: 1007.8 MiB)
+24/12/09 08:42:12 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.202.190:46677 (size: 32.6 KiB, free: 1007.8 MiB)
+24/12/09 08:44:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.190:41594
+24/12/09 08:52:50 INFO BlockManagerInfo: Removed broadcast_2_piece0 on spark-trustworthiness-estimator-7c3da893aa6789c3-driver-svc.spark-jobs.svc:7079 in memory (size: 2.9 KiB, free: 6.8 GiB)
+24/12/09 08:52:50 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 10.23.202.140:34999 in memory (size: 2.9 KiB, free: 1007.8 MiB)

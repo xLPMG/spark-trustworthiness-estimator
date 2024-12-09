@@ -5,6 +5,5 @@ spark-submit \
   --name Spark-Trustworthiness-Estimator \
   --properties-file spark-defaults.conf \
   --verbose \
-  target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
-  /mnt/ceph/storage/data-tmp/current/li83keq/test-data/ \
-  /mnt/ceph/storage/data-tmp/current/li83keq/ste-data/
+  target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar
+  
