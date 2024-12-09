@@ -53,7 +53,7 @@ object Main {
     logger.warn(s"Total files found: ${filesCount}")
 
     val revisions = revisionManager.retrieveRevisions(filesRDD)
-    revisions.repartition(filesCount.toInt)
+    //revisions.repartition(filesCount.toInt)
 
     val numsaved = revisionManager.saveRevisionsWithTemplateChanges(
       revisions,
