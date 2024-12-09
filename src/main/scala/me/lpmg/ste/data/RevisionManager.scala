@@ -22,6 +22,7 @@ import me.lpmg.ste.types.EdgeType
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.types.Types
 import org.apache.spark.storage.StorageLevel
+import org.apache.spark.input.PortableDataStream
 
 class RevisionManager(
     spark: SparkSession,
@@ -54,17 +55,15 @@ class RevisionManager(
     * @return
     *   The revision graph
     */
-  def retrieveRevisions(): RDD[Revision] = {
-    // Read all .xml.bz2 files in the folder into an RDD
-    val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
-    val file1RDD = spark.sparkContext.parallelize(filesRDD.take(1))
-    logger.warn(s"Total files found: ${file1RDD.count()}")
+  def retrieveRevisions(
+      filesRDD: RDD[(String, PortableDataStream)]
+  ): RDD[Revision] = {
 
     /////////////////////////////////////////////////////////////////////////////////////////
     // REVISION EXTRACTION
     /////////////////////////////////////////////////////////////////////////////////////////
     val fixedDateLimit = dateLimit
-    val allRevisionsRDD = file1RDD
+    val allRevisionsRDD = filesRDD
       .flatMap { case (_, pds) =>
         DataReader.getRevisionsFromPDS(
           pds,
@@ -199,7 +198,9 @@ class RevisionManager(
 
     val inputPath = Path.of(dataFolderPath).resolve(inputFolder)
     if (!inputPath.toFile.exists()) {
-      throw new IllegalArgumentException(s"Input folder does not exist: $inputPath")
+      throw new IllegalArgumentException(
+        s"Input folder does not exist: $inputPath"
+      )
     }
 
     // Read the parquet file

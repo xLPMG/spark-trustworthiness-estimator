@@ -40,6 +40,7 @@ object Main {
 
     val revisionManager =
       new RevisionManager(spark, dumpFolderPath, dataFolderPath)
+
     // revisionManager.setDateLimit(
     //   ZonedDateTime.of(
     //     2021,
@@ -53,18 +54,24 @@ object Main {
     //   )
     // )
 
-    val revisions = revisionManager.retrieveRevisions()
+    // Read all .xml.bz2 files in the folder into an RDD
+    val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
+    val filesCount = filesRDD.count()
+    logger.warn(s"Total files found: ${filesCount}")
+
+    val revisions = revisionManager.retrieveRevisions(filesRDD)
+    revisions.repartition(filesCount.toInt)
 
     val numsaved = revisionManager.saveRevisionsWithTemplateChanges(
       revisions,
-      "revisions_with_template_changes"
+      "revisions_with_template_changes_test"
     )
     logger.warn(s"Saved $numsaved revisions with template changes")
 
     val loadedRevisions =
       revisionManager
         .loadRevisionsWithTemplateChanges(
-          "revisions_with_template_changes"
+          "revisions_with_template_changes_test"
         )
         .persist(StorageLevel.MEMORY_AND_DISK)
 
