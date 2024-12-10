@@ -24,8 +24,16 @@ object Main {
     val logger = Logger(getClass.getName)
     Watch.start("Main")
 
-    val dumpFolderPath = "/mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20210601"
-    val dataFolderPath = "/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data"
+    if (args.length < 1) {
+      logger.error("Please specify the dump folder path")
+      System.exit(1)
+    } else if (args.length < 2) {
+      logger.error("Please specify the data folder path")
+      System.exit(1)
+    }
+
+    val dumpFolderPath = args(0)
+    val dataFolderPath = args(1)
 
     implicit val spark = SparkSession
       .builder()
@@ -53,7 +61,7 @@ object Main {
     logger.warn(s"Total files found: ${filesCount}")
 
     val revisions = revisionManager.retrieveRevisions(filesRDD)
-    //revisions.repartition(filesCount.toInt)
+    // revisions.repartition(filesCount.toInt)
 
     val numsaved = revisionManager.saveRevisionsWithTemplateChanges(
       revisions,
