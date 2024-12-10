@@ -370,9 +370,9 @@
       
       
     </li><li name="me.lpmg.ste.types.Revision#copy" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="copy(revisionId:Long,pageId:Int,parentId:Long,timestamp:Long,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,sources:Seq[String]):me.lpmg.ste.types.Revision"></a><a id="copy(Long,Int,Long,Long,BitSet,BitSet,BitSet,Seq[String]):Revision"></a>
+      <a id="copy(revisionId:Long,pageId:Int,parentId:Long,timestamp:Long,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,sources:Seq[String]):me.lpmg.ste.types.Revision"></a><a id="copy(Long,Int,Long,Long,Int,BitSet,BitSet,BitSet,Seq[String]):Revision"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/Revision.html#copy(revisionId:Long,pageId:Int,parentId:Long,timestamp:Long,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,sources:Seq[String]):me.lpmg.ste.types.Revision" title="Permalink">
+      <a href="../../../../me/lpmg/ste/types/Revision.html#copy(revisionId:Long,pageId:Int,parentId:Long,timestamp:Long,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,sources:Seq[String]):me.lpmg.ste.types.Revision" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -381,12 +381,21 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">copy</span><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Long">Long</span> = <span class="symbol"><span class="name"><a href="#revisionId:Long">this.revisionId</a></span></span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="#pageId:Int">this.pageId</a></span></span></span>, <span name="parentId">parentId: <span class="extype" name="scala.Long">Long</span> = <span class="symbol"><span class="name"><a href="#parentId:Long">this.parentId</a></span></span></span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol"><span class="name"><a href="#timestamp:Long">this.timestamp</a></span></span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templatePresence:org.apache.spark.util.collection.BitSet">this.templatePresence</a></span></span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateAdded:org.apache.spark.util.collection.BitSet">this.templateAdded</a></span></span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateRemoved:org.apache.spark.util.collection.BitSet">this.templateRemoved</a></span></span></span>, <span name="sources">sources: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol"><span class="name"><a href="#sources:Seq[String]">this.sources</a></span></span></span>)</span><span class="result">: <a href="" class="extype" name="me.lpmg.ste.types.Revision">Revision</a></span>
+        <span class="name">copy</span><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Long">Long</span> = <span class="symbol"><span class="name"><a href="#revisionId:Long">this.revisionId</a></span></span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="#pageId:Int">this.pageId</a></span></span></span>, <span name="parentId">parentId: <span class="extype" name="scala.Long">Long</span> = <span class="symbol"><span class="name"><a href="#parentId:Long">this.parentId</a></span></span></span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol"><span class="name"><a href="#timestamp:Long">this.timestamp</a></span></span></span>, <span name="contributorId">contributorId: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="#contributorId:Int">this.contributorId</a></span></span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templatePresence:org.apache.spark.util.collection.BitSet">this.templatePresence</a></span></span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateAdded:org.apache.spark.util.collection.BitSet">this.templateAdded</a></span></span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateRemoved:org.apache.spark.util.collection.BitSet">this.templateRemoved</a></span></span></span>, <span name="sources">sources: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol"><span class="name"><a href="#sources:Seq[String]">this.sources</a></span></span></span>)</span><span class="result">: <a href="" class="extype" name="me.lpmg.ste.types.Revision">Revision</a></span>
       </span>
       
       <p class="shortcomment cmt">Copy the revision with the specified values.</p><div class="fullcomment"><div class="comment cmt"><p>Copy the revision with the specified values. All unspecified values are
 copied from the original revision.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
+</p></div><dl class="paramcmts block"><dt class="param">revisionId</dt><dd class="cmt"><p>
+  the unique identifier of the revision</p></dd><dt class="param">pageId</dt><dd class="cmt"><p>
+  the unique identifier of the page</p></dd><dt class="param">parentId</dt><dd class="cmt"><p>
+  the unique identifier of the parent revision</p></dd><dt class="param">timestamp</dt><dd class="cmt"><p>
+  the timestamp of the revision</p></dd><dt class="param">contributorId</dt><dd class="cmt"><p>
+  the unique identifier of the contributor</p></dd><dt class="param">templatePresence</dt><dd class="cmt"><p>
+  the presence of templates in the revision</p></dd><dt class="param">templateAdded</dt><dd class="cmt"><p>
+  whether templates were added in the revision</p></dd><dt class="param">templateRemoved</dt><dd class="cmt"><p>
+  whether templates were removed in the revision</p></dd><dt class="param">sources</dt><dd class="cmt"><p>
+  the sources of the revision</p></dd><dt>returns</dt><dd class="cmt"><p>
   a new revision with the specified values</p></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
@@ -680,7 +689,7 @@ copied from the original revision.
       </span>
       
       
-    </li><li name="me.lpmg.ste.types.Revision#toIdTimestampPair" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="me.lpmg.ste.types.Revision#toIdTimestampPair" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toIdTimestampPair:(Long,Long)"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/types/Revision.html#toIdTimestampPair:(Long,Long)" title="Permalink">
@@ -695,7 +704,9 @@ copied from the original revision.
         <span class="name">toIdTimestampPair</span><span class="result">: (<span class="extype" name="scala.Long">Long</span>, <span class="extype" name="scala.Long">Long</span>)</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Convert the revision to a pair of revision ID and timestamp.</p><div class="fullcomment"><div class="comment cmt"><p>Convert the revision to a pair of revision ID and timestamp.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
+  the pair of revision ID and timestamp</p></dd></dl></div>
     </li><li name="me.lpmg.ste.types.Revision#toRevisionVertex" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toRevisionVertex:me.lpmg.ste.types.RevisionVertex"></a><a id="toRevisionVertex:RevisionVertex"></a>
       <span class="permalink">
