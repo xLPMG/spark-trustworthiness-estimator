@@ -5,9 +5,18 @@ import org.apache.spark.util.collection.BitSet
 /** Represents a revision vertex in the graph. Only contains the necessary
   * information for the trust algorithm.
   *
-  * @param isGroundTruth
   * @param trustScore
-  * @param isRedirect
+  *   Trust score of the revision
+  * @param contributorId
+  *   ID of the contributor
+  * @param templatePresence
+  *   Bitset representing the presence of templates
+  * @param templateAdded
+  *   Bitset representing the added templates
+  * @param templateRemoved
+  *   Bitset representing the removed templates
+  * @param isGroundTruth
+  *   Whether the revision is ground truth
   */
 class RevisionVertex(
     val trustScore: Float,

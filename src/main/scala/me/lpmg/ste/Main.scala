@@ -24,7 +24,7 @@ object Main {
     val logger = Logger(getClass.getName)
     Watch.start("Main")
 
-    val dumpFolderPath = "/mnt/ceph/storage/data-tmp/current/li83keq/test-data"
+    val dumpFolderPath = "/mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20210601"
     val dataFolderPath = "/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data"
 
     implicit val spark = SparkSession

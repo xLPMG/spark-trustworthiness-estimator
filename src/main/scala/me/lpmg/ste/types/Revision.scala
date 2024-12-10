@@ -40,14 +40,23 @@ class Revision(
     * copied from the original revision.
     *
     * @param revisionId
+    *   the unique identifier of the revision
     * @param pageId
+    *   the unique identifier of the page
     * @param parentId
+    *   the unique identifier of the parent revision
     * @param timestamp
+    *   the timestamp of the revision
     * @param contributorId
+    *   the unique identifier of the contributor
     * @param templatePresence
+    *   the presence of templates in the revision
     * @param templateAdded
+    *   whether templates were added in the revision
     * @param templateRemoved
+    *   whether templates were removed in the revision
     * @param sources
+    *   the sources of the revision
     * @return
     *   a new revision with the specified values
     */
@@ -56,6 +65,7 @@ class Revision(
       pageId: Int = this.pageId,
       parentId: Long = this.parentId,
       timestamp: Long = this.timestamp,
+      contributorId: Int = this.contributorId,
       templatePresence: BitSet = this.templatePresence,
       templateAdded: BitSet = this.templateAdded,
       templateRemoved: BitSet = this.templateRemoved,
@@ -74,6 +84,11 @@ class Revision(
     )
   }
 
+  /** Convert the revision to a pair of revision ID and timestamp.
+    *
+    * @return
+    *   the pair of revision ID and timestamp
+    */
   def toIdTimestampPair: (Long, Long) = (revisionId, timestamp)
 
   /** Convert the revision to a revision vertex.
@@ -92,7 +107,9 @@ class Revision(
     )
 
   override def toString(): String = {
-    s"Revision(revisionId=${revisionId}, pageId=${pageId}, parentId=${parentId}, timestamp=${timestamp}, contributorId=${contributorId}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)}, sources=${sources.mkString(", ")})"
+    s"Revision(revisionId=${revisionId}, pageId=${pageId}, parentId=${parentId}, timestamp=${timestamp}, contributorId=${contributorId}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(
+        templateAdded
+      )}, templateRemoved=${bitSetToBinaryString(templateRemoved)}, sources=${sources.mkString(", ")})"
   }
 
   private def bitSetToBinaryString(bitSet: BitSet): String = {
