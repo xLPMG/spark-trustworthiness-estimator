@@ -23,6 +23,7 @@ import org.apache.spark.rdd.RDD
 import me.lpmg.ste.types.Types
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.input.PortableDataStream
+import org.apache.hadoop.shaded.org.checkerframework.checker.units.qual.s
 
 class RevisionManager(
     spark: SparkSession,
@@ -70,68 +71,54 @@ class RevisionManager(
           fixedDateLimit
         )
       }
-      .persist(StorageLevel.MEMORY_AND_DISK)
-
-    logger.warn(s"Total Revisions Extracted: ${allRevisionsRDD.count()}")
-
+    allRevisionsRDD
     // Find oldest revisions and update parent IDs in a distributed way
-    val updatedRevisionsRDD = if (fixedDateLimit <= 0) {
-      allRevisionsRDD
-    } else {
-      logger.warn("Setting parent ID of oldest revisions to -1")
+    // val updatedRevisionsRDD = if (fixedDateLimit <= 0) {
+    //   allRevisionsRDD
+    // } else {
+    //   logger.warn("Setting parent ID of oldest revisions to -1")
 
-      // Group revisions by their page ID and sort by timestamp
-      val groupedRevisionsRDD =
-        allRevisionsRDD
-          .groupBy(_.pageId)
-          .mapValues { revisions =>
-            // [oldest, ..., newest]
-            revisions.toSeq.sortBy(_.timestamp).map { rev =>
-              rev.toIdTimestampPair
-            }
-          }
+    //   // Group revisions by their page ID and sort by timestamp
+    //   val groupedRevisionsRDD =
+    //     allRevisionsRDD
+    //       .groupBy(_.pageId)
+    //       .mapValues { revisions =>
+    //         // [oldest, ..., newest]
+    //         revisions.toSeq.sortBy(_.timestamp).map { rev =>
+    //           rev.toIdTimestampPair
+    //         }
+    //       }
 
-      // Create an RDD of oldest revision IDs with a marker
-      val oldestRevisionsRDD = groupedRevisionsRDD
-        .flatMap { case (pageId, revisions) =>
-          revisions.headOption.map(rev => (rev._1, true))
-        }
+    //   // Create an RDD of oldest revision IDs with a marker
+    //   val oldestRevisionsRDD = groupedRevisionsRDD
+    //     .flatMap { case (pageId, revisions) =>
+    //       revisions.headOption.map(rev => (rev._1, true))
+    //     }
 
-      // Use leftOuterJoin to mark oldest revisions
-      allRevisionsRDD
-        .keyBy(_.revisionId) // Create key-value pairs for join
-        .leftOuterJoin(oldestRevisionsRDD)
-        .map { case (revId, (revision, isOldest)) =>
-          if (isOldest.isDefined) {
-            revision.copy(parentId = -1)
-          } else {
-            revision
-          }
-        }
-    }
-
-    // Clean up cached RDD
-    allRevisionsRDD.unpersist()
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    // TEMPLATE TRACKING
-    /////////////////////////////////////////////////////////////////////////////////////////
-    TemplateUpdater.updateTemplateBitSetsDistributed(updatedRevisionsRDD)
+    //   // Use leftOuterJoin to mark oldest revisions
+    //   allRevisionsRDD
+    //     .keyBy(_.revisionId) // Create key-value pairs for join
+    //     .leftOuterJoin(oldestRevisionsRDD)
+    //     .map { case (revId, (revision, isOldest)) =>
+    //       if (isOldest.isDefined) {
+    //         revision.copy(parentId = -1)
+    //       } else {
+    //         revision
+    //       }
+    //     }
+    // }
   }
 
-  /** Saves revisions that have at least one template added or removed.
+  /**
+    * Saves the revisions to a parquet file.
     *
     * @param revisions
-    *   RDD containing the revisions to filter and save
-    * @param outputPath
-    *   Path where the filtered revisions should be saved
-    * @return
-    *   The number of saved revisions
+    * @param outputFolder
     */
-  def saveRevisionsWithTemplateChanges(
+  def saveRevisionsToFile(
       revisions: RDD[Revision],
       outputFolder: String
-  ): Long = {
+  ): Unit = {
     import spark.implicits._
 
     val outputPath = Path.of(dataFolderPath).resolve(outputFolder)
@@ -139,13 +126,8 @@ class RevisionManager(
       outputPath.toFile.mkdirs()
     }
 
-    val filteredRevisions = revisions.filter(revision =>
-      revision.templateAdded.cardinality() > 0 || revision.templateRemoved
-        .cardinality() > 0
-    )
-
     // Convert BitSets to byte arrays for storage
-    val serializedRevisions = filteredRevisions
+    val serializedRevisions = revisions
       .map { case (rev: Revision) =>
         val templatePresenceBytes =
           bitSetToByteArray(rev.templatePresence)
@@ -179,19 +161,36 @@ class RevisionManager(
       .mode("overwrite")
       .option("compression", "snappy")
       .parquet(outputPath.toString())
-
-    // Return count of saved revisions
-    filteredRevisions.count()
   }
 
-  /** Loads revisions that were saved with saveRevisionsWithTemplateChanges.
+  /** Saves revisions that have at least one template added or removed.
+    *
+    * @param revisions
+    *   RDD containing the revisions to filter and save
+    * @param outputPath
+    *   Path where the filtered revisions should be saved
+    * @return
+    *   The number of saved revisions
+    */
+  def saveRevisionsWithTemplateChanges(
+      revisions: RDD[Revision],
+      outputFolder: String
+  ): Unit = {
+    val filteredRevisions = revisions.filter(revision =>
+      revision.templateAdded.cardinality() > 0 || revision.templateRemoved
+        .cardinality() > 0
+    )
+    saveRevisionsToFile(filteredRevisions, outputFolder)
+  }
+
+  /** Loads revisions from a parquet file.
     *
     * @param inputFolder
     *   Folder name where the revisions were saved
     * @return
     *   RDD[Revision] containing the loaded revisions
     */
-  def loadRevisionsWithTemplateChanges(
+  def loadRevisions(
       inputFolder: String
   ): RDD[Revision] = {
     import spark.implicits._

@@ -7,11 +7,10 @@ if [ "$(kubectl auth can-i create pod)" != "yes" ]; then
 fi
 
 spark-submit \
-  --class me.lpmg.ste.Main \
-  --name Spark-Trustworthiness-Estimator \
-  --properties-file spark-defaults.conf \
+  --class me.lpmg.ste.jobs.ParseJob \
+  --properties-file ../../spark-defaults.conf \
   --verbose \
-  target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
+  ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20210601 \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data
   

@@ -6,25 +6,25 @@ import org.apache.spark.rdd.RDD
 
 object TemplateUpdater {
 
-  /** Updates a single revision's template BitSets based on its parent's
-    * template presence
+  /** Gets the template change BitSets for a revision based on its parent's
+    * template presence.
     *
-    * @param revision
-    *   The revision to update
+    * @param revisionTemplatePresence
+    *   The revision's template presence BitSet
     * @param parentTemplatePresence
     *   The parent revision's template presence BitSet
     * @return
-    *   Updated revision with new templateAdded and templateRemoved BitSets
+    *   Tuple of templateAdded and templateRemoved BitSets
     */
-  private def updateRevisionTemplateBitSets(
-      revision: Revision,
+  def getTemplateChangeBitsets(
+      revisionTemplatePresence: BitSet,
       parentTemplatePresence: BitSet
-  ): Revision = {
-    val templateAdded = new BitSet(revision.templatePresence.capacity)
-    val templateRemoved = new BitSet(revision.templatePresence.capacity)
+  ): (BitSet, BitSet) = {
+    val templateAdded = new BitSet(revisionTemplatePresence.capacity)
+    val templateRemoved = new BitSet(revisionTemplatePresence.capacity)
 
-    for (i <- 0 until revision.templatePresence.capacity) {
-      val isPresent: Boolean = revision.templatePresence.get(i)
+    for (i <- 0 until revisionTemplatePresence.capacity) {
+      val isPresent: Boolean = revisionTemplatePresence.get(i)
       val isPresentInParent: Boolean = parentTemplatePresence.get(i)
 
       // mark as added if present in revision and not present in parent
@@ -36,6 +36,28 @@ object TemplateUpdater {
         templateRemoved.set(i)
       }
     }
+
+    (templateAdded, templateRemoved)
+  }
+
+  /** Updates a single revision's template BitSets based on its parent's
+    * template presence
+    *
+    * @param revision
+    *   The revision to update
+    * @param parentTemplatePresence
+    *   The parent revision's template presence BitSet
+    * @return
+    *   Updated revision with new templateAdded and templateRemoved BitSets
+    */
+  def updateRevisionTemplateBitSets(
+      revision: Revision,
+      parentTemplatePresence: BitSet
+  ): Revision = {
+    val (templateAdded, templateRemoved) = getTemplateChangeBitsets(
+      revision.templatePresence,
+      parentTemplatePresence
+    )
 
     revision.copy(
       templateAdded = templateAdded,
@@ -52,6 +74,7 @@ object TemplateUpdater {
     *   map of revision IDs to revisions
     * @return
     */
+  @deprecated("This is done automatically while parsing revisions.", "0.2.0")
   def updateTemplateBitSets(
       revisions: Seq[Revision],
       revisionIdToTemplatesPresenceMap: Map[Long, BitSet]
@@ -75,6 +98,7 @@ object TemplateUpdater {
     * @return
     *   RDD of updated revisions
     */
+  @deprecated("This is done automatically while parsing revisions.", "0.2.0")
   def updateTemplateBitSetsDistributed(
       revisionsRDD: RDD[Revision]
   ): RDD[Revision] = {

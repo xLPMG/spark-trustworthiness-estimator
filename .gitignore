@@ -32,3 +32,5 @@ metals.sbt
 /.worksheet/
 
 gc-logs
+dumps/
+tmp/

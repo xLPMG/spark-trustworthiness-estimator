@@ -181,24 +181,4 @@ object GraphManager {
       .mode("overwrite")
       .parquet(trustScoresFolderPath.toString())
   }
-
-  /**
-    * Averages the trust scores of two graphs
-    *
-    * @param firstGraph
-    * @param secondGraph
-    * @return the graph with averaged trust scores
-    */
-  def averageTrustScores(
-      firstGraph: Graph[RevisionVertex, Byte],
-      secondGraph: Graph[RevisionVertex, Byte]
-  ): Graph[RevisionVertex, Byte] = {
-    val averagedVertices = firstGraph.vertices.innerJoin(secondGraph.vertices) {
-      case (id, firstVertex, secondVertex) =>
-        val averagedScore = (firstVertex.trustScore + secondVertex.trustScore) / 2.0f
-        firstVertex.copy(trustScore = averagedScore)
-    }
-
-    Graph(averagedVertices, firstGraph.edges)
-  }
 }

@@ -25,6 +25,9 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private var timestamp: Long = 0
   private var contributorId: Int = -1
   private var templateBitset: BitSet = new BitSet(TemplateBitPositions.size)
+  private var parentTemplateBitset: BitSet = new BitSet(
+    TemplateBitPositions.size
+  )
   private var isRedirect: Boolean = false
   private var sources: Seq[String] = Seq.empty
 
@@ -51,6 +54,7 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
         contributorId = -1
         isRedirect = false
         templateBitset = new BitSet(TemplateBitPositions.size)
+        parentTemplateBitset = new BitSet(TemplateBitPositions.size)
         sources = Seq.empty
         insideContributor = false
       case "contributor" =>
@@ -134,6 +138,13 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
       case "revision" =>
         // only add the revision if it is in the main namespace
         if (!isRedirect && insidePage && isMainNamespace) {
+          // assuming that revisions are in chronological order
+          val (templateAdded, templateRemoved) = TemplateUpdater.getTemplateChangeBitsets(
+            templateBitset,
+            parentTemplateBitset
+          )
+          parentTemplateBitset = templateBitset
+
           if (timestamp > dateLimit) {
             revisions += new Revision(
               revisionId,
@@ -142,8 +153,8 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               timestamp,
               contributorId,
               templateBitset,
-              new BitSet(TemplateBitPositions.size),
-              new BitSet(TemplateBitPositions.size),
+              templateAdded,
+              templateRemoved,
               sources
             )
           }

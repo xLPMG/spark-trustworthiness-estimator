@@ -27,6 +27,8 @@ class DataReaderTest extends munit.FunSuite {
         )
         assertEquals(revision.contributorId, 1)
         assertEquals(revision.templatePresence.get(unreferencedPosition), false)
+        assertEquals(revision.templateAdded.cardinality(), 0)
+        assertEquals(revision.templateRemoved.cardinality(), 0)
       } else if (revision.revisionId == 2L) {
         assertEquals(revision.pageId, 2)
         assertEquals(revision.parentId, -1L)
@@ -36,6 +38,8 @@ class DataReaderTest extends munit.FunSuite {
         )
         assertEquals(revision.contributorId, 2)
         assertEquals(revision.templatePresence.get(unreferencedPosition), false)
+        assertEquals(revision.templateAdded.cardinality(), 0)
+        assertEquals(revision.templateRemoved.cardinality(), 0)
       } else if (revision.revisionId == 3L) {
         assertEquals(revision.pageId, 1)
         assertEquals(revision.parentId, 1L)
@@ -45,6 +49,8 @@ class DataReaderTest extends munit.FunSuite {
         )
         assertEquals(revision.contributorId, 3)
         assertEquals(revision.templatePresence.get(unreferencedPosition), true)
+        assertEquals(revision.templateAdded.cardinality(), 1)
+        assertEquals(revision.templateRemoved.cardinality(), 0)
       } else if (revision.revisionId == 4L) {
         assertEquals(revision.pageId, 2)
         assertEquals(revision.parentId, 2L)
@@ -54,6 +60,8 @@ class DataReaderTest extends munit.FunSuite {
         )
         assertEquals(revision.contributorId, 4)
         assertEquals(revision.templatePresence.get(unreferencedPosition), false)
+        assertEquals(revision.templateAdded.cardinality(), 0)
+        assertEquals(revision.templateRemoved.cardinality(), 0)
       }
     }
   }
