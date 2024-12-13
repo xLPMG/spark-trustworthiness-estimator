@@ -4,10 +4,11 @@ import org.apache.spark.graphx.Graph
 import me.lpmg.ste.types.RevisionVertex
 import org.apache.spark.sql.SparkSession
 import java.nio.file.Path
-import me.lpmg.ste.types.Types.bitSetToByteArray
-import me.lpmg.ste.types.Types.byteArrayToBitSet
+import me.lpmg.ste.types.Types.bitSetToString
+import me.lpmg.ste.types.Types.stringToBitSet
 import me.lpmg.ste.types.Types.TemplateBitPositions
 import org.apache.spark.graphx.Edge
+import spire.std.string
 
 object GraphManager {
 
@@ -34,18 +35,18 @@ object GraphManager {
     val verticesDF = revisionGraph.vertices
       .map { case (id: Long, rev) =>
         // Convert BitSets to byte arrays for storage
-        val templatePresenceBytes =
-          bitSetToByteArray(rev.templatePresence)
-        val templateAddedBytes = bitSetToByteArray(rev.templateAdded)
-        val templateRemovedBytes = bitSetToByteArray(rev.templateRemoved)
+        val templatePresenceString =
+          bitSetToString(rev.templatePresence)
+        val templateAddedString = bitSetToString(rev.templateAdded)
+        val templateRemovedString = bitSetToString(rev.templateRemoved)
 
         (
           id: Long,
           rev.trustScore,
           rev.contributorId,
-          templatePresenceBytes,
-          templateAddedBytes,
-          templateRemovedBytes
+          templatePresenceString,
+          templateAddedString,
+          templateRemovedString
         )
       }
       .toDF(
@@ -106,18 +107,18 @@ object GraphManager {
       val contributorId = row.getAs[Int]("contributorId")
 
       // Convert byte arrays back to BitSets
-      val templatePresenceBytes = row.getAs[Array[Byte]]("templatePresence")
-      val templateAddedBytes = row.getAs[Array[Byte]]("templateAdded")
-      val templateRemovedBytes = row.getAs[Array[Byte]]("templateRemoved")
+      val templatePresenceString = row.getAs[String]("templatePresence")
+      val templateAddedString = row.getAs[String]("templateAdded")
+      val templateRemovedString = row.getAs[String]("templateRemoved")
 
-      val templatePresence = byteArrayToBitSet(
-        templatePresenceBytes,
+      val templatePresence = stringToBitSet(
+        templatePresenceString,
         TemplateBitPositions.size
       )
       val templateAdded =
-        byteArrayToBitSet(templateAddedBytes, TemplateBitPositions.size)
+        stringToBitSet(templateAddedString, TemplateBitPositions.size)
       val templateRemoved =
-        byteArrayToBitSet(templateRemovedBytes, TemplateBitPositions.size)
+        stringToBitSet(templateRemovedString, TemplateBitPositions.size)
 
       (
         id,

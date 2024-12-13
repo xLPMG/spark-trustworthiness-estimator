@@ -3,8 +3,8 @@ package me.lpmg.ste.data
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.SparkSession
 import me.lpmg.ste.types.Types.{
-  bitSetToByteArray,
-  byteArrayToBitSet,
+  bitSetToString,
+  stringToBitSet,
   TemplateBitPositions
 }
 import me.lpmg.ste.time.Watch
@@ -129,19 +129,19 @@ class RevisionManager(
     // Convert BitSets to byte arrays for storage
     val serializedRevisions = revisions
       .map { case (rev: Revision) =>
-        val templatePresenceBytes =
-          bitSetToByteArray(rev.templatePresence)
-        val templateAddedBytes = bitSetToByteArray(rev.templateAdded)
-        val templateRemovedBytes = bitSetToByteArray(rev.templateRemoved)
+        val templatePresenceString =
+         bitSetToString(rev.templatePresence)
+        val templateAddedString = bitSetToString(rev.templateAdded)
+        val templateRemovedString = bitSetToString(rev.templateRemoved)
         (
           rev.revisionId,
           rev.pageId,
           rev.parentId,
           rev.timestamp,
           rev.contributorId,
-          templatePresenceBytes,
-          templateAddedBytes,
-          templateRemovedBytes,
+          templatePresenceString,
+          templateAddedString,
+          templateRemovedString,
           rev.sources
         )
       }
@@ -207,16 +207,16 @@ class RevisionManager(
 
     // Convert back to RDD[Revision]
     serializedRevisionsDF.rdd.map { row =>
-      val templatePresence = byteArrayToBitSet(
-        row.getAs[Array[Byte]]("templatePresence"),
+      val templatePresence = stringToBitSet(
+        row.getAs[String]("templatePresence"),
         Types.TemplateBitPositions.size
       )
-      val templateAdded = byteArrayToBitSet(
-        row.getAs[Array[Byte]]("templateAdded"),
+      val templateAdded = stringToBitSet(
+        row.getAs[String]("templateAdded"),
         Types.TemplateBitPositions.size
       )
-      val templateRemoved = byteArrayToBitSet(
-        row.getAs[Array[Byte]]("templateRemoved"),
+      val templateRemoved = stringToBitSet(
+        row.getAs[String]("templateRemoved"),
         Types.TemplateBitPositions.size
       )
 

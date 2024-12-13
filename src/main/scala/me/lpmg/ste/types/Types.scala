@@ -47,45 +47,38 @@ object Types {
     "Hoax" -> 15
   )
 
-  /** Converts a BitSet to a byte array for storage
+  /**
+    * Converts a BitSet to a binary string
     *
     * @param bitSet
-    *   The BitSet to convert
     * @return
-    *   Array of bytes representing the BitSet
     */
-  def bitSetToByteArray(bitSet: BitSet): Array[Byte] = {
-    val numBytes = (bitSet.capacity + 7) / 8 // Round up to nearest byte
-    val bytes = new Array[Byte](numBytes)
-
-    for (i <- 0 until bitSet.capacity) {
+  def bitSetToString(bitSet: BitSet): String = {
+    val sb = new StringBuilder
+    val lastSetBitIndex =
+      (bitSet.capacity - 1 to 0 by -1).find(bitSet.get(_)).getOrElse(-1)
+    for (i <- 0 to lastSetBitIndex) {
       if (bitSet.get(i)) {
-        val byteIndex = i / 8
-        val bitIndex = i % 8
-        bytes(byteIndex) = (bytes(byteIndex) | (1 << bitIndex)).toByte
+        sb.append("1")
+      } else {
+        sb.append("0")
       }
     }
-
-    bytes
+    sb.toString()
   }
 
-  /** Converts a byte array back to a BitSet
+  /**
+    * Converts a binary string to a BitSet
     *
-    * @param bytes
-    *   The byte array to convert
+    * @param str
     * @param capacity
-    *   The capacity of the original BitSet
     * @return
-    *   BitSet reconstructed from the byte array
     */
-  def byteArrayToBitSet(bytes: Array[Byte], capacity: Int): BitSet = {
+  def stringToBitSet(str: String, capacity: Int): BitSet = {
     val bitSet = new BitSet(capacity)
-    for (i <- 0 until capacity) {
-      val byteIndex = i / 8
-      val bitIndex = i % 8
-      if (
-        byteIndex < bytes.length && (bytes(byteIndex) & (1 << bitIndex)) != 0
-      ) {
+    val goUntil = Math.min(str.length, capacity)
+    for (i <- 0 until goUntil) {
+      if (str(i) == '1') {
         bitSet.set(i)
       }
     }
