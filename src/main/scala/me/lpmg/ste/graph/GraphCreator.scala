@@ -6,24 +6,41 @@ import me.lpmg.ste.types.Revision
 import org.apache.spark.broadcast.Broadcast
 import me.lpmg.ste.types.EdgeType
 import me.lpmg.ste.types.RevisionVertex
+import org.apache.spark.sql.SparkSession
+import me.lpmg.ste.types.SourceVertex
 
 /** Provides functionality to create a revision graph using GraphX.
   */
 object GraphCreator {
 
-  /**
-    * Create a revision graph from a sequence of revisions.
+  /** Create a revision graph from a sequence of revisions.
     *
-    * @param revisionsRDD RDD of revisions
-    * @return GraphX graph
+    * @param revisionsRDD
+    *   RDD of revisions
+    * @return
+    *   GraphX graph
     */
   def createRevisionGraph(
       revisionsRDD: RDD[Revision]
-  ): Graph[RevisionVertex, Byte] = {
+  ): Graph[Object, Byte] = {
     // Create vertex for each revision. using revisionId as VertexId
-    val vertices: RDD[(VertexId, RevisionVertex)] = revisionsRDD.map { rev =>
+    var vertices: RDD[(VertexId, Object)] = revisionsRDD.map { rev =>
       (rev.revisionId, rev.toRevisionVertex)
     }
+
+    val sourceVertices: RDD[(VertexId, Object)] = revisionsRDD
+      .flatMap(_.sources)
+      .distinct()
+      .map { source =>
+        val sourceId = source.hashCode.toLong
+        val sourceVertex = new SourceVertex(source, 0.0f)
+        (
+          -sourceId,
+          sourceVertex
+        )
+      }
+
+    vertices = vertices ++ sourceVertices
 
     // Connect revisions of the same page
     val temporalEdges: RDD[Edge[Byte]] = revisionsRDD.flatMap { rev =>
@@ -37,6 +54,17 @@ object GraphCreator {
       }
     }
 
+    // Connect revisions to their sources
+    val sourceEdges: RDD[Edge[Byte]] = revisionsRDD.flatMap { rev =>
+      rev.sources.flatMap { source =>
+        val sourceId = source.hashCode.toLong
+        Seq(
+          Edge(-sourceId, rev.revisionId, EdgeType.hasSource),
+          Edge(rev.revisionId, -sourceId, EdgeType.isReferencedBy)
+        )
+      }
+    }
+
     // remove edges for which at least one of the vertices is not present
     val validVertexIds = vertices.map(_._1).collect().toSet
     val filteredTemporalEdges = temporalEdges.filter { edge =>
@@ -44,6 +72,6 @@ object GraphCreator {
     }
 
     // Create the GraphX graph
-    Graph(vertices, filteredTemporalEdges)
+    Graph(vertices, filteredTemporalEdges ++ sourceEdges)
   }
 }

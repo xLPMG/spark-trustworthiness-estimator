@@ -1,5 +1,6 @@
 spark-submit \
   --class me.lpmg.ste.jobs.ParseJob \
+  --name Spark-Trustworthiness-Estimator-PARSEJOB \
   --master local[10] \
   --driver-memory 26g \
   --conf spark.driver.bindAddress=127.0.0.1 \

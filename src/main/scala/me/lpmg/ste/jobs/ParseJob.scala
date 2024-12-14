@@ -47,8 +47,11 @@ object ParseJob {
     val revisions = revisionManager.retrieveRevisions(filesRDD)
 
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
-    val fileName: String = "revisions_" + date.toString().replace(":", "-").split("\\.")(0) + "Z"
-    revisionManager.saveRevisionsToFile(revisions, fileName)
+    val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
+    revisionManager.saveRevisionsToFile(revisions, s"revisions-$dateString")
+
+    val numRevisions = revisions.count()
+    logger.warn(s"Saved $numRevisions revisions")
 
     spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("parseJob")}")
