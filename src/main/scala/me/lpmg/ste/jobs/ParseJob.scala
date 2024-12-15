@@ -50,9 +50,6 @@ object ParseJob {
     val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
     revisionManager.saveRevisionsToFile(revisions, s"revisions-$dateString")
 
-    val numRevisions = revisions.count()
-    logger.warn(s"Saved $numRevisions revisions")
-
     spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("parseJob")}")
   }
