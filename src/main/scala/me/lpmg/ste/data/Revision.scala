@@ -97,15 +97,15 @@ class Revision(
     * @return
     *   the revision vertex
     */
-  def toRevisionVertex =
+  def toRevisionVertex(templatePosition: Int) =
     new graph.RevisionVertex(
       revisionId,
       0.0f,
       contributorId,
-      templatePresence,
-      templateAdded,
-      templateRemoved,
-      templateAdded.cardinality() > 0 || templateRemoved.cardinality() > 0
+      templatePresence.get(templatePosition),
+      templateAdded.get(templatePosition),
+      templateRemoved.get(templatePosition),
+      templateAdded.get(templatePosition) || templateRemoved.get(templatePosition)
     )
 
   override def toString(): String = {

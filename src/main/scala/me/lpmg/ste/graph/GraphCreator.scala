@@ -18,14 +18,15 @@ object GraphCreator {
     *   GraphX graph
     */
   def createRevisionGraph(
-      revisionsRDD: RDD[Revision]
-  ): Graph[Object, Byte] = {
+      revisionsRDD: RDD[Revision],
+      templatePosition: Int
+  ): Graph[VertexType, Byte] = {
     // Create vertex for each revision. using revisionId as VertexId
-    var vertices: RDD[(VertexId, Object)] = revisionsRDD.map { rev =>
-      (rev.revisionId, rev.toRevisionVertex)
+    var vertices: RDD[(VertexId, VertexType)] = revisionsRDD.map { rev =>
+      (rev.revisionId, rev.toRevisionVertex(templatePosition))
     }
 
-    val sourceVertices: RDD[(VertexId, Object)] = revisionsRDD
+    val sourceVertices: RDD[(VertexId, VertexType)] = revisionsRDD
       .flatMap(_.sources)
       .distinct()
       .map { source =>

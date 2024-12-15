@@ -14,11 +14,8 @@ sealed trait VertexType extends Serializable {
   * @param contributorId
   *   ID of the contributor
   * @param templatePresence
-  *   Bitset representing the presence of templates
   * @param templateAdded
-  *   Bitset representing the added templates
   * @param templateRemoved
-  *   Bitset representing the removed templates
   * @param isGroundTruth
   *   Whether the revision is ground truth
   */
@@ -26,21 +23,14 @@ case class RevisionVertex(
     val id: Long,
     val trustScore: Float,
     val contributorId: Int,
-    val templatePresence: BitSet,
-    val templateAdded: BitSet,
-    val templateRemoved: BitSet,
+    val templatePresence: Boolean,
+    val templateAdded: Boolean,
+    val templateRemoved: Boolean,
     val isGroundTruth: Boolean = false
 ) extends VertexType {
 
   override def toString(): String = {
-    s"Revision(trustScore=${trustScore}, contributorId=${contributorId}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(templateAdded)}, templateRemoved=${bitSetToBinaryString(templateRemoved)}, isGroundTruth=${isGroundTruth})"
-  }
-
-  private def bitSetToBinaryString(bitSet: BitSet): String = {
-    val binaryString = (0 until bitSet.capacity).map { bit =>
-      if (bitSet.get(bit)) '1' else '0'
-    }.mkString
-    binaryString.reverse.dropWhile(_ == '0').reverse
+    s"Revision(trustScore=${trustScore}, contributorId=${contributorId}, templatePresence=${templatePresence}, templateAdded=${templateAdded}, templateRemoved=${templateRemoved}, isGroundTruth=${isGroundTruth})"
   }
 }
 

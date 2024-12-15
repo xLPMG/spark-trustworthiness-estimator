@@ -8,6 +8,9 @@ import me.lpmg.ste.data.RevisionManager
 import me.lpmg.ste.graph.GraphCreator
 import me.lpmg.ste.graph.RevisionVertex
 import me.lpmg.ste.graph.SourceVertex
+import me.lpmg.ste.algorithms.ComplexSourceEvaluator
+import org.apache.spark.graphx.Graph
+import java.nio.file.Path
 
 object ComplexSrcEvalJob {
   def main(args: Array[String]): Unit = {
@@ -35,11 +38,19 @@ object ComplexSrcEvalJob {
       new RevisionManager(spark, dataFolderPath)
 
     val revisions = revisionManager.loadRevisions(revisionsFolderName)
-    val graph = GraphCreator.createRevisionGraph(revisions)
+    val graph = GraphCreator.createRevisionGraph(revisions, 7)
+
+    // Pregel
+    val initializedGraph = Graph(
+      ComplexSourceEvaluator.initializeVertices(graph.vertices),
+      graph.edges
+    )
+    val pregelVertices =
+      ComplexSourceEvaluator.runPregel(initializedGraph).vertices
 
     // PAGERANK
     val ranks = graph.pageRank(tol = 0.01).vertices
-    val updatedVertices = graph.vertices.leftJoin(ranks) {
+    val pageRankedVertices = graph.vertices.leftJoin(ranks) {
       case (id, vertex, Some(rank)) =>
         vertex match {
           case r: RevisionVertex => r.copy(trustScore = rank.toFloat)
@@ -48,6 +59,41 @@ object ComplexSrcEvalJob {
       case (id, vertex, None) =>
         vertex // If rank is missing, keep original vertex
     }
+
+    // SAVE DATA
+    import spark.implicits._
+
+    val sourceScoresOutputPath =
+      Path.of(dataFolderPath).resolve(s"complex-source-scores-$dateString")
+
+    pregelVertices
+      .flatMap {
+        case (id, rev: RevisionVertex) =>
+          Some((rev.id, rev.trustScore))
+        case _ => 
+          None
+      }
+      .toDF("revision_id", "pregel_score")
+      .join(
+        pageRankedVertices
+          .flatMap {
+            case (id, rev: RevisionVertex) =>
+              Some((rev.id, rev.trustScore))
+            case _ => 
+              None
+          }
+          .toDF("revision_id", "pagerank_score"),
+        Seq("revision_id")
+      )
+      .coalesce(1)
+      .write
+      .option("header", "true")
+      .mode("overwrite")
+      .csv(sourceScoresOutputPath.toString())
+
+    logger.warn(
+      s"CSV file saved: ${sourceScoresOutputPath.toString()} with headers: revision_id,source_specific_score,general_score"
+    )
   }
 
 }
