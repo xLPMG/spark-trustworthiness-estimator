@@ -5,7 +5,6 @@ import scala.collection.mutable.{ArrayBuffer, StringBuilder}
 import org.xml.sax.{Attributes, InputSource}
 import java.time.Instant
 import me.lpmg.ste.types.Types.{TemplateBitPositions}
-import me.lpmg.ste.types.Revision
 import org.apache.spark.util.collection.BitSet
 
 /** SAX handler for parsing MediaWiki XML revisions.

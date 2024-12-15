@@ -1,12 +1,11 @@
 package me.lpmg.ste.algorithms
 
 import org.apache.spark.rdd.RDD
-import me.lpmg.ste.types.Revision
 import org.apache.spark.graphx.Graph
-import me.lpmg.ste.types.RevisionVertex
 import org.apache.spark.storage.StorageLevel
+import me.lpmg.ste.data.Revision
 
-object SourceEvaluator extends Serializable {
+object SimpleSourceEvaluator extends Serializable {
 
   /** Evaluates the trust scores of sources.
     *
@@ -45,7 +44,7 @@ object SourceEvaluator extends Serializable {
       val templateImpact = (-templateAddedCount + templateRemovedCount).toFloat
       
       revision.sources.map(source => (source, templateImpact))
-    }.persist(StorageLevel.MEMORY_AND_DISK)
+    }
 
     // find maximum absolute value for normalization
     val maxAbsOpt = sourceImpacts

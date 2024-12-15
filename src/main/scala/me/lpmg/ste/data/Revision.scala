@@ -1,7 +1,8 @@
-package me.lpmg.ste.types
+package me.lpmg.ste.data
 
 import org.apache.spark.util.collection.BitSet
 import me.lpmg.ste.types.Types.TemplateBitPositions
+import me.lpmg.ste.graph
 
 /** A class to represent a Wikipedia revision.
   *
@@ -97,7 +98,8 @@ class Revision(
     *   the revision vertex
     */
   def toRevisionVertex =
-    new RevisionVertex(
+    new graph.RevisionVertex(
+      revisionId,
       0.0f,
       contributorId,
       templatePresence,

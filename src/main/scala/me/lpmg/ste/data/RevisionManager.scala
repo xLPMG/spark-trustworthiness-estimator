@@ -11,14 +11,11 @@ import me.lpmg.ste.time.Watch
 import java.nio.file.Path
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.graphx.Graph
-import me.lpmg.ste.types.Revision
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZonedDateTime
-import me.lpmg.ste.types.RevisionVertex
 import org.apache.spark.util.collection.BitSet
 import org.apache.spark.graphx.Edge
-import me.lpmg.ste.types.EdgeType
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.types.Types
 import org.apache.spark.storage.StorageLevel

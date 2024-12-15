@@ -3,20 +3,9 @@ package me.lpmg.ste.jobs
 import com.typesafe.scalalogging.Logger
 import me.lpmg.ste.time.Watch
 import org.apache.spark.sql.SparkSession
-import me.lpmg.ste.graph.GraphManager
-import org.apache.spark.graphx._
-import me.lpmg.ste.types.Revision
-import me.lpmg.ste.algorithms.TrustCalculator
+import me.lpmg.ste.data.RevisionManager
 import java.time.ZonedDateTime
 import java.time.ZoneId
-import me.lpmg.ste.types.RevisionVertex
-import me.lpmg.ste.algorithms.ContributorEvaluator
-import me.lpmg.ste.data.RevisionManager
-import me.lpmg.ste.graph.GraphCreator
-import javax.xml.transform.Source
-import me.lpmg.ste.algorithms.SourceEvaluator
-import java.nio.file.Path
-import org.apache.spark.storage.StorageLevel
 
 object ParseJob {
 

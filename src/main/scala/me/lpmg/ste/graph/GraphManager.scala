@@ -1,7 +1,6 @@
 package me.lpmg.ste.graph
 
 import org.apache.spark.graphx.Graph
-import me.lpmg.ste.types.RevisionVertex
 import org.apache.spark.sql.SparkSession
 import java.nio.file.Path
 import me.lpmg.ste.types.Types.bitSetToString
@@ -123,6 +122,7 @@ object GraphManager {
       (
         id,
         new RevisionVertex(
+          id,
           trustScore,
           contributorId,
           templatePresence,
@@ -151,35 +151,5 @@ object GraphManager {
 
     // Create and return the graph
     Graph(vertices, edges)
-  }
-
-  /** Saves the trust scores of revisions to a Parquet file
-    *
-    * @param fileName
-    * @param revisionGraph
-    */
-  def saveTrustScores(
-      spark: SparkSession,
-      dataFolderPath: String,
-      fileName: String,
-      revisionGraph: Graph[RevisionVertex, Byte]
-  ): Unit = {
-
-    val trustScoresFolderPath = Path.of(dataFolderPath).resolve(fileName)
-    import spark.implicits._
-    val trustScoresDF = revisionGraph.vertices
-      .map { case (revisionId, vertex) =>
-        (
-          revisionId,
-          vertex.trustScore
-        )
-      }
-      .toDF(
-        "revisionId",
-        "trustScore"
-      )
-    trustScoresDF.write
-      .mode("overwrite")
-      .parquet(trustScoresFolderPath.toString())
   }
 }

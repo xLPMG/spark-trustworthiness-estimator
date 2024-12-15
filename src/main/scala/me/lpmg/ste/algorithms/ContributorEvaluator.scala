@@ -1,10 +1,9 @@
 package me.lpmg.ste.algorithms
 
 import org.apache.spark.rdd.RDD
-import me.lpmg.ste.types.Revision
 import org.apache.spark.graphx.Graph
-import me.lpmg.ste.types.RevisionVertex
-import me.lpmg.ste.types.EdgeType
+import me.lpmg.ste.graph.RevisionVertex
+import me.lpmg.ste.graph.EdgeType
 
 object ContributorEvaluator extends Serializable {
 

@@ -2,12 +2,9 @@ package me.lpmg.ste.graph
 
 import org.apache.spark.graphx.{Graph, Edge, VertexId}
 import org.apache.spark.rdd.RDD
-import me.lpmg.ste.types.Revision
 import org.apache.spark.broadcast.Broadcast
-import me.lpmg.ste.types.EdgeType
-import me.lpmg.ste.types.RevisionVertex
 import org.apache.spark.sql.SparkSession
-import me.lpmg.ste.types.SourceVertex
+import me.lpmg.ste.data.Revision
 
 /** Provides functionality to create a revision graph using GraphX.
   */
@@ -32,10 +29,10 @@ object GraphCreator {
       .flatMap(_.sources)
       .distinct()
       .map { source =>
-        val sourceId = source.hashCode.toLong
-        val sourceVertex = new SourceVertex(source, 0.0f)
+        val sourceId = -source.hashCode.toLong
+        val sourceVertex = new SourceVertex(sourceId, source, 0.0f)
         (
-          -sourceId,
+          sourceId,
           sourceVertex
         )
       }

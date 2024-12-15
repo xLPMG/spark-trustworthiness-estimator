@@ -15,8 +15,6 @@ import java.io.InputStream
 import scala.util.Using
 import org.apache.spark.input.PortableDataStream
 import com.typesafe.scalalogging.Logger
-import me.lpmg.ste.types.Types
-import me.lpmg.ste.types.Revision
 
 /** Provides functionality to read and parse XML data from BZip2 compressed
   * files.

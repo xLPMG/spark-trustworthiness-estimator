@@ -1,6 +1,5 @@
 package me.lpmg.ste.data
 
-import me.lpmg.ste.types.Revision
 import org.apache.spark.util.collection.BitSet
 import org.apache.spark.rdd.RDD
 

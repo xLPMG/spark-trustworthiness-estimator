@@ -4,7 +4,7 @@ import com.typesafe.scalalogging.Logger
 import me.lpmg.ste.time.Watch
 import me.lpmg.ste.data.RevisionManager
 import org.apache.spark.sql.SparkSession
-import me.lpmg.ste.algorithms.SourceEvaluator
+import me.lpmg.ste.algorithms.SimpleSourceEvaluator
 import java.nio.file.Path
 import java.time.ZonedDateTime
 import java.time.ZoneId
@@ -13,7 +13,6 @@ object SimpleSrcEvalJob {
 
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)
-    Watch.start("parseJob")
 
     if (args.length < 1) {
       logger.error("Please specify the data folder path")
@@ -39,12 +38,12 @@ object SimpleSrcEvalJob {
     val revisions = revisionManager.loadRevisions(revisionsFolderName)
 
     // calculate source scores
-    val sourceSpecificSourceScores = SourceEvaluator.evaluateSources(
+    val sourceSpecificSourceScores = SimpleSourceEvaluator.evaluateSources(
       revisions,
       Seq(0, 1, 2, 3, 4, 5, 6)
     )
 
-    val generalSourceScores = SourceEvaluator.evaluateSources(
+    val generalSourceScores = SimpleSourceEvaluator.evaluateSources(
       revisions,
       Seq(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
     )

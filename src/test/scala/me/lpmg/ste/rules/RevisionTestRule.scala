@@ -1,7 +1,7 @@
 package me.lpmg.ste.rules
 
-import me.lpmg.ste.types.Revision
 import org.apache.spark.util.collection.BitSet
+import me.lpmg.ste.data.Revision
 
 object RevisionTestRule {
   val bitSetCapacity = 100
