@@ -27,7 +27,11 @@ object ComplexSourceEvaluator {
     }
   }
 
-  def runPregel(graph: Graph[VertexType, Byte]): Graph[VertexType, Byte] = {
+  def runPregel(
+      graph: Graph[VertexType, Byte],
+      temporalPropagation: Boolean = false,
+      mergeFunction: (Double, Double) => Double = math.max
+  ): Graph[VertexType, Byte] = {
     graph.pregel(initialMsg = 0.5, maxIterations = 8)(
       // Vertex Program: Update trust score based on incoming trust
       vprog = (id, currentTrust, newTrust) =>
@@ -49,12 +53,15 @@ object ComplexSourceEvaluator {
             Iterator((edgeTriplet.dstId, edgeTriplet.srcAttr.trustScore * 0.8))
           case EdgeType.isReferencedBy =>
             Iterator((edgeTriplet.dstId, edgeTriplet.srcAttr.trustScore * 0.5))
+          case EdgeType.isParentOf =>
+            if (temporalPropagation) Iterator((edgeTriplet.dstId, edgeTriplet.srcAttr.trustScore * 0.2))
+            else Iterator.empty
           case _ => Iterator.empty
         }
       },
 
       // Merge Messages: Combine trust values
-      mergeMsg = (a, b) => math.max(a, b)
+      mergeMsg = mergeFunction
     )
   }
 
