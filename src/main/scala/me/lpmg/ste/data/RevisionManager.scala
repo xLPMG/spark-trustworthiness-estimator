@@ -27,7 +27,6 @@ import org.apache.hadoop.shaded.org.checkerframework.checker.units.qual.s
 
 class RevisionManager(
     spark: SparkSession,
-    dumpFolderPath: String,
     dataFolderPath: String
 ) {
   val logger = Logger(getClass.getName)

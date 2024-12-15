@@ -37,11 +37,10 @@ object ParseJob {
 
     implicit val spark = SparkSession
       .builder()
-      .appName("Spark-Trustworthiness-Estimator-PARSEJOB")
       .getOrCreate()
 
     val revisionManager =
-      new RevisionManager(spark, dumpFolderPath, dataFolderPath)
+      new RevisionManager(spark, dataFolderPath)
 
     val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
     val revisions = revisionManager.retrieveRevisions(filesRDD)
@@ -50,8 +49,8 @@ object ParseJob {
     val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
     revisionManager.saveRevisionsToFile(revisions, s"revisions-$dateString")
 
-    spark.stop()
     logger.warn(s"Total Time: ${Watch.stopFormatted("parseJob")}")
+    spark.stop()
   }
 
 }
