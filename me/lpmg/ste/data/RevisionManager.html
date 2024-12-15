@@ -139,6 +139,10 @@
                         <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="class" href="Revision.html" title="A class to represent a Wikipedia revision."></a>
+                        <a href="Revision.html" title="A class to represent a Wikipedia revision.">Revision</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="class" href="" title=""></a>
                         <a href="" title="">RevisionManager</a>
                       </li><li class="current-entities indented4">
@@ -454,9 +458,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="me.lpmg.ste.data.RevisionManager#loadRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="loadRevisions(inputFolder:String):org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]"></a><a id="loadRevisions(String):RDD[Revision]"></a>
+      <a id="loadRevisions(inputFolder:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]"></a><a id="loadRevisions(String):RDD[Revision]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#loadRevisions(inputFolder:String):org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#loadRevisions(inputFolder:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -465,7 +469,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">loadRevisions</span><span class="params">(<span name="inputFolder">inputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>
+        <span class="name">loadRevisions</span><span class="params">(<span name="inputFolder">inputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Loads revisions from a parquet file.</p><div class="fullcomment"><div class="comment cmt"><p>Loads revisions from a parquet file.
@@ -547,9 +551,9 @@
               
         </dd></dl></div>
     </li><li name="me.lpmg.ste.data.RevisionManager#retrieveRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)]):org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]"></a><a id="retrieveRevisions(RDD[(String,PortableDataStream)]):RDD[Revision]"></a>
+      <a id="retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)]):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]"></a><a id="retrieveRevisions(RDD[(String,PortableDataStream)]):RDD[Revision]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)]):org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)]):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -558,16 +562,16 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">retrieveRevisions</span><span class="params">(<span name="filesRDD">filesRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span>)]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>
+        <span class="name">retrieveRevisions</span><span class="params">(<span name="filesRDD">filesRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span>)]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Initializes the graph by reading all revisions from the dump folder.</p><div class="fullcomment"><div class="comment cmt"><p>Initializes the graph by reading all revisions from the dump folder.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
   The revision graph</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.RevisionManager#saveRevisionsToFile" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="saveRevisionsToFile(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],outputFolder:String):Unit"></a><a id="saveRevisionsToFile(RDD[Revision],String):Unit"></a>
+      <a id="saveRevisionsToFile(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],outputFolder:String):Unit"></a><a id="saveRevisionsToFile(RDD[Revision],String):Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#saveRevisionsToFile(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],outputFolder:String):Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#saveRevisionsToFile(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],outputFolder:String):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -576,14 +580,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">saveRevisionsToFile</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>, <span name="outputFolder">outputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">saveRevisionsToFile</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>, <span name="outputFolder">outputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       <p class="shortcomment cmt">Saves the revisions to a parquet file.</p>
     </li><li name="me.lpmg.ste.data.RevisionManager#saveRevisionsWithTemplateChanges" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="saveRevisionsWithTemplateChanges(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],outputFolder:String):Unit"></a><a id="saveRevisionsWithTemplateChanges(RDD[Revision],String):Unit"></a>
+      <a id="saveRevisionsWithTemplateChanges(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],outputFolder:String):Unit"></a><a id="saveRevisionsWithTemplateChanges(RDD[Revision],String):Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#saveRevisionsWithTemplateChanges(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision],outputFolder:String):Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#saveRevisionsWithTemplateChanges(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],outputFolder:String):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -592,7 +596,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">saveRevisionsWithTemplateChanges</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>, <span name="outputFolder">outputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">saveRevisionsWithTemplateChanges</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>, <span name="outputFolder">outputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       <p class="shortcomment cmt">Saves revisions that have at least one template added or removed.</p><div class="fullcomment"><div class="comment cmt"><p>Saves revisions that have at least one template added or removed.

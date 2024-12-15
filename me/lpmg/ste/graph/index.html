@@ -167,12 +167,28 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="object" href="EdgeType$.html" title=""></a>
+                        <a href="EdgeType$.html" title="">EdgeType</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="object" href="GraphCreator$.html" title="Provides functionality to create a revision graph using GraphX."></a>
                         <a href="GraphCreator$.html" title="Provides functionality to create a revision graph using GraphX.">GraphCreator</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="GraphManager$.html" title=""></a>
                         <a href="GraphManager$.html" title="">GraphManager</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="RevisionVertex.html" title="Represents a revision vertex in the graph."></a>
+                        <a href="RevisionVertex.html" title="Represents a revision vertex in the graph.">RevisionVertex</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="SourceVertex.html" title="Represents a source vertex in the graph."></a>
+                        <a href="SourceVertex.html" title="Represents a source vertex in the graph.">SourceVertex</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="trait" href="VertexType.html" title=""></a>
+                        <a href="VertexType.html" title="">VertexType</a>
                       </li><li name="me.lpmg.ste.jobs" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="jobs"></a><a id="jobs:jobs"></a>
       <span class="permalink">
@@ -282,14 +298,88 @@
         <div id="allMembers">
         
 
-        
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="me.lpmg.ste.graph.RevisionVertex" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="RevisionVertexextendsVertexTypewithProductwithSerializable"></a><a id="RevisionVertex:RevisionVertex"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a title="Represents a revision vertex in the graph." href="RevisionVertex.html"><span class="name">RevisionVertex</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="contributorId">contributorId: <span class="extype" name="scala.Int">Int</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="isGroundTruth">isGroundTruth: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="result"> extends <a href="VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Represents a revision vertex in the graph.</p><div class="fullcomment"><div class="comment cmt"><p>Represents a revision vertex in the graph.
+</p></div><dl class="paramcmts block"><dt class="param">trustScore</dt><dd class="cmt"><p>
+  Trust score of the revision</p></dd><dt class="param">contributorId</dt><dd class="cmt"><p>
+  ID of the contributor</p></dd><dt class="param">templatePresence</dt><dd class="cmt"><p>
+  Bitset representing the presence of templates</p></dd><dt class="param">templateAdded</dt><dd class="cmt"><p>
+  Bitset representing the added templates</p></dd><dt class="param">templateRemoved</dt><dd class="cmt"><p>
+  Bitset representing the removed templates</p></dd><dt class="param">isGroundTruth</dt><dd class="cmt"><p>
+  Whether the revision is ground truth</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.graph.SourceVertex" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SourceVertexextendsVertexTypewithProductwithSerializable"></a><a id="SourceVertex:SourceVertex"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/SourceVertex.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a title="Represents a source vertex in the graph." href="SourceVertex.html"><span class="name">SourceVertex</span></a><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="domain">domain: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result"> extends <a href="VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Represents a source vertex in the graph.</p>
+    </li><li name="me.lpmg.ste.graph.VertexType" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="VertexTypeextendsSerializable"></a><a id="VertexType:VertexType"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/VertexType.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="VertexType.html"><span class="name">VertexType</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      
+    </li></ol>
+            </div>
 
         
 
         <div class="values members">
               <h3>Value Members</h3>
               <ol>
-                <li name="me.lpmg.ste.graph.GraphCreator" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+                <li name="me.lpmg.ste.graph.EdgeType" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EdgeType"></a><a id="EdgeType:EdgeType"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="EdgeType$.html"><span class="name">EdgeType</span></a>
+      </span>
+      
+      
+    </li><li name="me.lpmg.ste.graph.GraphCreator" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="GraphCreator"></a><a id="GraphCreator:GraphCreator"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/graph/GraphCreator$.html" title="Permalink">

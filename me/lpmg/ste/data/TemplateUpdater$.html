@@ -139,6 +139,10 @@
                         <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="class" href="Revision.html" title="A class to represent a Wikipedia revision."></a>
+                        <a href="Revision.html" title="A class to represent a Wikipedia revision.">Revision</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="class" href="RevisionManager.html" title=""></a>
                         <a href="RevisionManager.html" title="">RevisionManager</a>
                       </li><li class="current-entities indented4">
@@ -531,9 +535,9 @@ template presence.
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="me.lpmg.ste.data.TemplateUpdater#updateRevisionTemplateBitSets" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="updateRevisionTemplateBitSets(revision:me.lpmg.ste.types.Revision,parentTemplatePresence:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.Revision"></a><a id="updateRevisionTemplateBitSets(Revision,BitSet):Revision"></a>
+      <a id="updateRevisionTemplateBitSets(revision:me.lpmg.ste.data.Revision,parentTemplatePresence:org.apache.spark.util.collection.BitSet):me.lpmg.ste.data.Revision"></a><a id="updateRevisionTemplateBitSets(Revision,BitSet):Revision"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/TemplateUpdater$.html#updateRevisionTemplateBitSets(revision:me.lpmg.ste.types.Revision,parentTemplatePresence:org.apache.spark.util.collection.BitSet):me.lpmg.ste.types.Revision" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/TemplateUpdater$.html#updateRevisionTemplateBitSets(revision:me.lpmg.ste.data.Revision,parentTemplatePresence:org.apache.spark.util.collection.BitSet):me.lpmg.ste.data.Revision" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -542,7 +546,7 @@ template presence.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">updateRevisionTemplateBitSets</span><span class="params">(<span name="revision">revision: <a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a></span>, <span name="parentTemplatePresence">parentTemplatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>)</span><span class="result">: <a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a></span>
+        <span class="name">updateRevisionTemplateBitSets</span><span class="params">(<span name="revision">revision: <a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a></span>, <span name="parentTemplatePresence">parentTemplatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>)</span><span class="result">: <a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a></span>
       </span>
       
       <p class="shortcomment cmt">Updates a single revision's template BitSets based on its parent's
@@ -652,9 +656,9 @@ template presence
               
         </dd><dt>Deprecated</dt><dd class="cmt"></dd></dl></div>
     </li><li name="me.lpmg.ste.data.TemplateUpdater#updateTemplateBitSets" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="updateTemplateBitSets(revisions:Seq[me.lpmg.ste.types.Revision],revisionIdToTemplatesPresenceMap:Map[Long,org.apache.spark.util.collection.BitSet]):Seq[me.lpmg.ste.types.Revision]"></a><a id="updateTemplateBitSets(Seq[Revision],Map[Long,BitSet]):Seq[Revision]"></a>
+      <a id="updateTemplateBitSets(revisions:Seq[me.lpmg.ste.data.Revision],revisionIdToTemplatesPresenceMap:Map[Long,org.apache.spark.util.collection.BitSet]):Seq[me.lpmg.ste.data.Revision]"></a><a id="updateTemplateBitSets(Seq[Revision],Map[Long,BitSet]):Seq[Revision]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/TemplateUpdater$.html#updateTemplateBitSets(revisions:Seq[me.lpmg.ste.types.Revision],revisionIdToTemplatesPresenceMap:Map[Long,org.apache.spark.util.collection.BitSet]):Seq[me.lpmg.ste.types.Revision]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/TemplateUpdater$.html#updateTemplateBitSets(revisions:Seq[me.lpmg.ste.data.Revision],revisionIdToTemplatesPresenceMap:Map[Long,org.apache.spark.util.collection.BitSet]):Seq[me.lpmg.ste.data.Revision]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -663,7 +667,7 @@ template presence
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name deprecated" title="Deprecated: (Since version 0.2.0) This is done automatically while parsing revisions.">updateTemplateBitSets</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="scala.Seq">Seq</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>, <span name="revisionIdToTemplatesPresenceMap">revisionIdToTemplatesPresenceMap: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Long">Long</span>, <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>
+        <span class="name deprecated" title="Deprecated: (Since version 0.2.0) This is done automatically while parsing revisions.">updateTemplateBitSets</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>, <span name="revisionIdToTemplatesPresenceMap">revisionIdToTemplatesPresenceMap: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Long">Long</span>, <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Updates the templateAdded and templateRemoved BitSets for a sequence of
@@ -676,9 +680,9 @@ revisions.
               
         </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.2.0)</i> This is done automatically while parsing revisions.</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.TemplateUpdater#updateTemplateBitSetsDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="updateTemplateBitSetsDistributed(revisionsRDD:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]"></a><a id="updateTemplateBitSetsDistributed(RDD[Revision]):RDD[Revision]"></a>
+      <a id="updateTemplateBitSetsDistributed(revisionsRDD:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]"></a><a id="updateTemplateBitSetsDistributed(RDD[Revision]):RDD[Revision]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/TemplateUpdater$.html#updateTemplateBitSetsDistributed(revisionsRDD:org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]):org.apache.spark.rdd.RDD[me.lpmg.ste.types.Revision]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/TemplateUpdater$.html#updateTemplateBitSetsDistributed(revisionsRDD:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -687,7 +691,7 @@ revisions.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name deprecated" title="Deprecated: (Since version 0.2.0) This is done automatically while parsing revisions.">updateTemplateBitSetsDistributed</span><span class="params">(<span name="revisionsRDD">revisionsRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../types/Revision.html" class="extype" name="me.lpmg.ste.types.Revision">Revision</a>]</span>
+        <span class="name deprecated" title="Deprecated: (Since version 0.2.0) This is done automatically while parsing revisions.">updateTemplateBitSetsDistributed</span><span class="params">(<span name="revisionsRDD">revisionsRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Updates the templateAdded and templateRemoved BitSets for revisions in a

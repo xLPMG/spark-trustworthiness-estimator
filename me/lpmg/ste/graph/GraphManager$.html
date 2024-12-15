@@ -135,12 +135,28 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="object" href="EdgeType$.html" title=""></a>
+                        <a href="EdgeType$.html" title="">EdgeType</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="object" href="GraphCreator$.html" title="Provides functionality to create a revision graph using GraphX."></a>
                         <a href="GraphCreator$.html" title="Provides functionality to create a revision graph using GraphX.">GraphCreator</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="" title=""></a>
                         <a href="" title="">GraphManager</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="RevisionVertex.html" title="Represents a revision vertex in the graph."></a>
+                        <a href="RevisionVertex.html" title="Represents a revision vertex in the graph.">RevisionVertex</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="SourceVertex.html" title="Represents a source vertex in the graph."></a>
+                        <a href="SourceVertex.html" title="Represents a source vertex in the graph.">SourceVertex</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="trait" href="VertexType.html" title=""></a>
+                        <a href="VertexType.html" title="">VertexType</a>
                       </li>
               </ul>
             </div>
@@ -407,9 +423,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="me.lpmg.ste.graph.GraphManager#loadGraph" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="loadGraph(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,graphName:String):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]"></a><a id="loadGraph(SparkSession,String,String):Graph[RevisionVertex,Byte]"></a>
+      <a id="loadGraph(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,graphName:String):org.apache.spark.graphx.Graph[me.lpmg.ste.graph.RevisionVertex,Byte]"></a><a id="loadGraph(SparkSession,String,String):Graph[RevisionVertex,Byte]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager$.html#loadGraph(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,graphName:String):org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/GraphManager$.html#loadGraph(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,graphName:String):org.apache.spark.graphx.Graph[me.lpmg.ste.graph.RevisionVertex,Byte]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -418,7 +434,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">loadGraph</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="dataFolderPath">dataFolderPath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="graphName">graphName: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
+        <span class="name">loadGraph</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="dataFolderPath">dataFolderPath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="graphName">graphName: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="RevisionVertex.html" class="extype" name="me.lpmg.ste.graph.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Loads a saved revision graph from the data folder.</p><div class="fullcomment"><div class="comment cmt"><p>Loads a saved revision graph from the data folder.
@@ -484,9 +500,9 @@
               
         </dd></dl></div>
     </li><li name="me.lpmg.ste.graph.GraphManager#saveGraph" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="saveGraph(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,graphName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit"></a><a id="saveGraph(SparkSession,String,String,Graph[RevisionVertex,Byte]):Unit"></a>
+      <a id="saveGraph(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,graphName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.graph.RevisionVertex,Byte]):Unit"></a><a id="saveGraph(SparkSession,String,String,Graph[RevisionVertex,Byte]):Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager$.html#saveGraph(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,graphName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/GraphManager$.html#saveGraph(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,graphName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.graph.RevisionVertex,Byte]):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -495,30 +511,13 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">saveGraph</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="dataFolderPath">dataFolderPath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="graphName">graphName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionGraph">revisionGraph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">saveGraph</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="dataFolderPath">dataFolderPath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="graphName">graphName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionGraph">revisionGraph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="RevisionVertex.html" class="extype" name="me.lpmg.ste.graph.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
       <p class="shortcomment cmt">Saves the revision graph to the data folder.</p><div class="fullcomment"><div class="comment cmt"><p>Saves the revision graph to the data folder.
 </p></div><dl class="paramcmts block"><dt class="param">graphName</dt><dd class="cmt"><p>
   The name of the graph</p></dd><dt class="param">revisionGraph</dt><dd class="cmt"><p>
   The revision graph to save</p></dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.GraphManager#saveTrustScores" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="saveTrustScores(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,fileName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit"></a><a id="saveTrustScores(SparkSession,String,String,Graph[RevisionVertex,Byte]):Unit"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/GraphManager$.html#saveTrustScores(spark:org.apache.spark.sql.SparkSession,dataFolderPath:String,fileName:String,revisionGraph:org.apache.spark.graphx.Graph[me.lpmg.ste.types.RevisionVertex,Byte]):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">saveTrustScores</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="dataFolderPath">dataFolderPath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="fileName">fileName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionGraph">revisionGraph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../types/RevisionVertex.html" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Saves the trust scores of revisions to a Parquet file
-</p>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">

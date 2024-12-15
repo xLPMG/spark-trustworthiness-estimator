@@ -117,10 +117,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="me.lpmg">lpmg</a></dd></dl></div>
-    </li><li name="me.lpmg.ste.types" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="types"></a><a id="types:types"></a>
+    </li><li name="me.lpmg.ste.graph" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="graph"></a><a id="graph:graph"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/index.html" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -129,41 +129,45 @@
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="" href="index.html"><span class="name">types</span></a>
+        <a title="" href="index.html"><span class="name">graph</span></a>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="EdgeType$.html" title="Mappinf of edge types to byte values"></a>
-                        <a href="EdgeType$.html" title="Mappinf of edge types to byte values">EdgeType</a>
+                        <a class="object" href="" title=""></a>
+                        <a href="" title="">EdgeType</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="Revision.html" title="A class to represent a Wikipedia revision."></a>
-                        <a href="Revision.html" title="A class to represent a Wikipedia revision.">Revision</a>
+                        <a class="object" href="GraphCreator$.html" title="Provides functionality to create a revision graph using GraphX."></a>
+                        <a href="GraphCreator$.html" title="Provides functionality to create a revision graph using GraphX.">GraphCreator</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="" title="Represents a revision vertex in the graph."></a>
-                        <a href="" title="Represents a revision vertex in the graph.">RevisionVertex</a>
+                        <a class="object" href="GraphManager$.html" title=""></a>
+                        <a href="GraphManager$.html" title="">GraphManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="SourceVertex.html" title=""></a>
-                        <a href="SourceVertex.html" title="">SourceVertex</a>
+                        <a class="class" href="RevisionVertex.html" title="Represents a revision vertex in the graph."></a>
+                        <a href="RevisionVertex.html" title="Represents a revision vertex in the graph.">RevisionVertex</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="Types$.html" title="Collector class of different custom types used in the project."></a>
-                        <a href="Types$.html" title="Collector class of different custom types used in the project.">Types</a>
+                        <a class="class" href="SourceVertex.html" title="Represents a source vertex in the graph."></a>
+                        <a href="SourceVertex.html" title="Represents a source vertex in the graph.">SourceVertex</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="trait" href="VertexType.html" title=""></a>
+                        <a href="VertexType.html" title="">VertexType</a>
                       </li>
               </ul>
             </div>
           </div>
           <div id="content">
-            <body class="class type">
+            <body class="object value">
       <div id="definition">
-        <div class="big-circle class">c</div>
-        <p id="owner"><a href="../../../index.html" class="extype" name="me">me</a>.<a href="../../index.html" class="extype" name="me.lpmg">lpmg</a>.<a href="../index.html" class="extype" name="me.lpmg.ste">ste</a>.<a href="index.html" class="extype" name="me.lpmg.ste.types">types</a></p>
-        <h1>RevisionVertex<span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html" title="Permalink">
+        <div class="big-circle object">o</div>
+        <p id="owner"><a href="../../../index.html" class="extype" name="me">me</a>.<a href="../../index.html" class="extype" name="me.lpmg">lpmg</a>.<a href="../index.html" class="extype" name="me.lpmg.ste">ste</a>.<a href="index.html" class="extype" name="me.lpmg.ste.graph">graph</a></p>
+        <h1>EdgeType<span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
@@ -173,21 +177,19 @@
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">class</span>
+        <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">RevisionVertex</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">EdgeType</span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a revision vertex in the graph. Only contains the necessary
-information for the trust algorithm.
-</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -213,7 +215,7 @@ information for the trust algorithm.
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="me.lpmg.ste.types.RevisionVertex"><span>RevisionVertex</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="me.lpmg.ste.graph.EdgeType"><span>EdgeType</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -231,32 +233,7 @@ information for the trust algorithm.
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="me.lpmg.ste.types.RevisionVertex#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(trustScore:Float,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,isGroundTruth:Boolean):me.lpmg.ste.types.RevisionVertex"></a><a id="&lt;init&gt;:RevisionVertex"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#&lt;init&gt;(trustScore:Float,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,isGroundTruth:Boolean):me.lpmg.ste.types.RevisionVertex" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">RevisionVertex</span><span class="params">(<span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="contributorId">contributorId: <span class="extype" name="scala.Int">Int</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="isGroundTruth">isGroundTruth: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span>
-      </span>
-      
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">trustScore</dt><dd class="cmt"><p>
-  Trust score of the revision</p></dd><dt class="param">contributorId</dt><dd class="cmt"><p>
-  ID of the contributor</p></dd><dt class="param">templatePresence</dt><dd class="cmt"><p>
-  Bitset representing the presence of templates</p></dd><dt class="param">templateAdded</dt><dd class="cmt"><p>
-  Bitset representing the added templates</p></dd><dt class="param">templateRemoved</dt><dd class="cmt"><p>
-  Bitset representing the removed templates</p></dd><dt class="param">isGroundTruth</dt><dd class="cmt"><p>
-  Whether the revision is ground truth</p></dd></dl></div>
-    </li></ol>
-            </div>
+        
 
         
 
@@ -268,7 +245,7 @@ information for the trust algorithm.
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -284,7 +261,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html###():Int" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -300,7 +277,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -316,7 +293,7 @@ information for the trust algorithm.
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -332,7 +309,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#clone():Object" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -355,42 +332,10 @@ information for the trust algorithm.
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.types.RevisionVertex#contributorId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="contributorId:Int"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#contributorId:Int" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">contributorId</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.types.RevisionVertex#copy" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="copy(trustScore:Float,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,isGroundTruth:Boolean):me.lpmg.ste.types.RevisionVertex"></a><a id="copy(Float,Int,BitSet,BitSet,BitSet,Boolean):RevisionVertex"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#copy(trustScore:Float,contributorId:Int,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,isGroundTruth:Boolean):me.lpmg.ste.types.RevisionVertex" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">copy</span><span class="params">(<span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span> = <span class="symbol"><span class="name"><a href="#trustScore:Float">this.trustScore</a></span></span></span>, <span name="contributorId">contributorId: <span class="extype" name="scala.Int">Int</span> = <span class="symbol"><span class="name"><a href="#contributorId:Int">this.contributorId</a></span></span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templatePresence:org.apache.spark.util.collection.BitSet">this.templatePresence</a></span></span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateAdded:org.apache.spark.util.collection.BitSet">this.templateAdded</a></span></span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="symbol"><span class="name"><a href="#templateRemoved:org.apache.spark.util.collection.BitSet">this.templateRemoved</a></span></span></span>, <span name="isGroundTruth">isGroundTruth: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol"><span class="name"><a href="#isGroundTruth:Boolean">this.isGroundTruth</a></span></span></span>)</span><span class="result">: <a href="" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -406,7 +351,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#equals(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#equals(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -422,7 +367,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#getClass():Class[_]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -440,10 +385,26 @@ information for the trust algorithm.
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="me.lpmg.ste.graph.EdgeType#hasSource" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="hasSource:Byte"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#hasSource:Byte" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hasSource</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#hashCode():Int" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#hashCode():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -461,26 +422,26 @@ information for the trust algorithm.
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.types.RevisionVertex#isGroundTruth" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="isGroundTruth:Boolean"></a>
+    </li><li name="me.lpmg.ste.graph.EdgeType#isChildOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="isChildOf:Byte"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#isGroundTruth:Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#isChildOf:Byte" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
       <span class="modifier_kind">
-        <span class="modifier"></span>
+        <span class="modifier">final </span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">isGroundTruth</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isChildOf</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
       </span>
       
       
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -493,10 +454,42 @@ information for the trust algorithm.
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="me.lpmg.ste.graph.EdgeType#isParentOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="isParentOf:Byte"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#isParentOf:Byte" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isParentOf</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
+      </span>
+      
+      
+    </li><li name="me.lpmg.ste.graph.EdgeType#isReferencedBy" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="isReferencedBy:Byte"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#isReferencedBy:Byte" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isReferencedBy</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -512,7 +505,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#notify():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -533,7 +526,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#notifyAll():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -554,7 +547,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -567,58 +560,10 @@ information for the trust algorithm.
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="me.lpmg.ste.types.RevisionVertex#templateAdded" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templateAdded:org.apache.spark.util.collection.BitSet"></a><a id="templateAdded:BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#templateAdded:org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">templateAdded</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.types.RevisionVertex#templatePresence" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templatePresence:org.apache.spark.util.collection.BitSet"></a><a id="templatePresence:BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#templatePresence:org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">templatePresence</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.types.RevisionVertex#templateRemoved" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templateRemoved:org.apache.spark.util.collection.BitSet"></a><a id="templateRemoved:BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#templateRemoved:org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">templateRemoved</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.types.RevisionVertex#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#toString():String" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -627,30 +572,14 @@ information for the trust algorithm.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="me.lpmg.ste.types.RevisionVertex">RevisionVertex</a> → AnyRef → Any</dd></dl></div>
-    </li><li name="me.lpmg.ste.types.RevisionVertex#trustScore" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="trustScore:Float"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#trustScore:Float" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">trustScore</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
-      </span>
-      
-      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -672,7 +601,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -694,7 +623,7 @@ information for the trust algorithm.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#wait():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -724,7 +653,7 @@ information for the trust algorithm.
               <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/RevisionVertex.html#finalize():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/EdgeType$.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -750,11 +679,7 @@ information for the trust algorithm.
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.Serializable">
-              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="java.io.Serializable">
-              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
