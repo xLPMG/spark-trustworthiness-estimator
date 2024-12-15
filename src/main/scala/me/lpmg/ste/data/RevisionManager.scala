@@ -146,15 +146,15 @@ class RevisionManager(
         )
       }
       .toDF(
-        "revisionId",
+        "revId",
         "pageId",
         "parentId",
         "timestamp",
-        "contributorId",
-        "templatePresence",
-        "templateAdded",
-        "templateRemoved",
-        "sources"
+        "contribId",
+        "tP",
+        "tA",
+        "tR",
+        "src"
       )
 
     serializedRevisions.write
@@ -208,28 +208,28 @@ class RevisionManager(
     // Convert back to RDD[Revision]
     serializedRevisionsDF.rdd.map { row =>
       val templatePresence = stringToBitSet(
-        row.getAs[String]("templatePresence"),
+        row.getAs[String]("tP"),
         Types.TemplateBitPositions.size
       )
       val templateAdded = stringToBitSet(
-        row.getAs[String]("templateAdded"),
+        row.getAs[String]("tA"),
         Types.TemplateBitPositions.size
       )
       val templateRemoved = stringToBitSet(
-        row.getAs[String]("templateRemoved"),
+        row.getAs[String]("tR"),
         Types.TemplateBitPositions.size
       )
 
       new Revision(
-        row.getAs[Long]("revisionId"),
+        row.getAs[Long]("revId"),
         row.getAs[Int]("pageId"),
         row.getAs[Long]("parentId"),
         row.getAs[Long]("timestamp"),
-        row.getAs[Int]("contributorId"),
+        row.getAs[Int]("contribId"),
         templatePresence,
         templateAdded,
         templateRemoved,
-        row.getAs[Seq[String]]("sources")
+        row.getAs[Seq[String]]("src")
       )
     }
   }

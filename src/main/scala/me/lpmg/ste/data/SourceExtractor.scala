@@ -83,7 +83,13 @@ object SourceExtractor {
     ExternalLinkPattern.findAllMatchIn(text).foreach { m =>
       extractDomain(m.group(1)).foreach(sources += _)
     }
+
+    // Clean up links
+    val cleanedSources = sources.map { source =>
+      val pipeIndex = source.indexOf('|')
+      if (pipeIndex >= 0) source.substring(0, pipeIndex) else source
+    }
     
-    sources.distinct
+    cleanedSources.distinct
   }
 }
