@@ -139,20 +139,8 @@
                         <a href="" title="">ComplexSourceEvaluator</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="ContributorEvaluator$.html" title=""></a>
-                        <a href="ContributorEvaluator$.html" title="">ContributorEvaluator</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
                         <a class="object" href="SimpleSourceEvaluator$.html" title=""></a>
                         <a href="SimpleSourceEvaluator$.html" title="">SimpleSourceEvaluator</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="object" href="TrustCalculator$.html" title=""></a>
-                        <a href="TrustCalculator$.html" title="">TrustCalculator</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="class" href="TrustMessage.html" title=""></a>
-                        <a href="TrustMessage.html" title="">TrustMessage</a>
                       </li>
               </ul>
             </div>
@@ -403,9 +391,9 @@
               
         </dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.ComplexSourceEvaluator#initializeVertices" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="initializeVertices(vertices:org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId,me.lpmg.ste.graph.VertexType)],sourceTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId,Float)]"></a><a id="initializeVertices(RDD[(VertexId,VertexType)],Seq[Int]):RDD[(VertexId,Float)]"></a>
+      <a id="initializeVertices(vertices:org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId,me.lpmg.ste.graph.VertexType)]):org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId,me.lpmg.ste.graph.VertexType)]"></a><a id="initializeVertices(RDD[(VertexId,VertexType)]):RDD[(VertexId,VertexType)]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ComplexSourceEvaluator$.html#initializeVertices(vertices:org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId,me.lpmg.ste.graph.VertexType)],sourceTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId,Float)]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ComplexSourceEvaluator$.html#initializeVertices(vertices:org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId,me.lpmg.ste.graph.VertexType)]):org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId,me.lpmg.ste.graph.VertexType)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -414,7 +402,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">initializeVertices</span><span class="params">(<span name="vertices">vertices: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="../graph/VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a>)]</span>, <span name="sourceTemplatePositions">sourceTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <span class="extype" name="scala.Float">Float</span>)]</span>
+        <span class="name">initializeVertices</span><span class="params">(<span name="vertices">vertices: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="../graph/VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a>)]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="../graph/VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a>)]</span>
       </span>
       
       
@@ -492,6 +480,22 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="me.lpmg.ste.algorithms.ComplexSourceEvaluator#runPregel" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="runPregel(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.graph.VertexType,Byte]):org.apache.spark.graphx.Graph[me.lpmg.ste.graph.VertexType,Byte]"></a><a id="runPregel(Graph[VertexType,Byte]):Graph[VertexType,Byte]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ComplexSourceEvaluator$.html#runPregel(graph:org.apache.spark.graphx.Graph[me.lpmg.ste.graph.VertexType,Byte]):org.apache.spark.graphx.Graph[me.lpmg.ste.graph.VertexType,Byte]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">runPregel</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../graph/VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="../graph/VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a>, <span class="extype" name="scala.Byte">Byte</span>]</span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
