@@ -13,5 +13,5 @@ spark-submit \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data \
-  revisions
+  revisions-2024-12-15T10-11-36Z
   

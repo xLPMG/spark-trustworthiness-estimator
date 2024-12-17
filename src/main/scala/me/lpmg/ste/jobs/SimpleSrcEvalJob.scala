@@ -68,18 +68,22 @@ object SimpleSrcEvalJob {
 
     val sourceScoresOutputPath =
       Path.of(dataFolderPath).resolve(s"simple-source-scores-$dateString")
+    val specificPath = sourceScoresOutputPath.resolve("specific")
+    val generalPath = sourceScoresOutputPath.resolve("general")
 
     sourceSpecificRevisionScores
       .toDF("revision_id", "source_specific_score")
-      .join(
-        generalRevisionScores.toDF("revision_id", "general_score"),
-        Seq("revision_id")
-      )
-      .coalesce(1)
       .write
       .option("header", "true")
       .mode("overwrite")
-      .csv(sourceScoresOutputPath.toString())
+      .csv(specificPath.toString())
+
+    generalRevisionScores
+      .toDF("revision_id", "general_score")
+      .write
+      .option("header", "true")
+      .mode("overwrite")
+      .csv(generalPath.toString())
 
     logger.warn(
       s"CSV file saved: ${sourceScoresOutputPath.toString()} with headers: revision_id,source_specific_score,general_score"
