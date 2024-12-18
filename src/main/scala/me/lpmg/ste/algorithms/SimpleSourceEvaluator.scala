@@ -16,9 +16,12 @@ object SimpleSourceEvaluator extends Serializable {
     */
   def evaluateSources(
       revisions: RDD[Revision],
-      sourceTemplatePositions: Seq[Int]
+      sourceTemplatePositions: Seq[Int],
+      testSplit: Long
   ): Map[String, Float] = {
-    evaluateSourcesDistributed(revisions, sourceTemplatePositions).collect().toMap
+    evaluateSourcesDistributed(revisions, sourceTemplatePositions, testSplit)
+      .collect()
+      .toMap
   }
 
   /** Evaluates the trust scores of sources in a distributed way.
@@ -32,18 +35,29 @@ object SimpleSourceEvaluator extends Serializable {
     */
   def evaluateSourcesDistributed(
       revisions: RDD[Revision],
-      sourceTemplatePositions: Seq[Int]
+      sourceTemplatePositions: Seq[Int],
+      testSplit: Long
   ): RDD[(String, Float)] = {
     // For each revision, get (source, templateImpact) pairs
     val sourceImpacts = revisions.flatMap { revision =>
-      // Only consider specified template positions
-      val templateAddedCount = sourceTemplatePositions.count(pos => revision.templateAdded.get(pos))
-      val templateRemovedCount = sourceTemplatePositions.count(pos => revision.templateRemoved.get(pos))
-      
-      // Calculate impact: negative for adding templates, positive for removing
-      val templateImpact = (-templateAddedCount + templateRemovedCount).toFloat
-      
-      revision.sources.map(source => (source, templateImpact))
+      // if the revision is in the test split, it has no impact on the sources
+      if (testSplit > 0L && revision.revisionId >= testSplit) {
+        revision.sources.map(source => (source, 0.0f))
+      } else {
+        // Only consider specified template positions
+        val templateAddedCount =
+          sourceTemplatePositions.count(pos => revision.templateAdded.get(pos))
+        val templateRemovedCount =
+          sourceTemplatePositions.count(pos =>
+            revision.templateRemoved.get(pos)
+          )
+
+        // Calculate impact: negative for adding templates, positive for removing
+        val templateImpact =
+          (-templateAddedCount + templateRemovedCount).toFloat
+
+        revision.sources.map(source => (source, templateImpact))
+      }
     }
 
     // find maximum absolute value for normalization
@@ -64,7 +78,4 @@ object SimpleSourceEvaluator extends Serializable {
 
     normalizedSourceScores
   }
-
-
-
 }

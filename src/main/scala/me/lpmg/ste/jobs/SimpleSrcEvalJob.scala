@@ -27,6 +27,10 @@ object SimpleSrcEvalJob {
 
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
+    var testSplit: Long = 0L
+    if (args.length > 2) {
+      testSplit = args(2).toLong
+    }
 
     implicit val spark = SparkSession
       .builder()
@@ -40,12 +44,14 @@ object SimpleSrcEvalJob {
     // calculate source scores
     val sourceSpecificSourceScores = SimpleSourceEvaluator.evaluateSources(
       revisions,
-      Seq(0, 1, 2, 3, 4, 5, 6)
+      Seq(0, 1, 2, 3, 4, 5, 6),
+      testSplit
     )
 
     val generalSourceScores = SimpleSourceEvaluator.evaluateSources(
       revisions,
-      Seq(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+      Seq(7, 8, 9, 10, 11, 12, 13, 14, 15, 16),
+      testSplit
     )
 
     // Calculate total score for each revision by summing up source scores
