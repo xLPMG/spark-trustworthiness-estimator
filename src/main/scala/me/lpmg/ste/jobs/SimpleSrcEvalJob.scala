@@ -49,19 +49,24 @@ object SimpleSrcEvalJob {
     )
 
     // Calculate total score for each revision by summing up source scores
-    val sourceSpecificRevisionScores = revisions.map { revision =>
-      val totalScore = revision.sources
-        .map(source => sourceSpecificSourceScores.getOrElse(source, 0.0f))
-        .sum
-      (revision.revisionId, totalScore)
-    }
+    // revisions with scores close to 0 are filtered out
+    val sourceSpecificRevisionScores = revisions
+      .map { revision =>
+        val totalScore = revision.sources
+          .map(source => sourceSpecificSourceScores.getOrElse(source, 0.0f))
+          .sum
+        (revision.revisionId, totalScore)
+      }
+      .filter { case (_, score) => score > 0.001f || score < -0.001f }
 
-    val generalRevisionScores = revisions.map { revision =>
-      val totalScore = revision.sources
-        .map(source => generalSourceScores.getOrElse(source, 0.0f))
-        .sum
-      (revision.revisionId, totalScore)
-    }
+    val generalRevisionScores = revisions
+      .map { revision =>
+        val totalScore = revision.sources
+          .map(source => generalSourceScores.getOrElse(source, 0.0f))
+          .sum
+        (revision.revisionId, totalScore)
+      }
+      .filter { case (_, score) => score > 0.001f || score < -0.001f }
 
     // Convert RDDs to DataFrames and save as single CSV
     import spark.implicits._

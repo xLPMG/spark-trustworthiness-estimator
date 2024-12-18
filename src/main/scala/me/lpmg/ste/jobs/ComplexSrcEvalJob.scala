@@ -69,27 +69,38 @@ object ComplexSrcEvalJob {
     pregelVertices
       .flatMap {
         case (id, rev: RevisionVertex) =>
-          Some((rev.id, rev.trustScore))
-        case _ => 
+          // filter out scores close to zero
+          if (rev.trustScore > 0.001f || rev.trustScore < -0.001f) {
+            Some((rev.id, rev.trustScore))
+          } else {
+            None
+          }
+        case _ =>
           None
       }
       .toDF("revision_id", "pregel_score")
-      .join(
-        pageRankedVertices
-          .flatMap {
-            case (id, rev: RevisionVertex) =>
-              Some((rev.id, rev.trustScore))
-            case _ => 
-              None
-          }
-          .toDF("revision_id", "pagerank_score"),
-        Seq("revision_id")
-      )
-      .coalesce(1)
       .write
       .option("header", "true")
       .mode("overwrite")
-      .csv(sourceScoresOutputPath.toString())
+      .csv(sourceScoresOutputPath.resolve("pregel").toString())
+
+    pageRankedVertices
+      .flatMap {
+        case (id, rev: RevisionVertex) =>
+          // filter out scores close to zero
+          if (rev.trustScore > 0.001f || rev.trustScore < -0.001f) {
+            Some((rev.id, rev.trustScore))
+          } else {
+            None
+          }
+        case _ =>
+          None
+      }
+      .toDF("revision_id", "pagerank_score")
+      .write
+      .option("header", "true")
+      .mode("overwrite")
+      .csv(sourceScoresOutputPath.resolve("page_rank").toString())
 
     logger.warn(
       s"CSV file saved: ${sourceScoresOutputPath.toString()} with headers: revision_id,source_specific_score,general_score"
