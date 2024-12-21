@@ -15,14 +15,12 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
   private var insidePage = false
   private var insideRevision = false
   private var isMainNamespace = false
-  private var insideContributor = false
 
   private var pageTitle: String = ""
   private var pageId: Int = 0
   private var revisionId: Long = 0
   private var parentId: Option[Long] = None
   private var timestamp: Long = 0
-  private var contributorId: Int = -1
   private var templateBitset: BitSet = new BitSet(TemplateBitPositions.size)
   private var parentTemplateBitset: BitSet = new BitSet(
     TemplateBitPositions.size
@@ -51,13 +49,9 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
         revisionId = 0
         parentId = None
         timestamp = 0
-        contributorId = -1
         isRedirect = false
         templateBitset = new BitSet(TemplateBitPositions.size)
         sources = Seq.empty
-        insideContributor = false
-      case "contributor" =>
-        insideContributor = true
       case _ => // No-op for other tags
     }
   }
@@ -110,10 +104,6 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               s"Error parsing timestamp: ${getBuffer} for revision: $revisionId in page: $pageId"
             )
         }
-      case "id" if insideContributor =>
-        contributorId = getBuffer.toInt
-      case "contributor" =>
-        insideContributor = false
       case "text" =>
         val content = getBuffer
         isRedirect = content.startsWith("#REDIRECT")
@@ -150,7 +140,10 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
               pageId,
               parentId.getOrElse(-1),
               timestamp,
-              contributorId,
+              templateBitset,
+              templateAdded,
+              templateRemoved,
+              // GT
               templateBitset,
               templateAdded,
               templateRemoved,

@@ -25,7 +25,6 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-01T00:00:01Z").toEpochMilli()
         )
-        assertEquals(revision.contributorId, 1)
         assertEquals(revision.templatePresence.get(unreferencedPosition), false)
         assertEquals(revision.templateAdded.cardinality(), 0)
         assertEquals(revision.templateRemoved.cardinality(), 0)
@@ -36,7 +35,6 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-02T00:00:01Z").toEpochMilli()
         )
-        assertEquals(revision.contributorId, 2)
         assertEquals(revision.templatePresence.get(unreferencedPosition), false)
         assertEquals(revision.templateAdded.cardinality(), 0)
         assertEquals(revision.templateRemoved.cardinality(), 0)
@@ -47,7 +45,6 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-03T00:00:01Z").toEpochMilli()
         )
-        assertEquals(revision.contributorId, 3)
         assertEquals(revision.templatePresence.get(unreferencedPosition), true)
         assertEquals(revision.templateAdded.cardinality(), 1)
         assertEquals(revision.templateRemoved.cardinality(), 0)
@@ -58,7 +55,6 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-04T00:00:01Z").toEpochMilli()
         )
-        assertEquals(revision.contributorId, 4)
         assertEquals(revision.templatePresence.get(unreferencedPosition), false)
         assertEquals(revision.templateAdded.cardinality(), 0)
         assertEquals(revision.templateRemoved.cardinality(), 0)

@@ -39,19 +39,17 @@ object SimpleSrcEvalJob {
     val revisionManager =
       new RevisionManager(spark, dataFolderPath)
 
-    val revisions = revisionManager.loadRevisions(revisionsFolderName)
+    val revisions = revisionManager.loadRevisions(revisionsFolderName, false)
 
     // calculate source scores
     val sourceSpecificSourceScores = SimpleSourceEvaluator.evaluateSources(
       revisions,
-      Seq(0, 1, 2, 3, 4, 5, 6),
-      testSplit
+      Seq(0, 1, 2, 3, 4, 5, 6)
     )
 
     val generalSourceScores = SimpleSourceEvaluator.evaluateSources(
       revisions,
-      Seq(7, 8, 9, 10, 11, 12, 13, 14, 15, 16),
-      testSplit
+      Seq(7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
     )
 
     // Calculate total score for each revision by summing up source scores

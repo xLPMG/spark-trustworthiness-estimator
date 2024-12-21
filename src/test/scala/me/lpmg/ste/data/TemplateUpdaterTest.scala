@@ -13,7 +13,6 @@ class TemplateUpdaterTest extends munit.FunSuite {
       revisionId = 1L,
       pageId = 1,
       parentId = -1L,
-      contributorId = 1,
       timestamp = System.currentTimeMillis()
     )
 
@@ -21,7 +20,6 @@ class TemplateUpdaterTest extends munit.FunSuite {
       revisionId = 2L,
       pageId = 1,
       parentId = 1L,
-      contributorId = 2,
       timestamp = System.currentTimeMillis()
     )
 
@@ -29,7 +27,6 @@ class TemplateUpdaterTest extends munit.FunSuite {
       revisionId = 3L,
       pageId = 1,
       parentId = 2L,
-      contributorId = 3,
       timestamp = System.currentTimeMillis()
     )
 

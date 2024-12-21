@@ -15,7 +15,7 @@ object ComplexSourceEvaluator {
     vertices.map {
       case (
             id,
-            rev @ RevisionVertex(_, _, _, _, templateAdded, templateRemoved, _)
+            rev @ RevisionVertex(_, _, _, templateAdded, templateRemoved)
           ) =>
         val newScore =
           if (templateRemoved) 1.0f // Trustworthy revision

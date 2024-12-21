@@ -1,11 +1,12 @@
 package me.lpmg.ste.jobs
 
 import com.typesafe.scalalogging.Logger
+import me.lpmg.ste.data.RevisionManager
 import me.lpmg.ste.time.Watch
 import org.apache.spark.sql.SparkSession
-import me.lpmg.ste.data.RevisionManager
-import java.time.ZonedDateTime
+
 import java.time.ZoneId
+import java.time.ZonedDateTime
 
 object ParseJob {
 

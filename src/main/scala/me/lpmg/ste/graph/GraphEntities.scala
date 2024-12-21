@@ -7,30 +7,16 @@ sealed trait VertexType extends Serializable {
   val trustScore: Float
 }
 
-/** Represents a revision vertex in the graph.
-  *
-  * @param trustScore
-  *   Trust score of the revision
-  * @param contributorId
-  *   ID of the contributor
-  * @param templatePresence
-  * @param templateAdded
-  * @param templateRemoved
-  * @param isGroundTruth
-  *   Whether the revision is ground truth
-  */
 case class RevisionVertex(
     val id: Long,
     val trustScore: Float,
-    val contributorId: Int,
     val templatePresence: Boolean,
     val templateAdded: Boolean,
-    val templateRemoved: Boolean,
-    val isGroundTruth: Boolean = false
+    val templateRemoved: Boolean
 ) extends VertexType {
 
   override def toString(): String = {
-    s"Revision(trustScore=${trustScore}, contributorId=${contributorId}, templatePresence=${templatePresence}, templateAdded=${templateAdded}, templateRemoved=${templateRemoved}, isGroundTruth=${isGroundTruth})"
+    s"Revision(trustScore=${trustScore}, templatePresence=${templatePresence}, templateAdded=${templateAdded}, templateRemoved=${templateRemoved})"
   }
 }
 

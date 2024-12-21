@@ -105,8 +105,7 @@ class RevisionManager(
     // }
   }
 
-  /**
-    * Saves the revisions to a parquet file.
+  /** Saves the revisions to a parquet file.
     *
     * @param revisions
     * @param outputFolder
@@ -126,18 +125,25 @@ class RevisionManager(
     val serializedRevisions = revisions
       .map { case (rev: Revision) =>
         val templatePresenceString =
-         bitSetToString(rev.templatePresence)
+          bitSetToString(rev.templatePresence)
         val templateAddedString = bitSetToString(rev.templateAdded)
         val templateRemovedString = bitSetToString(rev.templateRemoved)
+
+        val templatePresenceGTString = bitSetToString(rev.templatePresenceGT)
+        val templateAddedGTString = bitSetToString(rev.templateAddedGT)
+        val templateRemovedGTString = bitSetToString(rev.templateRemovedGT)
+
         (
           rev.revisionId,
           rev.pageId,
           rev.parentId,
           rev.timestamp,
-          rev.contributorId,
           templatePresenceString,
           templateAddedString,
           templateRemovedString,
+          templatePresenceGTString,
+          templateAddedGTString,
+          templateRemovedGTString,
           rev.sources
         )
       }
@@ -146,10 +152,12 @@ class RevisionManager(
         "pageId",
         "parentId",
         "timestamp",
-        "contribId",
         "tP",
         "tA",
         "tR",
+        "tP_GT",
+        "tA_GT",
+        "tR_GT",
         "src"
       )
 
@@ -159,36 +167,16 @@ class RevisionManager(
       .parquet(outputPath.toString())
   }
 
-  /** Saves revisions that have at least one template added or removed.
-    *
-    * @param revisions
-    *   RDD containing the revisions to filter and save
-    * @param outputPath
-    *   Path where the filtered revisions should be saved
-    * @return
-    *   The number of saved revisions
-    */
-  def saveRevisionsWithTemplateChanges(
-      revisions: RDD[Revision],
-      outputFolder: String
-  ): Unit = {
-    val filteredRevisions = revisions.filter(revision =>
-      revision.templateAdded.cardinality() > 0 || revision.templateRemoved
-        .cardinality() > 0
-    )
-    saveRevisionsToFile(filteredRevisions, outputFolder)
-  }
-
-  /** Loads revisions from a parquet file.
-    *
-    * @param inputFolder
-    *   Folder name where the revisions were saved
-    * @return
-    *   RDD[Revision] containing the loaded revisions
-    */
   def loadRevisions(
-      inputFolder: String
+      inputFolder: String,
+      hasGTData: Boolean = true
   ): RDD[Revision] = {
+    if (hasGTData) {
+      logger.info("Loading revisions with Ground Truth data")
+    } else {
+      logger.info("Loading revisions without Ground Truth data")
+    }
+
     import spark.implicits._
 
     val inputPath = Path.of(dataFolderPath).resolve(inputFolder)
@@ -216,15 +204,42 @@ class RevisionManager(
         Types.TemplateBitPositions.size
       )
 
+      // GT
+      val templatePresenceGT =
+        if (!hasGTData) templatePresence
+        else
+          stringToBitSet(
+            row.getAs[String]("tP_GT"),
+            Types.TemplateBitPositions.size
+          )
+
+      val templateAddedGT =
+        if (!hasGTData) templateAdded
+        else
+          stringToBitSet(
+            row.getAs[String]("tA_GT"),
+            Types.TemplateBitPositions.size
+          )
+
+      val templateRemovedGT =
+        if (!hasGTData) templateRemoved
+        else
+          stringToBitSet(
+            row.getAs[String]("tR_GT"),
+            Types.TemplateBitPositions.size
+          )
+
       new Revision(
         row.getAs[Long]("revId"),
         row.getAs[Int]("pageId"),
         row.getAs[Long]("parentId"),
         row.getAs[Long]("timestamp"),
-        row.getAs[Int]("contribId"),
         templatePresence,
         templateAdded,
         templateRemoved,
+        templatePresenceGT,
+        templateAddedGT,
+        templateRemovedGT,
         row.getAs[Seq[String]]("src")
       )
     }

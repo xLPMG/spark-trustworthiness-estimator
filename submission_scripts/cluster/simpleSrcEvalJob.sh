@@ -10,6 +10,9 @@ spark-submit \
   --class me.lpmg.ste.jobs.SimpleSrcEvalJob \
   --name Spark-Trustworthiness-Estimator-SMPLSRCEVALJOB \
   --properties-file ../../spark-defaults.conf \
+  --conf spark.dynamicAllocation.maxExecutors=150 \
+  --conf spark.driver.memory=12g \
+  --conf spark.executor.memory=2g \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data \

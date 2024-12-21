@@ -4,86 +4,22 @@ import org.apache.spark.util.collection.BitSet
 import me.lpmg.ste.types.Types.TemplateBitPositions
 import me.lpmg.ste.graph
 
-/** A class to represent a Wikipedia revision.
-  *
-  * @param revisionId
-  *   the unique identifier of the revision
-  * @param pageId
-  *   the unique identifier of the page
-  * @param parentId
-  *   the unique identifier of the parent revision
-  * @param timestamp
-  *   the timestamp of the revision
-  * @param contributorId
-  *   the unique identifier of the contributor
-  * @param templatePresence
-  *   the presence of templates in the revision
-  * @param templateAdded
-  *   whether templates were added in the revision
-  * @param templateRemoved
-  *   whether templates were removed in the revision
-  * @param sources
-  *   the sources of the revision
-  */
-class Revision(
+case class Revision(
     val revisionId: Long,
     val pageId: Int,
     val parentId: Long,
     val timestamp: Long,
-    val contributorId: Int,
+
     val templatePresence: BitSet = new BitSet(TemplateBitPositions.size),
     val templateAdded: BitSet = new BitSet(TemplateBitPositions.size),
     val templateRemoved: BitSet = new BitSet(TemplateBitPositions.size),
+
+    val templatePresenceGT: BitSet = new BitSet(TemplateBitPositions.size),
+    val templateAddedGT: BitSet = new BitSet(TemplateBitPositions.size),
+    val templateRemovedGT: BitSet = new BitSet(TemplateBitPositions.size),
+
     val sources: Seq[String] = Seq.empty
 ) extends Serializable {
-
-  /** Copy the revision with the specified values. All unspecified values are
-    * copied from the original revision.
-    *
-    * @param revisionId
-    *   the unique identifier of the revision
-    * @param pageId
-    *   the unique identifier of the page
-    * @param parentId
-    *   the unique identifier of the parent revision
-    * @param timestamp
-    *   the timestamp of the revision
-    * @param contributorId
-    *   the unique identifier of the contributor
-    * @param templatePresence
-    *   the presence of templates in the revision
-    * @param templateAdded
-    *   whether templates were added in the revision
-    * @param templateRemoved
-    *   whether templates were removed in the revision
-    * @param sources
-    *   the sources of the revision
-    * @return
-    *   a new revision with the specified values
-    */
-  def copy(
-      revisionId: Long = this.revisionId,
-      pageId: Int = this.pageId,
-      parentId: Long = this.parentId,
-      timestamp: Long = this.timestamp,
-      contributorId: Int = this.contributorId,
-      templatePresence: BitSet = this.templatePresence,
-      templateAdded: BitSet = this.templateAdded,
-      templateRemoved: BitSet = this.templateRemoved,
-      sources: Seq[String] = this.sources
-  ): Revision = {
-    new Revision(
-      revisionId,
-      pageId,
-      parentId,
-      timestamp,
-      contributorId,
-      templatePresence,
-      templateAdded,
-      templateRemoved,
-      sources
-    )
-  }
 
   /** Convert the revision to a pair of revision ID and timestamp.
     *
@@ -101,15 +37,13 @@ class Revision(
     new graph.RevisionVertex(
       revisionId,
       0.0f,
-      contributorId,
       templatePresence.get(templatePosition),
       templateAdded.get(templatePosition),
       templateRemoved.get(templatePosition),
-      templateAdded.get(templatePosition) || templateRemoved.get(templatePosition)
     )
 
   override def toString(): String = {
-    s"Revision(revisionId=${revisionId}, pageId=${pageId}, parentId=${parentId}, timestamp=${timestamp}, contributorId=${contributorId}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(
+    s"Revision(revisionId=${revisionId}, pageId=${pageId}, parentId=${parentId}, timestamp=${timestamp}, templatePresence=${bitSetToBinaryString(templatePresence)}, templateAdded=${bitSetToBinaryString(
         templateAdded
       )}, templateRemoved=${bitSetToBinaryString(templateRemoved)}, sources=${sources.mkString(", ")})"
   }
