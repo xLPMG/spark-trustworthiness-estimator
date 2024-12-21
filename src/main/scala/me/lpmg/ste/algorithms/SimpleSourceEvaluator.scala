@@ -16,9 +16,9 @@ object SimpleSourceEvaluator extends Serializable {
     */
   def evaluateSources(
       revisions: RDD[Revision],
-      sourceTemplatePositions: Seq[Int]
+      sourceTemplatePosition: Byte
   ): Map[String, Float] = {
-    evaluateSourcesDistributed(revisions, sourceTemplatePositions)
+    evaluateSourcesDistributed(revisions, sourceTemplatePosition)
       .collect()
       .toMap
   }
@@ -34,40 +34,19 @@ object SimpleSourceEvaluator extends Serializable {
     */
   def evaluateSourcesDistributed(
       revisions: RDD[Revision],
-      sourceTemplatePositions: Seq[Int]
+      sourceTemplatePosition: Byte
   ): RDD[(String, Float)] = {
-    // For each revision, get (source, templateImpact) pairs
-    val sourceImpacts = revisions.flatMap { revision =>
-      // if the revision is in the test split, it has no impact on the sources
-      // Only consider specified template positions
-      val templateAddedCount =
-        sourceTemplatePositions.count(pos => revision.templateAdded.get(pos))
-      val templateRemovedCount =
-        sourceTemplatePositions.count(pos => revision.templateRemoved.get(pos))
-
-      // Calculate impact: negative for adding templates, positive for removing
-      val templateImpact =
-        (-templateAddedCount + templateRemovedCount).toFloat
-
-      revision.sources.map(source => (source, templateImpact))
-    }
-
-    // find maximum absolute value for normalization
-    val maxAbsOpt = sourceImpacts
-      .map { case (_, score) => math.abs(score) }
-      .takeOrdered(1)
-      .headOption
-      .getOrElse(0.0f)
-
-    // normalize scores and combine impacts for each source
-    val normalizedSourceScores = sourceImpacts
-      .mapValues(score =>
-        if (maxAbsOpt > 0) score / maxAbsOpt
-        else score
-      )
+    revisions
+      .flatMap { revision =>
+        revision.sources.map { source =>
+          val score = 
+            if (revision.templateRemoved.get(sourceTemplatePosition)) -1.0f
+            else if (revision.templateAdded.get(sourceTemplatePosition)) 1.0f
+            else 0.0f
+          
+          (source, score)
+        }
+      }
       .reduceByKey(_ + _)
-      .mapValues(sum => math.max(-1.0f, math.min(1.0f, sum)))
-
-    normalizedSourceScores
   }
 }
