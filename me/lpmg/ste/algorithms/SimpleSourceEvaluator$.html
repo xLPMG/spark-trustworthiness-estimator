@@ -349,9 +349,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.SimpleSourceEvaluator#evaluateSources" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],sourceTemplatePositions:Seq[Int],testSplit:Long):Map[String,Float]"></a><a id="evaluateSources(RDD[Revision],Seq[Int],Long):Map[String,Float]"></a>
+      <a id="evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],sourceTemplatePositions:Seq[Int]):Map[String,Float]"></a><a id="evaluateSources(RDD[Revision],Seq[Int]):Map[String,Float]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/SimpleSourceEvaluator$.html#evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],sourceTemplatePositions:Seq[Int],testSplit:Long):Map[String,Float]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SimpleSourceEvaluator$.html#evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],sourceTemplatePositions:Seq[Int]):Map[String,Float]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -360,7 +360,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateSources</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>, <span name="sourceTemplatePositions">sourceTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="testSplit">testSplit: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Float">Float</span>]</span>
+        <span class="name">evaluateSources</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>, <span name="sourceTemplatePositions">sourceTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Float">Float</span>]</span>
       </span>
       
       <p class="shortcomment cmt">Evaluates the trust scores of sources.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of sources.
@@ -368,9 +368,9 @@
   RDD of revisions</p></dd><dt>returns</dt><dd class="cmt"><p>
   Map of source URLs and their trust scores</p></dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.SimpleSourceEvaluator#evaluateSourcesDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],sourceTemplatePositions:Seq[Int],testSplit:Long):org.apache.spark.rdd.RDD[(String,Float)]"></a><a id="evaluateSourcesDistributed(RDD[Revision],Seq[Int],Long):RDD[(String,Float)]"></a>
+      <a id="evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],sourceTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(String,Float)]"></a><a id="evaluateSourcesDistributed(RDD[Revision],Seq[Int]):RDD[(String,Float)]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/SimpleSourceEvaluator$.html#evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],sourceTemplatePositions:Seq[Int],testSplit:Long):org.apache.spark.rdd.RDD[(String,Float)]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SimpleSourceEvaluator$.html#evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],sourceTemplatePositions:Seq[Int]):org.apache.spark.rdd.RDD[(String,Float)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -379,7 +379,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateSourcesDistributed</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>, <span name="sourceTemplatePositions">sourceTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="testSplit">testSplit: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Float">Float</span>)]</span>
+        <span class="name">evaluateSourcesDistributed</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>, <span name="sourceTemplatePositions">sourceTemplatePositions: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Float">Float</span>)]</span>
       </span>
       
       <p class="shortcomment cmt">Evaluates the trust scores of sources in a distributed way.</p><div class="fullcomment"><div class="comment cmt"><p>Evaluates the trust scores of sources in a distributed way.

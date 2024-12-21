@@ -147,8 +147,8 @@
                         <a href="GraphManager$.html" title="">GraphManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="" title="Represents a revision vertex in the graph."></a>
-                        <a href="" title="Represents a revision vertex in the graph.">RevisionVertex</a>
+                        <a class="class" href="" title=""></a>
+                        <a href="" title="">RevisionVertex</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="class" href="SourceVertex.html" title="Represents a source vertex in the graph."></a>
@@ -180,16 +180,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">RevisionVertex</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="contributorId">contributorId: <span class="extype" name="scala.Int">Int</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isGroundTruth">isGroundTruth: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="result"> extends <a href="VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">RevisionVertex</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <a href="VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Represents a revision vertex in the graph.
-</p></div><dl class="paramcmts block"><dt class="param">trustScore</dt><dd class="cmt"><p>
-  Trust score of the revision</p></dd><dt class="param">contributorId</dt><dd class="cmt"><p>
-  ID of the contributor</p></dd><dt class="param">isGroundTruth</dt><dd class="cmt"><p>
-  Whether the revision is ground truth</p></dd></dl><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -239,10 +235,10 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="me.lpmg.ste.graph.RevisionVertex#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(id:Long,trustScore:Float,contributorId:Int,templatePresence:Boolean,templateAdded:Boolean,templateRemoved:Boolean,isGroundTruth:Boolean):me.lpmg.ste.graph.RevisionVertex"></a><a id="&lt;init&gt;:RevisionVertex"></a>
+              <ol><li name="me.lpmg.ste.graph.RevisionVertex#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(id:Long,trustScore:Float,templatePresence:Boolean,templateAdded:Boolean,templateRemoved:Boolean):me.lpmg.ste.graph.RevisionVertex"></a><a id="&lt;init&gt;:RevisionVertex"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#&lt;init&gt;(id:Long,trustScore:Float,contributorId:Int,templatePresence:Boolean,templateAdded:Boolean,templateRemoved:Boolean,isGroundTruth:Boolean):me.lpmg.ste.graph.RevisionVertex" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#&lt;init&gt;(id:Long,trustScore:Float,templatePresence:Boolean,templateAdded:Boolean,templateRemoved:Boolean):me.lpmg.ste.graph.RevisionVertex" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -251,13 +247,10 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">RevisionVertex</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="contributorId">contributorId: <span class="extype" name="scala.Int">Int</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isGroundTruth">isGroundTruth: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span>
+        <span class="name">RevisionVertex</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
       </span>
       
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">trustScore</dt><dd class="cmt"><p>
-  Trust score of the revision</p></dd><dt class="param">contributorId</dt><dd class="cmt"><p>
-  ID of the contributor</p></dd><dt class="param">isGroundTruth</dt><dd class="cmt"><p>
-  Whether the revision is ground truth</p></dd></dl></div>
+      
     </li></ol>
             </div>
 
@@ -358,22 +351,6 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.RevisionVertex#contributorId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="contributorId:Int"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#contributorId:Int" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">contributorId</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -427,22 +404,6 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="me.lpmg.ste.graph.RevisionVertex">RevisionVertex</a> → <a href="VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a></dd></dl></div>
-    </li><li name="me.lpmg.ste.graph.RevisionVertex#isGroundTruth" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="isGroundTruth:Boolean"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#isGroundTruth:Boolean" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">isGroundTruth</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      
-      
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">

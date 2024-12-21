@@ -117,10 +117,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="me.lpmg">lpmg</a></dd></dl></div>
-    </li><li name="me.lpmg.ste.data" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="data"></a><a id="data:data"></a>
+    </li><li name="me.lpmg.ste.jobs" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="jobs"></a><a id="jobs:jobs"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/index.html" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -129,45 +129,37 @@
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="" href="index.html"><span class="name">data</span></a>
+        <a title="" href="index.html"><span class="name">jobs</span></a>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files."></a>
-                        <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
+                        <a class="object" href="ComplexSrcEvalJob$.html" title=""></a>
+                        <a href="ComplexSrcEvalJob$.html" title="">ComplexSrcEvalJob</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="" title=""></a>
-                        <a href="" title="">Revision</a>
+                        <a class="object" href="" title=""></a>
+                        <a href="" title="">MaskDataJob</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionManager.html" title=""></a>
-                        <a href="RevisionManager.html" title="">RevisionManager</a>
+                        <a class="object" href="ParseJob$.html" title=""></a>
+                        <a href="ParseJob$.html" title="">ParseJob</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions."></a>
-                        <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions.">RevisionSAXHandler</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="object" href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content."></a>
-                        <a href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content.">SourceExtractor</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="object" href="TemplateUpdater$.html" title=""></a>
-                        <a href="TemplateUpdater$.html" title="">TemplateUpdater</a>
+                        <a class="object" href="SimpleSrcEvalJob$.html" title=""></a>
+                        <a href="SimpleSrcEvalJob$.html" title="">SimpleSrcEvalJob</a>
                       </li>
               </ul>
             </div>
           </div>
           <div id="content">
-            <body class="class type">
+            <body class="object value">
       <div id="definition">
-        <div class="big-circle class">c</div>
-        <p id="owner"><a href="../../../index.html" class="extype" name="me">me</a>.<a href="../../index.html" class="extype" name="me.lpmg">lpmg</a>.<a href="../index.html" class="extype" name="me.lpmg.ste">ste</a>.<a href="index.html" class="extype" name="me.lpmg.ste.data">data</a></p>
-        <h1>Revision<span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html" title="Permalink">
+        <div class="big-circle object">o</div>
+        <p id="owner"><a href="../../../index.html" class="extype" name="me">me</a>.<a href="../../index.html" class="extype" name="me.lpmg">lpmg</a>.<a href="../index.html" class="extype" name="me.lpmg.ste">ste</a>.<a href="index.html" class="extype" name="me.lpmg.ste.jobs">jobs</a></p>
+        <h1>MaskDataJob<span class="permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
@@ -177,10 +169,10 @@
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">case class</span>
+        <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">Revision</span><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Long">Long</span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Int">Int</span></span>, <span name="parentId">parentId: <span class="extype" name="scala.Long">Long</span></span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Long">Long</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templatePresenceGT">templatePresenceGT: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateAddedGT">templateAddedGT: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateRemovedGT">templateRemovedGT: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="sources">sources: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Seq.empty</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+        <span class="name">MaskDataJob</span>
       </span>
       </h4>
 
@@ -189,7 +181,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -215,7 +207,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="me.lpmg.ste.data.Revision"><span>Revision</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="me.lpmg.ste.jobs.MaskDataJob"><span>MaskDataJob</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -233,26 +225,7 @@
 
       <div id="template">
         <div id="allMembers">
-        <div id="constructors" class="members">
-              <h3>Instance Constructors</h3>
-              <ol><li name="me.lpmg.ste.data.Revision#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(revisionId:Long,pageId:Int,parentId:Long,timestamp:Long,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,templatePresenceGT:org.apache.spark.util.collection.BitSet,templateAddedGT:org.apache.spark.util.collection.BitSet,templateRemovedGT:org.apache.spark.util.collection.BitSet,sources:Seq[String]):me.lpmg.ste.data.Revision"></a><a id="&lt;init&gt;:Revision"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#&lt;init&gt;(revisionId:Long,pageId:Int,parentId:Long,timestamp:Long,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet,templatePresenceGT:org.apache.spark.util.collection.BitSet,templateAddedGT:org.apache.spark.util.collection.BitSet,templateRemovedGT:org.apache.spark.util.collection.BitSet,sources:Seq[String]):me.lpmg.ste.data.Revision" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">Revision</span><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Long">Long</span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Int">Int</span></span>, <span name="parentId">parentId: <span class="extype" name="scala.Long">Long</span></span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Long">Long</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templatePresenceGT">templatePresenceGT: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateAddedGT">templateAddedGT: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateRemovedGT">templateRemovedGT: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="sources">sources: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Seq.empty</span></span>)</span>
-      </span>
-      
-      
-    </li></ol>
-            </div>
+        
 
         
 
@@ -264,7 +237,7 @@
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -280,7 +253,7 @@
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html###():Int" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -296,7 +269,7 @@
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -312,7 +285,7 @@
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -328,7 +301,7 @@
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#clone():Object" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -354,7 +327,7 @@
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -367,10 +340,26 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#getClass():Class[_]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -388,10 +377,31 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
+              
+        </dd></dl></div>
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -404,10 +414,26 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="me.lpmg.ste.jobs.MaskDataJob#main" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="main(args:Array[String]):Unit"></a><a id="main(Array[String]):Unit"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#main(args:Array[String]):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">main</span><span class="params">(<span name="args">args: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -423,7 +449,7 @@
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#notify():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -444,7 +470,7 @@
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#notifyAll():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -462,74 +488,10 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.data.Revision#pageId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="pageId:Int"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#pageId:Int" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">pageId</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#parentId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="parentId:Long"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#parentId:Long" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parentId</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#revisionId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="revisionId:Long"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#revisionId:Long" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">revisionId</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#sources" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="sources:Seq[String]"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#sources:Seq[String]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">sources</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -542,158 +504,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="me.lpmg.ste.data.Revision#templateAdded" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templateAdded:org.apache.spark.util.collection.BitSet"></a><a id="templateAdded:BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#templateAdded:org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">templateAdded</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#templateAddedGT" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templateAddedGT:org.apache.spark.util.collection.BitSet"></a><a id="templateAddedGT:BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#templateAddedGT:org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">templateAddedGT</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#templatePresence" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templatePresence:org.apache.spark.util.collection.BitSet"></a><a id="templatePresence:BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#templatePresence:org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">templatePresence</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#templatePresenceGT" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templatePresenceGT:org.apache.spark.util.collection.BitSet"></a><a id="templatePresenceGT:BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#templatePresenceGT:org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">templatePresenceGT</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#templateRemoved" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templateRemoved:org.apache.spark.util.collection.BitSet"></a><a id="templateRemoved:BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#templateRemoved:org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">templateRemoved</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#templateRemovedGT" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templateRemovedGT:org.apache.spark.util.collection.BitSet"></a><a id="templateRemovedGT:BitSet"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#templateRemovedGT:org.apache.spark.util.collection.BitSet" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">templateRemovedGT</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#timestamp" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="timestamp:Long"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#timestamp:Long" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">timestamp</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.data.Revision#toIdTimestampPair" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toIdTimestampPair:(Long,Long)"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#toIdTimestampPair:(Long,Long)" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toIdTimestampPair</span><span class="result">: (<span class="extype" name="scala.Long">Long</span>, <span class="extype" name="scala.Long">Long</span>)</span>
-      </span>
-      
-      <p class="shortcomment cmt">Convert the revision to a pair of revision ID and timestamp.</p><div class="fullcomment"><div class="comment cmt"><p>Convert the revision to a pair of revision ID and timestamp.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
-  the pair of revision ID and timestamp</p></dd></dl></div>
-    </li><li name="me.lpmg.ste.data.Revision#toRevisionVertex" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toRevisionVertex(templatePosition:Int):me.lpmg.ste.graph.RevisionVertex"></a><a id="toRevisionVertex(Int):RevisionVertex"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#toRevisionVertex(templatePosition:Int):me.lpmg.ste.graph.RevisionVertex" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toRevisionVertex</span><span class="params">(<span name="templatePosition">templatePosition: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="../graph/RevisionVertex.html" class="extype" name="me.lpmg.ste.graph.RevisionVertex">RevisionVertex</a></span>
-      </span>
-      
-      <p class="shortcomment cmt">Convert the revision to a revision vertex.</p><div class="fullcomment"><div class="comment cmt"><p>Convert the revision to a revision vertex.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
-  the revision vertex</p></dd></dl></div>
-    </li><li name="me.lpmg.ste.data.Revision#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#toString():String" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -702,14 +516,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="me.lpmg.ste.data.Revision">Revision</a> → AnyRef → Any</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -731,7 +545,7 @@
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -753,7 +567,7 @@
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#wait():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -783,7 +597,7 @@
               <ol><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/Revision.html#finalize():Unit" title="Permalink">
+      <a href="../../../../me/lpmg/ste/jobs/MaskDataJob$.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -809,15 +623,7 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.Product">
-              <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
-            </div><div class="parent" name="scala.Equals">
-              <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
-            </div><div class="parent" name="scala.Serializable">
-              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="java.io.Serializable">
-              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
