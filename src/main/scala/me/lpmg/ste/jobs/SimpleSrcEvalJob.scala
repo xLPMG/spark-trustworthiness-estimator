@@ -3,13 +3,15 @@ package me.lpmg.ste.jobs
 import com.typesafe.scalalogging.Logger
 import me.lpmg.ste.time.Watch
 import me.lpmg.ste.data.RevisionManager
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{SparkSession, DataFrame, Column}
+import org.apache.spark.sql.functions.{col, expr, when}
+import scala.collection.mutable
 import me.lpmg.ste.algorithms.SimpleSourceEvaluator
 import java.nio.file.Path
 import java.time.ZonedDateTime
 import java.time.ZoneId
-import me.lpmg.ste.types.Types
-import scala.collection.mutable
+import me.lpmg.ste.types.Types.TemplateBitPositions
+import org.apache.spark.sql.Row
 
 object SimpleSrcEvalJob {
 
@@ -44,190 +46,78 @@ object SimpleSrcEvalJob {
     val revisions = revisionManager.loadRevisions(revisionsFolderName, false)
 
     // SOURCE SCORE COMPUTATION
-
-    val sourceScores_UNREFERENCED = SimpleSourceEvaluator.evaluateSources(
-      revisions,
-      getBit("Unreferenced")
-    )
-
-    val sourceScores_ONE_SOURCE = SimpleSourceEvaluator.evaluateSources(
-      revisions,
-      getBit("One source")
-    )
-
-    val sourceScores_ORIGINAL_RESEARCH = SimpleSourceEvaluator.evaluateSources(
-      revisions,
-      getBit("Original research")
-    )
-
-    val sourceScores_MORE_CITATIONS_NEEDED =
-      SimpleSourceEvaluator.evaluateSources(
-        revisions,
-        getBit("More citations needed")
-      )
-
-    val sourceScores_DISPUTED = SimpleSourceEvaluator.evaluateSources(
-      revisions,
-      getBit("Disputed")
-    )
-
-    val sourceScores_POV = SimpleSourceEvaluator.evaluateSources(
-      revisions,
-      getBit("POV")
-    )
-
-    val sourceScores_THIRD_PARTY = SimpleSourceEvaluator.evaluateSources(
-      revisions,
-      getBit("Third-party")
-    )
-
-    val sourceScores_CONTRADICT = SimpleSourceEvaluator.evaluateSources(
-      revisions,
-      getBit("Contradict")
-    )
-
-    val sourceScores_HOAX = SimpleSourceEvaluator.evaluateSources(
-      revisions,
-      getBit("Hoax")
-    )
+    val templateSourceScores = TemplateBitPositions.map {
+      case (template, position) =>
+        val sourceScores = SimpleSourceEvaluator.evaluateSources(
+          revisions,
+          position
+        )
+        (template -> sourceScores)
+    }.toMap
 
     // Calculate likelihoods and filter out revisions with no likelihoods
     val templateLikelihoods = revisions
       .map { revision =>
-        var likelihoodMap: mutable.Map[Byte, Float] = mutable.Map().empty
+        var likelihoodMap: mutable.Map[String, Float] = mutable.Map().empty
         val minimumValue = 0.001f
 
-        // UNREFERENCED
-        val likelihood_UNREFERENCED = revision.sources
-          .map(source => sourceScores_UNREFERENCED.getOrElse(source, 0.0f))
-          .sum
-        if (Math.abs(likelihood_UNREFERENCED) > minimumValue) {
-          likelihoodMap += (getBit("Unreferenced") -> sig(likelihood_UNREFERENCED))
-        }
+        // for each template
+        templateSourceScores.foreach { case (template, sourceScores) =>
+          // sum up source scores for all sources of the revision
+          val likelihood = revision.sources
+            .map(source => sourceScores.getOrElse(source, 0.0f))
+            .sum
 
-        // ONE SOURCE
-        val likelihood_ONE_SOURCE = revision.sources
-          .map(source => sourceScores_ONE_SOURCE.getOrElse(source, 0.0f))
-          .sum
-        if (Math.abs(likelihood_ONE_SOURCE) > minimumValue) {
-          likelihoodMap += (getBit("One source") -> sig(likelihood_ONE_SOURCE))
+          val sigLikelihood = sig(likelihood)
+          if (
+            sigLikelihood > 0.5f + minimumValue || sigLikelihood < 0.5f - minimumValue
+          ) {
+            likelihoodMap.put(template, sigLikelihood)
+          }
         }
-
-        // ORIGINAL RESEARCH
-        val likelihood_ORIGINAL_RESEARCH = revision.sources
-          .map(source => sourceScores_ORIGINAL_RESEARCH.getOrElse(source, 0.0f))
-          .sum
-        if (Math.abs(likelihood_ORIGINAL_RESEARCH) > minimumValue) {
-          likelihoodMap += (getBit(
-            "Original research"
-          ) -> sig(likelihood_ORIGINAL_RESEARCH))
-        }
-
-        // MORE CITATIONS NEEDED
-        val likelihood_MORE_CITATIONS_NEEDED = revision.sources
-          .map(source =>
-            sourceScores_MORE_CITATIONS_NEEDED.getOrElse(source, 0.0f)
-          )
-          .sum
-        if (Math.abs(likelihood_MORE_CITATIONS_NEEDED) > minimumValue) {
-          likelihoodMap += (getBit(
-            "More citations needed"
-          ) -> sig(likelihood_MORE_CITATIONS_NEEDED))
-        }
-
-        // DISPUTED
-        val likelihood_DISPUTED = revision.sources
-          .map(source => sourceScores_DISPUTED.getOrElse(source, 0.0f))
-          .sum
-        if (Math.abs(likelihood_DISPUTED) > minimumValue) {
-          likelihoodMap += (getBit("Disputed") -> sig(likelihood_DISPUTED))
-        }
-
-        // POV
-        val likelihood_POV = revision.sources
-          .map(source => sourceScores_POV.getOrElse(source, 0.0f))
-          .sum
-        if (Math.abs(likelihood_POV) > minimumValue) {
-          likelihoodMap += (getBit("POV") -> sig(likelihood_POV))
-        }
-
-        // THIRD PARTY
-        val likelihood_THIRD_PARTY = revision.sources
-          .map(source => sourceScores_THIRD_PARTY.getOrElse(source, 0.0f))
-          .sum
-        if (Math.abs(likelihood_THIRD_PARTY) > minimumValue) {
-          likelihoodMap += (getBit("Third-party") -> sig(likelihood_THIRD_PARTY))
-        }
-
-        // CONTRADICT
-        val likelihood_CONTRADICT = revision.sources
-          .map(source => sourceScores_CONTRADICT.getOrElse(source, 0.0f))
-          .sum
-        if (Math.abs(likelihood_CONTRADICT) > minimumValue) {
-          likelihoodMap += (getBit("Contradict") -> sig(likelihood_CONTRADICT))
-        }
-
-        // HOAX
-        val likelihood_HOAX = revision.sources
-          .map(source => sourceScores_HOAX.getOrElse(source, 0.0f))
-          .sum
-        if (Math.abs(likelihood_HOAX) > minimumValue) {
-          likelihoodMap += (getBit("Hoax") -> sig(likelihood_HOAX))
-        }
-
-        // Return tuple with revision ID and likelihoods as immutable map
-        (revision.revisionId, likelihoodMap.toMap)
+        (revision.revisionId, likelihoodMap)
       }
-      .filter(_._2.nonEmpty)
+      .filter { case (revisionId, likelihoodMap) =>
+        likelihoodMap.nonEmpty
+      }
 
     import spark.implicits._
+    import org.apache.spark.sql.functions._
 
     val likelihoodsOutputPath =
       Path
         .of(dataFolderPath)
         .resolve(s"simple-template-likelihoods-$dateString")
+    val templateNames = TemplateBitPositions.keySet.toSeq
+    val likelihoodRows = templateLikelihoods.map {
+      case (revisionId, likelihoods) =>
+        val rowValues =
+          templateNames.map(key => likelihoods.getOrElse(key, null))
+        Row.fromSeq(revisionId +: rowValues)
+    }
 
-    val likelihoodsDF = templateLikelihoods
-      .map { case (revisionId, likelihoods) =>
-        (
-          revisionId,
-          likelihoods.getOrElse(
-            getBit("Unreferenced"),
-            null.asInstanceOf[Float]
-          ),
-          likelihoods.getOrElse(getBit("One source"), null.asInstanceOf[Float]),
-          likelihoods.getOrElse(
-            getBit("Original research"),
-            null.asInstanceOf[Float]
-          ),
-          likelihoods.getOrElse(
-            getBit("More citations needed"),
-            null.asInstanceOf[Float]
-          ),
-          likelihoods.getOrElse(getBit("Disputed"), null.asInstanceOf[Float]),
-          likelihoods.getOrElse(getBit("POV"), null.asInstanceOf[Float]),
-          likelihoods.getOrElse(
-            getBit("Third-party"),
-            null.asInstanceOf[Float]
-          ),
-          likelihoods.getOrElse(getBit("Contradict"), null.asInstanceOf[Float]),
-          likelihoods.getOrElse(getBit("Hoax"), null.asInstanceOf[Float])
+    import org.apache.spark.sql.types._
+    val schema = StructType(
+      StructField("revision_id", LongType, nullable = false) +:
+        templateNames.map(key =>
+          StructField(
+            s"lh_${key.toLowerCase.replaceAll(" ", "_")}",
+            FloatType,
+            nullable = true
+          )
         )
-      }
-      .toDF(
-        "revisionId",
-        "lh_unreferenced",
-        "lh_one_source",
-        "lh_original_research",
-        "lh_more_citations_needed",
-        "lh_disputed",
-        "lh_pov",
-        "lh_third_party",
-        "lh_contradict",
-        "lh_hoax"
-      )
+    )
 
-    likelihoodsDF.write
+    val likelihoodsDF = spark.createDataFrame(likelihoodRows, schema)
+
+    val formattedColumns = templateNames.map { key =>
+      format_number(col(s"lh_${key.toLowerCase.replaceAll(" ", "_")}"), 4)
+        .alias(s"lh_${key.toLowerCase.replaceAll(" ", "_")}")
+    }
+    val formattedDF =
+      likelihoodsDF.select(col("revision_id") +: formattedColumns: _*)
+
+    formattedDF.write
       .mode("overwrite")
       .option("header", "true")
       .option("nullValue", "")
@@ -241,11 +131,10 @@ object SimpleSrcEvalJob {
   }
 
   private def getBit(templateName: String): Byte = {
-    Types.TemplateBitPositions.getOrElse(templateName, 0.toByte)
+    TemplateBitPositions.getOrElse(templateName, 0.toByte)
   }
 
   private def sig(value: Float): Float = {
     1.0f / (1.0f + math.exp(-value).toFloat)
   }
-
 }

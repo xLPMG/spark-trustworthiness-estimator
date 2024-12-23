@@ -45,20 +45,20 @@ object ComplexSrcEvalJob {
       ComplexSourceEvaluator.initializeVertices(graph.vertices, 0),
       graph.edges
     )
+
+    val nullTypeVertices = initializedGraph.vertices.filter {
+      case (_, vertex) => vertex == null
+    }
+
+    nullTypeVertices.collect().foreach { case (id, vertex) =>
+      logger.info(s"Vertex with null type: id=$id, vertex=$vertex")
+    }
+
     val pregelVertices =
       ComplexSourceEvaluator.runPregel(initializedGraph).vertices
 
     // PAGERANK
     val ranks = graph.pageRank(tol = 0.01).vertices
-    val pageRankedVertices = graph.vertices.leftJoin(ranks) {
-      case (id, vertex, Some(rank)) =>
-        vertex match {
-          case r: RevisionVertex => r.copy(trustScore = rank.toFloat)
-          case s: SourceVertex   => s.copy(trustScore = rank.toFloat)
-        }
-      case (id, vertex, None) =>
-        vertex // If rank is missing, keep original vertex
-    }
 
     // SAVE DATA
     import spark.implicits._
@@ -84,12 +84,12 @@ object ComplexSrcEvalJob {
       .mode("overwrite")
       .csv(sourceScoresOutputPath.resolve("pregel").toString())
 
-    pageRankedVertices
+    ranks
       .flatMap {
-        case (id, rev: RevisionVertex) =>
-          // filter out scores close to zero
-          if (rev.trustScore > 0.001f || rev.trustScore < -0.001f) {
-            Some((rev.id, rev.trustScore))
+        case (id, rank) =>
+          // filter out source ids and scores close to zero
+          if (id > 0 && (rank > 0.001f || rank < -0.001f)) {
+            Some((id, rank))
           } else {
             None
           }
