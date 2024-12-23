@@ -65,12 +65,12 @@ object GraphCreator {
     val allEdges = temporalEdges ++ sourceEdges
 
     // remove edges for which at least one of the vertices is not present
-    val validVertexIds = vertices.map(_._1).collect().toSet
-    val filteredEdges = allEdges.filter { edge =>
-      validVertexIds.contains(edge.srcId) && validVertexIds.contains(edge.dstId)
-    }
+    // val validVertexIds = vertices.map(_._1).collect().toSet
+    // val filteredEdges = allEdges.filter { edge =>
+    //   validVertexIds.contains(edge.srcId) && validVertexIds.contains(edge.dstId)
+    // }
 
     // Create the GraphX graph
-    Graph(vertices, filteredEdges)
+    Graph(vertices, allEdges)
   }
 }

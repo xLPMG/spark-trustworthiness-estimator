@@ -61,6 +61,7 @@ object SimpleSrcEvalJob {
         var likelihoodMap: mutable.Map[String, Float] = mutable.Map().empty
         val minimumValue = 0.001f
 
+        //TODO: check for performance upgrades (iterate sources once)
         // for each template
         templateSourceScores.foreach { case (template, sourceScores) =>
           // sum up source scores for all sources of the revision

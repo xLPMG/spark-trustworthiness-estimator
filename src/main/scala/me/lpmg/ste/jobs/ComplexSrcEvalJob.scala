@@ -40,6 +40,8 @@ object ComplexSrcEvalJob {
     val revisions = revisionManager.loadRevisions(revisionsFolderName)
     val graph = GraphCreator.createRevisionGraph(revisions)
 
+    //TODO: handle null type vertices 
+
     // Pregel
     val initializedGraph = Graph(
       ComplexSourceEvaluator.initializeVertices(graph.vertices, 0),
