@@ -180,7 +180,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">RevisionVertex</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <a href="VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">RevisionVertex</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>)</span><span class="result"> extends <a href="VertexType.html" class="extype" name="me.lpmg.ste.graph.VertexType">VertexType</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
@@ -236,9 +236,9 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="me.lpmg.ste.graph.RevisionVertex#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(id:Long,trustScore:Float,templatePresence:Boolean,templateAdded:Boolean,templateRemoved:Boolean):me.lpmg.ste.graph.RevisionVertex"></a><a id="&lt;init&gt;:RevisionVertex"></a>
+      <a id="&lt;init&gt;(id:Long,trustScore:Float,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.graph.RevisionVertex"></a><a id="&lt;init&gt;:RevisionVertex"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#&lt;init&gt;(id:Long,trustScore:Float,templatePresence:Boolean,templateAdded:Boolean,templateRemoved:Boolean):me.lpmg.ste.graph.RevisionVertex" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#&lt;init&gt;(id:Long,trustScore:Float,templatePresence:org.apache.spark.util.collection.BitSet,templateAdded:org.apache.spark.util.collection.BitSet,templateRemoved:org.apache.spark.util.collection.BitSet):me.lpmg.ste.graph.RevisionVertex" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -247,7 +247,7 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">RevisionVertex</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+        <span class="name">RevisionVertex</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Long">Long</span></span>, <span name="trustScore">trustScore: <span class="extype" name="scala.Float">Float</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>)</span>
       </span>
       
       
@@ -495,9 +495,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
     </li><li name="me.lpmg.ste.graph.RevisionVertex#templateAdded" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templateAdded:Boolean"></a>
+      <a id="templateAdded:org.apache.spark.util.collection.BitSet"></a><a id="templateAdded:BitSet"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#templateAdded:Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#templateAdded:org.apache.spark.util.collection.BitSet" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -506,14 +506,14 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">templateAdded</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">templateAdded</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
       </span>
       
       
     </li><li name="me.lpmg.ste.graph.RevisionVertex#templatePresence" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templatePresence:Boolean"></a>
+      <a id="templatePresence:org.apache.spark.util.collection.BitSet"></a><a id="templatePresence:BitSet"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#templatePresence:Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#templatePresence:org.apache.spark.util.collection.BitSet" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -522,14 +522,14 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">templatePresence</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">templatePresence</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
       </span>
       
       
     </li><li name="me.lpmg.ste.graph.RevisionVertex#templateRemoved" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="templateRemoved:Boolean"></a>
+      <a id="templateRemoved:org.apache.spark.util.collection.BitSet"></a><a id="templateRemoved:BitSet"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#templateRemoved:Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/graph/RevisionVertex.html#templateRemoved:org.apache.spark.util.collection.BitSet" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -538,7 +538,7 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">templateRemoved</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">templateRemoved</span><span class="result">: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span></span>
       </span>
       
       
