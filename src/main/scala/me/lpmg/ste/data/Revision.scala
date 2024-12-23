@@ -33,13 +33,13 @@ case class Revision(
     * @return
     *   the revision vertex
     */
-  def toRevisionVertex(templatePosition: Int) =
+  def toRevisionVertex() =
     new graph.RevisionVertex(
       revisionId,
       0.0f,
-      templatePresence.get(templatePosition),
-      templateAdded.get(templatePosition),
-      templateRemoved.get(templatePosition),
+      templatePresence,
+      templateAdded,
+      templateRemoved,
     )
 
   override def toString(): String = {

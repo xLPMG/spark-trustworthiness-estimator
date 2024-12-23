@@ -10,9 +10,9 @@ sealed trait VertexType extends Serializable {
 case class RevisionVertex(
     val id: Long,
     val trustScore: Float,
-    val templatePresence: Boolean,
-    val templateAdded: Boolean,
-    val templateRemoved: Boolean
+    val templatePresence: BitSet,
+    val templateAdded: BitSet,
+    val templateRemoved: BitSet
 ) extends VertexType {
 
   override def toString(): String = {

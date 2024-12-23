@@ -10,7 +10,8 @@ import me.lpmg.ste.graph.EdgeType
 object ComplexSourceEvaluator {
 
   def initializeVertices(
-      vertices: RDD[(VertexId, VertexType)]
+      vertices: RDD[(VertexId, VertexType)],
+      templatePosition: Int
   ): RDD[(VertexId, VertexType)] = {
     vertices.map {
       case (
@@ -18,8 +19,9 @@ object ComplexSourceEvaluator {
             rev @ RevisionVertex(_, _, _, templateAdded, templateRemoved)
           ) =>
         val newScore =
-          if (templateRemoved) 1.0f // Trustworthy revision
-          else if (templateAdded) 0.0f // Untrustworthy revision
+          if (templateRemoved.get(templatePosition)) 0.0f // No template
+          // TODO: check if templatePresence is better
+          else if (templateAdded.get(templatePosition)) 1.0f // Contains template
           else 0.5f // Neutral trust score for unknown revisions
         (id, rev.copy(trustScore = newScore))
       case (id, src: SourceVertex) =>

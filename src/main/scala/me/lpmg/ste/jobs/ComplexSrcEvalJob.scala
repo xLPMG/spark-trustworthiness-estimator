@@ -38,11 +38,11 @@ object ComplexSrcEvalJob {
       new RevisionManager(spark, dataFolderPath)
 
     val revisions = revisionManager.loadRevisions(revisionsFolderName)
-    val graph = GraphCreator.createRevisionGraph(revisions, 7)
+    val graph = GraphCreator.createRevisionGraph(revisions)
 
     // Pregel
     val initializedGraph = Graph(
-      ComplexSourceEvaluator.initializeVertices(graph.vertices),
+      ComplexSourceEvaluator.initializeVertices(graph.vertices, 0),
       graph.edges
     )
     val pregelVertices =
