@@ -43,7 +43,7 @@ object SimpleSrcEvalJob {
     val revisionManager =
       new RevisionManager(spark, dataFolderPath)
 
-    val revisions = revisionManager.loadRevisions(revisionsFolderName, false)
+    val revisions = revisionManager.loadRevisions(revisionsFolderName)
 
     // SOURCE SCORE COMPUTATION
     val templateSourceScores = TemplateBitPositions.map {

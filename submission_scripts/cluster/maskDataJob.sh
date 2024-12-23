@@ -10,9 +10,9 @@ spark-submit \
   --class me.lpmg.ste.jobs.MaskDataJob \
   --name Spark-Trustworthiness-Estimator-MASKDATAJOB \
   --properties-file ../../spark-defaults.conf \
-  --conf spark.dynamicAllocation.maxExecutors=150 \
+  --conf spark.dynamicAllocation.maxExecutors=300 \
   --conf spark.driver.memory=6g \
-  --conf spark.executor.memory=2g \
+  --conf spark.executor.memory=1g \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data \
