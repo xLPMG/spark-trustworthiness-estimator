@@ -31,10 +31,6 @@ object SimpleSrcEvalJob {
 
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
-    var testSplit: Long = 0L
-    if (args.length > 2) {
-      testSplit = args(2).toLong
-    }
 
     implicit val spark = SparkSession
       .builder()

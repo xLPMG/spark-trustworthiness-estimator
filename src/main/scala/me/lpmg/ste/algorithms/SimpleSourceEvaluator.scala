@@ -48,5 +48,6 @@ object SimpleSourceEvaluator extends Serializable {
         }
       }
       .reduceByKey(_ + _)
+      .filter { case (_, score) => score > 0.001f || score < -0.001f }
   }
 }
