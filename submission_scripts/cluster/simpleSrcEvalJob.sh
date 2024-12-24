@@ -10,7 +10,7 @@ spark-submit \
   --class me.lpmg.ste.jobs.SimpleSrcEvalJob \
   --name Spark-Trustworthiness-Estimator-SMPLSRCEVALJOB \
   --properties-file ../../spark-defaults.conf \
-  --conf spark.dynamicAllocation.maxExecutors=150 \
+  --conf spark.dynamicAllocation.maxExecutors=110 \
   --conf spark.driver.memory=12g \
   --conf spark.executor.memory=10g \
   --verbose \
