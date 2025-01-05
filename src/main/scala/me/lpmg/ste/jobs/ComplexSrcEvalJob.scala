@@ -48,14 +48,6 @@ object ComplexSrcEvalJob {
       graph.edges
     )
 
-    val nullTypeVertices = initializedGraph.vertices.filter {
-      case (_, vertex) => vertex == null
-    }
-
-    nullTypeVertices.collect().foreach { case (id, vertex) =>
-      logger.info(s"Vertex with null type: id=$id, vertex=$vertex")
-    }
-
     val pregelVertices =
       ComplexSourceEvaluator.runPregel(initializedGraph).vertices
 

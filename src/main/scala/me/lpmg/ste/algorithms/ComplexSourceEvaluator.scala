@@ -47,7 +47,7 @@ object ComplexSourceEvaluator {
             src.copy(trustScore =
               math.max(currentTrust.trustScore, newTrust.toFloat)
             )
-          case null => throw new IllegalArgumentException("Vertex type is null")
+          case null => null
         },
 
       // Send Message: Propagate trust scores forward

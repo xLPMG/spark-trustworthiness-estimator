@@ -57,7 +57,7 @@ object SimpleSrcEvalJob {
         var likelihoodMap: mutable.Map[String, Float] = mutable.Map().empty
         val minimumValue = 0.001f
 
-        //TODO: check for performance upgrades (iterate sources once)
+        // TODO: check for performance upgrades (iterate sources once)
         // for each template
         templateSourceScores.foreach { case (template, sourceScores) =>
           // sum up source scores for all sources of the revision
@@ -80,20 +80,20 @@ object SimpleSrcEvalJob {
 
     import spark.implicits._
     import org.apache.spark.sql.functions._
+    import org.apache.spark.sql.types._
+    val templateNames = TemplateBitPositions.keySet.toSeq
 
+    // LIKELIHOODS
     val likelihoodsOutputPath =
       Path
         .of(dataFolderPath)
         .resolve(s"simple-template-likelihoods-$dateString")
-    val templateNames = TemplateBitPositions.keySet.toSeq
     val likelihoodRows = templateLikelihoods.map {
       case (revisionId, likelihoods) =>
         val rowValues =
           templateNames.map(key => likelihoods.getOrElse(key, null))
         Row.fromSeq(revisionId +: rowValues)
     }
-
-    import org.apache.spark.sql.types._
     val schema = StructType(
       StructField("revision_id", LongType, nullable = false) +:
         templateNames.map(key =>
@@ -122,6 +122,43 @@ object SimpleSrcEvalJob {
 
     logger.warn(
       s"CSV file saved: ${likelihoodsOutputPath.toString()}"
+    )
+
+    // LABELS
+    val labelsOutputPath =
+      Path
+        .of(dataFolderPath)
+        .resolve(s"simple-template-labels-$dateString")
+
+    val revisionsWithTemplate =
+      revisions.filter(_.templatePresenceGT.cardinality() > 0)
+    val labelsRows = revisionsWithTemplate.map { revision =>
+      val rowValues = templateNames.map { template =>
+        if (revision.templatePresenceGT.get(getBit(template))) 1.0f else null
+      }.toSeq
+      Row.fromSeq(revision.revisionId +: rowValues)
+    }
+
+    val labelsSchema = StructType(
+      StructField("revision_id", LongType, nullable = false) +:
+        templateNames.map(template =>
+          StructField(
+            s"gt_${template.toLowerCase.replaceAll(" ", "_")}",
+            FloatType,
+            nullable = true
+          )
+        )
+    )
+
+    val labelsDF = spark.createDataFrame(labelsRows, labelsSchema)
+
+    labelsDF.write
+      .mode("overwrite")
+      .option("header", "true")
+      .csv(labelsOutputPath.toString)
+
+    logger.warn(
+      s"CSV file saved: ${labelsOutputPath.toString()}"
     )
 
     spark.stop()
