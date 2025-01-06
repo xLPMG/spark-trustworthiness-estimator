@@ -65,7 +65,8 @@ object SimpleSrcEvalJob {
             .map(source => sourceScores.getOrElse(source, 0.0f))
             .sum
 
-          val sigLikelihood = sig(likelihood)
+            // for 0.4, a value of 2 is 0.6899.. right below 0.7
+          val sigLikelihood = sig(likelihood, 0.4f)
           if (
             sigLikelihood > 0.5f + minimumValue || sigLikelihood < 0.5f - minimumValue
           ) {
@@ -130,9 +131,7 @@ object SimpleSrcEvalJob {
         .of(dataFolderPath)
         .resolve(s"simple-template-labels-$dateString")
 
-    val revisionsWithTemplate =
-      revisions.filter(_.templatePresenceGT.cardinality() > 0)
-    val labelsRows = revisionsWithTemplate.map { revision =>
+    val labelsRows = revisions.map { revision =>
       val rowValues = templateNames.map { template =>
         if (revision.templatePresenceGT.get(getBit(template))) 1.0f else null
       }.toSeq
@@ -168,7 +167,7 @@ object SimpleSrcEvalJob {
     TemplateBitPositions.getOrElse(templateName, 0.toByte)
   }
 
-  private def sig(value: Float): Float = {
-    1.0f / (1.0f + math.exp(-value).toFloat)
+  private def sig(value: Float, k: Float): Float = {
+    1.0f / (1.0f + math.exp(-value*k).toFloat)
   }
 }

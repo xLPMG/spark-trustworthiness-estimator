@@ -23,7 +23,9 @@ object SimpleSourceEvaluator extends Serializable {
       .toMap
   }
 
-  /** Evaluates the trust scores of sources in a distributed way.
+  /** Evaluates the trust scores of sources in a distributed way. Sources that
+    * appear in revisions with a template added are given higher score than
+    * sources that appear in revisions with a template removed.
     *
     * @param revisions
     *   RDD of revisions
@@ -39,11 +41,11 @@ object SimpleSourceEvaluator extends Serializable {
     revisions
       .flatMap { revision =>
         revision.sources.map { source =>
-          val score = 
+          val score =
             if (revision.templateRemoved.get(sourceTemplatePosition)) -1.0f
             else if (revision.templateAdded.get(sourceTemplatePosition)) 1.0f
             else 0.0f
-          
+
           (source, score)
         }
       }
