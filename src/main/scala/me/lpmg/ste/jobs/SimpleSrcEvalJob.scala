@@ -61,14 +61,16 @@ object SimpleSrcEvalJob {
         // for each template
         templateSourceScores.foreach { case (template, sourceScores) =>
           // sum up source scores for all sources of the revision
-          val likelihood = revision.sources
+          // it doesn't matter how many good sources (negative scores) there are
+          // since bad sources can always cause a template to be present
+            val likelihood = revision.sources
             .map(source => sourceScores.getOrElse(source, 0.0f))
+            .filter(_ > 0.0f)
             .sum
 
-            // for 0.4, a value of 2 is 0.6899.. right below 0.7
-          val sigLikelihood = sig(likelihood, 0.4f)
+          val sigLikelihood = sig(likelihood, 1.3f)
           if (
-            sigLikelihood > 0.5f + minimumValue || sigLikelihood < 0.5f - minimumValue
+            sigLikelihood > minimumValue
           ) {
             likelihoodMap.put(template, sigLikelihood)
           }
@@ -168,6 +170,8 @@ object SimpleSrcEvalJob {
   }
 
   private def sig(value: Float, k: Float): Float = {
-    1.0f / (1.0f + math.exp(-value*k).toFloat)
+    val firstTerm = 1.0f / (1.0f + math.exp(-k*(value - 1)).toFloat)
+    val secondTerm = 1.0f / (1.0f + math.exp(k).toFloat)
+    firstTerm - secondTerm
   }
 }
