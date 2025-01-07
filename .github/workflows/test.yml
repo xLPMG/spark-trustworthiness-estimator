@@ -24,6 +24,12 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '21'
+        
+    - name: Install sbt
+      run: |
+        echo "Installing sbt..."
+        curl -L https://www.scala-sbt.org/sbt-rpm.repo | sudo tee /etc/yum.repos.d/sbt-rpm.repo
+        sudo yum install sbt
 
     - name: Cache SBT
       uses: actions/cache@v4
