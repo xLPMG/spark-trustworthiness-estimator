@@ -55,7 +55,6 @@ object SimpleSrcEvalJob {
     val templateLikelihoods = revisions
       .map { revision =>
         var likelihoodMap: mutable.Map[String, Float] = mutable.Map().empty
-        val minimumValue = 0.001f
 
         // TODO: check for performance upgrades (iterate sources once)
         // for each template
@@ -66,13 +65,14 @@ object SimpleSrcEvalJob {
             val likelihood = revision.sources
             .map(source => sourceScores.getOrElse(source, 0.0f))
             .filter(_ > 0.0f)
+            // square the scores to make higher scores more impactful
+            .map(score => score * score)
             .sum
 
-          val sigLikelihood = sig(likelihood, 1.3f)
           if (
-            sigLikelihood > minimumValue
+            likelihood > 0.0f
           ) {
-            likelihoodMap.put(template, sigLikelihood)
+            likelihoodMap.put(template, likelihood)
           }
         }
         (revision.revisionId, likelihoodMap)
@@ -90,7 +90,7 @@ object SimpleSrcEvalJob {
     val likelihoodsOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"simple-template-likelihoods-$dateString")
+        .resolve(s"template-scores-$dateString")
     val likelihoodRows = templateLikelihoods.map {
       case (revisionId, likelihoods) =>
         val rowValues =
@@ -131,7 +131,7 @@ object SimpleSrcEvalJob {
     val labelsOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"simple-template-labels-$dateString")
+        .resolve(s"template-labels-$dateString")
 
     val labelsRows = revisions.map { revision =>
       val rowValues = templateNames.map { template =>
@@ -167,11 +167,5 @@ object SimpleSrcEvalJob {
 
   private def getBit(templateName: String): Byte = {
     TemplateBitPositions.getOrElse(templateName, 0.toByte)
-  }
-
-  private def sig(value: Float, k: Float): Float = {
-    val firstTerm = 1.0f / (1.0f + math.exp(-k*(value - 1)).toFloat)
-    val secondTerm = 1.0f / (1.0f + math.exp(k).toFloat)
-    firstTerm - secondTerm
   }
 }
