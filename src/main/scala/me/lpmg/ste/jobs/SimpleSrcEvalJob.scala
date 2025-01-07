@@ -63,10 +63,10 @@ object SimpleSrcEvalJob {
           // it doesn't matter how many good sources (negative scores) there are
           // since bad sources can always cause a template to be present
             val likelihood = revision.sources
-            .map(source => sourceScores.getOrElse(source, 0.0f))
-            .filter(_ > 0.0f)
+            .map(source => sourceScores.getOrElse(source, 0)) 
             // square the scores to make higher scores more impactful
-            .map(score => score * score)
+            .map(score => 0.25f * (score * score).toFloat)
+            .map(score => if (score > 25) 25 else score)
             .sum
 
           if (
@@ -86,45 +86,45 @@ object SimpleSrcEvalJob {
     import org.apache.spark.sql.types._
     val templateNames = TemplateBitPositions.keySet.toSeq
 
-    // LIKELIHOODS
-    val likelihoodsOutputPath =
+    // REVISION SCORES
+    val revisionScoresOutputPath =
       Path
         .of(dataFolderPath)
         .resolve(s"template-scores-$dateString")
-    val likelihoodRows = templateLikelihoods.map {
-      case (revisionId, likelihoods) =>
+    val revisionScoresRows = templateLikelihoods.map {
+      case (revisionId, scores) =>
         val rowValues =
-          templateNames.map(key => likelihoods.getOrElse(key, null))
+          templateNames.map(key => scores.getOrElse(key, null))
         Row.fromSeq(revisionId +: rowValues)
     }
     val schema = StructType(
       StructField("revision_id", LongType, nullable = false) +:
         templateNames.map(key =>
           StructField(
-            s"lh_${key.toLowerCase.replaceAll(" ", "_")}",
+            s"rs_${key.toLowerCase.replaceAll(" ", "-")}",
             FloatType,
             nullable = true
           )
         )
     )
 
-    val likelihoodsDF = spark.createDataFrame(likelihoodRows, schema)
+    val revisionScoresDF = spark.createDataFrame(revisionScoresRows, schema)
 
     val formattedColumns = templateNames.map { key =>
-      format_number(col(s"lh_${key.toLowerCase.replaceAll(" ", "_")}"), 4)
-        .alias(s"lh_${key.toLowerCase.replaceAll(" ", "_")}")
+      format_number(col(s"rs_${key.toLowerCase.replaceAll(" ", "-")}"), 2)
+        .alias(s"rs_${key.toLowerCase.replaceAll(" ", "-")}")
     }
     val formattedDF =
-      likelihoodsDF.select(col("revision_id") +: formattedColumns: _*)
+      revisionScoresDF.select(col("revision_id") +: formattedColumns: _*)
 
     formattedDF.write
       .mode("overwrite")
       .option("header", "true")
       .option("nullValue", "")
-      .csv(likelihoodsOutputPath.toString)
+      .csv(revisionScoresOutputPath.toString)
 
     logger.warn(
-      s"CSV file saved: ${likelihoodsOutputPath.toString()}"
+      s"CSV file saved: ${revisionScoresOutputPath.toString()}"
     )
 
     // LABELS
@@ -144,7 +144,7 @@ object SimpleSrcEvalJob {
       StructField("revision_id", LongType, nullable = false) +:
         templateNames.map(template =>
           StructField(
-            s"gt_${template.toLowerCase.replaceAll(" ", "_")}",
+            s"gt_${template.toLowerCase.replaceAll(" ", "-")}",
             FloatType,
             nullable = true
           )
@@ -153,14 +153,14 @@ object SimpleSrcEvalJob {
 
     val labelsDF = spark.createDataFrame(labelsRows, labelsSchema)
 
-    labelsDF.write
-      .mode("overwrite")
-      .option("header", "true")
-      .csv(labelsOutputPath.toString)
+    // labelsDF.write
+    //   .mode("overwrite")
+    //   .option("header", "true")
+    //   .csv(labelsOutputPath.toString)
 
-    logger.warn(
-      s"CSV file saved: ${labelsOutputPath.toString()}"
-    )
+    // logger.warn(
+    //   s"CSV file saved: ${labelsOutputPath.toString()}"
+    // )
 
     spark.stop()
   }

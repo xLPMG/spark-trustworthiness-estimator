@@ -17,7 +17,7 @@ object SimpleSourceEvaluator extends Serializable {
   def evaluateSources(
       revisions: RDD[Revision],
       sourceTemplatePosition: Byte
-  ): Map[String, Float] = {
+  ): Map[String, Int] = {
     evaluateSourcesDistributed(revisions, sourceTemplatePosition)
       .collect()
       .toMap
@@ -37,19 +37,19 @@ object SimpleSourceEvaluator extends Serializable {
   def evaluateSourcesDistributed(
       revisions: RDD[Revision],
       sourceTemplatePosition: Byte
-  ): RDD[(String, Float)] = {
+  ): RDD[(String, Int)] = {
     revisions
       .flatMap { revision =>
         revision.sources.map { source =>
           val score =
-            if (revision.templateRemoved.get(sourceTemplatePosition)) -1.0f
-            else if (revision.templateAdded.get(sourceTemplatePosition)) 1.0f
-            else 0.0f
+            if (revision.templateRemoved.get(sourceTemplatePosition)) -1
+            else if (revision.templateAdded.get(sourceTemplatePosition)) 1
+            else 0
 
           (source, score)
         }
       }
       .reduceByKey(_ + _)
-      .filter { case (_, score) => score > 0.001f || score < -0.001f }
+      .filter { case (_, score) => score > 0 || score < 0 }
   }
 }
