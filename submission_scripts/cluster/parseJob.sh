@@ -12,7 +12,7 @@ spark-submit \
   --properties-file ../../spark-defaults.conf \
   --conf spark.dynamicAllocation.maxExecutors=150 \
   --conf spark.driver.memory=12g \
-  --conf spark.executor.memory=2g \
+  --conf spark.executor.memory=3g \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20210601 \
