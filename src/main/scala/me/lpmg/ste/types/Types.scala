@@ -14,11 +14,12 @@ object Types {
     "One source" -> 1,
     "Original research" -> 2,
     "More citations needed" -> 3,
-    "Disputed" -> 4,
-    "POV" -> 5,
-    "Third-party" -> 6,
-    "Contradict" -> 7,
-    "Hoax" -> 8
+    "Unreliable sources" -> 4,
+    "Disputed" -> 5,
+    "POV" -> 6,
+    "Third-party" -> 7,
+    "Contradict" -> 8,
+    "Hoax" -> 9
   )
 
   /**

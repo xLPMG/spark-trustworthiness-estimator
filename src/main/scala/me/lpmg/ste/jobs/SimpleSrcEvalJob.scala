@@ -63,10 +63,7 @@ object SimpleSrcEvalJob {
           // it doesn't matter how many good sources (negative scores) there are
           // since bad sources can always cause a template to be present
             val likelihood = revision.sources
-            .map(source => sourceScores.getOrElse(source, 0)) 
-            // square the scores to make higher scores more impactful
-            .map(score => 0.25f * (score * score).toFloat)
-            .map(score => if (score > 25) 25 else score)
+            .map(source => sourceScores.getOrElse(source, 0.0f)) 
             .sum
 
           if (
@@ -125,41 +122,6 @@ object SimpleSrcEvalJob {
 
     logger.warn(
       s"CSV file saved: ${revisionScoresOutputPath.toString()}"
-    )
-
-    // LABELS
-    val labelsOutputPath =
-      Path
-        .of(dataFolderPath)
-        .resolve(s"template-labels-$dateString")
-
-    val labelsRows = revisions.map { revision =>
-      val rowValues = templateNames.map { template =>
-        if (revision.templatePresenceGT.get(getBit(template))) 1.0f else null
-      }.toSeq
-      Row.fromSeq(revision.revisionId +: rowValues)
-    }
-
-    val labelsSchema = StructType(
-      StructField("revision_id", LongType, nullable = false) +:
-        templateNames.map(template =>
-          StructField(
-            s"gt_${template.toLowerCase.replaceAll(" ", "-")}",
-            FloatType,
-            nullable = true
-          )
-        )
-    )
-
-    val labelsDF = spark.createDataFrame(labelsRows, labelsSchema)
-
-    labelsDF.write
-      .mode("overwrite")
-      .option("header", "true")
-      .csv(labelsOutputPath.toString)
-
-    logger.warn(
-      s"CSV file saved: ${labelsOutputPath.toString()}"
     )
 
     spark.stop()
