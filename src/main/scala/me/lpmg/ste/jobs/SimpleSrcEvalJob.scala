@@ -111,7 +111,7 @@ object SimpleSrcEvalJob {
     val revisionScoresDF = spark.createDataFrame(revisionScoresRows, schema)
 
     val formattedColumns = templateNames.map { key =>
-      format_number(col(s"rs_${key.toLowerCase.replaceAll(" ", "-")}"), 2)
+      bround(col(s"rs_${key.toLowerCase.replaceAll(" ", "-")}"), 2)
         .alias(s"rs_${key.toLowerCase.replaceAll(" ", "-")}")
     }
     val formattedDF =
@@ -153,14 +153,14 @@ object SimpleSrcEvalJob {
 
     val labelsDF = spark.createDataFrame(labelsRows, labelsSchema)
 
-    // labelsDF.write
-    //   .mode("overwrite")
-    //   .option("header", "true")
-    //   .csv(labelsOutputPath.toString)
+    labelsDF.write
+      .mode("overwrite")
+      .option("header", "true")
+      .csv(labelsOutputPath.toString)
 
-    // logger.warn(
-    //   s"CSV file saved: ${labelsOutputPath.toString()}"
-    // )
+    logger.warn(
+      s"CSV file saved: ${labelsOutputPath.toString()}"
+    )
 
     spark.stop()
   }
