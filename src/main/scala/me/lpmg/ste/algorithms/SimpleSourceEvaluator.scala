@@ -4,6 +4,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.graphx.Graph
 import org.apache.spark.storage.StorageLevel
 import me.lpmg.ste.data.Revision
+import me.lpmg.ste.types.TemplateProbabilityVector
 
 object SimpleSourceEvaluator extends Serializable {
 
@@ -17,49 +18,53 @@ object SimpleSourceEvaluator extends Serializable {
   def evaluateSources(
       revisions: RDD[Revision],
       sourceTemplatePosition: Byte
-  ): Map[String, Float] = {
+  ): Map[String, TemplateProbabilityVector] = {
     evaluateSourcesDistributed(revisions, sourceTemplatePosition)
       .collect()
       .toMap
   }
 
   /** Evaluates the trust scores of sources in a distributed way. Sources that
-    * appear in revisions with a template added are given higher score than
-    * sources that appear in revisions with a template removed.
+    * appear in revisions with a template added, removed, or none are counted
+    * and their probabilities are calculated.
     *
     * @param revisions
     *   RDD of revisions
     * @param sourceTemplatePositions
     *   Sequence of template positions
     * @return
-    *   RDD of source URLs and their trust scores
+    *   RDD of source URLs and their probabilities (added, removed, none)
     */
   def evaluateSourcesDistributed(
       revisions: RDD[Revision],
       sourceTemplatePosition: Byte
-  ): RDD[(String, Float)] = {
+  ): RDD[(String, TemplateProbabilityVector)] = {
     revisions
       .flatMap { revision =>
         revision.sources.map { source =>
-          val score =
-            if (revision.templateRemoved.get(sourceTemplatePosition)) -1.0f
-            else if (revision.templateAdded.get(sourceTemplatePosition)) 1.0f
-            else 0.0f
+          val counts =
+            if (revision.templateAdded.get(sourceTemplatePosition)) (1, 0, 0)
+            else if (revision.templateRemoved.get(sourceTemplatePosition)) (0, 1, 0)
+            else (0, 0, 1)
 
-          (source, score)
+          (source, counts)
         }
       }
-      .reduceByKey(_ + _)
-      .filter { case (_, score) => score > 0.0f || score < 0.0f }
-      // square the scores to make higher scores more impactful
-      .map { case (source: String, score: Float) =>
-        (source, 0.25f * (score * score) * Math.signum(score))
+      // Aggregate counts for each source
+      .reduceByKey {
+        case ((added1, removed1, unchanged1), (added2, removed2, unchanged2)) =>
+          (added1 + added2, removed1 + removed2, unchanged1 + unchanged2)
       }
-      .map { case (source: String, score: Float) =>
-        if (score > 25.0f) (source, 25.0f) else (source, score)
-      }.map { case (source: String, score: Float) =>
-        if (score < -25.0f) (source, -25.0f) else (source, score)
+      // Apply additive smoothing to circumvent zero probabilities
+      .mapValues { case (added, removed, unchanged) =>
+        val alpha = 1.0f // Smoothing parameter
+        val total = added + removed + unchanged + 3 * alpha
+        (added + alpha, removed + alpha, unchanged + alpha)
       }
-
+      // Calculate probabilities
+      .mapValues { case (added, removed, unchanged) =>
+        val total = added + removed + unchanged
+        TemplateProbabilityVector(added / total, removed / total, unchanged / total)
+      }
   }
 }

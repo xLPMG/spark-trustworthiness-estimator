@@ -12,6 +12,8 @@ import java.time.ZonedDateTime
 import java.time.ZoneId
 import me.lpmg.ste.types.Types.TemplateBitPositions
 import org.apache.spark.sql.Row
+import me.lpmg.ste.types.TemplateProbabilityVector
+import me.lpmg.ste.algorithms.ProbabilityHandler
 
 object SimpleSrcEvalJob {
 
@@ -31,6 +33,7 @@ object SimpleSrcEvalJob {
 
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
+    val revisionOutputLimit: Long = if (args.length > 2) args(2).toLong else 0
 
     implicit val spark = SparkSession
       .builder()
@@ -51,33 +54,49 @@ object SimpleSrcEvalJob {
         (template -> sourceScores)
     }.toMap
 
-    // Calculate likelihoods and filter out revisions with no likelihoods
-    val templateLikelihoods = revisions
+    // Print source scores for debugging
+    templateSourceScores.foreach { case (template, sourceScores) =>
+      logger.info(s"Template: $template")
+      sourceScores.foreach { case (source, score) =>
+      logger.info(s"Source: $source, Score: $score")
+      }
+    }
+
+    val templateProbabilities = revisions
       .map { revision =>
-        var likelihoodMap: mutable.Map[String, Float] = mutable.Map().empty
-
-        // TODO: check for performance upgrades (iterate sources once)
-        // for each template
+        var probabilitiesMap: mutable.Map[String, TemplateProbabilityVector] =
+          mutable.Map().empty
         templateSourceScores.foreach { case (template, sourceScores) =>
-          // sum up source scores for all sources of the revision
-          // it doesn't matter how many good sources (negative scores) there are
-          // since bad sources can always cause a template to be present
-            val likelihood = revision.sources
-            .map(source => sourceScores.getOrElse(source, 0.0f))
-            .filter(_ > 0.0f)
-            .sum
+          val probabilities = revision.sources
+            .map(source =>
+              sourceScores
+                .getOrElse(source, TemplateProbabilityVector(0.0f, 0.0f, 0.0f))
+            )
+            .toSeq
+          val accumulatedProbabilities =
+            ProbabilityHandler.softmaxAggregation(probabilities, 0.7f)
 
-          if (
-            likelihood > 0.0f
-          ) {
-            likelihoodMap.put(template, likelihood)
-          }
+          probabilitiesMap.put(template, accumulatedProbabilities)
         }
-        (revision.revisionId, likelihoodMap)
+        (revision.revisionId, probabilitiesMap)
       }
-      .filter { case (revisionId, likelihoodMap) =>
-        likelihoodMap.nonEmpty
-      }
+      .filter(_._1 >= revisionOutputLimit)
+
+    // make predictions for specific use case
+    val templatePredictions = templateProbabilities.map {
+      case (revisionId, probabilities) =>
+        val predictions = probabilities
+          .map { case (template, probabilityVector) =>
+            val prediction =
+              if (
+                probabilityVector.probabilityTemplateAdded > probabilityVector.probabilityTemplateRemoved
+              ) 1.0f
+              else 0.0f
+            (template, prediction)
+          }
+          .filter(_._2 > 0.0001f)
+        (revisionId, predictions)
+    }.filter(_._2.isEmpty == false)
 
     import spark.implicits._
     import org.apache.spark.sql.functions._
@@ -88,8 +107,8 @@ object SimpleSrcEvalJob {
     val revisionScoresOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"template-scores-$dateString")
-    val revisionScoresRows = templateLikelihoods.map {
+        .resolve(s"template-prediction-$dateString")
+    val revisionScoresRows = templatePredictions.map {
       case (revisionId, scores) =>
         val rowValues =
           templateNames.map(key => scores.getOrElse(key, null))
@@ -99,7 +118,7 @@ object SimpleSrcEvalJob {
       StructField("revision_id", LongType, nullable = false) +:
         templateNames.map(key =>
           StructField(
-            s"rs_${key.toLowerCase.replaceAll(" ", "-")}",
+            s"pred_${key.toLowerCase.replaceAll(" ", "-")}",
             FloatType,
             nullable = true
           )
