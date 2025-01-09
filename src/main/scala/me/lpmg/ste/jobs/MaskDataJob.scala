@@ -5,6 +5,8 @@ import me.lpmg.ste.data.RevisionManager
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.util.collection.BitSet
 import java.nio.file.Path
+import java.time.ZonedDateTime
+import java.time.ZoneId
 
 object MaskDataJob {
   def main(args: Array[String]): Unit = {
@@ -48,10 +50,13 @@ object MaskDataJob {
       }
     }
 
+    val date = ZonedDateTime.now(ZoneId.of("UTC"))
+    val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
+
     // save to file
     revisionManager.saveRevisionsToFile(
       maskedRevisions,
-      "revisions-masked-" + testSplit.toString()
+      "revisions-masked-" + testSplit.toString() + "-" + dateString
     )
 
     spark.stop()
