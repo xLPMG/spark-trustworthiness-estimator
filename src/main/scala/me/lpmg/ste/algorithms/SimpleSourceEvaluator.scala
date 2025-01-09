@@ -53,7 +53,7 @@ object SimpleSourceEvaluator extends Serializable {
       .filter { case (_, score) => score > 0.0f || score < 0.0f }
       // square the scores to make higher scores more impactful
       .map { case (source: String, score: Float) =>
-        (source, 0.25f * (score * score))
+        (source, 0.25f * (score * score) * Math.signum(score))
       }
       .map { case (source: String, score: Float) =>
         if (score > 25.0f) (source, 25.0f) else (source, score)

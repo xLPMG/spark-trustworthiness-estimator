@@ -63,7 +63,8 @@ object SimpleSrcEvalJob {
           // it doesn't matter how many good sources (negative scores) there are
           // since bad sources can always cause a template to be present
             val likelihood = revision.sources
-            .map(source => sourceScores.getOrElse(source, 0.0f)) 
+            .map(source => sourceScores.getOrElse(source, 0.0f))
+            .filter(_ > 0.0f)
             .sum
 
           if (
