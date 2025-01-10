@@ -119,14 +119,6 @@ object RevisionEvalJob {
         (revision.revisionId, probabilitiesMap)
       }
 
-    revisionToTemplateProbabilities.foreach {
-      case (revisionId, probabilities) =>
-        println(s"Revision ID: $revisionId")
-        probabilities.foreach { case (template, probabilityVector) =>
-          println(s"  Template: $template, Probabilities: $probabilityVector")
-        }
-    }
-
     // PREDICTIONS for has_template
     val templatePredictions = revisionToTemplateProbabilities
       .map { case (revisionId, probabilities) =>
@@ -158,6 +150,10 @@ object RevisionEvalJob {
           templateNames.map(key => scores.getOrElse(key, null))
         Row.fromSeq(revisionId +: rowValues)
     }
+    // tail -> columns except revision_id
+    // filter out rows with all null values
+    .filter(row => row.toSeq.tail.exists(_ != null))
+
     val schema = StructType(
       StructField("revision_id", LongType, nullable = false) +:
         templateNames.map(key =>
