@@ -144,15 +144,20 @@ object RevisionEvalJob {
       Path
         .of(dataFolderPath)
         .resolve(s"template-predictions-$dateString")
-    val revisionScoresRows = templatePredictions.map {
-      case (revisionId, scores) =>
+    val revisionScoresRows = templatePredictions
+      .map { case (revisionId, scores) =>
         val rowValues =
           templateNames.map(key => scores.getOrElse(key, null))
         Row.fromSeq(revisionId +: rowValues)
-    }
-    // tail -> columns except revision_id
-    // filter out rows with all null values
-    .filter(row => row.toSeq.tail.exists(_ != null))
+      }
+      // tail -> columns except revision_id (dont use .tail to avoid SCA warning)
+      // filter out rows with all null values
+      .filter(row =>
+        row.toSeq match {
+          case _ +: tail => tail.exists(_ != null)
+          case _         => false
+        }
+      )
 
     val schema = StructType(
       StructField("revision_id", LongType, nullable = false) +:
