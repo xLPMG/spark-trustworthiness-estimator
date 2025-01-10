@@ -99,6 +99,8 @@ object ComplexSrcEvalJob {
     logger.warn(
       s"CSV file saved: ${sourceScoresOutputPath.toString()} with headers: revision_id,source_specific_score,general_score"
     )
+
+    spark.stop()
   }
 
 }
