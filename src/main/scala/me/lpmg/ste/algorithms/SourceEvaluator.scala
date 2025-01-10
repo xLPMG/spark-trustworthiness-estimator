@@ -6,7 +6,7 @@ import org.apache.spark.storage.StorageLevel
 import me.lpmg.ste.data.Revision
 import me.lpmg.ste.types.TemplateProbabilityVector
 
-object SimpleSourceEvaluator extends Serializable {
+object SourceEvaluator extends Serializable {
 
   /** Evaluates the trust scores of sources.
     *
@@ -33,7 +33,7 @@ object SimpleSourceEvaluator extends Serializable {
     * @param sourceTemplatePositions
     *   Sequence of template positions
     * @return
-    *   RDD of source URLs and their probabilities (added, removed, none)
+    *   RDD of source URLs and their probabilities (added, removed, unchanged)
     */
   def evaluateSourcesDistributed(
       revisions: RDD[Revision],
@@ -43,28 +43,26 @@ object SimpleSourceEvaluator extends Serializable {
       .flatMap { revision =>
         revision.sources.map { source =>
           val counts =
-            if (revision.templateAdded.get(sourceTemplatePosition)) (1, 0, 0)
-            else if (revision.templateRemoved.get(sourceTemplatePosition)) (0, 1, 0)
-            else (0, 0, 1)
+            if (revision.templateAdded.get(sourceTemplatePosition)) (1, 0)
+            else if (revision.templateRemoved.get(sourceTemplatePosition))
+              (0, 1)
+            else (0, 0)
 
           (source, counts)
         }
       }
       // Aggregate counts for each source
-      .reduceByKey {
-        case ((added1, removed1, unchanged1), (added2, removed2, unchanged2)) =>
-          (added1 + added2, removed1 + removed2, unchanged1 + unchanged2)
+      .reduceByKey { case ((added1, removed1), (added2, removed2)) =>
+        (added1 + added2, removed1 + removed2)
       }
-      // Apply additive smoothing to circumvent zero probabilities
-      .mapValues { case (added, removed, unchanged) =>
-        val alpha = 1.0f // Smoothing parameter
-        val total = added + removed + unchanged + 3 * alpha
-        (added + alpha, removed + alpha, unchanged + alpha)
-      }
-      // Calculate probabilities
-      .mapValues { case (added, removed, unchanged) =>
-        val total = added + removed + unchanged
-        TemplateProbabilityVector(added / total, removed / total, unchanged / total)
+      // Calculate probabilities with additive smoothing
+      .mapValues { case (added, removed) =>
+        val alpha = 1.0f
+        val total = (added + alpha) + (removed + alpha)
+        TemplateProbabilityVector(
+          (added + alpha) / total,
+          (removed + alpha) / total
+        )
       }
   }
 }

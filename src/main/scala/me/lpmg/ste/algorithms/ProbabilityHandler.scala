@@ -9,12 +9,10 @@ object ProbabilityHandler {
   ): TemplateProbabilityVector = {
     val prodAdd = probs.map(_.probabilityTemplateAdded).product
     val prodRemove = probs.map(_.probabilityTemplateRemoved).product
-    val prodUnchanged = probs.map(_.probabilityTemplateUnchanged).product
-    val sumProds = prodAdd + prodRemove + prodUnchanged
+    val sumProds = prodAdd + prodRemove
     TemplateProbabilityVector(
       prodAdd / sumProds,
-      prodRemove / sumProds,
-      prodUnchanged / sumProds
+      prodRemove / sumProds
     )
   }
 
@@ -37,27 +35,23 @@ object ProbabilityHandler {
     // Extract probabilities for each event
     val addProbs = vectors.map(_.probabilityTemplateAdded)
     val removeProbs = vectors.map(_.probabilityTemplateRemoved)
-    val unchangedProbs = vectors.map(_.probabilityTemplateUnchanged)
 
     // Apply softmax to each dimension
     val softmaxAdd = softmax(addProbs, temperature)
     val softmaxRemove = softmax(removeProbs, temperature)
-    val softmaxUnchanged = softmax(unchangedProbs, temperature)
 
     // Sum the probabilities for the combined vector
     val combinedAdd = softmaxAdd.sum
     val combinedRemove = softmaxRemove.sum
-    val combinedUnchanged = softmaxUnchanged.sum
 
     // Normalize to ensure the probabilities sum to 1
-    val total = combinedAdd + combinedRemove + combinedUnchanged
+    val total = combinedAdd + combinedRemove
     if (total == 0) {
-      TemplateProbabilityVector(0.0f, 0.0f, 0.0f)
+      TemplateProbabilityVector(0.0f, 0.0f)
     } else {
       TemplateProbabilityVector(
         probabilityTemplateAdded = combinedAdd / total,
-        probabilityTemplateRemoved = combinedRemove / total,
-        probabilityTemplateUnchanged = combinedUnchanged / total
+        probabilityTemplateRemoved = combinedRemove / total
       )
     }
   }
