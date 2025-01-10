@@ -164,7 +164,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">TemplateProbabilityVector</span><span class="params">(<span name="probabilityTemplateAdded">probabilityTemplateAdded: <span class="extype" name="scala.Float">Float</span></span>, <span name="probabilityTemplateRemoved">probabilityTemplateRemoved: <span class="extype" name="scala.Float">Float</span></span>, <span name="probabilityTemplateUnchanged">probabilityTemplateUnchanged: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">TemplateProbabilityVector</span><span class="params">(<span name="probabilityTemplateAdded">probabilityTemplateAdded: <span class="extype" name="scala.Float">Float</span></span>, <span name="probabilityTemplateRemoved">probabilityTemplateRemoved: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
       </span>
       </h4>
 
@@ -173,7 +173,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -199,7 +199,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="me.lpmg.ste.types.TemplateProbabilityVector"><span>TemplateProbabilityVector</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="me.lpmg.ste.types.TemplateProbabilityVector"><span>TemplateProbabilityVector</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -220,9 +220,9 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="me.lpmg.ste.types.TemplateProbabilityVector#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(probabilityTemplateAdded:Float,probabilityTemplateRemoved:Float,probabilityTemplateUnchanged:Float):me.lpmg.ste.types.TemplateProbabilityVector"></a><a id="&lt;init&gt;:TemplateProbabilityVector"></a>
+      <a id="&lt;init&gt;(probabilityTemplateAdded:Float,probabilityTemplateRemoved:Float):me.lpmg.ste.types.TemplateProbabilityVector"></a><a id="&lt;init&gt;:TemplateProbabilityVector"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/TemplateProbabilityVector.html#&lt;init&gt;(probabilityTemplateAdded:Float,probabilityTemplateRemoved:Float,probabilityTemplateUnchanged:Float):me.lpmg.ste.types.TemplateProbabilityVector" title="Permalink">
+      <a href="../../../../me/lpmg/ste/types/TemplateProbabilityVector.html#&lt;init&gt;(probabilityTemplateAdded:Float,probabilityTemplateRemoved:Float):me.lpmg.ste.types.TemplateProbabilityVector" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -231,7 +231,7 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">TemplateProbabilityVector</span><span class="params">(<span name="probabilityTemplateAdded">probabilityTemplateAdded: <span class="extype" name="scala.Float">Float</span></span>, <span name="probabilityTemplateRemoved">probabilityTemplateRemoved: <span class="extype" name="scala.Float">Float</span></span>, <span name="probabilityTemplateUnchanged">probabilityTemplateUnchanged: <span class="extype" name="scala.Float">Float</span></span>)</span>
+        <span class="name">TemplateProbabilityVector</span><span class="params">(<span name="probabilityTemplateAdded">probabilityTemplateAdded: <span class="extype" name="scala.Float">Float</span></span>, <span name="probabilityTemplateRemoved">probabilityTemplateRemoved: <span class="extype" name="scala.Float">Float</span></span>)</span>
       </span>
       
       
@@ -351,6 +351,38 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="me.lpmg.ste.types.TemplateProbabilityVector#extractValues" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="extractValues():(Float,Float)"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/types/TemplateProbabilityVector.html#extractValues():(Float,Float)" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">extractValues</span><span class="params">()</span><span class="result">: (<span class="extype" name="scala.Float">Float</span>, <span class="extype" name="scala.Float">Float</span>)</span>
+      </span>
+      
+      
+    </li><li name="me.lpmg.ste.types.TemplateProbabilityVector#extractValuesString" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="extractValuesString:String"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/types/TemplateProbabilityVector.html#extractValuesString:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">extractValuesString</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
@@ -388,10 +420,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="me.lpmg.ste.types.TemplateProbabilityVector#isNotZero" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="isNotZero():Boolean"></a>
+    </li><li name="me.lpmg.ste.types.TemplateProbabilityVector#isUndecided" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="isUndecided():Boolean"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/TemplateProbabilityVector.html#isNotZero():Boolean" title="Permalink">
+      <a href="../../../../me/lpmg/ste/types/TemplateProbabilityVector.html#isUndecided():Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -400,7 +432,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">isNotZero</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+        <span class="name">isUndecided</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       
       
@@ -507,22 +539,6 @@
       </span>
       <span class="symbol">
         <span class="name">probabilityTemplateRemoved</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
-      </span>
-      
-      
-    </li><li name="me.lpmg.ste.types.TemplateProbabilityVector#probabilityTemplateUnchanged" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="probabilityTemplateUnchanged:Float"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/TemplateProbabilityVector.html#probabilityTemplateUnchanged:Float" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">probabilityTemplateUnchanged</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
       </span>
       
       
@@ -645,14 +661,14 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.Serializable">
-              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="java.io.Serializable">
-              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
-            </div><div class="parent" name="scala.Product">
+        <div class="parent" name="scala.Product">
               <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
             </div><div class="parent" name="scala.Equals">
               <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
+            </div><div class="parent" name="scala.Serializable">
+              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
