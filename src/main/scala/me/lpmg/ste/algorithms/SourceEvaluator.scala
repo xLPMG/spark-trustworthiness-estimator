@@ -64,5 +64,6 @@ object SourceEvaluator extends Serializable {
           (removed + alpha) / total
         )
       }
+      .filter(!_._2.isUndecided)
   }
 }

@@ -85,11 +85,7 @@ object SourceEvalJob {
     // Replace empty strings with null
     val cleanedDF = pivotedDF.na.replace(pivotedDF.columns, Map("" -> null))
 
-    // Filter out rows where all template columns are null
-    val filteredDF =
-      cleanedDF.filter(row => row.toSeq.drop(1).exists(_ != null))
-
-    filteredDF.write
+    cleanedDF.write
       .option("header", "true")
       .option("compression", "gzip")
       .csv(sourceProbabilitiesOutputPath.toString)
