@@ -11,6 +11,8 @@ import me.lpmg.ste.types.Types.TemplateBitPositions
 import me.lpmg.ste.algorithms.ProbabilityHandler
 import scala.collection.mutable
 import org.apache.spark.sql.Row
+import org.apache.spark.rdd.RDD
+import me.lpmg.ste.data.Revision
 
 object RevisionEvalJob {
   val DefaultTemplateProbabilityVector = TemplateProbabilityVector(0.5f, 0.5f)
@@ -44,7 +46,8 @@ object RevisionEvalJob {
     val revisionManager =
       new RevisionManager(spark, dataFolderPath)
 
-    val revisions = revisionManager.loadRevisions(revisionsFolderName)
+    val revisions: RDD[Revision] =
+      revisionManager.loadRevisions(revisionsFolderName)
 
     val sourceProbabilitiesFolderPath =
       Path.of(dataFolderPath).resolve(sourceProbabilitiesFolderName)
@@ -60,13 +63,15 @@ object RevisionEvalJob {
 
     import org.apache.spark.sql.functions._
     import spark.implicits._
+    val templateNames =
+      TemplateBitPositions.keySet.toSeq.map(_.toLowerCase.replace(" ", "-"))
 
     // template -> [source -> probabilities]
     val templateToSourceProbabilitiesMap = sourceProbabilitiesDF
       .flatMap { row =>
         val source = row.getAs[String]("src")
         row.schema.fieldNames.filter(_ != "src").map { template =>
-          val templateName = template.replace("-", " ")
+          val templateName = template.toLowerCase.replace(" ", "-")
           val probabilitiesString = row.getAs[String](template)
 
           val probabilityVector =
@@ -96,7 +101,6 @@ object RevisionEvalJob {
         // template -> probabilities
         var probabilitiesMap: mutable.Map[String, TemplateProbabilityVector] =
           mutable.Map().empty
-
         templateToSourceProbabilitiesMap.foreach {
           case (template, sourceToProbabilities) =>
             // probabilities for each source
@@ -114,65 +118,46 @@ object RevisionEvalJob {
             val accumulatedProbabilities =
               ProbabilityHandler.naiveBayesProduct(probabilities)
 
-            probabilitiesMap.put(template, accumulatedProbabilities)
+            if (!accumulatedProbabilities.isUndecided()) {
+              probabilitiesMap.put(template, accumulatedProbabilities)
+            }
         }
         (revision.revisionId, probabilitiesMap)
       }
+      .filter { case (_, probabilitiesMap) =>
+        probabilitiesMap.nonEmpty
+      }
+      .collectAsMap()
 
     // PREDICTIONS for has_template
     val templatePredictions = revisionToTemplateProbabilities
-      .map { case (revisionId, probabilities) =>
-        val predictions = probabilities
+      .flatMap { case (revisionId, templateToProbabilities) =>
+        templateToProbabilities
           .map { case (template, probabilityVector) =>
             val prediction =
               if (
                 probabilityVector.probabilityTemplateAdded > probabilityVector.probabilityTemplateRemoved
               ) 1.0f
-              else null
-            (template, prediction)
+              else 0.0f
+            (revisionId, template, prediction)
           }
-        (revisionId, predictions)
+          .filter(_._3 > 0.5f)
       }
 
-    import spark.implicits._
-    import org.apache.spark.sql.functions._
-    import org.apache.spark.sql.types._
-    val templateNames = TemplateBitPositions.keySet.toSeq
+    val predictionsDF = templatePredictions.toSeq
+      .toDF("revision_id", "template", "prediction")
 
-    // REVISION SCORES
+    val pivotedDF = predictionsDF
+      .groupBy("revision_id")
+      .pivot("template", templateNames)
+      .agg(first("prediction"))
+
     val predictionsOutputPath =
       Path
         .of(dataFolderPath)
         .resolve(s"template-predictions-$dateString")
-    val revisionScoresRows = templatePredictions
-      .map { case (revisionId, scores) =>
-        val rowValues =
-          templateNames.map(key => scores.getOrElse(key, null))
-        Row.fromSeq(revisionId +: rowValues)
-      }
-      // tail -> columns except revision_id (dont use .tail to avoid SCA warning)
-      // filter out rows with all null values
-      .filter(row =>
-        row.toSeq match {
-          case _ +: tail => tail.exists(_ != null)
-          case _         => false
-        }
-      )
 
-    val schema = StructType(
-      StructField("revision_id", LongType, nullable = false) +:
-        templateNames.map(key =>
-          StructField(
-            s"pred_${key.toLowerCase.replaceAll(" ", "-")}",
-            FloatType,
-            nullable = true
-          )
-        )
-    )
-
-    val predictionsDF = spark.createDataFrame(revisionScoresRows, schema)
-
-    predictionsDF.write
+    pivotedDF.write
       .mode("overwrite")
       .option("header", "true")
       .option("nullValue", "")

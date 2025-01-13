@@ -9,6 +9,6 @@ spark-submit \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /Users/lpmg/Bachelor/xml \
   revisions-2025-01-09T08-10-13Z \
-  source-probabilities-2025-01-10T07-53-59Z
+  source-probabilities-2025-01-12T22-52-26Z
 
   
