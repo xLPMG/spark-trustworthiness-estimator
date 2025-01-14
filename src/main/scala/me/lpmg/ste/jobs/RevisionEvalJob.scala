@@ -96,7 +96,8 @@ object RevisionEvalJob {
       }.toMap)
       .collectAsMap()
 
-    val revisionToTemplateProbabilities = revisions
+    val revisionToTemplatePredictions = revisions
+      // CALCULATE PROBABILITIES FOR EACH REVISION
       .map { revision =>
         // template -> probabilities
         var probabilitiesMap: mutable.Map[String, TemplateProbabilityVector] =
@@ -127,10 +128,7 @@ object RevisionEvalJob {
       .filter { case (_, probabilitiesMap) =>
         probabilitiesMap.nonEmpty
       }
-      .collectAsMap()
-
-    // PREDICTIONS for has_template
-    val templatePredictions = revisionToTemplateProbabilities
+      // PREDICTIONS FOR has_template FOR EACH REVISION
       .flatMap { case (revisionId, templateToProbabilities) =>
         templateToProbabilities
           .map { case (template, probabilityVector) =>
@@ -143,8 +141,9 @@ object RevisionEvalJob {
           }
           .filter(_._3 > 0.5f)
       }
+      .collect()
 
-    val predictionsDF = templatePredictions.toSeq
+    val predictionsDF = revisionToTemplatePredictions.toSeq
       .toDF("revision_id", "template", "prediction")
 
     val pivotedDF = predictionsDF
