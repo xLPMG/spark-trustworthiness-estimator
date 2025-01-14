@@ -141,10 +141,12 @@ object RevisionEvalJob {
           }
           .filter(_._3 > 0.5f)
       }
-      .collect()
 
-    val predictionsDF = revisionToTemplatePredictions.toSeq
-      .toDF("revision_id", "template", "prediction")
+    val predictionsDF = revisionToTemplatePredictions.toDF(
+      "revision_id",
+      "template",
+      "prediction"
+    )
 
     val pivotedDF = predictionsDF
       .groupBy("revision_id")
