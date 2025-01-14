@@ -10,7 +10,7 @@ spark-submit \
   --class me.lpmg.ste.jobs.ExampleJob \
   --name Spark-Trustworthiness-Estimator-EXAMPLEJOB \
   --properties-file ../../spark-defaults.conf \
-  --conf spark.dynamicAllocation.maxExecutors=10 \
+  --conf spark.dynamicAllocation.maxExecutors=100 \
   --conf spark.driver.memory=1g \
   --conf spark.executor.memory=1g \
   --verbose \
