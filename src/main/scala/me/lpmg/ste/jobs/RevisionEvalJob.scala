@@ -37,7 +37,7 @@ object RevisionEvalJob {
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
     val sourceProbabilitiesFolderName = args(2)
-    val revisionOutputLimit: Long = if (args.length > 3) args(3).toLong else 0
+    val oldestRevisionLimit: Long = if (args.length > 3) args(3).toLong else 0
 
     implicit val spark = SparkSession
       .builder()
@@ -97,6 +97,8 @@ object RevisionEvalJob {
       .collectAsMap()
 
     val revisionToTemplatePredictions = revisions
+      // LIMIT NUMBER OF REVISIONS
+      .filter(revision => revision.revisionId >= oldestRevisionLimit)
       // CALCULATE PROBABILITIES FOR EACH REVISION
       .map { revision =>
         // template -> probabilities
