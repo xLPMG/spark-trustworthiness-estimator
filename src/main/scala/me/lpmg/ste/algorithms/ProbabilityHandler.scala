@@ -4,15 +4,36 @@ import me.lpmg.ste.types.TemplateProbabilityVector
 
 object ProbabilityHandler {
 
-  def naiveBayesProduct(
+  def multiplicativeCombination(
       probs: Seq[TemplateProbabilityVector]
   ): TemplateProbabilityVector = {
+    // Compute the product of probabilities for "Added" and "Removed"
     val prodAdd = probs.map(_.probabilityTemplateAdded).product
     val prodRemove = probs.map(_.probabilityTemplateRemoved).product
+
+    // Normalize the results
     val sumProds = prodAdd + prodRemove
     TemplateProbabilityVector(
       prodAdd / sumProds,
       prodRemove / sumProds
+    )
+  }
+
+  def logarithmicCombination(
+      probs: Seq[TemplateProbabilityVector]
+  ): TemplateProbabilityVector = {
+    // Compute the log-space sum for "Added" and "Removed"
+    val logAdd = probs.map(p => math.log(p.probabilityTemplateAdded)).sum
+    val logRemove = probs.map(p => math.log(p.probabilityTemplateRemoved)).sum
+
+    // Convert back to normal space and normalize
+    val expAdd = math.exp(logAdd).toFloat
+    val expRemove = math.exp(logRemove).toFloat
+    val sumExp = expAdd + expRemove
+
+    TemplateProbabilityVector(
+      expAdd / sumExp,
+      expRemove / sumExp
     )
   }
 

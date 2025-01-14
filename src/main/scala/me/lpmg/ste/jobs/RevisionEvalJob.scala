@@ -119,7 +119,7 @@ object RevisionEvalJob {
 
             // TODO: implement
             val accumulatedProbabilities =
-              ProbabilityHandler.naiveBayesProduct(probabilities)
+              ProbabilityHandler.multiplicativeCombination(probabilities)
 
             if (!accumulatedProbabilities.isUndecided()) {
               probabilitiesMap.put(template, accumulatedProbabilities)
