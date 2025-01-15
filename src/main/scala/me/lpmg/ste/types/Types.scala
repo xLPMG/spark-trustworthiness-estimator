@@ -22,6 +22,14 @@ object Types {
     "Hoax" -> 9
   )
 
+  def escapeTemplates(templateBitPositions: Map[String, Byte]): Map[String, Byte] = {
+    templateBitPositions.map {
+      case (template, position) =>
+        val escapedTemplate = template.toLowerCase.replace(" ", "-")
+        escapedTemplate -> position
+    }
+  }
+
   /**
     * Converts a BitSet to a binary string
     *

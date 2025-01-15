@@ -68,41 +68,6 @@ class RevisionManager(
         )
       }
     allRevisionsRDD
-    // Find oldest revisions and update parent IDs in a distributed way
-    // val updatedRevisionsRDD = if (fixedDateLimit <= 0) {
-    //   allRevisionsRDD
-    // } else {
-    //   logger.warn("Setting parent ID of oldest revisions to -1")
-
-    //   // Group revisions by their page ID and sort by timestamp
-    //   val groupedRevisionsRDD =
-    //     allRevisionsRDD
-    //       .groupBy(_.pageId)
-    //       .mapValues { revisions =>
-    //         // [oldest, ..., newest]
-    //         revisions.toSeq.sortBy(_.timestamp).map { rev =>
-    //           rev.toIdTimestampPair
-    //         }
-    //       }
-
-    //   // Create an RDD of oldest revision IDs with a marker
-    //   val oldestRevisionsRDD = groupedRevisionsRDD
-    //     .flatMap { case (pageId, revisions) =>
-    //       revisions.headOption.map(rev => (rev._1, true))
-    //     }
-
-    //   // Use leftOuterJoin to mark oldest revisions
-    //   allRevisionsRDD
-    //     .keyBy(_.revisionId) // Create key-value pairs for join
-    //     .leftOuterJoin(oldestRevisionsRDD)
-    //     .map { case (revId, (revision, isOldest)) =>
-    //       if (isOldest.isDefined) {
-    //         revision.copy(parentId = -1)
-    //       } else {
-    //         revision
-    //       }
-    //     }
-    // }
   }
 
   /** Saves the revisions to a parquet file.

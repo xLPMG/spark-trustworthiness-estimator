@@ -7,6 +7,7 @@ import org.apache.spark.util.collection.BitSet
 import java.nio.file.Path
 import java.time.ZonedDateTime
 import java.time.ZoneId
+import me.lpmg.ste.types.Types.{TemplateBitPositions, escapeTemplates}
 
 object MaskDataJob {
   def main(args: Array[String]): Unit = {
@@ -19,13 +20,29 @@ object MaskDataJob {
       logger.error("Please specify the revisions folder name")
       System.exit(1)
     } else if (args.length < 3) {
-      logger.error("Please specify the test split revision")
+      logger.error(
+        "Please specify the splits for the revisions for each template"
+      )
       System.exit(1)
     }
 
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
-    val testSplit = args(2).toLong
+    val testSplitString = args(2)
+
+    // example: pov:1221;one-source:1231233;disputed:123123
+    val escapedTemplateBitPositions = escapeTemplates(TemplateBitPositions)
+    val templateBitPositionToSplits = testSplitString
+      .split(";")
+      .map { templateSplit =>
+        val split = templateSplit.split(":")
+        val templatePosition =
+          escapedTemplateBitPositions.getOrElse(split(0), -1.toByte)
+        templatePosition -> split(1).toLong
+      }
+      .toMap
+      // filter out templates that could not be found
+      .filter(_._1 != -1.toByte)
 
     implicit val spark = SparkSession
       .builder()
@@ -36,27 +53,40 @@ object MaskDataJob {
 
     val revisions = revisionManager.loadRevisions(revisionsFolderName, false)
 
+      revisions.foreach(println)
+      println("#######################################")
     // mask data
     val maskedRevisions = revisions.map { revision =>
       // clear template information for test data
-      if (revision.revisionId >= testSplit) {
-        revision.copy(
-          templatePresence = new BitSet(0),
-          templateAdded = new BitSet(0),
-          templateRemoved = new BitSet(0)
-        )
-      } else {
-        revision
+      var templateAddedMasked = revision.templateAdded.&(revision.templateAdded)
+      var templateRemovedMasked = revision.templateRemoved.&(revision.templateRemoved)
+      var templatePresentMasked = revision.templatePresence.&(revision.templatePresence)
+      val revisionId = revision.revisionId
+
+      templateBitPositionToSplits.foreach { case (templatePosition, split) =>
+        if (revisionId >= split) {
+          templateAddedMasked.unset(templatePosition)
+          templateRemovedMasked.unset(templatePosition)
+          templatePresentMasked.unset(templatePosition)
+        }
       }
+
+      revision.copy(
+        templateAdded = templateAddedMasked,
+        templateRemoved = templateRemovedMasked,
+        templatePresence = templatePresentMasked
+      )
     }
 
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
     val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
 
+    maskedRevisions.foreach(println)
+
     // save to file
     revisionManager.saveRevisionsToFile(
       maskedRevisions,
-      "revisions-masked-" + testSplit.toString() + "-" + dateString
+      "revisions-masked-" + dateString
     )
 
     spark.stop()

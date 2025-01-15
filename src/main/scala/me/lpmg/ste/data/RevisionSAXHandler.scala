@@ -113,7 +113,10 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
           TemplateBitPositions.foreach(template =>
             if (
               content.contains("{{" + template._1 + "}}") ||
-              content.contains("{{" + template._1.toLowerCase + "}}")
+              content.contains("{{" + template._1.toLowerCase + "}}") ||
+              // inline templates
+              content.contains("{{" + template._1 + "|") ||
+              content.contains("{{" + template._1.toLowerCase + "|")
             ) {
               templateBitset.set(template._2)
             }
@@ -128,10 +131,11 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
         // only add the revision if it is in the main namespace
         if (!isRedirect && insidePage && isMainNamespace) {
           // assuming that revisions are in chronological order
-          val (templateAdded, templateRemoved) = TemplateUpdater.getTemplateChangeBitsets(
-            templateBitset,
-            parentTemplateBitset
-          )
+          val (templateAdded, templateRemoved) =
+            TemplateUpdater.getTemplateChangeBitsets(
+              templateBitset,
+              parentTemplateBitset
+            )
           parentTemplateBitset = templateBitset
 
           if (timestamp > dateLimit) {
