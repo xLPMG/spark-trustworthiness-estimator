@@ -36,7 +36,7 @@
       <comment>Comment 2</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">{{Unreferenced}} {{Contradict}}
+      <text bytes="111" xml:space="preserve">{{Circular}} {{Better sources needed}}
       </text>
     </revision>
     <revision>
@@ -50,7 +50,7 @@
       <comment>Comment 3</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">{{Unreferenced}}
+      <text bytes="111" xml:space="preserve">{{Circular}}
       </text>
     </revision>
     <revision>
@@ -64,7 +64,7 @@
       <comment>Comment 4</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">{{Unreferenced}}{{Disputed}}
+      <text bytes="111" xml:space="preserve">{{Circular}}{{Dubious}}
       </text>
     </revision>
     <revision>

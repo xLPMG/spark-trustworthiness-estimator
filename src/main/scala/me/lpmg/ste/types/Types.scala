@@ -10,16 +10,14 @@ object Types {
     * https://en.wikipedia.org/wiki/Wikipedia:Template_index/Cleanup
     */
   final val TemplateBitPositions: Map[String, Byte] = Map(
-    "Unreferenced" -> 0,
-    "One source" -> 1,
-    "Original research" -> 2,
-    "More citations needed" -> 3,
-    "Unreliable sources" -> 4,
-    "Disputed" -> 5,
-    "POV" -> 6,
-    "Third-party" -> 7,
-    "Contradict" -> 8,
-    "Hoax" -> 9
+    "Circular" -> 0,
+    "Better sources needed" -> 1,
+    "Dubious" -> 2,
+    "No reliable sources" -> 3,
+    "Self-published" -> 4,
+    "Third-party" -> 5,
+    "Unreliable sources" -> 6,
+    "User-generated" -> 7
   )
 
   def escapeTemplates(templateBitPositions: Map[String, Byte]): Map[String, Byte] = {

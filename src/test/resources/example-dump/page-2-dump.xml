@@ -36,7 +36,7 @@
       <comment>Comment 2</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">{{Unreferenced}} *[http://www.s1] *[http://www.s2] *[http://www.s3]
+      <text bytes="111" xml:space="preserve">{{Circular}} *[http://www.s1] *[http://www.s2] *[http://www.s3]
       </text>
     </revision>
     <revision>
@@ -50,7 +50,7 @@
       <comment>Comment 3</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">{{Unreferenced}} *[http://www.s1] *[http://www.s2] *[http://www.s3]
+      <text bytes="111" xml:space="preserve">{{Circular}} *[http://www.s1] *[http://www.s2] *[http://www.s3]
       </text>
     </revision>
     <revision>
@@ -140,7 +140,7 @@
       <comment>Comment 10</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">{{Unreferenced}} *[http://www.s1]
+      <text bytes="111" xml:space="preserve">{{Circular}} *[http://www.s1]
       </text>
     </revision>
   </page>

@@ -15,8 +15,8 @@ class DataReaderTest extends munit.FunSuite {
     assertEquals(revisions.length, 5)
 
     // compare the extracted revision data
-    val unreferencedPosition: Int =
-      TemplateBitPositions.get("Unreferenced").get.toInt
+    val templatePosition: Int =
+      TemplateBitPositions.get("Circular").get.toInt
     revisions.foreach { revision =>
       if (revision.revisionId == 1L) {
         assertEquals(revision.pageId, 1)
@@ -25,7 +25,7 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-01T00:00:01Z").toEpochMilli()
         )
-        assertEquals(revision.templatePresence.get(unreferencedPosition), false)
+        assertEquals(revision.templatePresence.get(templatePosition), false)
         assertEquals(revision.templateAdded.cardinality(), 0)
         assertEquals(revision.templateRemoved.cardinality(), 0)
       } else if (revision.revisionId == 2L) {
@@ -35,7 +35,7 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-02T00:00:01Z").toEpochMilli()
         )
-        assertEquals(revision.templatePresence.get(unreferencedPosition), false)
+        assertEquals(revision.templatePresence.get(templatePosition), false)
         assertEquals(revision.templateAdded.cardinality(), 0)
         assertEquals(revision.templateRemoved.cardinality(), 0)
       } else if (revision.revisionId == 3L) {
@@ -45,7 +45,7 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-03T00:00:01Z").toEpochMilli()
         )
-        assertEquals(revision.templatePresence.get(unreferencedPosition), true)
+        assertEquals(revision.templatePresence.get(templatePosition), true)
         assertEquals(revision.templateAdded.cardinality(), 1)
         assertEquals(revision.templateRemoved.cardinality(), 0)
       } else if (revision.revisionId == 4L) {
@@ -55,7 +55,7 @@ class DataReaderTest extends munit.FunSuite {
           revision.timestamp,
           Instant.parse("2011-01-04T00:00:01Z").toEpochMilli()
         )
-        assertEquals(revision.templatePresence.get(unreferencedPosition), false)
+        assertEquals(revision.templatePresence.get(templatePosition), false)
         assertEquals(revision.templateAdded.cardinality(), 0)
         assertEquals(revision.templateRemoved.cardinality(), 0)
       }
