@@ -44,6 +44,10 @@ object MaskDataJob {
       // filter out templates that could not be found
       .filter(_._1 != -1.toByte)
 
+      templateBitPositionToSplits.foreach { case (templatePosition, split) =>
+        println(s"Template Position: $templatePosition, Split: $split")
+      }
+
     implicit val spark = SparkSession
       .builder()
       .getOrCreate()
@@ -53,8 +57,6 @@ object MaskDataJob {
 
     val revisions = revisionManager.loadRevisions(revisionsFolderName, false)
 
-      revisions.foreach(println)
-      println("#######################################")
     // mask data
     val maskedRevisions = revisions.map { revision =>
       // clear template information for test data
@@ -80,8 +82,6 @@ object MaskDataJob {
 
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
     val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
-
-    maskedRevisions.foreach(println)
 
     // save to file
     revisionManager.saveRevisionsToFile(
