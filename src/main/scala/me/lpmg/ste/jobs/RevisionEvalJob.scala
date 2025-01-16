@@ -95,7 +95,7 @@ object RevisionEvalJob {
       }.toMap)
       .collectAsMap()
 
-    val revisionToTemplatePredictions = revisions
+    val revisionToTemplateProbabilities = revisions
       // CALCULATE PROBABILITIES FOR EACH REVISION
       .map { revision =>
         // template -> probabilities
@@ -127,44 +127,31 @@ object RevisionEvalJob {
       .filter { case (_, probabilitiesMap) =>
         probabilitiesMap.nonEmpty
       }
-      // PREDICTIONS FOR has_template FOR EACH REVISION
-      .flatMap { case (revisionId, templateToProbabilities) =>
-        templateToProbabilities
-          .map { case (template, probabilityVector) =>
-            val prediction =
-              if (
-                probabilityVector.probabilityTemplateAdded > probabilityVector.probabilityTemplateRemoved
-              ) 1.0f
-              else 0.0f
-            (revisionId, template, prediction)
-          }
-          .filter(_._3 > 0.5f)
-      }
 
-    val predictionsDF = revisionToTemplatePredictions.toDF(
+    val probabilitiesDF = revisionToTemplateProbabilities.toDF(
       "revision_id",
       "template",
-      "prediction"
+      "probability"
     )
 
-    val pivotedDF = predictionsDF
+    val pivotedDF = probabilitiesDF
       .groupBy("revision_id")
       .pivot("template", templateNames)
-      .agg(first("prediction"))
+      .agg(first("probability"))
 
-    val predictionsOutputPath =
+    val probabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"template-predictions-$dateString")
+        .resolve(s"template-probabilities-$dateString")
 
     pivotedDF.write
       .mode("overwrite")
       .option("header", "true")
       .option("nullValue", "")
-      .csv(predictionsOutputPath.toString)
+      .csv(probabilitiesOutputPath.toString)
 
     logger.warn(
-      s"CSV file saved: ${predictionsOutputPath.toString()}"
+      s"CSV file saved: ${probabilitiesOutputPath.toString()}"
     )
 
     spark.stop()

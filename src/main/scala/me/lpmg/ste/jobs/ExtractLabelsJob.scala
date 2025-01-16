@@ -61,7 +61,8 @@ object ExtractLabelsJob {
           (revision.revisionId, -1.0f)
         }
       }
-      .filter(_._2 != -1.0f)
+      // only keep added and removed data
+      .filter(_._2 >= 0.0f)
       .toDF("revision_id", "has_template")
 
       templateData.write
