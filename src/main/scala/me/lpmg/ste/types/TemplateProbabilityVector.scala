@@ -4,11 +4,7 @@ final case class TemplateProbabilityVector(
     probabilityTemplateAdded: Float,
     probabilityTemplateRemoved: Float
 ) extends Serializable {
-  def isZero(): Boolean = {
-    val minimumProbability = 0.0001f
-    probabilityTemplateAdded + probabilityTemplateRemoved < minimumProbability
-  }
-
+  
   def isUndecided(): Boolean = {
     val tolerance = 0.0001f
     Math.abs(probabilityTemplateAdded - probabilityTemplateRemoved) < tolerance

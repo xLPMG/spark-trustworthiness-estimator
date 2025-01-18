@@ -116,7 +116,7 @@ object RevisionEvalJob {
 
             // TODO: implement
             val accumulatedProbabilities =
-              ProbabilityHandler.multiplicativeCombination(probabilities)
+              ProbabilityHandler.logarithmicCombination(probabilities)
 
             if (!accumulatedProbabilities.isUndecided()) {
               probabilitiesMap.put(template, accumulatedProbabilities)
