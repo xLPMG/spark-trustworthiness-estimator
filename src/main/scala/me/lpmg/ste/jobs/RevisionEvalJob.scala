@@ -97,11 +97,9 @@ object RevisionEvalJob {
 
     val revisionToTemplateProbabilities = revisions
       // CALCULATE PROBABILITIES FOR EACH REVISION
-      .map { revision =>
+      .flatMap { revision =>
         // template -> probabilities
-        var probabilitiesMap: mutable.Map[String, TemplateProbabilityVector] =
-          mutable.Map().empty
-        templateToSourceProbabilitiesMap.foreach {
+        templateToSourceProbabilitiesMap.flatMap {
           case (template, sourceToProbabilities) =>
             // probabilities for each source
             val probabilities = revision.sources
@@ -114,25 +112,22 @@ object RevisionEvalJob {
               )
               .toSeq
 
-            // TODO: implement
-            val accumulatedProbabilities =
-              ProbabilityHandler.logarithmicCombination(probabilities)
-
-            if (!accumulatedProbabilities.isUndecided()) {
-              probabilitiesMap.put(template, accumulatedProbabilities)
+            if (probabilities.isEmpty) {
+              None
+            } else {
+              val accumulatedProbabilities =
+                ProbabilityHandler.logarithmicCombination(probabilities)
+              Some((revision.revisionId, template, accumulatedProbabilities))
             }
         }
-        (revision.revisionId, probabilitiesMap)
       }
-      .filter { case (_, probabilitiesMap) =>
-        probabilitiesMap.nonEmpty
+      .filter(!_._3.isUndecided())
+      .map { case (revisionId, template, probabilities) =>
+        (revisionId, template, probabilities.extractValuesString)
       }
 
-    val probabilitiesDF = revisionToTemplateProbabilities.toDF(
-      "revision_id",
-      "template",
-      "probability"
-    )
+    val probabilitiesDF = revisionToTemplateProbabilities
+      .toDF("revision_id", "template", "probability")
 
     val pivotedDF = probabilitiesDF
       .groupBy("revision_id")

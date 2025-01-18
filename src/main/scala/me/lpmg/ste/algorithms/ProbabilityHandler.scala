@@ -22,15 +22,43 @@ object ProbabilityHandler {
   def logarithmicCombination(
       probs: Seq[TemplateProbabilityVector]
   ): TemplateProbabilityVector = {
-    // Compute the log-space sum for "Added" and "Removed"
-    val logAdd = probs.map(p => math.log(p.probabilityTemplateAdded)).sum
-    val logRemove = probs.map(p => math.log(p.probabilityTemplateRemoved)).sum
 
-    // Convert back to normal space and normalize
+    // Handle edge case: Empty input
+    if (probs.isEmpty) {
+      throw new IllegalArgumentException("Input sequence is empty")
+    }
+
+    // Compute the max log probabilities for numerical stability
+    val maxLogAdd = probs.map(p => math.log(p.probabilityTemplateAdded)).max
+    val maxLogRemove =
+      probs.map(p => math.log(p.probabilityTemplateRemoved)).max
+
+    // Compute stable log-space sum
+    val logAdd = maxLogAdd + math.log(
+      probs
+        .map(p => math.exp(math.log(p.probabilityTemplateAdded) - maxLogAdd))
+        .sum
+    )
+    val logRemove = maxLogRemove + math.log(
+      probs
+        .map(p =>
+          math.exp(math.log(p.probabilityTemplateRemoved) - maxLogRemove)
+        )
+        .sum
+    )
+
+    // Convert back to normal space
     val expAdd = math.exp(logAdd).toFloat
     val expRemove = math.exp(logRemove).toFloat
     val sumExp = expAdd + expRemove
 
+    // Handle edge case: sumExp is zero
+    if (sumExp == 0.0f) {
+      // Default to a uniform distribution to avoid NaN
+      return TemplateProbabilityVector(0.5f, 0.5f)
+    }
+
+    // Normalize and return
     TemplateProbabilityVector(
       expAdd / sumExp,
       expRemove / sumExp
