@@ -55,14 +55,15 @@ object SourceEvaluator extends Serializable {
       .reduceByKey { case ((added1, removed1), (added2, removed2)) =>
         (added1 + added2, removed1 + removed2)
       }
-      // Calculate probabilities with additive smoothing
+      // Calculate probabilities
       .mapValues { case (added, removed) =>
-        val alpha = 1.0f
-        val total = (added + alpha) + (removed + alpha)
-        TemplateProbabilityVector(
-          (added + alpha) / total,
-          (removed + alpha) / total
-        )
+        val total = added + removed
+        if (total == 0) TemplateProbabilityVector(0.5f, 0.5f)
+        else
+          TemplateProbabilityVector(
+            (added) / total,
+            (removed) / total
+          )
       }
       .filter(!_._2.isUndecided)
   }
