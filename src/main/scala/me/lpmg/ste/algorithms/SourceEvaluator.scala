@@ -16,10 +16,9 @@ object SourceEvaluator extends Serializable {
     *   Map of source URLs and their trust scores
     */
   def evaluateSources(
-      revisions: RDD[Revision],
-      sourceTemplatePosition: Byte
+      revisions: RDD[Revision]
   ): Map[String, TemplateProbabilityVector] = {
-    evaluateSourcesDistributed(revisions, sourceTemplatePosition)
+    evaluateSourcesDistributed(revisions)
       .collect()
       .toMap
   }
@@ -30,25 +29,18 @@ object SourceEvaluator extends Serializable {
     *
     * @param revisions
     *   RDD of revisions
-    * @param sourceTemplatePositions
-    *   Sequence of template positions
     * @return
     *   RDD of source URLs and their probabilities (added, removed, unchanged)
     */
   def evaluateSourcesDistributed(
-      revisions: RDD[Revision],
-      sourceTemplatePosition: Byte
+      revisions: RDD[Revision]
   ): RDD[(String, TemplateProbabilityVector)] = {
     revisions
       .flatMap { revision =>
-        val templateAdded = revision.templateAdded.get(sourceTemplatePosition)
-        val templateRemoved =
-          revision.templateRemoved.get(sourceTemplatePosition)
-
         revision.sources.map { source =>
           val counts =
-            if (templateAdded) (1, 0)
-            else if (templateRemoved) (0, 1)
+            if (revision.templateAdded) (1, 0)
+            else if (revision.templateRemoved) (0, 1)
             else (0, 0)
 
           (source, counts)

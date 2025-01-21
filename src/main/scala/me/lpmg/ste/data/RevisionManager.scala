@@ -2,11 +2,6 @@ package me.lpmg.ste.data
 
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.SparkSession
-import me.lpmg.ste.types.Types.{
-  bitSetToString,
-  stringToBitSet,
-  TemplateBitPositions
-}
 import me.lpmg.ste.time.Watch
 import java.nio.file.Path
 import org.apache.spark.sql.DataFrame
@@ -27,25 +22,6 @@ class RevisionManager(
     dataFolderPath: String
 ) {
   val logger = Logger(getClass.getName)
-  var dateLimit: Long = 0
-
-  /** Sets the date limit for the graph. Only revisions after this date will be
-    * included in the graph.
-    *
-    * @param date
-    */
-  def setDateLimit(date: ZonedDateTime): Unit = {
-    setDateLimit(date.toInstant().toEpochMilli())
-  }
-
-  /** Sets the date limit for the graph. Only revisions after this date will be
-    * included in the graph.
-    *
-    * @param date
-    */
-  def setDateLimit(date: Long): Unit = {
-    dateLimit = date
-  }
 
   /** Initializes the graph by reading all revisions from the dump folder.
     *
@@ -53,21 +29,13 @@ class RevisionManager(
     *   The revision graph
     */
   def retrieveRevisions(
-      filesRDD: RDD[(String, PortableDataStream)]
+      filesRDD: RDD[(String, PortableDataStream)],
+      template: String
   ): RDD[Revision] = {
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    // REVISION EXTRACTION
-    /////////////////////////////////////////////////////////////////////////////////////////
-    val fixedDateLimit = dateLimit
-    val allRevisionsRDD = filesRDD
+    filesRDD
       .flatMap { case (_, pds) =>
-        DataReader.getRevisionsFromPDS(
-          pds,
-          fixedDateLimit
-        )
+        DataReader.getRevisionsFromPDS(pds, template)
       }
-    allRevisionsRDD
   }
 
   /** Saves the revisions to a parquet file.
@@ -86,41 +54,25 @@ class RevisionManager(
       outputPath.toFile.mkdirs()
     }
 
-    // Convert BitSets to byte arrays for storage
     val serializedRevisions = revisions
       .map { case (rev: Revision) =>
-        val templatePresenceString =
-          bitSetToString(rev.templatePresence)
-        val templateAddedString = bitSetToString(rev.templateAdded)
-        val templateRemovedString = bitSetToString(rev.templateRemoved)
-
-        val templatePresenceGTString = bitSetToString(rev.templatePresenceGT)
-        val templateAddedGTString = bitSetToString(rev.templateAddedGT)
-        val templateRemovedGTString = bitSetToString(rev.templateRemovedGT)
-
         (
           rev.revisionId,
+          rev.pairId,
           rev.pageId,
-          rev.parentId,
-          rev.timestamp,
-          templatePresenceString,
-          templateAddedString,
-          templateRemovedString,
-          templatePresenceGTString,
-          templateAddedGTString,
-          templateRemovedGTString,
+          if (rev.templateAdded) "1.0" else "0.0",
+          if (rev.templateRemoved) "1.0" else "0.0",
+          if (rev.templateAddedGT) "1.0" else "0.0",
+          if (rev.templateRemovedGT) "1.0" else "0.0",
           rev.sources
         )
       }
       .toDF(
         "revId",
+        "pairId", 
         "pageId",
-        "parentId",
-        "timestamp",
-        "tP",
         "tA",
         "tR",
-        "tP_GT",
         "tA_GT",
         "tR_GT",
         "src"
@@ -156,55 +108,26 @@ class RevisionManager(
 
     // Convert back to RDD[Revision]
     serializedRevisionsDF.rdd.map { row =>
-      val templatePresence = stringToBitSet(
-        row.getAs[String]("tP"),
-        Types.TemplateBitPositions.size
-      )
-      val templateAdded = stringToBitSet(
-        row.getAs[String]("tA"),
-        Types.TemplateBitPositions.size
-      )
-      val templateRemoved = stringToBitSet(
-        row.getAs[String]("tR"),
-        Types.TemplateBitPositions.size
-      )
+      val templateAdded = row.getAs[String]("tA").toFloat
+      val templateRemoved = row.getAs[String]("tR").toFloat
 
       // GT
-      val templatePresenceGT =
-        if (!hasGTData) templatePresence
-        else
-          stringToBitSet(
-            row.getAs[String]("tP_GT"),
-            Types.TemplateBitPositions.size
-          )
-
       val templateAddedGT =
         if (!hasGTData) templateAdded
-        else
-          stringToBitSet(
-            row.getAs[String]("tA_GT"),
-            Types.TemplateBitPositions.size
-          )
+        else row.getAs[String]("tA_GT").toFloat
 
       val templateRemovedGT =
         if (!hasGTData) templateRemoved
-        else
-          stringToBitSet(
-            row.getAs[String]("tR_GT"),
-            Types.TemplateBitPositions.size
-          )
+        else row.getAs[String]("tR_GT").toFloat
 
       new Revision(
         row.getAs[Long]("revId"),
+        row.getAs[Long]("pairId"),
         row.getAs[Int]("pageId"),
-        row.getAs[Long]("parentId"),
-        row.getAs[Long]("timestamp"),
-        templatePresence,
-        templateAdded,
-        templateRemoved,
-        templatePresenceGT,
-        templateAddedGT,
-        templateRemovedGT,
+        templateAdded == 1.0f,
+        templateRemoved == 1.0f,
+        templateAddedGT == 1.0f,
+        templateRemovedGT == 1.0f,
         row.getAs[Seq[String]]("src")
       )
     }

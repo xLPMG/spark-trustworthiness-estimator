@@ -26,6 +26,11 @@ object SourceEvalJob {
     } else if (args.length < 2) {
       logger.error("Please specify the revisions folder name")
       System.exit(1)
+    } else if (args.length < 3) {
+      logger.error(
+        "Please specify the template name"
+      )
+      System.exit(1)
     }
 
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
@@ -33,6 +38,7 @@ object SourceEvalJob {
 
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
+    val template = args(2)
 
     implicit val spark = SparkSession
       .builder()
@@ -42,52 +48,28 @@ object SourceEvalJob {
       new RevisionManager(spark, dataFolderPath)
 
     val revisions = revisionManager.loadRevisions(revisionsFolderName)
-
-    // template -> [source -> probabilities]
-    val templateToSourceProbabilities = TemplateBitPositions.map {
-      case (template, position) =>
-        val sourceProbabilities = SourceEvaluator.evaluateSources(
-          revisions,
-          position
-        )
-
-        (template -> sourceProbabilities)
-    }.toMap
+    val sourceProbabilities = SourceEvaluator.evaluateSources(revisions)
 
     import spark.implicits._
     import org.apache.spark.sql.functions._
     import org.apache.spark.sql.types._
-    val templateNames =
-      TemplateBitPositions.keySet.toSeq.map(_.toLowerCase.replace(" ", "-"))
 
     val sourceProbabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"source-probabilities-$dateString")
+        .resolve(s"source-probabilities-$template-$dateString")
 
-    val sourceProbabilitiesDF = templateToSourceProbabilities
-      .flatMap { case (template, sourceProbabilities) =>
-        sourceProbabilities.map { case (source, probabilities) =>
+    val sourceProbabilitiesDF = sourceProbabilities.map { case (source, probabilities) =>
           val probabilitiesString =
-            if (probabilities.isUndecided) ""
+            if (probabilities.isUndecided) null
             else probabilities.extractValuesString
-          (source, template.toLowerCase.replace(" ", "-"), probabilitiesString)
+          (source, probabilitiesString)
         }
-      }
       .toSeq
-      .toDF("src", "template", "probabilities")
+      .toDF("src", "probability")
 
-    val pivotedDF = sourceProbabilitiesDF
-      .groupBy("src")
-      .pivot("template", templateNames)
-      .agg(first("probabilities"))
-
-    // Replace empty strings with null
-    val cleanedDF = pivotedDF.na.replace(pivotedDF.columns, Map("" -> null))
-
-    cleanedDF.write
+    sourceProbabilitiesDF.write
       .option("header", "true")
-      .option("compression", "gzip")
       .csv(sourceProbabilitiesOutputPath.toString)
 
     spark.stop()
