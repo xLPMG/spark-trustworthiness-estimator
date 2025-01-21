@@ -30,7 +30,7 @@ final case class TemplateProbabilityVector(
       case Success(result) => result
       case Failure(error) =>
         println(s"Error converting probability: ${probabilityTemplateAdded};${probabilityTemplateRemoved} with ${error.getMessage}")
-        s"(ERROR)"
+        "(ERROR)"
     }
   }
 
