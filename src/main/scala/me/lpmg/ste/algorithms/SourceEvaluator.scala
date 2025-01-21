@@ -41,11 +41,14 @@ object SourceEvaluator extends Serializable {
   ): RDD[(String, TemplateProbabilityVector)] = {
     revisions
       .flatMap { revision =>
+        val templateAdded = revision.templateAdded.get(sourceTemplatePosition)
+        val templateRemoved =
+          revision.templateRemoved.get(sourceTemplatePosition)
+
         revision.sources.map { source =>
           val counts =
-            if (revision.templateAdded.get(sourceTemplatePosition)) (1, 0)
-            else if (revision.templateRemoved.get(sourceTemplatePosition))
-              (0, 1)
+            if (templateAdded) (1, 0)
+            else if (templateRemoved) (0, 1)
             else (0, 0)
 
           (source, counts)
@@ -55,15 +58,14 @@ object SourceEvaluator extends Serializable {
       .reduceByKey { case ((added1, removed1), (added2, removed2)) =>
         (added1 + added2, removed1 + removed2)
       }
-      // Calculate probabilities
+      // Calculate probabilities with additive smoothing
       .mapValues { case (added, removed) =>
-        val total = added + removed
-        if (total == 0) TemplateProbabilityVector(0.5f, 0.5f)
-        else
-          TemplateProbabilityVector(
-            (added) / total,
-            (removed) / total
-          )
+        val alpha = 1.0f
+        val total = (added + alpha) + (removed + alpha)
+        TemplateProbabilityVector(
+          (added + alpha) / total,
+          (removed + alpha) / total
+        )
       }
       .filter(!_._2.isUndecided)
   }
