@@ -29,6 +29,8 @@ object ParseJob {
     val dataFolderPath = args(1)
     val template = args(2)
 
+    logger.warn(s"Filtering for template: $template")
+
     implicit val spark = SparkSession
       .builder()
       .getOrCreate()
