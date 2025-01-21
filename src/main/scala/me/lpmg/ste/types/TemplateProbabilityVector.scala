@@ -33,4 +33,8 @@ final case class TemplateProbabilityVector(
         s"(ERROR)"
     }
   }
+
+  override def toString(): String = {
+    extractValuesString
+  }
 }

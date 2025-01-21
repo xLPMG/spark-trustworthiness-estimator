@@ -28,6 +28,12 @@ object ProbabilityHandler {
       throw new IllegalArgumentException("Input sequence is empty")
     }
 
+    if (probs.forall(_.probabilityTemplateAdded == 1.0)) {
+      return TemplateProbabilityVector(1.0f, 0.0f)
+    } else if (probs.forall(_.probabilityTemplateRemoved == 1.0)) {
+      return TemplateProbabilityVector(0.0f, 1.0f)
+    }
+
     // Compute the max log probabilities for numerical stability
     val maxLogAdd = probs.map(p => math.log(p.probabilityTemplateAdded)).max
     val maxLogRemove =

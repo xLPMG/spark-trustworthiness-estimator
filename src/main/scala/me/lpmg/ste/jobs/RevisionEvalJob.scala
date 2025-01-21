@@ -29,6 +29,9 @@ object RevisionEvalJob {
     } else if (args.length < 3) {
       logger.error("Please specify the source probabilities folder")
       System.exit(1)
+    } else if (args.length < 4) {
+      logger.error("Please specify the template")
+      System.exit(1)
     }
 
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
@@ -37,6 +40,7 @@ object RevisionEvalJob {
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
     val sourceProbabilitiesFolderName = args(2)
+    val template = args(3)
 
     implicit val spark = SparkSession
       .builder()
@@ -62,84 +66,64 @@ object RevisionEvalJob {
 
     import org.apache.spark.sql.functions._
     import spark.implicits._
-    val templateNames =
-      TemplateBitPositions.keySet.toSeq.map(_.toLowerCase.replace(" ", "-"))
 
-    // template -> [source -> probabilities]
-    val templateToSourceProbabilitiesMap = sourceProbabilitiesDF
-      .flatMap { row =>
-        val source = row.getAs[String]("src")
-        row.schema.fieldNames.filter(_ != "src").map { template =>
-          val templateName = template.toLowerCase.replace(" ", "-")
-          val probabilitiesString = row.getAs[String](template)
-
-          val probabilityVector =
-            if (null == probabilitiesString || probabilitiesString.isEmpty) {
-              DefaultTemplateProbabilityVector
-            } else {
-              val pA = probabilitiesString
-                .stripPrefix("(")
-                .stripSuffix(")")
-                .split(";")
-                .map(_.toFloat)
-              TemplateProbabilityVector(pA(0), pA(1))
-            }
-
-          (templateName, source, probabilityVector)
-        }
-      }
+    // source -> TemplateProbabilityVector
+    val sourceProbabilitiesMap = sourceProbabilitiesDF
+      .select("src", "probability")
       .rdd
-      .groupBy(_._1)
-      .mapValues(_.map { case (_, source, templateProbabilityVector) =>
-        (source, templateProbabilityVector)
-      }.toMap)
+      .map { row =>
+        val source = row.getAs[String]("src")
+        val probabilitiesString = row.getAs[String]("probability")
+
+        val probabilityVector =
+          if (null == probabilitiesString || probabilitiesString.isEmpty) {
+            DefaultTemplateProbabilityVector
+          } else {
+            val pA = probabilitiesString
+              .stripPrefix("(")
+              .stripSuffix(")")
+              .split(";")
+              .map(_.toFloat)
+            TemplateProbabilityVector(pA(0), pA(1))
+          }
+
+        (source, probabilityVector)
+      }
       .collectAsMap()
 
-    val revisionToTemplateProbabilities = revisions
-      // CALCULATE PROBABILITIES FOR EACH REVISION
-      .flatMap { revision =>
-        // template -> probabilities
-        templateToSourceProbabilitiesMap.flatMap {
-          case (template, sourceToProbabilities) =>
-            // probabilities for each source
-            val probabilities = revision.sources
-              .map(source =>
-                sourceToProbabilities
-                  .getOrElse(
-                    source,
-                    DefaultTemplateProbabilityVector
-                  )
-              )
-              .toSeq
+    val revisionToProbabilities = revisions
+      .map { revision =>
+        // probabilities for each source
+        val probabilities = revision.sources
+          .map(source =>
+            sourceProbabilitiesMap
+              .getOrElse(source, DefaultTemplateProbabilityVector)
+          )
+          .toSeq
 
-            if (probabilities.isEmpty) {
-              None
-            } else {
-              val accumulatedProbabilities =
-                ProbabilityHandler.logarithmicCombination(probabilities)
-              Some((revision.revisionId, template, accumulatedProbabilities))
-            }
+        if (probabilities.isEmpty) {
+          (revision.revisionId, DefaultTemplateProbabilityVector)
+        } else {
+          val accumulatedProbabilities =
+            ProbabilityHandler.logarithmicCombination(probabilities)
+          (revision.revisionId, accumulatedProbabilities)
         }
       }
-      .filter(!_._3.isUndecided())
-      .map { case (revisionId, template, probabilities) =>
-        (revisionId, template, probabilities.extractValuesString)
+      .filter(!_._2.isUndecided())
+      // Map probability values to string representation
+      .map { case (revisionId, probabilities) =>
+        (revisionId, probabilities.extractValuesString)
       }
 
-    val probabilitiesDF = revisionToTemplateProbabilities
-      .toDF("revision_id", "template", "probability")
-
-    val pivotedDF = probabilitiesDF
-      .groupBy("revision_id")
-      .pivot("template", templateNames)
-      .agg(first("probability"))
+    val probabilitiesDF =
+      revisionToProbabilities.toDF("revision_id", "probability")
 
     val probabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"template-probabilities-$dateString")
+        .resolve(s"probabilities-$template-$dateString")
 
-    pivotedDF.write
+    probabilitiesDF.write
       .mode("overwrite")
       .option("header", "true")
       .option("nullValue", "")

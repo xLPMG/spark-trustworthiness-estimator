@@ -16,6 +16,6 @@ spark-submit \
   --conf spark.driver.maxResultSize=4g \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
-  /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data \
+  /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data2 \
   revisions-2025-01-15T18-03-56Z
   

@@ -39,10 +39,6 @@ object ParseJob {
     val filesRDD = spark.sparkContext.binaryFiles(s"$dumpFolderPath/*.bz2")
     val revisions = revisionManager.retrieveRevisions(filesRDD, template)
 
-    logger.warn(
-      s"Number of revisions: ${revisions.count()}"
-    )
-
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
     val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
     revisionManager.saveRevisionsToFile(revisions, s"revisions-$template-$dateString")
