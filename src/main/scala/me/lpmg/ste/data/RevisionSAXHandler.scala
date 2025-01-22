@@ -19,14 +19,13 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
   // State tracking variables
   private var insidePage = false
   private var insideRevision = false
-  private var insideContributor = false
   private var isMainNamespace = false
   private var isRedirect = false
 
   // Current page and revision context
-  private var pageId: Int = 0
-  private var currentRevisionId: Long = 0
-  private var currentText: String = ""
+  private var pageId: Option[Int] = None
+  private var currentRevisionId: Option[Long] = None
+  private var currentRevisionText: String = ""
 
   // Template tracking
   private var firstTemplateRevision: Option[Revision] = None
@@ -45,19 +44,17 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
     charBuffer.clear()
 
     qName match {
-      case "revision" =>
+      case "revision" if !isRedirect && isMainNamespace =>
         insideRevision = true
+        currentRevisionId = None
         currentTemplatePresent = false
-
-      case "contributor" =>
-        insideContributor = true
+        currentRevisionText = ""
 
       case "page" =>
         insidePage = true
-        insideContributor = false
         isMainNamespace = false
         isRedirect = false
-        pageId = 0
+        pageId = None
         firstTemplateRevision = None
         lastTemplateRevision = None
 
@@ -77,23 +74,23 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
     val bufferContent = charBuffer.toString.trim
     qName match {
       // REVISION RELATED
-      case "revision" if insidePage && !isRedirect && isMainNamespace =>
+      case "revision" if !isRedirect && isMainNamespace =>
         // Process revision
-        val templateCheck = checkTemplatePresence(currentText)
+        val templateCheck = checkTemplatePresence(currentRevisionText)
 
         if (templateCheck) {
           // First revision with template
           if (firstTemplateRevision.isEmpty) {
             firstTemplateRevision = Some(
               Revision(
-                revisionId = currentRevisionId,
+                revisionId = currentRevisionId.get,
                 pairId = 0L, // Will be set later
-                pageId = pageId,
+                pageId = pageId.get,
                 templateAdded = true,
                 templateRemoved = false,
                 templateAddedGT = true,
                 templateRemovedGT = false,
-                sources = SourceExtractor.extractSources(currentText)
+                sources = SourceExtractor.extractSources(currentRevisionText)
               )
             )
           }
@@ -102,15 +99,15 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           // Second revision without template
           lastTemplateRevision = Some(
             Revision(
-              revisionId = currentRevisionId,
+              revisionId = currentRevisionId.get,
               pairId =
                 firstTemplateRevision.get.revisionId, // Link to the first revision
-              pageId = pageId,
+              pageId = pageId.get,
               templateAdded = false,
               templateRemoved = true,
               templateAddedGT = false,
               templateRemovedGT = true,
-              sources = SourceExtractor.extractSources(currentText)
+              sources = SourceExtractor.extractSources(currentRevisionText)
             )
           )
 
@@ -131,14 +128,11 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
 
         insideRevision = false
 
-      case "id" if insideRevision && !insideContributor =>
-        currentRevisionId = bufferContent.toLong
-
-      case "contributor" =>
-        insideContributor = false
+      case "id" if insideRevision && !currentRevisionId.isDefined =>
+        currentRevisionId = Some(bufferContent.toLong)
 
       case "text" if insideRevision =>
-        currentText = bufferContent
+        currentRevisionText = bufferContent
 
       // PAGE RELATED
       case "page" =>
@@ -151,8 +145,8 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           isMainNamespace = true
         }
 
-      case "id" if insidePage && !insideRevision =>
-        pageId = bufferContent.toInt
+      case "id" if insidePage && !insideRevision && !pageId.isDefined =>
+        pageId = Some(bufferContent.toInt)
 
       case _ =>
       // Do nothing for other elements

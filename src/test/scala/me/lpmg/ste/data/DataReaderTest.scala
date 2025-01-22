@@ -46,35 +46,35 @@ class DataReaderTest extends munit.FunSuite {
     assertEquals(revisionsChecked, 4)
   }
 
-//   test("extractSources") {
-//     val filePath = "src/test/resources/dump/test-dump-2.xml"
-//     val inputStream: InputStream = new FileInputStream(filePath)
-//     val revisions = DataReader.getRevisions(inputStream, "circular")
-//     val revision = revisions.head
-//     val sources = revision.sources
+  test("extractSources") {
+    val filePath = "src/test/resources/dump/test-dump-2.xml"
+    val inputStream: InputStream = new FileInputStream(filePath)
+    val revisions = DataReader.getRevisions(inputStream, "circular")
+    val revision = revisions.head
+    val sources = revision.sources
 
-//     // References
-//     assert(sources.contains("cbc.ca"))
-//     assert(sources.contains("whyfiles.org"))
-//     assert(sources.contains("ISBN:0684182413"))
-//     assert(sources.contains("mdw.ac.at"))
-//     assert(sources.contains("antiquity.ac.uk"))
+    // References
+    assert(sources.contains("cbc.ca"))
+    assert(sources.contains("whyfiles.org"))
+    assert(sources.contains("ISBN:0684182413"))
+    assert(sources.contains("mdw.ac.at"))
+    assert(sources.contains("antiquity.ac.uk"))
 
-//     // External Links
-//     assert(sources.contains("fluteinfo.com"))
-//     assert(sources.contains("memory.loc.gov"))
-//     assert(sources.contains("flutehistory.com"))
-//     assert(sources.contains("flutes.tk"))
-//     assert(sources.contains("thegalwaynetwork.com"))
-//     assert(sources.contains("larrykrantz.com"))
-//     assert(sources.contains("telus.net"))
-//     assert(sources.contains("johnmcmurtery.com"))
-//     assert(sources.contains("neyneva.com"))
-//     assert(sources.contains("wfg.woodwind.org"))
-//     assert(sources.contains("webindia123.com"))
-//     assert(sources.contains("ronkorb.com"))
-//     assert(sources.contains("bansuriflute.com"))
-//     assert(sources.contains("pnoyandthecity.blogspot.com"))
-//     assert(sources.contains("beloplatno.rastko.net"))
-//   }
+    // External Links
+    assert(sources.contains("fluteinfo.com"))
+    assert(sources.contains("memory.loc.gov"))
+    assert(sources.contains("flutehistory.com"))
+    assert(sources.contains("flutes.tk"))
+    assert(sources.contains("thegalwaynetwork.com"))
+    assert(sources.contains("larrykrantz.com"))
+    assert(sources.contains("telus.net"))
+    assert(sources.contains("johnmcmurtery.com"))
+    assert(sources.contains("neyneva.com"))
+    assert(sources.contains("wfg.woodwind.org"))
+    assert(sources.contains("webindia123.com"))
+    assert(sources.contains("ronkorb.com"))
+    assert(sources.contains("bansuriflute.com"))
+    assert(sources.contains("pnoyandthecity.blogspot.com"))
+    assert(sources.contains("beloplatno.rastko.net"))
+  }
 }
