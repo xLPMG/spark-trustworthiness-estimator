@@ -43,6 +43,17 @@ object RevisionEvalJob {
     val template = args(3)
     val escapedTemplate = template.toLowerCase().replace(" ", "-")
 
+    var testSplitRevision = 0L
+    if (args.length > 4) {
+      try {
+        testSplitRevision = args(4).toLong
+      } catch {
+        case e: NumberFormatException =>
+          logger.error("Invalid test split revision number")
+          System.exit(1)
+      }
+    }
+
     implicit val spark = SparkSession
       .builder()
       .getOrCreate()
@@ -50,8 +61,10 @@ object RevisionEvalJob {
     val revisionManager =
       new RevisionManager(spark, dataFolderPath)
 
-    val revisions: RDD[Revision] =
-      revisionManager.loadRevisions(revisionsFolderName)
+    // only load test split revisions for evaluation
+    val revisions: RDD[Revision] = revisionManager
+      .loadRevisions(revisionsFolderName)
+      .filter(_.revisionId >= testSplitRevision)
 
     val sourceProbabilitiesFolderPath =
       Path.of(dataFolderPath).resolve(sourceProbabilitiesFolderName)

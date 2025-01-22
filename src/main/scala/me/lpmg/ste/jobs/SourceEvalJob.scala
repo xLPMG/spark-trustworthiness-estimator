@@ -14,6 +14,8 @@ import me.lpmg.ste.types.Types.TemplateBitPositions
 import org.apache.spark.sql.Row
 import me.lpmg.ste.types.TemplateProbabilityVector
 import me.lpmg.ste.algorithms.ProbabilityHandler
+import org.apache.spark.rdd.RDD
+import me.lpmg.ste.data.Revision
 
 object SourceEvalJob {
 
@@ -41,6 +43,17 @@ object SourceEvalJob {
     val template = args(2)
     val escapedTemplate = template.toLowerCase().replace(" ", "-")
 
+    var testSplitRevision = Long.MaxValue
+    if (args.length > 3) {
+      try {
+        testSplitRevision = args(3).toLong
+      } catch {
+        case e: NumberFormatException =>
+          logger.error("Invalid test split revision number")
+          System.exit(1)
+      }
+    }
+
     implicit val spark = SparkSession
       .builder()
       .getOrCreate()
@@ -48,7 +61,10 @@ object SourceEvalJob {
     val revisionManager =
       new RevisionManager(spark, dataFolderPath)
 
-    val revisions = revisionManager.loadRevisions(revisionsFolderName)
+    // only load revisions up to the test split revision for source evaluation
+    val revisions: RDD[Revision] = revisionManager
+      .loadRevisions(revisionsFolderName)
+      .filter(_.revisionId < testSplitRevision)
     val sourceProbabilities = SourceEvaluator.evaluateSources(revisions)
 
     import spark.implicits._
@@ -60,12 +76,13 @@ object SourceEvalJob {
         .of(dataFolderPath)
         .resolve(s"source-probabilities-$escapedTemplate-$dateString")
 
-    val sourceProbabilitiesDF = sourceProbabilities.map { case (source, probabilities) =>
-          val probabilitiesString =
-            if (probabilities.isUndecided) null
-            else probabilities.extractValuesString
-          (source, probabilitiesString)
-        }
+    val sourceProbabilitiesDF = sourceProbabilities
+      .map { case (source, probabilities) =>
+        val probabilitiesString =
+          if (probabilities.isUndecided) null
+          else probabilities.extractValuesString
+        (source, probabilitiesString)
+      }
       .toSeq
       .toDF("src", "probability")
 

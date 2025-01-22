@@ -17,5 +17,5 @@ spark-submit \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20220901 \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data2 \
-  dubious
+  third-party
   

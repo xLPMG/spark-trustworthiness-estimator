@@ -79,18 +79,11 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
       // REVISION RELATED
       case "revision" if insidePage && !isRedirect && isMainNamespace =>
         // Process revision
-        val templateCheck = checkTemplatePresence(bufferContent)
+        val templateCheck = checkTemplatePresence(currentText)
 
         if (templateCheck) {
           // First revision with template
           if (firstTemplateRevision.isEmpty) {
-            if (pageId == 0) {
-              print("Revision without page: ")
-              print(currentRevisionId)
-              print(" ")
-              print(firstTemplateRevision.get.revisionId)
-              println()
-            }
             firstTemplateRevision = Some(
               Revision(
                 revisionId = currentRevisionId,
@@ -100,19 +93,12 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
                 templateRemoved = false,
                 templateAddedGT = true,
                 templateRemovedGT = false,
-                sources = SourceExtractor.extractSources(bufferContent)
+                sources = SourceExtractor.extractSources(currentText)
               )
             )
           }
           currentTemplatePresent = true
         } else if (firstTemplateRevision.isDefined && !currentTemplatePresent) {
-          if (pageId == 0) {
-            print("Paired revision without page: ")
-            print(currentRevisionId)
-            print(" ")
-            print(firstTemplateRevision.get.revisionId)
-            println()
-          }
           // Second revision without template
           lastTemplateRevision = Some(
             Revision(
@@ -124,7 +110,7 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
               templateRemoved = true,
               templateAddedGT = false,
               templateRemovedGT = true,
-              sources = SourceExtractor.extractSources(bufferContent)
+              sources = SourceExtractor.extractSources(currentText)
             )
           )
 
