@@ -87,7 +87,6 @@ object SourceEvalJob {
       .toDF("src", "probability")
 
     sourceProbabilitiesDF
-      .coalesce(1)
       .write
       .option("header", "true")
       .csv(sourceProbabilitiesOutputPath.toString)

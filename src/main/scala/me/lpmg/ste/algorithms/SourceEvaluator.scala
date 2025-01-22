@@ -30,7 +30,7 @@ object SourceEvaluator extends Serializable {
     * @param revisions
     *   RDD of revisions
     * @return
-    *   RDD of source URLs and their probabilities (added, removed, unchanged)
+    *   RDD of source URLs and their probabilities (added, removed)
     */
   def evaluateSourcesDistributed(
       revisions: RDD[Revision]
