@@ -28,6 +28,7 @@ object ParseJob {
     val dumpFolderPath = args(0)
     val dataFolderPath = args(1)
     val template = args(2)
+    val escapedTemplate = template.toLowerCase().replace(" ", "-")
 
     logger.warn(s"Filtering for template: $template")
 
@@ -43,7 +44,7 @@ object ParseJob {
 
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
     val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
-    revisionManager.saveRevisionsToFile(revisions, s"revisions-$template-$dateString")
+    revisionManager.saveRevisionsToFile(revisions, s"revisions-$escapedTemplate-$dateString")
 
     logger.warn(s"Total Time: ${Watch.stopFormatted("parseJob")}")
     spark.stop()

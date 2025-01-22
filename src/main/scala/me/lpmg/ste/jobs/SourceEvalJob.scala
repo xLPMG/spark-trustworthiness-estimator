@@ -39,6 +39,7 @@ object SourceEvalJob {
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
     val template = args(2)
+    val escapedTemplate = template.toLowerCase().replace(" ", "-")
 
     implicit val spark = SparkSession
       .builder()
@@ -57,7 +58,7 @@ object SourceEvalJob {
     val sourceProbabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"source-probabilities-$template-$dateString")
+        .resolve(s"source-probabilities-$escapedTemplate-$dateString")
 
     val sourceProbabilitiesDF = sourceProbabilities.map { case (source, probabilities) =>
           val probabilitiesString =

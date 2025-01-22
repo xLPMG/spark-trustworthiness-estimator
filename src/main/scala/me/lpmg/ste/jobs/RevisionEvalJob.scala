@@ -41,6 +41,7 @@ object RevisionEvalJob {
     val revisionsFolderName = args(1)
     val sourceProbabilitiesFolderName = args(2)
     val template = args(3)
+    val escapedTemplate = template.toLowerCase().replace(" ", "-")
 
     implicit val spark = SparkSession
       .builder()
@@ -121,7 +122,7 @@ object RevisionEvalJob {
     val probabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"probabilities-$template-$dateString")
+        .resolve(s"probabilities-$escapedTemplate-$dateString")
 
     probabilitiesDF.write
       .mode("overwrite")
