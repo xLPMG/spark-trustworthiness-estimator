@@ -83,8 +83,8 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           if (firstTemplateRevision.isEmpty) {
             firstTemplateRevision = Some(
               Revision(
-                revisionId = currentRevisionId.get,
-                pairId = 0L, // Will be set later
+                revisionId = currentRevisionId.getOrElse(-1L),
+                pairId = -1L, // Will be set later
                 pageId = pageId.get,
                 templateAdded = true,
                 templateRemoved = false,
@@ -99,10 +99,10 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           // Second revision without template
           lastTemplateRevision = Some(
             Revision(
-              revisionId = currentRevisionId.get,
+              revisionId = currentRevisionId.getOrElse(-1L),
               pairId =
                 firstTemplateRevision.get.revisionId, // Link to the first revision
-              pageId = pageId.get,
+              pageId = pageId.getOrElse(-1),
               templateAdded = false,
               templateRemoved = true,
               templateAddedGT = false,
