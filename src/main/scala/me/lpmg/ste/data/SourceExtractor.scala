@@ -36,7 +36,7 @@ object SourceExtractor {
 
       val url = new URL(cleanedUrlStr)
       val host = url.getHost
-      val domain = publicSuffixList.getRegistrableDomain(host)
+      val domain = publicSuffixList.getRegistrableDomain(host).toLowerCase()
       if (null == domain) {
         return None
       } else {

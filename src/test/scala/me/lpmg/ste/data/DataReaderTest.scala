@@ -53,6 +53,8 @@ class DataReaderTest extends munit.FunSuite {
     val revision = revisions.head
     val sources = revision.sources
 
+    print(sources)
+
     // References
     assert(sources.contains("cbc.ca"))
     assert(sources.contains("whyfiles.org"))
@@ -62,7 +64,7 @@ class DataReaderTest extends munit.FunSuite {
 
     // External Links
     assert(sources.contains("fluteinfo.com"))
-    assert(sources.contains("memory.loc.gov"))
+    assert(sources.contains("loc.gov"))
     assert(sources.contains("flutehistory.com"))
     assert(sources.contains("flutes.tk"))
     assert(sources.contains("thegalwaynetwork.com"))
@@ -70,11 +72,11 @@ class DataReaderTest extends munit.FunSuite {
     assert(sources.contains("telus.net"))
     assert(sources.contains("johnmcmurtery.com"))
     assert(sources.contains("neyneva.com"))
-    assert(sources.contains("wfg.woodwind.org"))
+    assert(sources.contains("woodwind.org"))
     assert(sources.contains("webindia123.com"))
     assert(sources.contains("ronkorb.com"))
     assert(sources.contains("bansuriflute.com"))
     assert(sources.contains("pnoyandthecity.blogspot.com"))
-    assert(sources.contains("beloplatno.rastko.net"))
+    assert(sources.contains("rastko.net"))
   }
 }
