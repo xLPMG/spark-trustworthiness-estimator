@@ -28,16 +28,16 @@ object ProbabilityHandler {
       throw new IllegalArgumentException("Input sequence is empty")
     }
 
-    if (probs.forall(_.probabilityTemplateAdded == 1.0)) {
+    if (probs.forall(_.probabilityTemplateAdded >= 0.999999f)) {
       return TemplateProbabilityVector(1.0f, 0.0f)
-    } else if (probs.forall(_.probabilityTemplateRemoved == 1.0)) {
+    } else if (probs.forall(_.probabilityTemplateRemoved >= 0.999999f)) {
       return TemplateProbabilityVector(0.0f, 1.0f)
     }
 
     // Compute the max log probabilities for numerical stability
-    val maxLogAdd = probs.map(p => math.log(p.probabilityTemplateAdded)).max
+    val maxLogAdd = probs.map(p => math.log(p.probabilityTemplateAdded)).reduceOption(_ max _).getOrElse(Double.NegativeInfinity)
     val maxLogRemove =
-      probs.map(p => math.log(p.probabilityTemplateRemoved)).max
+      probs.map(p => math.log(p.probabilityTemplateRemoved)).reduceOption(_ max _).getOrElse(Double.NegativeInfinity)
 
     // Compute stable log-space sum
     val logAdd = maxLogAdd + math.log(
@@ -59,7 +59,7 @@ object ProbabilityHandler {
     val sumExp = expAdd + expRemove
 
     // Handle edge case: sumExp is zero
-    if (sumExp == 0.0f) {
+    if (sumExp <= 0.00001f) {
       // Default to a uniform distribution to avoid NaN
       return TemplateProbabilityVector(0.5f, 0.5f)
     }
@@ -83,9 +83,9 @@ object ProbabilityHandler {
     val probs = probsWithOccurences.map(_._1)
     val weights = probsWithOccurences.map(_._2).map(occurencesToWeight)
 
-    if (probs.forall(_.probabilityTemplateAdded == 1.0)) {
+    if (probs.forall(_.probabilityTemplateAdded >= 0.999999f)) {
       return TemplateProbabilityVector(1.0f, 0.0f)
-    } else if (probs.forall(_.probabilityTemplateRemoved == 1.0)) {
+    } else if (probs.forall(_.probabilityTemplateRemoved >= 0.999999f)) {
       return TemplateProbabilityVector(0.0f, 1.0f)
     }
 

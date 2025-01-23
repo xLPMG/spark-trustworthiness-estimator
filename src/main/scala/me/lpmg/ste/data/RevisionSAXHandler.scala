@@ -85,7 +85,7 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
               Revision(
                 revisionId = currentRevisionId.getOrElse(-1L),
                 pairId = -1L, // Will be set later
-                pageId = pageId.get,
+                pageId = pageId.getOrElse(-1),
                 templateAdded = true,
                 templateRemoved = false,
                 templateAddedGT = true,
@@ -100,8 +100,7 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           lastTemplateRevision = Some(
             Revision(
               revisionId = currentRevisionId.getOrElse(-1L),
-              pairId =
-                firstTemplateRevision.get.revisionId, // Link to the first revision
+              pairId = firstTemplateRevision.map(_.revisionId).getOrElse(-1L), // Link to the first revision
               pageId = pageId.getOrElse(-1),
               templateAdded = false,
               templateRemoved = true,
@@ -112,14 +111,15 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           )
 
           // Add the pair to revisions if both are present
-          firstTemplateRevision.foreach(first =>
-            lastTemplateRevision.foreach(last => {
-              // Update firstTemplateRevision's pairId with last revision's revisionId
-              val updatedFirst = first.copy(pairId = last.revisionId)
-              revisions.append(updatedFirst)
-              revisions.append(last)
-            })
-          )
+          for {
+            first <- firstTemplateRevision
+            last <- lastTemplateRevision
+          } {
+            // Update firstTemplateRevision's pairId with last revision's revisionId
+            val updatedFirst = first.copy(pairId = last.revisionId)
+            revisions.append(updatedFirst)
+            revisions.append(last)
+          }
 
           // Reset for next potential pair
           firstTemplateRevision = None
@@ -168,6 +168,13 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
     lowercaseText.contains(s"{{$lowercaseTemplate}}") ||
     lowercaseText.contains(s"{{ $lowercaseTemplate }}") ||
     lowercaseText.contains(s"{{$lowercaseTemplate|")
+  }
+
+  // TODO: Implement these methods
+  private def resetRevision(): Unit = {
+  }
+
+  private def resetPage(): Unit = {
   }
 
   /** Get the collected revisions */

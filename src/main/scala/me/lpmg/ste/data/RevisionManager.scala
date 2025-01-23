@@ -120,14 +120,15 @@ class RevisionManager(
         if (!hasGTData) templateRemoved
         else row.getAs[String]("tR_GT").toFloat
 
+      val positiveLabelThreshold = 0.9999f
       new Revision(
         row.getAs[Long]("revId"),
         row.getAs[Long]("pairId"),
         row.getAs[Int]("pageId"),
-        templateAdded == 1.0f,
-        templateRemoved == 1.0f,
-        templateAddedGT == 1.0f,
-        templateRemovedGT == 1.0f,
+        templateAdded >= positiveLabelThreshold,
+        templateRemoved >= positiveLabelThreshold,
+        templateAddedGT >= positiveLabelThreshold,
+        templateRemovedGT >= positiveLabelThreshold,
         row.getAs[Seq[String]]("src")
       )
     }
