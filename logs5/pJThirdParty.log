@@ -1,0 +1,1475 @@
+25/01/23 23:02:38 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Files file:///mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-a148a2f2-930e-4e0a-95be-e0fbda592e5c/spark-trustworthiness-estimator-assembly-0.1.0.jar from /mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-a148a2f2-930e-4e0a-95be-e0fbda592e5c/spark-trustworthiness-estimator-assembly-0.1.0.jar to /tmp/spark-trustworthiness-estimator-assembly-0.1.0.jar
+25/01/23 23:06:09 WARN ParseJob$: Filtering for template: Third-party
+25/01/23 23:06:09 INFO SparkContext: Running Spark version 3.5.0
+25/01/23 23:06:09 INFO SparkContext: OS info Linux, 6.5.0-44-generic, amd64
+25/01/23 23:06:09 INFO SparkContext: Java version 11.0.21
+25/01/23 23:06:09 INFO ResourceUtils: ==============================================================
+25/01/23 23:06:09 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/01/23 23:06:09 INFO ResourceUtils: ==============================================================
+25/01/23 23:06:09 INFO SparkContext: Submitted application: Spark-Trustworthiness-Estimator-PARSEJOB
+25/01/23 23:06:09 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 4096, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/01/23 23:06:09 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+25/01/23 23:06:09 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/01/23 23:06:09 INFO SecurityManager: Changing view acls to: spark,lpmg
+25/01/23 23:06:09 INFO SecurityManager: Changing modify acls to: spark,lpmg
+25/01/23 23:06:09 INFO SecurityManager: Changing view acls groups to: 
+25/01/23 23:06:09 INFO SecurityManager: Changing modify acls groups to: 
+25/01/23 23:06:09 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark, lpmg; groups with view permissions: EMPTY; users with modify permissions: spark, lpmg; groups with modify permissions: EMPTY
+25/01/23 23:06:10 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
+25/01/23 23:06:10 INFO SparkEnv: Registering MapOutputTracker
+25/01/23 23:06:10 INFO SparkEnv: Registering BlockManagerMaster
+25/01/23 23:06:10 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/01/23 23:06:10 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/01/23 23:06:10 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/01/23 23:06:10 INFO DiskBlockManager: Created local directory at /var/data/spark-9b64af70-625f-4915-91e9-5d44980ca262/blockmgr-55b4b7e6-d91d-4874-9dd7-95a9a8060aca
+25/01/23 23:06:10 INFO MemoryStore: MemoryStore started with capacity 6.8 GiB
+25/01/23 23:06:10 INFO SparkEnv: Registering OutputCommitCoordinator
+25/01/23 23:06:11 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/01/23 23:06:11 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/01/23 23:06:11 INFO SparkContext: Added JAR file:/mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-a148a2f2-930e-4e0a-95be-e0fbda592e5c/spark-trustworthiness-estimator-assembly-0.1.0.jar at spark://spark-3a7e8f94956704e6-driver-svc.spark-jobs.svc:7078/jars/spark-trustworthiness-estimator-assembly-0.1.0.jar with timestamp 1737673569207
+25/01/23 23:06:11 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
+25/01/23 23:06:15 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
+25/01/23 23:06:15 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+25/01/23 23:06:15 INFO NettyBlockTransferService: Server created on spark-3a7e8f94956704e6-driver-svc.spark-jobs.svc 10.23.35.56:7079
+25/01/23 23:06:15 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/01/23 23:06:15 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, spark-3a7e8f94956704e6-driver-svc.spark-jobs.svc, 7079, None)
+25/01/23 23:06:15 INFO BlockManagerMasterEndpoint: Registering block manager spark-3a7e8f94956704e6-driver-svc.spark-jobs.svc:7079 with 6.8 GiB RAM, BlockManagerId(driver, spark-3a7e8f94956704e6-driver-svc.spark-jobs.svc, 7079, None)
+25/01/23 23:06:15 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, spark-3a7e8f94956704e6-driver-svc.spark-jobs.svc, 7079, None)
+25/01/23 23:06:15 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, spark-3a7e8f94956704e6-driver-svc.spark-jobs.svc, 7079, None)
+25/01/23 23:06:15 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
+25/01/23 23:06:15 INFO ExecutorAllocationManager: Dynamic allocation is enabled without a shuffle service.
+25/01/23 23:06:16 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+25/01/23 23:06:17 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 192.5 KiB, free 6.8 GiB)
+25/01/23 23:06:17 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 32.6 KiB, free 6.8 GiB)
+25/01/23 23:06:17 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on spark-3a7e8f94956704e6-driver-svc.spark-jobs.svc:7079 (size: 32.6 KiB, free: 6.8 GiB)
+25/01/23 23:06:17 INFO SparkContext: Created broadcast 0 from binaryFiles at ParseJob.scala:42
+25/01/23 23:06:22 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+25/01/23 23:06:22 INFO SharedState: Warehouse path is 'file:/tmp/spark-warehouse'.
+25/01/23 23:06:28 INFO ParquetUtils: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+25/01/23 23:06:29 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+25/01/23 23:06:29 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+25/01/23 23:06:29 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+25/01/23 23:06:29 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+25/01/23 23:06:29 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+25/01/23 23:06:29 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+25/01/23 23:06:30 INFO CodeGenerator: Code generated in 788.260113 ms
+25/01/23 23:06:30 INFO FileInputFormat: Total input files to process : 770
+25/01/23 23:06:31 INFO FileInputFormat: Total input files to process : 770
+25/01/23 23:06:31 INFO SparkContext: Starting job: parquet at RevisionManager.scala:84
+25/01/23 23:06:31 INFO DAGScheduler: Got job 0 (parquet at RevisionManager.scala:84) with 770 output partitions
+25/01/23 23:06:31 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at RevisionManager.scala:84)
+25/01/23 23:06:31 INFO DAGScheduler: Parents of final stage: List()
+25/01/23 23:06:31 INFO DAGScheduler: Missing parents: List()
+25/01/23 23:06:31 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[5] at parquet at RevisionManager.scala:84), which has no missing parents
+25/01/23 23:06:32 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 239.5 KiB, free 6.8 GiB)
+25/01/23 23:06:32 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 85.0 KiB, free 6.8 GiB)
+25/01/23 23:06:32 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on spark-3a7e8f94956704e6-driver-svc.spark-jobs.svc:7079 (size: 85.0 KiB, free: 6.8 GiB)
+25/01/23 23:06:32 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1580
+25/01/23 23:06:32 INFO DAGScheduler: Submitting 770 missing tasks from ResultStage 0 (MapPartitionsRDD[5] at parquet at RevisionManager.scala:84) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+25/01/23 23:06:32 INFO TaskSchedulerImpl: Adding task set 0.0 with 770 tasks resource profile 0
+25/01/23 23:06:32 INFO ExecutorAllocationManager: Requesting 1 new executor because tasks are backlogged (new desired total will be 1 for resource profile id: 0)
+25/01/23 23:06:32 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
+25/01/23 23:06:32 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:33 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:33 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 3 for resource profile id: 0)
+25/01/23 23:06:34 INFO ExecutorPodsAllocator: Going to request 2 executors from Kubernetes for ResourceProfile Id: 0, target: 3, known: 1, sharedSlotFromPendingPods: 2147483646.
+25/01/23 23:06:34 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:34 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:34 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:34 INFO ExecutorAllocationManager: Requesting 4 new executors because tasks are backlogged (new desired total will be 7 for resource profile id: 0)
+25/01/23 23:06:35 INFO ExecutorPodsAllocator: Going to request 4 executors from Kubernetes for ResourceProfile Id: 0, target: 7, known: 3, sharedSlotFromPendingPods: 2147483644.
+25/01/23 23:06:35 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:35 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:35 INFO ExecutorAllocationManager: Requesting 8 new executors because tasks are backlogged (new desired total will be 15 for resource profile id: 0)
+25/01/23 23:06:35 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:36 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:36 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:36 INFO ExecutorAllocationManager: Requesting 16 new executors because tasks are backlogged (new desired total will be 31 for resource profile id: 0)
+25/01/23 23:06:37 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 31, known: 7, sharedSlotFromPendingPods: 2147483641.
+25/01/23 23:06:37 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:37 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:37 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:37 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:37 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:37 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:37 INFO ExecutorAllocationManager: Requesting 32 new executors because tasks are backlogged (new desired total will be 63 for resource profile id: 0)
+25/01/23 23:06:38 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 63, known: 12, sharedSlotFromPendingPods: 2147483636.
+25/01/23 23:06:38 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:38 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:38 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:38 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:38 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:38 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:38 INFO ExecutorAllocationManager: Requesting 64 new executors because tasks are backlogged (new desired total will be 127 for resource profile id: 0)
+25/01/23 23:06:39 INFO ExecutorAllocationManager: Requesting 23 new executors because tasks are backlogged (new desired total will be 150 for resource profile id: 0)
+25/01/23 23:06:39 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 17, sharedSlotFromPendingPods: 2147483632.
+25/01/23 23:06:39 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:39 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:40 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:40 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:40 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:40 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:41 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 22, sharedSlotFromPendingPods: 2147483631.
+25/01/23 23:06:41 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:41 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:41 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:41 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:41 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:41 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:42 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 27, sharedSlotFromPendingPods: 2147483628.
+25/01/23 23:06:42 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:43 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 32, sharedSlotFromPendingPods: 2147483626.
+25/01/23 23:06:44 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:45 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 37, sharedSlotFromPendingPods: 2147483625.
+25/01/23 23:06:45 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:45 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:45 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:45 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:45 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:45 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:46 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.138.57:41046
+25/01/23 23:06:46 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.101.185:38378
+25/01/23 23:06:46 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 42, sharedSlotFromPendingPods: 2147483626.
+25/01/23 23:06:46 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:46 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:46 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:46 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:46 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:47 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:47 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+25/01/23 23:06:47 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.138.57:41050) with ID 3,  ResourceProfileId 0
+25/01/23 23:06:47 INFO ExecutorMonitor: New executor 3 has registered (new total is 1)
+25/01/23 23:06:47 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.138.57:36599 with 2.1 GiB RAM, BlockManagerId(3, 10.23.138.57, 36599, None)
+25/01/23 23:06:47 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.68.151:52328
+25/01/23 23:06:48 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 47, sharedSlotFromPendingPods: 2147483628.
+25/01/23 23:06:48 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.101.185:38390) with ID 2,  ResourceProfileId 0
+25/01/23 23:06:48 INFO ExecutorMonitor: New executor 2 has registered (new total is 2)
+25/01/23 23:06:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.34:50014
+25/01/23 23:06:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.15:49580
+25/01/23 23:06:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:48 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.101.185:42345 with 2.1 GiB RAM, BlockManagerId(2, 10.23.101.185, 42345, None)
+25/01/23 23:06:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.196.239:43350
+25/01/23 23:06:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.68.151:52338) with ID 4,  ResourceProfileId 0
+25/01/23 23:06:49 INFO ExecutorMonitor: New executor 4 has registered (new total is 3)
+25/01/23 23:06:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.113.34:50024) with ID 1,  ResourceProfileId 0
+25/01/23 23:06:49 INFO ExecutorMonitor: New executor 1 has registered (new total is 4)
+25/01/23 23:06:49 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 52, sharedSlotFromPendingPods: 2147483624.
+25/01/23 23:06:49 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.68.151:38041 with 2.1 GiB RAM, BlockManagerId(4, 10.23.68.151, 38041, None)
+25/01/23 23:06:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.113.15:49594) with ID 5,  ResourceProfileId 0
+25/01/23 23:06:49 INFO ExecutorMonitor: New executor 5 has registered (new total is 5)
+25/01/23 23:06:49 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:49 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:49 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:49 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.113.34:38513 with 2.1 GiB RAM, BlockManagerId(1, 10.23.113.34, 38513, None)
+25/01/23 23:06:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.216.196:43456
+25/01/23 23:06:49 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:49 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:49 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.113.15:38511 with 2.1 GiB RAM, BlockManagerId(5, 10.23.113.15, 38511, None)
+25/01/23 23:06:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.196.239:43354) with ID 7,  ResourceProfileId 0
+25/01/23 23:06:50 INFO ExecutorMonitor: New executor 7 has registered (new total is 6)
+25/01/23 23:06:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.60.157:38726
+25/01/23 23:06:50 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:50 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.196.239:42285 with 2.1 GiB RAM, BlockManagerId(7, 10.23.196.239, 42285, None)
+25/01/23 23:06:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.216.196:43462) with ID 10,  ResourceProfileId 0
+25/01/23 23:06:50 INFO ExecutorMonitor: New executor 10 has registered (new total is 7)
+25/01/23 23:06:51 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.216.196:46651 with 2.1 GiB RAM, BlockManagerId(10, 10.23.216.196, 46651, None)
+25/01/23 23:06:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.60.157:38738) with ID 17,  ResourceProfileId 0
+25/01/23 23:06:51 INFO ExecutorMonitor: New executor 17 has registered (new total is 8)
+25/01/23 23:06:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.34.34:36272
+25/01/23 23:06:51 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.60.157:40281 with 2.1 GiB RAM, BlockManagerId(17, 10.23.60.157, 40281, None)
+25/01/23 23:06:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.99.215:36050
+25/01/23 23:06:51 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (10.23.138.57, executor 3, partition 0, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.42.23:42686
+25/01/23 23:06:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.31.100:33508
+25/01/23 23:06:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.233.226:55048
+25/01/23 23:06:52 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 57, sharedSlotFromPendingPods: 2147483629.
+25/01/23 23:06:52 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:52 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:52 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:52 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:52 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:52 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:52 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.138.57:36599 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.36.41:40690
+25/01/23 23:06:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.99.215:36058) with ID 19,  ResourceProfileId 0
+25/01/23 23:06:52 INFO ExecutorMonitor: New executor 19 has registered (new total is 9)
+25/01/23 23:06:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.42.23:52566) with ID 20,  ResourceProfileId 0
+25/01/23 23:06:52 INFO ExecutorMonitor: New executor 20 has registered (new total is 10)
+25/01/23 23:06:52 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1) (10.23.101.185, executor 2, partition 1, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.10.160:46334
+25/01/23 23:06:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.31.100:33510) with ID 13,  ResourceProfileId 0
+25/01/23 23:06:52 INFO ExecutorMonitor: New executor 13 has registered (new total is 11)
+25/01/23 23:06:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.222.227:46424
+25/01/23 23:06:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.43.83:40508
+25/01/23 23:06:52 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.99.215:33857 with 2.1 GiB RAM, BlockManagerId(19, 10.23.99.215, 33857, None)
+25/01/23 23:06:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.26.75:42372
+25/01/23 23:06:52 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.42.23:33655 with 2.1 GiB RAM, BlockManagerId(20, 10.23.42.23, 33655, None)
+25/01/23 23:06:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.233.226:37346) with ID 22,  ResourceProfileId 0
+25/01/23 23:06:53 INFO ExecutorMonitor: New executor 22 has registered (new total is 12)
+25/01/23 23:06:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.34.34:36280) with ID 15,  ResourceProfileId 0
+25/01/23 23:06:53 INFO ExecutorMonitor: New executor 15 has registered (new total is 13)
+25/01/23 23:06:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.31.100:44637 with 2.1 GiB RAM, BlockManagerId(13, 10.23.31.100, 44637, None)
+25/01/23 23:06:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.233.226:37183 with 2.1 GiB RAM, BlockManagerId(22, 10.23.233.226, 37183, None)
+25/01/23 23:06:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.75.152:59744
+25/01/23 23:06:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.85.95:53310
+25/01/23 23:06:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.0:43986
+25/01/23 23:06:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.34.34:46147 with 2.1 GiB RAM, BlockManagerId(15, 10.23.34.34, 46147, None)
+25/01/23 23:06:53 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.101.185:42345 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:53 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 62, sharedSlotFromPendingPods: 2147483627.
+25/01/23 23:06:53 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:53 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:53 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:53 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.76.44:51632
+25/01/23 23:06:53 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:53 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.138.57:36599 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.36.41:40694) with ID 21,  ResourceProfileId 0
+25/01/23 23:06:53 INFO ExecutorMonitor: New executor 21 has registered (new total is 14)
+25/01/23 23:06:53 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2) (10.23.68.151, executor 4, partition 2, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:53 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.43.83:40516) with ID 23,  ResourceProfileId 0
+25/01/23 23:06:53 INFO ExecutorMonitor: New executor 23 has registered (new total is 15)
+25/01/23 23:06:54 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.36.41:34095 with 2.1 GiB RAM, BlockManagerId(21, 10.23.36.41, 34095, None)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.151.80:48534
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.150.252:55094
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.156.231:45706
+25/01/23 23:06:54 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.43.83:45691 with 2.1 GiB RAM, BlockManagerId(23, 10.23.43.83, 45691, None)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.10.160:46340) with ID 14,  ResourceProfileId 0
+25/01/23 23:06:54 INFO ExecutorMonitor: New executor 14 has registered (new total is 16)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.26.75:42378) with ID 24,  ResourceProfileId 0
+25/01/23 23:06:54 INFO ExecutorMonitor: New executor 24 has registered (new total is 17)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.222.227:46428) with ID 16,  ResourceProfileId 0
+25/01/23 23:06:54 INFO ExecutorMonitor: New executor 16 has registered (new total is 18)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.75.152:59746) with ID 30,  ResourceProfileId 0
+25/01/23 23:06:54 INFO ExecutorMonitor: New executor 30 has registered (new total is 19)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.85.95:53326) with ID 27,  ResourceProfileId 0
+25/01/23 23:06:54 INFO ExecutorMonitor: New executor 27 has registered (new total is 20)
+25/01/23 23:06:54 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.68.151:38041 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.148.0:43996) with ID 26,  ResourceProfileId 0
+25/01/23 23:06:54 INFO ExecutorMonitor: New executor 26 has registered (new total is 21)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.203.255:35372
+25/01/23 23:06:54 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.26.75:46823 with 2.1 GiB RAM, BlockManagerId(24, 10.23.26.75, 46823, None)
+25/01/23 23:06:54 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.10.160:46403 with 2.1 GiB RAM, BlockManagerId(14, 10.23.10.160, 46403, None)
+25/01/23 23:06:54 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.148.0:39523 with 2.1 GiB RAM, BlockManagerId(26, 10.23.148.0, 39523, None)
+25/01/23 23:06:54 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.222.227:34455 with 2.1 GiB RAM, BlockManagerId(16, 10.23.222.227, 34455, None)
+25/01/23 23:06:54 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.75.152:45857 with 2.1 GiB RAM, BlockManagerId(30, 10.23.75.152, 45857, None)
+25/01/23 23:06:54 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.85.95:37539 with 2.1 GiB RAM, BlockManagerId(27, 10.23.85.95, 37539, None)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.76.44:51638) with ID 31,  ResourceProfileId 0
+25/01/23 23:06:54 INFO ExecutorMonitor: New executor 31 has registered (new total is 22)
+25/01/23 23:06:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.249.9:33370
+25/01/23 23:06:54 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 67, sharedSlotFromPendingPods: 2147483626.
+25/01/23 23:06:55 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:55 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:55 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.76.44:43867 with 2.1 GiB RAM, BlockManagerId(31, 10.23.76.44, 43867, None)
+25/01/23 23:06:55 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3) (10.23.113.34, executor 1, partition 3, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:55 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:55 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.216:51592
+25/01/23 23:06:55 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.101.185:42345 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:55 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:55 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4) (10.23.216.196, executor 10, partition 4, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:55 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.150.252:55096) with ID 32,  ResourceProfileId 0
+25/01/23 23:06:55 INFO ExecutorMonitor: New executor 32 has registered (new total is 23)
+25/01/23 23:06:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.156.231:45722) with ID 29,  ResourceProfileId 0
+25/01/23 23:06:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.151.80:48540) with ID 25,  ResourceProfileId 0
+25/01/23 23:06:55 INFO ExecutorMonitor: New executor 29 has registered (new total is 24)
+25/01/23 23:06:55 INFO ExecutorMonitor: New executor 25 has registered (new total is 25)
+25/01/23 23:06:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.240.205:51188
+25/01/23 23:06:55 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5) (10.23.113.15, executor 5, partition 5, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:55 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6) (10.23.60.157, executor 17, partition 6, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:55 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.156.231:33423 with 2.1 GiB RAM, BlockManagerId(29, 10.23.156.231, 33423, None)
+25/01/23 23:06:55 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.150.252:34755 with 2.1 GiB RAM, BlockManagerId(32, 10.23.150.252, 34755, None)
+25/01/23 23:06:55 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.151.80:37965 with 2.1 GiB RAM, BlockManagerId(25, 10.23.151.80, 37965, None)
+25/01/23 23:06:55 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.68.151:38041 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.203.255:35386) with ID 8,  ResourceProfileId 0
+25/01/23 23:06:55 INFO ExecutorMonitor: New executor 8 has registered (new total is 26)
+25/01/23 23:06:55 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7) (10.23.196.239, executor 7, partition 7, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:55 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.216.196:46651 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:55 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.113.34:38513 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.88.227:35858
+25/01/23 23:06:56 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.60.157:40281 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:56 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.203.255:35639 with 2.1 GiB RAM, BlockManagerId(8, 10.23.203.255, 35639, None)
+25/01/23 23:06:56 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.113.15:38511 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.249.9:33380) with ID 34,  ResourceProfileId 0
+25/01/23 23:06:56 INFO ExecutorMonitor: New executor 34 has registered (new total is 27)
+25/01/23 23:06:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.148.216:51600) with ID 12,  ResourceProfileId 0
+25/01/23 23:06:56 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 72, sharedSlotFromPendingPods: 2147483628.
+25/01/23 23:06:56 INFO ExecutorMonitor: New executor 12 has registered (new total is 28)
+25/01/23 23:06:56 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.240.205:37614) with ID 36,  ResourceProfileId 0
+25/01/23 23:06:56 INFO ExecutorMonitor: New executor 36 has registered (new total is 29)
+25/01/23 23:06:56 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:56 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:56 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.196.239:42285 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:56 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:56 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:56 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.249.9:42815 with 2.1 GiB RAM, BlockManagerId(34, 10.23.249.9, 42815, None)
+25/01/23 23:06:56 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.45.211:51928
+25/01/23 23:06:56 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.240.205:34685 with 2.1 GiB RAM, BlockManagerId(36, 10.23.240.205, 34685, None)
+25/01/23 23:06:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.51.228:47496
+25/01/23 23:06:56 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.148.216:45139 with 2.1 GiB RAM, BlockManagerId(12, 10.23.148.216, 45139, None)
+25/01/23 23:06:57 INFO TaskSetManager: Starting task 8.0 in stage 0.0 (TID 8) (10.23.99.215, executor 19, partition 8, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.157.242:58820
+25/01/23 23:06:57 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.113.34:38513 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:57 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.216.196:46651 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.88.227:35860) with ID 37,  ResourceProfileId 0
+25/01/23 23:06:57 INFO ExecutorMonitor: New executor 37 has registered (new total is 30)
+25/01/23 23:06:57 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.88.227:33511 with 2.1 GiB RAM, BlockManagerId(37, 10.23.88.227, 33511, None)
+25/01/23 23:06:57 INFO TaskSetManager: Starting task 9.0 in stage 0.0 (TID 9) (10.23.42.23, executor 20, partition 9, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.247.8:36606
+25/01/23 23:06:57 INFO TaskSetManager: Starting task 10.0 in stage 0.0 (TID 10) (10.23.233.226, executor 22, partition 10, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:06:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.45.211:51930) with ID 41,  ResourceProfileId 0
+25/01/23 23:06:57 INFO ExecutorMonitor: New executor 41 has registered (new total is 31)
+25/01/23 23:06:57 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.99.215:33857 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.151.55:54470
+25/01/23 23:06:57 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 77, sharedSlotFromPendingPods: 2147483626.
+25/01/23 23:06:57 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:57 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.51.228:47512) with ID 35,  ResourceProfileId 0
+25/01/23 23:06:57 INFO ExecutorMonitor: New executor 35 has registered (new total is 32)
+25/01/23 23:06:57 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.45.211:45273 with 2.1 GiB RAM, BlockManagerId(41, 10.23.45.211, 45273, None)
+25/01/23 23:06:57 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:58 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.196.239:42285 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:58 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.60.157:40281 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:58 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.113.15:38511 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.97.61:53560
+25/01/23 23:06:58 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:58 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:58 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:58 INFO TaskSetManager: Starting task 11.0 in stage 0.0 (TID 11) (10.23.31.100, executor 13, partition 11, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:58 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.51.228:40961 with 2.1 GiB RAM, BlockManagerId(35, 10.23.51.228, 40961, None)
+25/01/23 23:06:58 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.42.23:33655 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:58 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.233.226:37183 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:58 INFO TaskSetManager: Starting task 12.0 in stage 0.0 (TID 12) (10.23.36.41, executor 21, partition 12, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.17.154:33448
+25/01/23 23:06:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.157.242:58824) with ID 40,  ResourceProfileId 0
+25/01/23 23:06:58 INFO ExecutorMonitor: New executor 40 has registered (new total is 33)
+25/01/23 23:06:58 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.157.242:33921 with 2.1 GiB RAM, BlockManagerId(40, 10.23.157.242, 33921, None)
+25/01/23 23:06:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.247.8:36622) with ID 42,  ResourceProfileId 0
+25/01/23 23:06:58 INFO ExecutorMonitor: New executor 42 has registered (new total is 34)
+25/01/23 23:06:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.151.55:54480) with ID 39,  ResourceProfileId 0
+25/01/23 23:06:58 INFO ExecutorMonitor: New executor 39 has registered (new total is 35)
+25/01/23 23:06:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.242.94:37778
+25/01/23 23:06:58 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.31.100:44637 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:59 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.247.8:33533 with 2.1 GiB RAM, BlockManagerId(42, 10.23.247.8, 33533, None)
+25/01/23 23:06:59 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.36.41:34095 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:59 INFO TaskSetManager: Starting task 13.0 in stage 0.0 (TID 13) (10.23.43.83, executor 23, partition 13, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:59 INFO TaskSetManager: Starting task 14.0 in stage 0.0 (TID 14) (10.23.26.75, executor 24, partition 14, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:59 INFO TaskSetManager: Starting task 15.0 in stage 0.0 (TID 15) (10.23.148.0, executor 26, partition 15, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:59 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.99.215:33857 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:59 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.151.55:42967 with 2.1 GiB RAM, BlockManagerId(39, 10.23.151.55, 42967, None)
+25/01/23 23:06:59 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 82, sharedSlotFromPendingPods: 2147483629.
+25/01/23 23:06:59 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:06:59 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:59 INFO TaskSetManager: Starting task 16.0 in stage 0.0 (TID 16) (10.23.76.44, executor 31, partition 16, PROCESS_LOCAL, 8135 bytes) 
+25/01/23 23:06:59 INFO TaskSetManager: Starting task 17.0 in stage 0.0 (TID 17) (10.23.34.34, executor 15, partition 17, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:59 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:59 INFO TaskSetManager: Starting task 18.0 in stage 0.0 (TID 18) (10.23.75.152, executor 30, partition 18, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:59 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:59 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.97.61:53574) with ID 33,  ResourceProfileId 0
+25/01/23 23:06:59 INFO ExecutorMonitor: New executor 33 has registered (new total is 36)
+25/01/23 23:06:59 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.17.154:33462) with ID 38,  ResourceProfileId 0
+25/01/23 23:06:59 INFO ExecutorMonitor: New executor 38 has registered (new total is 37)
+25/01/23 23:06:59 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:59 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:06:59 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.43.83:45691 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:59 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.42.23:33655 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:59 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.97.61:41263 with 2.1 GiB RAM, BlockManagerId(33, 10.23.97.61, 41263, None)
+25/01/23 23:06:59 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.17.154:44729 with 2.1 GiB RAM, BlockManagerId(38, 10.23.17.154, 44729, None)
+25/01/23 23:06:59 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.233.226:37183 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:06:59 INFO TaskSetManager: Starting task 19.0 in stage 0.0 (TID 19) (10.23.85.95, executor 27, partition 19, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:06:59 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.26.75:46823 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:06:59 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.34.34:46147 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:00 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.148.0:39523 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:00 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.76.44:43867 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.242.94:37782) with ID 44,  ResourceProfileId 0
+25/01/23 23:07:00 INFO ExecutorMonitor: New executor 44 has registered (new total is 38)
+25/01/23 23:07:00 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.75.152:45857 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:00 INFO TaskSetManager: Starting task 20.0 in stage 0.0 (TID 20) (10.23.156.231, executor 29, partition 20, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:00 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.242.94:42423 with 2.1 GiB RAM, BlockManagerId(44, 10.23.242.94, 42423, None)
+25/01/23 23:07:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.183.143:51936
+25/01/23 23:07:00 INFO TaskSetManager: Starting task 21.0 in stage 0.0 (TID 21) (10.23.10.160, executor 14, partition 21, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:00 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.36.41:34095 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.8.40:56254
+25/01/23 23:07:00 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.85.95:37539 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:00 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 87, sharedSlotFromPendingPods: 2147483629.
+25/01/23 23:07:00 INFO TaskSetManager: Starting task 22.0 in stage 0.0 (TID 22) (10.23.222.227, executor 16, partition 22, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:00 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:00 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:00 INFO TaskSetManager: Starting task 23.0 in stage 0.0 (TID 23) (10.23.150.252, executor 32, partition 23, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:00 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:00 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:00 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:00 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.156.231:33423 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:00 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.31.100:44637 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:00 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:00 INFO TaskSetManager: Starting task 24.0 in stage 0.0 (TID 24) (10.23.249.9, executor 34, partition 24, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.67.57:49080
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.10.160:46403 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.43.83:45691 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO TaskSetManager: Starting task 25.0 in stage 0.0 (TID 25) (10.23.240.205, executor 36, partition 25, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.176.175:51736
+25/01/23 23:07:01 INFO TaskSetManager: Starting task 26.0 in stage 0.0 (TID 26) (10.23.148.216, executor 12, partition 26, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.26.75:46823 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.34.34:46147 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.34.239:39834
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.150.252:34755 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.76.44:43867 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.222.227:34455 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.148.0:39523 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.19.46:53930
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.75.152:45857 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO TaskSetManager: Starting task 27.0 in stage 0.0 (TID 27) (10.23.151.80, executor 25, partition 27, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:01 INFO TaskSetManager: Starting task 28.0 in stage 0.0 (TID 28) (10.23.203.255, executor 8, partition 28, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.249.9:42815 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.140.233:46038
+25/01/23 23:07:01 INFO TaskSetManager: Starting task 29.0 in stage 0.0 (TID 29) (10.23.88.227, executor 37, partition 29, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.85.95:37539 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.148.216:45139 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.183.143:51950) with ID 45,  ResourceProfileId 0
+25/01/23 23:07:01 INFO ExecutorMonitor: New executor 45 has registered (new total is 39)
+25/01/23 23:07:01 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.240.205:34685 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.8.40:56262) with ID 28,  ResourceProfileId 0
+25/01/23 23:07:01 INFO ExecutorMonitor: New executor 28 has registered (new total is 40)
+25/01/23 23:07:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.107.81:53532
+25/01/23 23:07:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.76.179:47908
+25/01/23 23:07:02 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 92, sharedSlotFromPendingPods: 2147483629.
+25/01/23 23:07:02 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:02 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:02 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.183.143:44267 with 2.1 GiB RAM, BlockManagerId(45, 10.23.183.143, 44267, None)
+25/01/23 23:07:02 INFO TaskSetManager: Starting task 30.0 in stage 0.0 (TID 30) (10.23.45.211, executor 41, partition 30, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:02 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:02 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:02 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.151.80:37965 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:02 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:02 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.156.231:33423 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:02 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.203.255:35639 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:02 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.34.239:39848) with ID 51,  ResourceProfileId 0
+25/01/23 23:07:02 INFO ExecutorMonitor: New executor 51 has registered (new total is 41)
+25/01/23 23:07:02 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.88.227:33511 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:02 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.8.40:38379 with 2.1 GiB RAM, BlockManagerId(28, 10.23.8.40, 38379, None)
+25/01/23 23:07:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.67.57:49086) with ID 49,  ResourceProfileId 0
+25/01/23 23:07:02 INFO ExecutorMonitor: New executor 49 has registered (new total is 42)
+25/01/23 23:07:02 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.34.239:42345 with 2.1 GiB RAM, BlockManagerId(51, 10.23.34.239, 42345, None)
+25/01/23 23:07:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.72.16:34434
+25/01/23 23:07:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.176.175:51740) with ID 48,  ResourceProfileId 0
+25/01/23 23:07:02 INFO ExecutorMonitor: New executor 48 has registered (new total is 43)
+25/01/23 23:07:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.19.46:53936) with ID 50,  ResourceProfileId 0
+25/01/23 23:07:02 INFO ExecutorMonitor: New executor 50 has registered (new total is 44)
+25/01/23 23:07:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.170.91:34784
+25/01/23 23:07:02 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.150.252:34755 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:02 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.176.175:35927 with 2.1 GiB RAM, BlockManagerId(48, 10.23.176.175, 35927, None)
+25/01/23 23:07:02 INFO TaskSetManager: Starting task 31.0 in stage 0.0 (TID 31) (10.23.157.242, executor 40, partition 31, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.178.81:46534
+25/01/23 23:07:02 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.19.46:38045 with 2.1 GiB RAM, BlockManagerId(50, 10.23.19.46, 38045, None)
+25/01/23 23:07:02 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.45.211:45273 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.157.30:46244
+25/01/23 23:07:02 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.67.57:45805 with 2.1 GiB RAM, BlockManagerId(49, 10.23.67.57, 45805, None)
+25/01/23 23:07:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.140.233:46046) with ID 52,  ResourceProfileId 0
+25/01/23 23:07:03 INFO ExecutorMonitor: New executor 52 has registered (new total is 45)
+25/01/23 23:07:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.179.194:40606
+25/01/23 23:07:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.76.179:47922) with ID 56,  ResourceProfileId 0
+25/01/23 23:07:03 INFO ExecutorMonitor: New executor 56 has registered (new total is 46)
+25/01/23 23:07:03 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.10.160:46403 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:03 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.249.9:42815 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:03 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.140.233:46339 with 2.1 GiB RAM, BlockManagerId(52, 10.23.140.233, 46339, None)
+25/01/23 23:07:03 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.76.179:33101 with 2.1 GiB RAM, BlockManagerId(56, 10.23.76.179, 33101, None)
+25/01/23 23:07:03 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 97, sharedSlotFromPendingPods: 2147483627.
+25/01/23 23:07:03 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.240.205:34685 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:03 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.148.216:45139 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:03 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:03 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:03 INFO TaskSetManager: Starting task 32.0 in stage 0.0 (TID 32) (10.23.247.8, executor 42, partition 32, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.107.81:53534) with ID 54,  ResourceProfileId 0
+25/01/23 23:07:03 INFO ExecutorMonitor: New executor 54 has registered (new total is 47)
+25/01/23 23:07:03 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:03 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.222.227:34455 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:03 INFO TaskSetManager: Starting task 33.0 in stage 0.0 (TID 33) (10.23.151.55, executor 39, partition 33, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:03 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:03 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:03 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.157.242:33921 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:03 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:03 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.203.255:35639 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.72.16:34442) with ID 53,  ResourceProfileId 0
+25/01/23 23:07:03 INFO ExecutorMonitor: New executor 53 has registered (new total is 48)
+25/01/23 23:07:03 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.88.227:33511 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:03 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.151.80:37965 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:03 INFO TaskSetManager: Starting task 34.0 in stage 0.0 (TID 34) (10.23.17.154, executor 38, partition 34, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:03 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.107.81:32921 with 2.1 GiB RAM, BlockManagerId(54, 10.23.107.81, 32921, None)
+25/01/23 23:07:03 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.72.16:46425 with 2.1 GiB RAM, BlockManagerId(53, 10.23.72.16, 46425, None)
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.143.166:60922
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.18.219:48658
+25/01/23 23:07:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.247.8:33533 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:04 INFO TaskSetManager: Starting task 35.0 in stage 0.0 (TID 35) (10.23.51.228, executor 35, partition 35, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:04 INFO TaskSetManager: Starting task 36.0 in stage 0.0 (TID 36) (10.23.97.61, executor 33, partition 36, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.170.91:34794) with ID 47,  ResourceProfileId 0
+25/01/23 23:07:04 INFO ExecutorMonitor: New executor 47 has registered (new total is 49)
+25/01/23 23:07:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.151.55:42967 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.179.194:40616) with ID 55,  ResourceProfileId 0
+25/01/23 23:07:04 INFO ExecutorMonitor: New executor 55 has registered (new total is 50)
+25/01/23 23:07:04 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.45.211:45273 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.178.81:46540) with ID 57,  ResourceProfileId 0
+25/01/23 23:07:04 INFO ExecutorMonitor: New executor 57 has registered (new total is 51)
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.140.101:51702
+25/01/23 23:07:04 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.179.194:42259 with 2.1 GiB RAM, BlockManagerId(55, 10.23.179.194, 42259, None)
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.157.30:46248) with ID 46,  ResourceProfileId 0
+25/01/23 23:07:04 INFO ExecutorMonitor: New executor 46 has registered (new total is 52)
+25/01/23 23:07:04 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.178.81:46803 with 2.1 GiB RAM, BlockManagerId(57, 10.23.178.81, 46803, None)
+25/01/23 23:07:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.17.154:44729 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:04 INFO TaskSetManager: Starting task 37.0 in stage 0.0 (TID 37) (10.23.242.94, executor 44, partition 37, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.99:60302
+25/01/23 23:07:04 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.170.91:44339 with 2.1 GiB RAM, BlockManagerId(47, 10.23.170.91, 44339, None)
+25/01/23 23:07:04 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 102, sharedSlotFromPendingPods: 2147483625.
+25/01/23 23:07:04 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:04 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:04 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.157.30:40007 with 2.1 GiB RAM, BlockManagerId(46, 10.23.157.30, 40007, None)
+25/01/23 23:07:04 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:04 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.51.228:40961 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:04 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.97.61:41263 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:04 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.207:44482
+25/01/23 23:07:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.131.118:35754
+25/01/23 23:07:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.37.49:34484
+25/01/23 23:07:05 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.157.242:33921 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.143.166:60926) with ID 60,  ResourceProfileId 0
+25/01/23 23:07:05 INFO ExecutorMonitor: New executor 60 has registered (new total is 53)
+25/01/23 23:07:05 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.242.94:42423 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:05 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.143.166:33993 with 2.1 GiB RAM, BlockManagerId(60, 10.23.143.166, 33993, None)
+25/01/23 23:07:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.140.101:51704) with ID 59,  ResourceProfileId 0
+25/01/23 23:07:05 INFO ExecutorMonitor: New executor 59 has registered (new total is 54)
+25/01/23 23:07:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.167:54258
+25/01/23 23:07:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.202.99:60308) with ID 68,  ResourceProfileId 0
+25/01/23 23:07:05 INFO ExecutorMonitor: New executor 68 has registered (new total is 55)
+25/01/23 23:07:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.18.219:48670) with ID 43,  ResourceProfileId 0
+25/01/23 23:07:05 INFO ExecutorMonitor: New executor 43 has registered (new total is 56)
+25/01/23 23:07:05 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.140.101:33043 with 2.1 GiB RAM, BlockManagerId(59, 10.23.140.101, 33043, None)
+25/01/23 23:07:05 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.202.99:36187 with 2.1 GiB RAM, BlockManagerId(68, 10.23.202.99, 36187, None)
+25/01/23 23:07:05 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.151.55:42967 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:05 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.247.8:33533 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:05 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.18.219:41395 with 2.1 GiB RAM, BlockManagerId(43, 10.23.18.219, 41395, None)
+25/01/23 23:07:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.27.58:56576
+25/01/23 23:07:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.216.93:56042
+25/01/23 23:07:05 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 107, sharedSlotFromPendingPods: 2147483627.
+25/01/23 23:07:05 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:05 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:06 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.131.118:35766) with ID 63,  ResourceProfileId 0
+25/01/23 23:07:06 INFO ExecutorMonitor: New executor 63 has registered (new total is 57)
+25/01/23 23:07:06 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:06 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.51.228:40961 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:06 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:06 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.17.154:44729 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.17.90:56472
+25/01/23 23:07:06 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:06 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.97.61:41263 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.37.49:34492) with ID 61,  ResourceProfileId 0
+25/01/23 23:07:06 INFO ExecutorMonitor: New executor 61 has registered (new total is 58)
+25/01/23 23:07:06 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.131.118:40315 with 2.1 GiB RAM, BlockManagerId(63, 10.23.131.118, 40315, None)
+25/01/23 23:07:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.202.207:44498) with ID 62,  ResourceProfileId 0
+25/01/23 23:07:06 INFO ExecutorMonitor: New executor 62 has registered (new total is 59)
+25/01/23 23:07:06 INFO TaskSetManager: Starting task 38.0 in stage 0.0 (TID 38) (10.23.8.40, executor 28, partition 38, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:06 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.37.49:35985 with 2.1 GiB RAM, BlockManagerId(61, 10.23.37.49, 35985, None)
+25/01/23 23:07:06 INFO TaskSetManager: Starting task 39.0 in stage 0.0 (TID 39) (10.23.34.239, executor 51, partition 39, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.113.167:54266) with ID 66,  ResourceProfileId 0
+25/01/23 23:07:06 INFO ExecutorMonitor: New executor 66 has registered (new total is 60)
+25/01/23 23:07:06 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.202.207:38413 with 2.1 GiB RAM, BlockManagerId(62, 10.23.202.207, 38413, None)
+25/01/23 23:07:06 INFO TaskSetManager: Starting task 40.0 in stage 0.0 (TID 40) (10.23.140.233, executor 52, partition 40, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:06 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.113.167:41081 with 2.1 GiB RAM, BlockManagerId(66, 10.23.113.167, 41081, None)
+25/01/23 23:07:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.27.58:56586) with ID 65,  ResourceProfileId 0
+25/01/23 23:07:06 INFO ExecutorMonitor: New executor 65 has registered (new total is 61)
+25/01/23 23:07:06 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.8.40:38379 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:06 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.242.94:42423 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:07 INFO TaskSetManager: Starting task 41.0 in stage 0.0 (TID 41) (10.23.19.46, executor 50, partition 41, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:07 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.34.239:42345 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:07 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.27.58:40039 with 2.1 GiB RAM, BlockManagerId(65, 10.23.27.58, 40039, None)
+25/01/23 23:07:07 INFO TaskSetManager: Starting task 42.0 in stage 0.0 (TID 42) (10.23.67.57, executor 49, partition 42, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:07 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 112, sharedSlotFromPendingPods: 2147483627.
+25/01/23 23:07:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.216.93:56056) with ID 71,  ResourceProfileId 0
+25/01/23 23:07:07 INFO ExecutorMonitor: New executor 71 has registered (new total is 62)
+25/01/23 23:07:07 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:07 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:07 INFO TaskSetManager: Starting task 43.0 in stage 0.0 (TID 43) (10.23.183.143, executor 45, partition 43, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.115.154:37770
+25/01/23 23:07:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.252.39:50948
+25/01/23 23:07:07 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.17.90:56474) with ID 69,  ResourceProfileId 0
+25/01/23 23:07:07 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.140.233:46339 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:07 INFO ExecutorMonitor: New executor 69 has registered (new total is 63)
+25/01/23 23:07:07 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:07 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.216.93:44003 with 2.1 GiB RAM, BlockManagerId(71, 10.23.216.93, 44003, None)
+25/01/23 23:07:07 INFO TaskSetManager: Starting task 44.0 in stage 0.0 (TID 44) (10.23.76.179, executor 56, partition 44, PROCESS_LOCAL, 8141 bytes) 
+25/01/23 23:07:07 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:07 INFO TaskSetManager: Starting task 45.0 in stage 0.0 (TID 45) (10.23.176.175, executor 48, partition 45, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.64.31:57932
+25/01/23 23:07:07 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.17.90:46187 with 2.1 GiB RAM, BlockManagerId(69, 10.23.17.90, 46187, None)
+25/01/23 23:07:07 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:07 INFO TaskSetManager: Starting task 46.0 in stage 0.0 (TID 46) (10.23.72.16, executor 53, partition 46, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:07 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.67.57:45805 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:07 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.19.46:38045 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.208.218:41842
+25/01/23 23:07:08 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.76.179:33101 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:08 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.183.143:44267 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.26:51176
+25/01/23 23:07:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.4.90:49736
+25/01/23 23:07:08 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.8.40:38379 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:08 INFO TaskSetManager: Starting task 47.0 in stage 0.0 (TID 47) (10.23.107.81, executor 54, partition 47, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:08 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.176.175:35927 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.115.154:37786) with ID 72,  ResourceProfileId 0
+25/01/23 23:07:08 INFO ExecutorMonitor: New executor 72 has registered (new total is 64)
+25/01/23 23:07:08 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.72.16:46425 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:08 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.34.239:42345 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:08 INFO TaskSetManager: Starting task 48.0 in stage 0.0 (TID 48) (10.23.178.81, executor 57, partition 48, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:08 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.115.154:33163 with 2.1 GiB RAM, BlockManagerId(72, 10.23.115.154, 33163, None)
+25/01/23 23:07:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.252.39:50960) with ID 58,  ResourceProfileId 0
+25/01/23 23:07:08 INFO ExecutorMonitor: New executor 58 has registered (new total is 65)
+25/01/23 23:07:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.242.19:41210
+25/01/23 23:07:08 INFO TaskSetManager: Starting task 49.0 in stage 0.0 (TID 49) (10.23.179.194, executor 55, partition 49, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:08 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.140.233:46339 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.69.0:39856
+25/01/23 23:07:08 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.252.39:46789 with 2.1 GiB RAM, BlockManagerId(58, 10.23.252.39, 46789, None)
+25/01/23 23:07:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.64.31:57940) with ID 78,  ResourceProfileId 0
+25/01/23 23:07:08 INFO ExecutorMonitor: New executor 78 has registered (new total is 66)
+25/01/23 23:07:08 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 117, sharedSlotFromPendingPods: 2147483630.
+25/01/23 23:07:08 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:08 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:08 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:08 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.107.81:32921 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:09 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:09 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.67.57:45805 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:09 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.64.31:34239 with 2.1 GiB RAM, BlockManagerId(78, 10.23.64.31, 34239, None)
+25/01/23 23:07:09 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:09 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:09 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.76.179:33101 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:09 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.208.218:41850) with ID 9,  ResourceProfileId 0
+25/01/23 23:07:09 INFO ExecutorMonitor: New executor 9 has registered (new total is 67)
+25/01/23 23:07:09 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.179.194:42259 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:09 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.19.46:38045 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:09 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.4.90:49748) with ID 77,  ResourceProfileId 0
+25/01/23 23:07:09 INFO ExecutorMonitor: New executor 77 has registered (new total is 68)
+25/01/23 23:07:09 INFO TaskSetManager: Starting task 50.0 in stage 0.0 (TID 50) (10.23.157.30, executor 46, partition 50, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:09 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.178.81:46803 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:09 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.53.26:51192) with ID 70,  ResourceProfileId 0
+25/01/23 23:07:09 INFO ExecutorMonitor: New executor 70 has registered (new total is 69)
+25/01/23 23:07:09 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.4.90:39933 with 2.1 GiB RAM, BlockManagerId(77, 10.23.4.90, 39933, None)
+25/01/23 23:07:09 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.208.218:37263 with 2.1 GiB RAM, BlockManagerId(9, 10.23.208.218, 37263, None)
+25/01/23 23:07:09 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.183.143:44267 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:09 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.96.177:53284
+25/01/23 23:07:09 INFO TaskSetManager: Starting task 51.0 in stage 0.0 (TID 51) (10.23.143.166, executor 60, partition 51, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:09 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.72.16:46425 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:09 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.176.175:35927 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:09 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.53.26:38483 with 2.1 GiB RAM, BlockManagerId(70, 10.23.53.26, 38483, None)
+25/01/23 23:07:09 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.69.0:39872) with ID 75,  ResourceProfileId 0
+25/01/23 23:07:09 INFO ExecutorMonitor: New executor 75 has registered (new total is 70)
+25/01/23 23:07:09 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.242.19:41212) with ID 74,  ResourceProfileId 0
+25/01/23 23:07:09 INFO ExecutorMonitor: New executor 74 has registered (new total is 71)
+25/01/23 23:07:10 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.157.30:40007 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.237.60:44784
+25/01/23 23:07:10 INFO TaskSetManager: Starting task 52.0 in stage 0.0 (TID 52) (10.23.170.91, executor 47, partition 52, PROCESS_LOCAL, 8138 bytes) 
+25/01/23 23:07:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.241.92:38942
+25/01/23 23:07:10 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.69.0:44577 with 2.1 GiB RAM, BlockManagerId(75, 10.23.69.0, 44577, None)
+25/01/23 23:07:10 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.242.19:43555 with 2.1 GiB RAM, BlockManagerId(74, 10.23.242.19, 43555, None)
+25/01/23 23:07:10 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 122, sharedSlotFromPendingPods: 2147483631.
+25/01/23 23:07:10 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:10 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:10 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.143.166:33993 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:10 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:10 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.179.194:42259 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:10 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.107.81:32921 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:10 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:10 INFO TaskSetManager: Starting task 53.0 in stage 0.0 (TID 53) (10.23.140.101, executor 59, partition 53, PROCESS_LOCAL, 8139 bytes) 
+25/01/23 23:07:10 INFO TaskSetManager: Starting task 54.0 in stage 0.0 (TID 54) (10.23.202.99, executor 68, partition 54, PROCESS_LOCAL, 8140 bytes) 
+25/01/23 23:07:10 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:10 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.96.177:53300) with ID 82,  ResourceProfileId 0
+25/01/23 23:07:10 INFO ExecutorMonitor: New executor 82 has registered (new total is 72)
+25/01/23 23:07:10 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.170.91:44339 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.17.30:60900
+25/01/23 23:07:10 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.96.177:37757 with 2.1 GiB RAM, BlockManagerId(82, 10.23.96.177, 37757, None)
+25/01/23 23:07:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.101.158:46380
+25/01/23 23:07:11 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.178.81:46803 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:11 INFO TaskSetManager: Starting task 55.0 in stage 0.0 (TID 55) (10.23.202.207, executor 62, partition 55, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:11 INFO TaskSetManager: Starting task 56.0 in stage 0.0 (TID 56) (10.23.131.118, executor 63, partition 56, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.237.60:44800) with ID 79,  ResourceProfileId 0
+25/01/23 23:07:11 INFO ExecutorMonitor: New executor 79 has registered (new total is 73)
+25/01/23 23:07:11 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.202.99:36187 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:11 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.140.101:33043 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:11 INFO TaskSetManager: Starting task 57.0 in stage 0.0 (TID 57) (10.23.37.49, executor 61, partition 57, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.241.92:38950) with ID 84,  ResourceProfileId 0
+25/01/23 23:07:11 INFO ExecutorMonitor: New executor 84 has registered (new total is 74)
+25/01/23 23:07:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.67.182:41512
+25/01/23 23:07:11 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.237.60:41879 with 2.1 GiB RAM, BlockManagerId(79, 10.23.237.60, 41879, None)
+25/01/23 23:07:11 INFO TaskSetManager: Starting task 58.0 in stage 0.0 (TID 58) (10.23.113.167, executor 66, partition 58, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:11 INFO TaskSetManager: Starting task 59.0 in stage 0.0 (TID 59) (10.23.18.219, executor 43, partition 59, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:11 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.241.92:41185 with 2.1 GiB RAM, BlockManagerId(84, 10.23.241.92, 41185, None)
+25/01/23 23:07:11 INFO TaskSetManager: Starting task 60.0 in stage 0.0 (TID 60) (10.23.27.58, executor 65, partition 60, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.120:39306
+25/01/23 23:07:11 INFO TaskSetManager: Starting task 61.0 in stage 0.0 (TID 61) (10.23.216.93, executor 71, partition 61, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:11 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.202.207:38413 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:11 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 127, sharedSlotFromPendingPods: 2147483628.
+25/01/23 23:07:11 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.143.166:33993 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:11 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:11 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.106.69:34716
+25/01/23 23:07:11 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:11 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.157.30:40007 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:11 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.131.118:40315 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:11 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.37.49:35985 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.21.225:52148
+25/01/23 23:07:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.8.215:35272
+25/01/23 23:07:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.179.24:59102
+25/01/23 23:07:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.180.222:43128
+25/01/23 23:07:11 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:12 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.101.158:38316) with ID 81,  ResourceProfileId 0
+25/01/23 23:07:12 INFO ExecutorMonitor: New executor 81 has registered (new total is 75)
+25/01/23 23:07:12 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.17.30:60914) with ID 11,  ResourceProfileId 0
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.243.10:35662
+25/01/23 23:07:12 INFO ExecutorMonitor: New executor 11 has registered (new total is 76)
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.27.58:40039 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.216.93:44003 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO TaskSetManager: Starting task 62.0 in stage 0.0 (TID 62) (10.23.17.90, executor 69, partition 62, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.18.219:41395 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.209.90:33260
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.113.167:41081 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.101.158:40059 with 2.1 GiB RAM, BlockManagerId(81, 10.23.101.158, 40059, None)
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.132.219:35272
+25/01/23 23:07:12 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.17.30:41061 with 2.1 GiB RAM, BlockManagerId(11, 10.23.17.30, 41061, None)
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.67.182:41526) with ID 80,  ResourceProfileId 0
+25/01/23 23:07:12 INFO ExecutorMonitor: New executor 80 has registered (new total is 77)
+25/01/23 23:07:12 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.67.182:42313 with 2.1 GiB RAM, BlockManagerId(80, 10.23.67.182, 42313, None)
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.140.101:33043 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.202.99:36187 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.148.120:39318) with ID 87,  ResourceProfileId 0
+25/01/23 23:07:12 INFO ExecutorMonitor: New executor 87 has registered (new total is 78)
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.170.91:44339 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.17.90:46187 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.8.215:39208) with ID 83,  ResourceProfileId 0
+25/01/23 23:07:12 INFO ExecutorMonitor: New executor 83 has registered (new total is 79)
+25/01/23 23:07:12 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.148.120:33039 with 2.1 GiB RAM, BlockManagerId(87, 10.23.148.120, 33039, None)
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.202.207:38413 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.179.24:59108) with ID 91,  ResourceProfileId 0
+25/01/23 23:07:12 INFO ExecutorMonitor: New executor 91 has registered (new total is 80)
+25/01/23 23:07:12 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.37.49:35985 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.106.69:34724) with ID 85,  ResourceProfileId 0
+25/01/23 23:07:12 INFO ExecutorMonitor: New executor 85 has registered (new total is 81)
+25/01/23 23:07:13 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.8.215:46823 with 2.1 GiB RAM, BlockManagerId(83, 10.23.8.215, 46823, None)
+25/01/23 23:07:13 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.131.118:40315 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.243.10:35670) with ID 86,  ResourceProfileId 0
+25/01/23 23:07:13 INFO ExecutorMonitor: New executor 86 has registered (new total is 82)
+25/01/23 23:07:13 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 132, sharedSlotFromPendingPods: 2147483626.
+25/01/23 23:07:13 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:13 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:13 INFO TaskSetManager: Starting task 63.0 in stage 0.0 (TID 63) (10.23.115.154, executor 72, partition 63, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.180.222:43138) with ID 73,  ResourceProfileId 0
+25/01/23 23:07:13 INFO ExecutorMonitor: New executor 73 has registered (new total is 83)
+25/01/23 23:07:13 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.106.69:36839 with 2.1 GiB RAM, BlockManagerId(85, 10.23.106.69, 36839, None)
+25/01/23 23:07:13 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.43.182:39134
+25/01/23 23:07:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.132.219:35288) with ID 89,  ResourceProfileId 0
+25/01/23 23:07:13 INFO ExecutorMonitor: New executor 89 has registered (new total is 84)
+25/01/23 23:07:13 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.243.10:38825 with 2.1 GiB RAM, BlockManagerId(86, 10.23.243.10, 38825, None)
+25/01/23 23:07:13 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:13 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.179.24:42475 with 2.1 GiB RAM, BlockManagerId(91, 10.23.179.24, 42475, None)
+25/01/23 23:07:13 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.210.174:58312
+25/01/23 23:07:13 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.180.222:46215 with 2.1 GiB RAM, BlockManagerId(73, 10.23.180.222, 46215, None)
+25/01/23 23:07:13 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.209.90:33272) with ID 88,  ResourceProfileId 0
+25/01/23 23:07:13 INFO ExecutorMonitor: New executor 88 has registered (new total is 85)
+25/01/23 23:07:13 INFO TaskSetManager: Starting task 64.0 in stage 0.0 (TID 64) (10.23.64.31, executor 78, partition 64, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.21.225:52160) with ID 76,  ResourceProfileId 0
+25/01/23 23:07:13 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.27.58:40039 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:13 INFO ExecutorMonitor: New executor 76 has registered (new total is 86)
+25/01/23 23:07:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.51.128:55394
+25/01/23 23:07:13 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.132.219:39445 with 2.1 GiB RAM, BlockManagerId(89, 10.23.132.219, 39445, None)
+25/01/23 23:07:13 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.113.167:41081 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:13 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.216.93:44003 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:13 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.209.90:39879 with 2.1 GiB RAM, BlockManagerId(88, 10.23.209.90, 39879, None)
+25/01/23 23:07:13 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.115.154:33163 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:13 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.18.219:41395 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:13 INFO TaskSetManager: Starting task 65.0 in stage 0.0 (TID 65) (10.23.4.90, executor 77, partition 65, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:13 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.21.225:46565 with 2.1 GiB RAM, BlockManagerId(76, 10.23.21.225, 46565, None)
+25/01/23 23:07:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.142.155:49672
+25/01/23 23:07:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.57.217:34428
+25/01/23 23:07:14 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.64.31:34239 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:14 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.17.90:46187 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:14 INFO TaskSetManager: Starting task 66.0 in stage 0.0 (TID 66) (10.23.69.0, executor 75, partition 66, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:14 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.4.90:39933 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:14 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 137, sharedSlotFromPendingPods: 2147483626.
+25/01/23 23:07:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.210.174:58324) with ID 98,  ResourceProfileId 0
+25/01/23 23:07:14 INFO ExecutorMonitor: New executor 98 has registered (new total is 87)
+25/01/23 23:07:14 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:14 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:14 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:14 INFO TaskSetManager: Starting task 67.0 in stage 0.0 (TID 67) (10.23.252.39, executor 58, partition 67, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.43.182:52032) with ID 90,  ResourceProfileId 0
+25/01/23 23:07:14 INFO ExecutorMonitor: New executor 90 has registered (new total is 88)
+25/01/23 23:07:14 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.51.128:55410) with ID 96,  ResourceProfileId 0
+25/01/23 23:07:14 INFO ExecutorMonitor: New executor 96 has registered (new total is 89)
+25/01/23 23:07:14 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:14 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:14 INFO TaskSetManager: Starting task 68.0 in stage 0.0 (TID 68) (10.23.242.19, executor 74, partition 68, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:14 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.210.174:36045 with 2.1 GiB RAM, BlockManagerId(98, 10.23.210.174, 36045, None)
+25/01/23 23:07:14 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.43.182:35777 with 2.1 GiB RAM, BlockManagerId(90, 10.23.43.182, 35777, None)
+25/01/23 23:07:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.84.185:53956
+25/01/23 23:07:14 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.51.128:39131 with 2.1 GiB RAM, BlockManagerId(96, 10.23.51.128, 39131, None)
+25/01/23 23:07:15 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.69.0:44577 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.68.177:55280
+25/01/23 23:07:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.142.155:49682) with ID 97,  ResourceProfileId 0
+25/01/23 23:07:15 INFO ExecutorMonitor: New executor 97 has registered (new total is 90)
+25/01/23 23:07:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.57.217:34438) with ID 95,  ResourceProfileId 0
+25/01/23 23:07:15 INFO ExecutorMonitor: New executor 95 has registered (new total is 91)
+25/01/23 23:07:15 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.252.39:46789 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:15 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.115.154:33163 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.170:34780
+25/01/23 23:07:15 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.142.155:39879 with 2.1 GiB RAM, BlockManagerId(97, 10.23.142.155, 39879, None)
+25/01/23 23:07:15 INFO TaskSetManager: Starting task 69.0 in stage 0.0 (TID 69) (10.23.96.177, executor 82, partition 69, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:15 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.57.217:43157 with 2.1 GiB RAM, BlockManagerId(95, 10.23.57.217, 43157, None)
+25/01/23 23:07:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.108.254:59598
+25/01/23 23:07:15 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.242.19:43555 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:15 INFO TaskSetManager: Starting task 70.0 in stage 0.0 (TID 70) (10.23.53.26, executor 70, partition 70, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:15 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.64.31:34239 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:15 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 142, sharedSlotFromPendingPods: 2147483622.
+25/01/23 23:07:15 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:15 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.138.58:36798
+25/01/23 23:07:16 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.4.90:39933 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:16 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.120:42546
+25/01/23 23:07:16 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:16 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:16 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.84.185:53972) with ID 92,  ResourceProfileId 0
+25/01/23 23:07:16 INFO ExecutorMonitor: New executor 92 has registered (new total is 92)
+25/01/23 23:07:16 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.96.177:37757 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:16 INFO TaskSetManager: Starting task 71.0 in stage 0.0 (TID 71) (10.23.241.92, executor 84, partition 71, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.68.177:55296) with ID 99,  ResourceProfileId 0
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.48:41902
+25/01/23 23:07:16 INFO ExecutorMonitor: New executor 99 has registered (new total is 93)
+25/01/23 23:07:16 INFO TaskSetManager: Starting task 72.0 in stage 0.0 (TID 72) (10.23.208.218, executor 9, partition 72, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:16 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.69.0:44577 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.36:59540
+25/01/23 23:07:16 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.53.26:38483 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.148.170:34790) with ID 100,  ResourceProfileId 0
+25/01/23 23:07:16 INFO ExecutorMonitor: New executor 100 has registered (new total is 94)
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.108.254:59604) with ID 103,  ResourceProfileId 0
+25/01/23 23:07:16 INFO ExecutorMonitor: New executor 103 has registered (new total is 95)
+25/01/23 23:07:16 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.84.185:39423 with 2.1 GiB RAM, BlockManagerId(92, 10.23.84.185, 39423, None)
+25/01/23 23:07:16 INFO TaskSetManager: Starting task 73.0 in stage 0.0 (TID 73) (10.23.237.60, executor 79, partition 73, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:16 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.68.177:41009 with 2.1 GiB RAM, BlockManagerId(99, 10.23.68.177, 41009, None)
+25/01/23 23:07:16 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.108.254:35551 with 2.1 GiB RAM, BlockManagerId(103, 10.23.108.254, 35551, None)
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.214.225:53826
+25/01/23 23:07:16 INFO TaskSetManager: Starting task 74.0 in stage 0.0 (TID 74) (10.23.101.158, executor 81, partition 74, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.209.23:48192
+25/01/23 23:07:16 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.148.170:36299 with 2.1 GiB RAM, BlockManagerId(100, 10.23.148.170, 36299, None)
+25/01/23 23:07:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.211.1:50490
+25/01/23 23:07:16 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.241.92:41185 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.30.250:38864
+25/01/23 23:07:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.138.58:36804) with ID 101,  ResourceProfileId 0
+25/01/23 23:07:17 INFO ExecutorMonitor: New executor 101 has registered (new total is 96)
+25/01/23 23:07:17 INFO TaskSetManager: Starting task 75.0 in stage 0.0 (TID 75) (10.23.148.120, executor 87, partition 75, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:17 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.208.218:37263 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:17 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.237.60:41879 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:17 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.242.19:43555 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.172.24:36962
+25/01/23 23:07:17 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.138.58:43533 with 2.1 GiB RAM, BlockManagerId(101, 10.23.138.58, 43533, None)
+25/01/23 23:07:17 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.252.39:46789 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.113.120:42552) with ID 111,  ResourceProfileId 0
+25/01/23 23:07:17 INFO ExecutorMonitor: New executor 111 has registered (new total is 97)
+25/01/23 23:07:17 INFO ExecutorPodsAllocator: Going to request 3 executors from Kubernetes for ResourceProfile Id: 0, target: 150, known: 147, sharedSlotFromPendingPods: 2147483622.
+25/01/23 23:07:17 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/23 23:07:17 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:17 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:17 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/23 23:07:17 INFO TaskSetManager: Starting task 76.0 in stage 0.0 (TID 76) (10.23.8.215, executor 83, partition 76, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.238.138:60666
+25/01/23 23:07:17 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.101.158:40059 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:17 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.113.120:38593 with 2.1 GiB RAM, BlockManagerId(111, 10.23.113.120, 38593, None)
+25/01/23 23:07:17 INFO TaskSetManager: Starting task 77.0 in stage 0.0 (TID 77) (10.23.67.182, executor 80, partition 77, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:17 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.96.177:37757 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.113.36:59542) with ID 102,  ResourceProfileId 0
+25/01/23 23:07:17 INFO ExecutorMonitor: New executor 102 has registered (new total is 98)
+25/01/23 23:07:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.180.91:46942
+25/01/23 23:07:17 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.148.120:33039 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.214.225:40642) with ID 112,  ResourceProfileId 0
+25/01/23 23:07:18 INFO ExecutorMonitor: New executor 112 has registered (new total is 99)
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.202.48:41912) with ID 94,  ResourceProfileId 0
+25/01/23 23:07:18 INFO ExecutorMonitor: New executor 94 has registered (new total is 100)
+25/01/23 23:07:18 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.113.36:41705 with 2.1 GiB RAM, BlockManagerId(102, 10.23.113.36, 41705, None)
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.30.250:38868) with ID 114,  ResourceProfileId 0
+25/01/23 23:07:18 INFO ExecutorMonitor: New executor 114 has registered (new total is 101)
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.209.23:48206) with ID 104,  ResourceProfileId 0
+25/01/23 23:07:18 INFO ExecutorMonitor: New executor 104 has registered (new total is 102)
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.211.1:50494) with ID 93,  ResourceProfileId 0
+25/01/23 23:07:18 INFO ExecutorMonitor: New executor 93 has registered (new total is 103)
+25/01/23 23:07:18 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.53.26:38483 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:18 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.241.92:41185 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:18 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.8.215:46823 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:18 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.214.225:38759 with 2.1 GiB RAM, BlockManagerId(112, 10.23.214.225, 38759, None)
+25/01/23 23:07:18 INFO TaskSetManager: Starting task 78.0 in stage 0.0 (TID 78) (10.23.106.69, executor 85, partition 78, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:18 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.202.48:46007 with 2.1 GiB RAM, BlockManagerId(94, 10.23.202.48, 46007, None)
+25/01/23 23:07:18 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.209.23:42855 with 2.1 GiB RAM, BlockManagerId(104, 10.23.209.23, 42855, None)
+25/01/23 23:07:18 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.211.1:38977 with 2.1 GiB RAM, BlockManagerId(93, 10.23.211.1, 38977, None)
+25/01/23 23:07:18 INFO TaskSetManager: Starting task 79.0 in stage 0.0 (TID 79) (10.23.132.219, executor 89, partition 79, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.238.138:60672) with ID 107,  ResourceProfileId 0
+25/01/23 23:07:18 INFO ExecutorMonitor: New executor 107 has registered (new total is 104)
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.117.164:36968
+25/01/23 23:07:18 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.30.250:45661 with 2.1 GiB RAM, BlockManagerId(114, 10.23.30.250, 45661, None)
+25/01/23 23:07:18 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.67.182:42313 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:18 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.237.60:41879 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.67.66:45904
+25/01/23 23:07:18 INFO TaskSetManager: Starting task 80.0 in stage 0.0 (TID 80) (10.23.209.90, executor 88, partition 80, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:18 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.238.138:35945 with 2.1 GiB RAM, BlockManagerId(107, 10.23.238.138, 35945, None)
+25/01/23 23:07:18 INFO TaskSetManager: Starting task 81.0 in stage 0.0 (TID 81) (10.23.179.24, executor 91, partition 81, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:18 INFO TaskSetManager: Starting task 82.0 in stage 0.0 (TID 82) (10.23.180.222, executor 73, partition 82, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.41.245:54868
+25/01/23 23:07:18 INFO TaskSetManager: Starting task 83.0 in stage 0.0 (TID 83) (10.23.210.174, executor 98, partition 83, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.172.24:36966) with ID 106,  ResourceProfileId 0
+25/01/23 23:07:18 INFO ExecutorMonitor: New executor 106 has registered (new total is 105)
+25/01/23 23:07:18 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.208.218:37263 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.106.69:36839 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.132.219:39445 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.227.136:50918
+25/01/23 23:07:19 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.180.91:46958) with ID 110,  ResourceProfileId 0
+25/01/23 23:07:19 INFO ExecutorMonitor: New executor 110 has registered (new total is 106)
+25/01/23 23:07:19 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.72.181:57118
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.148.120:33039 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO TaskSetManager: Starting task 84.0 in stage 0.0 (TID 84) (10.23.43.182, executor 90, partition 84, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.101.158:40059 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.180.91:34045 with 2.1 GiB RAM, BlockManagerId(110, 10.23.180.91, 34045, None)
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.209.90:39879 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.179.24:42475 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO TaskSetManager: Starting task 85.0 in stage 0.0 (TID 85) (10.23.57.217, executor 95, partition 85, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:19 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.172.24:37787 with 2.1 GiB RAM, BlockManagerId(106, 10.23.172.24, 37787, None)
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.180.222:46215 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO TaskSetManager: Starting task 86.0 in stage 0.0 (TID 86) (10.23.51.128, executor 96, partition 86, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:19 INFO TaskSetManager: Starting task 87.0 in stage 0.0 (TID 87) (10.23.21.225, executor 76, partition 87, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.210.174:36045 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.117.164:36980) with ID 109,  ResourceProfileId 0
+25/01/23 23:07:19 INFO ExecutorMonitor: New executor 109 has registered (new total is 107)
+25/01/23 23:07:19 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.67.66:45914) with ID 121,  ResourceProfileId 0
+25/01/23 23:07:19 INFO ExecutorMonitor: New executor 121 has registered (new total is 108)
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.43.182:35777 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO TaskSetManager: Starting task 88.0 in stage 0.0 (TID 88) (10.23.142.155, executor 97, partition 88, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:19 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.67.66:38313 with 2.1 GiB RAM, BlockManagerId(121, 10.23.67.66, 38313, None)
+25/01/23 23:07:19 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.8.215:46823 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:19 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.117.164:38507 with 2.1 GiB RAM, BlockManagerId(109, 10.23.117.164, 38507, None)
+25/01/23 23:07:20 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.41.245:54878) with ID 116,  ResourceProfileId 0
+25/01/23 23:07:20 INFO ExecutorMonitor: New executor 116 has registered (new total is 109)
+25/01/23 23:07:20 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.51.128:39131 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:20 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.57.217:43157 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:20 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.67.182:42313 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:20 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.72.181:57134) with ID 115,  ResourceProfileId 0
+25/01/23 23:07:20 INFO ExecutorMonitor: New executor 115 has registered (new total is 110)
+25/01/23 23:07:20 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.41.245:37003 with 2.1 GiB RAM, BlockManagerId(116, 10.23.41.245, 37003, None)
+25/01/23 23:07:20 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.227.136:50920) with ID 105,  ResourceProfileId 0
+25/01/23 23:07:20 INFO ExecutorMonitor: New executor 105 has registered (new total is 111)
+25/01/23 23:07:20 INFO TaskSetManager: Starting task 89.0 in stage 0.0 (TID 89) (10.23.17.30, executor 11, partition 89, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:20 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.149.83:55078
+25/01/23 23:07:20 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.72.181:43187 with 2.1 GiB RAM, BlockManagerId(115, 10.23.72.181, 43187, None)
+25/01/23 23:07:20 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.132.219:39445 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:20 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.142.155:39879 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:20 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.21.225:46565 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:20 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.209.90:39879 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:20 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.227.136:46553 with 2.1 GiB RAM, BlockManagerId(105, 10.23.227.136, 46553, None)
+25/01/23 23:07:20 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.250.53:40718
+25/01/23 23:07:20 INFO TaskSetManager: Starting task 90.0 in stage 0.0 (TID 90) (10.23.68.177, executor 99, partition 90, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:20 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.179.24:42475 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:20 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.106.69:36839 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.210.174:36045 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO TaskSetManager: Starting task 91.0 in stage 0.0 (TID 91) (10.23.243.10, executor 86, partition 91, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:21 INFO TaskSetManager: Starting task 92.0 in stage 0.0 (TID 92) (10.23.113.120, executor 111, partition 92, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.51.128:39131 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO TaskSetManager: Starting task 93.0 in stage 0.0 (TID 93) (10.23.148.170, executor 100, partition 93, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:21 INFO TaskSetManager: Starting task 94.0 in stage 0.0 (TID 94) (10.23.108.254, executor 103, partition 94, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:21 INFO TaskSetManager: Starting task 95.0 in stage 0.0 (TID 95) (10.23.84.185, executor 92, partition 95, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:21 INFO TaskSetManager: Starting task 96.0 in stage 0.0 (TID 96) (10.23.138.58, executor 101, partition 96, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.68.177:41009 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.43.182:35777 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.17.30:41061 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.57.217:43157 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.250.53:40722) with ID 122,  ResourceProfileId 0
+25/01/23 23:07:21 INFO ExecutorMonitor: New executor 122 has registered (new total is 112)
+25/01/23 23:07:21 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.149.83:55082) with ID 118,  ResourceProfileId 0
+25/01/23 23:07:21 INFO ExecutorMonitor: New executor 118 has registered (new total is 113)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.243.10:38825 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.148.170:36299 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.180.222:46215 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.113.120:38593 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.108.254:35551 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:21 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.250.53:44393 with 2.1 GiB RAM, BlockManagerId(122, 10.23.250.53, 44393, None)
+25/01/23 23:07:21 INFO TaskSetManager: Starting task 97.0 in stage 0.0 (TID 97) (10.23.113.36, executor 102, partition 97, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:21 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.149.83:42981 with 2.1 GiB RAM, BlockManagerId(118, 10.23.149.83, 42981, None)
+25/01/23 23:07:21 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.138.58:43533 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:22 INFO TaskSetManager: Starting task 98.0 in stage 0.0 (TID 98) (10.23.30.250, executor 114, partition 98, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:22 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.84.185:39423 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:22 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.142.155:39879 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:22 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.21.225:46565 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:22 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.157.186:47250
+25/01/23 23:07:22 INFO TaskSetManager: Starting task 99.0 in stage 0.0 (TID 99) (10.23.209.23, executor 104, partition 99, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:22 INFO TaskSetManager: Starting task 100.0 in stage 0.0 (TID 100) (10.23.214.225, executor 112, partition 100, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:22 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.113.36:41705 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:22 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.30.250:45661 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:22 INFO TaskSetManager: Starting task 101.0 in stage 0.0 (TID 101) (10.23.238.138, executor 107, partition 101, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:22 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.68.177:41009 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.243.10:38825 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.88.131:43502
+25/01/23 23:07:23 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.114.130:58862
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.214.225:38759 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.138.58:43533 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.148.170:36299 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.17.30:41061 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.108.254:35551 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.209.23:42855 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.13.186:47660
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.238.138:35945 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO TaskSetManager: Starting task 102.0 in stage 0.0 (TID 102) (10.23.180.91, executor 110, partition 102, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.113.120:38593 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO TaskSetManager: Starting task 103.0 in stage 0.0 (TID 103) (10.23.67.66, executor 121, partition 103, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.84.185:39423 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.231.157:47612
+25/01/23 23:07:23 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.157.186:47266) with ID 125,  ResourceProfileId 0
+25/01/23 23:07:23 INFO ExecutorMonitor: New executor 125 has registered (new total is 114)
+25/01/23 23:07:23 INFO TaskSetManager: Starting task 104.0 in stage 0.0 (TID 104) (10.23.211.1, executor 93, partition 104, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:23 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.157.186:45221 with 2.1 GiB RAM, BlockManagerId(125, 10.23.157.186, 45221, None)
+25/01/23 23:07:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.113.36:41705 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:23 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.203.254:40276
+25/01/23 23:07:24 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.180.91:34045 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:24 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.67.66:38313 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:24 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.30.250:45661 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:24 INFO TaskSetManager: Starting task 105.0 in stage 0.0 (TID 105) (10.23.172.24, executor 106, partition 105, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:24 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.215:46902
+25/01/23 23:07:24 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.88.131:43510) with ID 124,  ResourceProfileId 0
+25/01/23 23:07:24 INFO ExecutorMonitor: New executor 124 has registered (new total is 115)
+25/01/23 23:07:24 INFO TaskSetManager: Starting task 106.0 in stage 0.0 (TID 106) (10.23.117.164, executor 109, partition 106, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:24 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.88.131:36589 with 2.1 GiB RAM, BlockManagerId(124, 10.23.88.131, 36589, None)
+25/01/23 23:07:24 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.211.1:38977 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:24 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.13.186:47666) with ID 126,  ResourceProfileId 0
+25/01/23 23:07:24 INFO ExecutorMonitor: New executor 126 has registered (new total is 116)
+25/01/23 23:07:24 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.214.225:38759 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:24 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.209.23:42855 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:24 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.114.130:58868) with ID 108,  ResourceProfileId 0
+25/01/23 23:07:24 INFO ExecutorMonitor: New executor 108 has registered (new total is 117)
+25/01/23 23:07:24 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.170.28:35508
+25/01/23 23:07:24 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.238.138:35945 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:24 INFO TaskSetManager: Starting task 107.0 in stage 0.0 (TID 107) (10.23.41.245, executor 116, partition 107, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:24 INFO TaskSetManager: Starting task 108.0 in stage 0.0 (TID 108) (10.23.72.181, executor 115, partition 108, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:24 INFO TaskSetManager: Starting task 109.0 in stage 0.0 (TID 109) (10.23.227.136, executor 105, partition 109, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:24 INFO TaskSetManager: Starting task 110.0 in stage 0.0 (TID 110) (10.23.202.48, executor 94, partition 110, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:24 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.13.186:44849 with 2.1 GiB RAM, BlockManagerId(126, 10.23.13.186, 44849, None)
+25/01/23 23:07:24 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.172.24:37787 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:24 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.114.130:33907 with 2.1 GiB RAM, BlockManagerId(108, 10.23.114.130, 33907, None)
+25/01/23 23:07:24 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.231.157:47614) with ID 119,  ResourceProfileId 0
+25/01/23 23:07:24 INFO ExecutorMonitor: New executor 119 has registered (new total is 118)
+25/01/23 23:07:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.203.254:40292) with ID 130,  ResourceProfileId 0
+25/01/23 23:07:25 INFO ExecutorMonitor: New executor 130 has registered (new total is 119)
+25/01/23 23:07:25 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.117.164:38507 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:25 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.231.157:38327 with 2.1 GiB RAM, BlockManagerId(119, 10.23.231.157, 38327, None)
+25/01/23 23:07:25 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.203.254:35483 with 2.1 GiB RAM, BlockManagerId(130, 10.23.203.254, 35483, None)
+25/01/23 23:07:25 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.41.245:37003 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:25 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.180.91:34045 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:25 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.227.136:46553 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:25 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.67.66:38313 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.148.215:46908) with ID 131,  ResourceProfileId 0
+25/01/23 23:07:25 INFO ExecutorMonitor: New executor 131 has registered (new total is 120)
+25/01/23 23:07:25 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.72.181:43187 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:25 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.202.48:46007 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.248.202:35618
+25/01/23 23:07:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.248.244:46424
+25/01/23 23:07:25 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.148.215:32853 with 2.1 GiB RAM, BlockManagerId(131, 10.23.148.215, 32853, None)
+25/01/23 23:07:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.47.220:48730
+25/01/23 23:07:25 INFO TaskSetManager: Starting task 111.0 in stage 0.0 (TID 111) (10.23.250.53, executor 122, partition 111, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.170.28:44006) with ID 127,  ResourceProfileId 0
+25/01/23 23:07:25 INFO ExecutorMonitor: New executor 127 has registered (new total is 121)
+25/01/23 23:07:26 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.170.28:43653 with 2.1 GiB RAM, BlockManagerId(127, 10.23.170.28, 43653, None)
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.31.88:44778
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.60.187:54584
+25/01/23 23:07:26 INFO TaskSetManager: Starting task 112.0 in stage 0.0 (TID 112) (10.23.149.83, executor 118, partition 112, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:26 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.211.1:38977 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.201.87:59402
+25/01/23 23:07:26 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.250.53:44393 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:26 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.172.24:37787 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.208.216:53412
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.233.227:35964
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.196.241:48544
+25/01/23 23:07:26 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.117.164:38507 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.10.161:53604
+25/01/23 23:07:26 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.72.181:43187 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:26 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.202.48:46007 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:26 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.227.136:46553 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.99.218:36184
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.248.202:35630) with ID 113,  ResourceProfileId 0
+25/01/23 23:07:26 INFO ExecutorMonitor: New executor 113 has registered (new total is 122)
+25/01/23 23:07:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.248.244:46428) with ID 6,  ResourceProfileId 0
+25/01/23 23:07:26 INFO ExecutorMonitor: New executor 6 has registered (new total is 123)
+25/01/23 23:07:27 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.41.245:37003 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:27 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.149.83:42981 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.47.220:48740) with ID 133,  ResourceProfileId 0
+25/01/23 23:07:27 INFO ExecutorMonitor: New executor 133 has registered (new total is 124)
+25/01/23 23:07:27 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.248.202:41797 with 2.1 GiB RAM, BlockManagerId(113, 10.23.248.202, 41797, None)
+25/01/23 23:07:27 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.248.244:46669 with 2.1 GiB RAM, BlockManagerId(6, 10.23.248.244, 46669, None)
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.36.38:34258
+25/01/23 23:07:27 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.47.220:33485 with 2.1 GiB RAM, BlockManagerId(133, 10.23.47.220, 33485, None)
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.222.228:60102
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.31.88:44786) with ID 136,  ResourceProfileId 0
+25/01/23 23:07:27 INFO ExecutorMonitor: New executor 136 has registered (new total is 125)
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.60.187:54596) with ID 135,  ResourceProfileId 0
+25/01/23 23:07:27 INFO ExecutorMonitor: New executor 135 has registered (new total is 126)
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.34.36:50538
+25/01/23 23:07:27 INFO TaskSetManager: Starting task 113.0 in stage 0.0 (TID 113) (10.23.157.186, executor 125, partition 113, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.8:55058
+25/01/23 23:07:27 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.60.187:43941 with 2.1 GiB RAM, BlockManagerId(135, 10.23.60.187, 43941, None)
+25/01/23 23:07:27 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.250.53:44393 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:27 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.31.88:40413 with 2.1 GiB RAM, BlockManagerId(136, 10.23.31.88, 40413, None)
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.208.216:53418) with ID 128,  ResourceProfileId 0
+25/01/23 23:07:27 INFO ExecutorMonitor: New executor 128 has registered (new total is 127)
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.201.87:59408) with ID 132,  ResourceProfileId 0
+25/01/23 23:07:27 INFO ExecutorMonitor: New executor 132 has registered (new total is 128)
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.233.227:35966) with ID 144,  ResourceProfileId 0
+25/01/23 23:07:27 INFO ExecutorMonitor: New executor 144 has registered (new total is 129)
+25/01/23 23:07:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.99.218:36186) with ID 143,  ResourceProfileId 0
+25/01/23 23:07:27 INFO ExecutorMonitor: New executor 143 has registered (new total is 130)
+25/01/23 23:07:28 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.208.216:43837 with 2.1 GiB RAM, BlockManagerId(128, 10.23.208.216, 43837, None)
+25/01/23 23:07:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.10.161:53620) with ID 139,  ResourceProfileId 0
+25/01/23 23:07:28 INFO ExecutorMonitor: New executor 139 has registered (new total is 131)
+25/01/23 23:07:28 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.233.227:43399 with 2.1 GiB RAM, BlockManagerId(144, 10.23.233.227, 43399, None)
+25/01/23 23:07:28 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.99.218:34701 with 2.1 GiB RAM, BlockManagerId(143, 10.23.99.218, 34701, None)
+25/01/23 23:07:28 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.201.87:41173 with 2.1 GiB RAM, BlockManagerId(132, 10.23.201.87, 41173, None)
+25/01/23 23:07:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.36.38:34262) with ID 147,  ResourceProfileId 0
+25/01/23 23:07:28 INFO ExecutorMonitor: New executor 147 has registered (new total is 132)
+25/01/23 23:07:28 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.157.186:45221 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:28 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.36.38:46095 with 2.1 GiB RAM, BlockManagerId(147, 10.23.36.38, 46095, None)
+25/01/23 23:07:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.196.241:48552) with ID 123,  ResourceProfileId 0
+25/01/23 23:07:28 INFO ExecutorMonitor: New executor 123 has registered (new total is 133)
+25/01/23 23:07:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.42.37:37200
+25/01/23 23:07:28 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.10.161:39647 with 2.1 GiB RAM, BlockManagerId(139, 10.23.10.161, 39647, None)
+25/01/23 23:07:28 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.149.83:42981 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.34.36:50548) with ID 138,  ResourceProfileId 0
+25/01/23 23:07:28 INFO ExecutorMonitor: New executor 138 has registered (new total is 134)
+25/01/23 23:07:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.148.8:55066) with ID 146,  ResourceProfileId 0
+25/01/23 23:07:28 INFO ExecutorMonitor: New executor 146 has registered (new total is 135)
+25/01/23 23:07:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.222.228:60106) with ID 142,  ResourceProfileId 0
+25/01/23 23:07:28 INFO ExecutorMonitor: New executor 142 has registered (new total is 136)
+25/01/23 23:07:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.85.85:34362
+25/01/23 23:07:28 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.34.36:36835 with 2.1 GiB RAM, BlockManagerId(138, 10.23.34.36, 36835, None)
+25/01/23 23:07:28 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.196.241:36723 with 2.1 GiB RAM, BlockManagerId(123, 10.23.196.241, 36723, None)
+25/01/23 23:07:28 INFO TaskSetManager: Starting task 114.0 in stage 0.0 (TID 114) (10.23.88.131, executor 124, partition 114, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:29 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.148.8:43461 with 2.1 GiB RAM, BlockManagerId(146, 10.23.148.8, 43461, None)
+25/01/23 23:07:29 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.222.228:39027 with 2.1 GiB RAM, BlockManagerId(142, 10.23.222.228, 39027, None)
+25/01/23 23:07:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.43.85:36762
+25/01/23 23:07:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.131.60:38098
+25/01/23 23:07:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.138.78:35400
+25/01/23 23:07:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.216.193:58094
+25/01/23 23:07:29 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.157.186:45221 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:29 INFO TaskSetManager: Starting task 115.0 in stage 0.0 (TID 115) (10.23.13.186, executor 126, partition 115, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.42.37:37202) with ID 145,  ResourceProfileId 0
+25/01/23 23:07:29 INFO ExecutorMonitor: New executor 145 has registered (new total is 137)
+25/01/23 23:07:29 INFO TaskSetManager: Starting task 116.0 in stage 0.0 (TID 116) (10.23.114.130, executor 108, partition 116, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:29 INFO TaskSetManager: Starting task 117.0 in stage 0.0 (TID 117) (10.23.231.157, executor 119, partition 117, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:29 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.88.131:36589 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.26.126:33828
+25/01/23 23:07:29 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.42.37:40717 with 2.1 GiB RAM, BlockManagerId(145, 10.23.42.37, 40717, None)
+25/01/23 23:07:30 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.85.85:34368) with ID 149,  ResourceProfileId 0
+25/01/23 23:07:30 INFO ExecutorMonitor: New executor 149 has registered (new total is 138)
+25/01/23 23:07:30 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.43.85:36776) with ID 148,  ResourceProfileId 0
+25/01/23 23:07:30 INFO ExecutorMonitor: New executor 148 has registered (new total is 139)
+25/01/23 23:07:30 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.85.85:44267 with 2.1 GiB RAM, BlockManagerId(149, 10.23.85.85, 44267, None)
+25/01/23 23:07:30 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.114.130:33907 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:30 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.13.186:44849 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:30 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.43.85:44381 with 2.1 GiB RAM, BlockManagerId(148, 10.23.43.85, 44381, None)
+25/01/23 23:07:30 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.231.157:38327 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:30 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.216.193:58100) with ID 137,  ResourceProfileId 0
+25/01/23 23:07:30 INFO ExecutorMonitor: New executor 137 has registered (new total is 140)
+25/01/23 23:07:30 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.138.78:35404) with ID 134,  ResourceProfileId 0
+25/01/23 23:07:30 INFO ExecutorMonitor: New executor 134 has registered (new total is 141)
+25/01/23 23:07:30 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.216.193:35199 with 2.1 GiB RAM, BlockManagerId(137, 10.23.216.193, 35199, None)
+25/01/23 23:07:30 INFO TaskSetManager: Starting task 118.0 in stage 0.0 (TID 118) (10.23.170.28, executor 127, partition 118, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:30 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.26.126:33842) with ID 150,  ResourceProfileId 0
+25/01/23 23:07:30 INFO ExecutorMonitor: New executor 150 has registered (new total is 142)
+25/01/23 23:07:31 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.138.78:41187 with 2.1 GiB RAM, BlockManagerId(134, 10.23.138.78, 41187, None)
+25/01/23 23:07:31 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.26.126:40811 with 2.1 GiB RAM, BlockManagerId(150, 10.23.26.126, 40811, None)
+25/01/23 23:07:31 INFO TaskSetManager: Starting task 119.0 in stage 0.0 (TID 119) (10.23.203.254, executor 130, partition 119, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:31 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.131.60:38114) with ID 120,  ResourceProfileId 0
+25/01/23 23:07:31 INFO ExecutorMonitor: New executor 120 has registered (new total is 143)
+25/01/23 23:07:31 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.88.131:36589 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:31 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.114.130:33907 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:31 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.170.28:43653 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:31 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.13.186:44849 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:31 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.131.60:34265 with 2.1 GiB RAM, BlockManagerId(120, 10.23.131.60, 34265, None)
+25/01/23 23:07:31 INFO TaskSetManager: Starting task 120.0 in stage 0.0 (TID 120) (10.23.60.187, executor 135, partition 120, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:32 INFO TaskSetManager: Starting task 121.0 in stage 0.0 (TID 121) (10.23.47.220, executor 133, partition 121, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:32 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.203.254:35483 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:32 INFO TaskSetManager: Starting task 122.0 in stage 0.0 (TID 122) (10.23.99.218, executor 143, partition 122, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:32 INFO TaskSetManager: Starting task 123.0 in stage 0.0 (TID 123) (10.23.31.88, executor 136, partition 123, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:32 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.60.187:43941 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:32 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.47.220:33485 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:32 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.170.28:43653 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:32 INFO TaskSetManager: Starting task 124.0 in stage 0.0 (TID 124) (10.23.148.8, executor 146, partition 124, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:32 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.31.88:40413 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:32 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.99.218:34701 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:33 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.231.157:38327 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:33 INFO TaskSetManager: Starting task 125.0 in stage 0.0 (TID 125) (10.23.208.216, executor 128, partition 125, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:33 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.203.254:35483 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:33 INFO TaskSetManager: Starting task 126.0 in stage 0.0 (TID 126) (10.23.34.36, executor 138, partition 126, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:33 INFO TaskSetManager: Starting task 127.0 in stage 0.0 (TID 127) (10.23.36.38, executor 147, partition 127, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:33 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.229.128:36306
+25/01/23 23:07:33 INFO TaskSetManager: Starting task 128.0 in stage 0.0 (TID 128) (10.23.148.215, executor 131, partition 128, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:33 INFO TaskSetManager: Starting task 129.0 in stage 0.0 (TID 129) (10.23.233.227, executor 144, partition 129, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:33 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.148.8:43461 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:33 INFO TaskSetManager: Starting task 130.0 in stage 0.0 (TID 130) (10.23.248.244, executor 6, partition 130, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:33 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.60.187:43941 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO TaskSetManager: Starting task 131.0 in stage 0.0 (TID 131) (10.23.248.202, executor 113, partition 131, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.34.36:36835 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.36.38:46095 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO TaskSetManager: Starting task 132.0 in stage 0.0 (TID 132) (10.23.222.228, executor 142, partition 132, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.208.216:43837 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO TaskSetManager: Starting task 133.0 in stage 0.0 (TID 133) (10.23.201.87, executor 132, partition 133, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.148.215:32853 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.233.227:43399 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO TaskSetManager: Starting task 134.0 in stage 0.0 (TID 134) (10.23.85.85, executor 149, partition 134, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.47.220:33485 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.31.88:40413 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.99.218:34701 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.248.244:46669 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO TaskSetManager: Starting task 135.0 in stage 0.0 (TID 135) (10.23.10.161, executor 139, partition 135, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.248.202:41797 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO TaskSetManager: Starting task 136.0 in stage 0.0 (TID 136) (10.23.42.37, executor 145, partition 136, PROCESS_LOCAL, 8146 bytes) 
+25/01/23 23:07:34 INFO TaskSetManager: Starting task 137.0 in stage 0.0 (TID 137) (10.23.43.85, executor 148, partition 137, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.222.228:39027 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.201.87:41173 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.85.85:44267 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:34 INFO TaskSetManager: Starting task 138.0 in stage 0.0 (TID 138) (10.23.26.126, executor 150, partition 138, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.148.8:43461 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.229.128:36314) with ID 140,  ResourceProfileId 0
+25/01/23 23:07:35 INFO ExecutorMonitor: New executor 140 has registered (new total is 144)
+25/01/23 23:07:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.17.33:37736
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.10.161:39647 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.43.85:44381 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:35 INFO TaskSetManager: Starting task 139.0 in stage 0.0 (TID 139) (10.23.216.193, executor 137, partition 139, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.36.38:46095 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.42.37:40717 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:35 INFO TaskSetManager: Starting task 140.0 in stage 0.0 (TID 140) (10.23.138.78, executor 134, partition 140, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.233.227:43399 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:35 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.229.128:38933 with 2.1 GiB RAM, BlockManagerId(140, 10.23.229.128, 38933, None)
+25/01/23 23:07:35 INFO TaskSetManager: Starting task 141.0 in stage 0.0 (TID 141) (10.23.196.241, executor 123, partition 141, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.148.215:32853 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.26.126:40811 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.34.36:36835 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:35 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.208.216:43837 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.216.193:35199 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.248.202:41797 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.222.228:39027 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.248.244:46669 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.196.241:36723 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.138.78:41187 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.85.85:44267 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.201.87:41173 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.43.85:44381 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.42.37:40717 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:36 INFO TaskSetManager: Starting task 142.0 in stage 0.0 (TID 142) (10.23.131.60, executor 120, partition 142, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:07:37 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.26.126:40811 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:37 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.10.161:39647 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:37 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.216.193:35199 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:37 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.17.33:37750) with ID 129,  ResourceProfileId 0
+25/01/23 23:07:37 INFO ExecutorMonitor: New executor 129 has registered (new total is 145)
+25/01/23 23:07:37 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.131.60:34265 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:38 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.17.33:41655 with 2.1 GiB RAM, BlockManagerId(129, 10.23.17.33, 41655, None)
+25/01/23 23:07:38 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.196.241:36723 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:38 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.138.78:41187 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:39 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.131.60:34265 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:40 INFO TaskSetManager: Starting task 143.0 in stage 0.0 (TID 143) (10.23.229.128, executor 140, partition 143, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:07:40 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.229.128:38933 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:42 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.229.128:38933 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:43 INFO TaskSetManager: Starting task 144.0 in stage 0.0 (TID 144) (10.23.17.33, executor 129, partition 144, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:07:44 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.17.33:41655 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:47 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.17.33:41655 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:07:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.162.81:38310
+25/01/23 23:07:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.162.81:38316) with ID 117,  ResourceProfileId 0
+25/01/23 23:07:51 INFO ExecutorMonitor: New executor 117 has registered (new total is 146)
+25/01/23 23:07:51 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.162.81:40989 with 2.1 GiB RAM, BlockManagerId(117, 10.23.162.81, 40989, None)
+25/01/23 23:07:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.1.252:43118
+25/01/23 23:07:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.1.252:43122) with ID 64,  ResourceProfileId 0
+25/01/23 23:07:55 INFO ExecutorMonitor: New executor 64 has registered (new total is 147)
+25/01/23 23:07:55 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.1.252:37695 with 2.1 GiB RAM, BlockManagerId(64, 10.23.1.252, 37695, None)
+25/01/23 23:07:56 INFO TaskSetManager: Starting task 145.0 in stage 0.0 (TID 145) (10.23.162.81, executor 117, partition 145, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:07:57 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.162.81:40989 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:07:59 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.162.81:40989 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:08:00 INFO TaskSetManager: Starting task 146.0 in stage 0.0 (TID 146) (10.23.1.252, executor 64, partition 146, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:08:00 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.1.252:37695 (size: 85.0 KiB, free: 2.1 GiB)
+25/01/23 23:08:01 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.1.252:37695 (size: 32.6 KiB, free: 2.1 GiB)
+25/01/23 23:08:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.138.57:41064
+25/01/23 23:08:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.101.185:38398
+25/01/23 23:08:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.68.151:50122
+25/01/23 23:08:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.34:36048
+25/01/23 23:08:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.15:58780
+25/01/23 23:08:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.196.239:43370
+25/01/23 23:08:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.216.196:43476
+25/01/23 23:08:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.60.157:38504
+25/01/23 23:08:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.99.215:36066
+25/01/23 23:08:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.42.23:52578
+25/01/23 23:08:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.233.226:37362
+25/01/23 23:08:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.31.100:33526
+25/01/23 23:08:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.34.34:36294
+25/01/23 23:08:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.36.41:40706
+25/01/23 23:08:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.43.83:54158
+25/01/23 23:08:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.0:43998
+25/01/23 23:08:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.26.75:42380
+25/01/23 23:08:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.85.95:53332
+25/01/23 23:08:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.222.227:46436
+25/01/23 23:08:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.10.160:46346
+25/01/23 23:08:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.75.152:59760
+25/01/23 23:08:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.76.44:51646
+25/01/23 23:08:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.156.231:45730
+25/01/23 23:08:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.151.80:48546
+25/01/23 23:08:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.150.252:49356
+25/01/23 23:08:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.203.255:35402
+25/01/23 23:08:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.249.9:59262
+25/01/23 23:08:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.216:51604
+25/01/23 23:08:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.240.205:37620
+25/01/23 23:08:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.88.227:50514
+25/01/23 23:08:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.45.211:51932
+25/01/23 23:08:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.51.228:47514
+25/01/23 23:08:59 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.157.242:58840
+25/01/23 23:08:59 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.247.8:36634
+25/01/23 23:08:59 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.151.55:54488
+25/01/23 23:09:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.97.61:53590
+25/01/23 23:09:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.17.154:33464
+25/01/23 23:09:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.242.94:37790
+25/01/23 23:09:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.183.143:51952
+25/01/23 23:09:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.8.40:56266
+25/01/23 23:09:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.34.239:39850
+25/01/23 23:09:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.67.57:49094
+25/01/23 23:09:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.176.175:51742
+25/01/23 23:09:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.19.46:56122
+25/01/23 23:09:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.140.233:46056
+25/01/23 23:09:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.76.179:33772
+25/01/23 23:09:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.107.81:53540
+25/01/23 23:09:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.72.16:34458
+25/01/23 23:09:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.178.81:41400
+25/01/23 23:09:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.179.194:40618
+25/01/23 23:09:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.157.30:39526
+25/01/23 23:09:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.170.91:34802
+25/01/23 23:09:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.143.166:60942
+25/01/23 23:09:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.140.101:51716
+25/01/23 23:09:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.99:60314
+25/01/23 23:09:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.18.219:48682
+25/01/23 23:09:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.131.118:35770
+25/01/23 23:09:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.37.49:34506
+25/01/23 23:09:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.207:44504
+25/01/23 23:09:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.167:54280
+25/01/23 23:09:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.27.58:56600
+25/01/23 23:09:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.216.93:56068
+25/01/23 23:09:08 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.17.90:56478
+25/01/23 23:09:09 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.115.154:37800
+25/01/23 23:09:09 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.252.39:50966
+25/01/23 23:09:09 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.64.31:57946
+25/01/23 23:09:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.4.90:49754
+25/01/23 23:09:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.208.218:41862
+25/01/23 23:09:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.53.26:51200
+25/01/23 23:09:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.69.0:39888
+25/01/23 23:09:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.242.19:41214
+25/01/23 23:09:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.96.177:54072
+25/01/23 23:09:11 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.237.60:44814
+25/01/23 23:09:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.241.92:57556
+25/01/23 23:09:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.101.158:38328
+25/01/23 23:09:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.17.30:60918
+25/01/23 23:09:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.67.182:50468
+25/01/23 23:09:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.8.215:39222
+25/01/23 23:09:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.120:39330
+25/01/23 23:09:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.179.24:59112
+25/01/23 23:09:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.106.69:41980
+25/01/23 23:09:13 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.243.10:35678
+25/01/23 23:09:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.132.219:35290
+25/01/23 23:09:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.209.90:33280
+25/01/23 23:09:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.180.222:43146
+25/01/23 23:09:14 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.21.225:52170
+25/01/23 23:09:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.210.174:56746
+25/01/23 23:09:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.43.182:52036
+25/01/23 23:09:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.51.128:37504
+25/01/23 23:09:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.57.217:34450
+25/01/23 23:09:15 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.142.155:35964
+25/01/23 23:09:16 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.84.185:53984
+25/01/23 23:09:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.68.177:55304
+25/01/23 23:09:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.108.254:59608
+25/01/23 23:09:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.170:34806
+25/01/23 23:09:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.138.58:36806
+25/01/23 23:09:17 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.120:42558
+25/01/23 23:09:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.113.36:59544
+25/01/23 23:09:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.214.225:40644
+25/01/23 23:09:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.48:41924
+25/01/23 23:09:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.209.23:48212
+25/01/23 23:09:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.30.250:42880
+25/01/23 23:09:18 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.211.1:50500
+25/01/23 23:09:19 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.238.138:60674
+25/01/23 23:09:19 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.172.24:36978
+25/01/23 23:09:19 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.180.91:46964
+25/01/23 23:09:20 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.117.164:36984
+25/01/23 23:09:20 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.67.66:45928
+25/01/23 23:09:20 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.41.245:54880
+25/01/23 23:09:20 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.72.181:57142
+25/01/23 23:09:21 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.227.136:50930
+25/01/23 23:09:22 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.250.53:40738
+25/01/23 23:09:22 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.149.83:55096
+25/01/23 23:09:24 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.157.186:47274
+25/01/23 23:09:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.88.131:43524
+25/01/23 23:09:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.13.186:52602
+25/01/23 23:09:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.114.130:58870
+25/01/23 23:09:25 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.203.254:40302
+25/01/23 23:09:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.231.157:44308
+25/01/23 23:09:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.215:46916
+25/01/23 23:09:26 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.170.28:44012
+25/01/23 23:09:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.248.244:46430
+25/01/23 23:09:27 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.248.202:35634
+25/01/23 23:09:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.47.220:48748
+25/01/23 23:09:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.60.187:54604
+25/01/23 23:09:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.31.88:44790
+25/01/23 23:09:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.99.218:36196
+25/01/23 23:09:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.233.227:35968
+25/01/23 23:09:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.208.216:53434
+25/01/23 23:09:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.201.87:59410
+25/01/23 23:09:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.36.38:34264
+25/01/23 23:09:28 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.10.161:53626
+25/01/23 23:09:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.196.241:48558
+25/01/23 23:09:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.34.36:50562
+25/01/23 23:09:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.8:55070
+25/01/23 23:09:29 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.222.228:60112
+25/01/23 23:09:30 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.42.37:37214
+25/01/23 23:09:30 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.85.85:44260
+25/01/23 23:09:30 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.43.85:36784
+25/01/23 23:09:31 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.216.193:58116
+25/01/23 23:09:31 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.138.78:35410
+25/01/23 23:09:31 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.26.126:33852
+25/01/23 23:09:32 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.131.60:38122
+25/01/23 23:09:36 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.229.128:36318
+25/01/23 23:09:38 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.17.33:60916
+25/01/23 23:09:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.162.81:35134
+25/01/23 23:09:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.1.252:43130
+25/01/23 23:11:17 INFO TaskSetManager: Starting task 147.0 in stage 0.0 (TID 147) (10.23.8.215, executor 83, partition 147, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:11:18 INFO TaskSetManager: Finished task 76.0 in stage 0.0 (TID 76) in 240535 ms on 10.23.8.215 (executor 83) (1/770)
+25/01/23 23:11:36 INFO TaskSetManager: Starting task 148.0 in stage 0.0 (TID 148) (10.23.180.222, executor 73, partition 148, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:11:36 INFO TaskSetManager: Finished task 82.0 in stage 0.0 (TID 82) in 257562 ms on 10.23.180.222 (executor 73) (2/770)
+25/01/23 23:11:37 INFO TaskSetManager: Starting task 149.0 in stage 0.0 (TID 149) (10.23.42.37, executor 145, partition 149, PROCESS_LOCAL, 8148 bytes) 
+25/01/23 23:11:37 INFO TaskSetManager: Finished task 136.0 in stage 0.0 (TID 136) in 243217 ms on 10.23.42.37 (executor 145) (3/770)
