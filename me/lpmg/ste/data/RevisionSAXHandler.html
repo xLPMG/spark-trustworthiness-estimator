@@ -139,24 +139,20 @@
                         <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="Revision.html" title=""></a>
-                        <a href="Revision.html" title="">Revision</a>
+                        <a class="class" href="Revision.html" title="Data class for revision data"></a>
+                        <a href="Revision.html" title="Data class for revision data">Revision</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="class" href="RevisionManager.html" title=""></a>
                         <a href="RevisionManager.html" title="">RevisionManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="" title="SAX handler for parsing MediaWiki XML revisions."></a>
-                        <a href="" title="SAX handler for parsing MediaWiki XML revisions.">RevisionSAXHandler</a>
+                        <a class="class" href="" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
+                        <a href="" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandler</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content."></a>
                         <a href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content.">SourceExtractor</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="object" href="TemplateUpdater$.html" title=""></a>
-                        <a href="TemplateUpdater$.html" title="">TemplateUpdater</a>
                       </li>
               </ul>
             </div>
@@ -185,7 +181,8 @@
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>SAX handler for parsing MediaWiki XML revisions.
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>SAX handler for parsing MediaWiki XML revisions, filtering for specific
+template and namespace.
 </p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
@@ -236,10 +233,10 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="me.lpmg.ste.data.RevisionSAXHandler#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(dateLimit:Long):me.lpmg.ste.data.RevisionSAXHandler"></a><a id="&lt;init&gt;:RevisionSAXHandler"></a>
+              <ol><li name="me.lpmg.ste.data.RevisionSAXHandler#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(template:String):me.lpmg.ste.data.RevisionSAXHandler"></a><a id="&lt;init&gt;:RevisionSAXHandler"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/RevisionSAXHandler.html#&lt;init&gt;(dateLimit:Long):me.lpmg.ste.data.RevisionSAXHandler" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionSAXHandler.html#&lt;init&gt;(template:String):me.lpmg.ste.data.RevisionSAXHandler" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -248,10 +245,11 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">RevisionSAXHandler</span><span class="params">(<span name="dateLimit">dateLimit: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">0</span></span>)</span>
+        <span class="name">RevisionSAXHandler</span><span class="params">(<span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       
-      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">template</dt><dd class="cmt"><p>
+  The template to search for within page revisions</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -562,7 +560,7 @@
         <span class="name">getRevisions</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Get the collected revisions</p>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">

@@ -155,41 +155,21 @@
                         <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="Revision.html" title=""></a>
-                        <a href="Revision.html" title="">Revision</a>
+                        <a class="class" href="Revision.html" title="Data class for revision data"></a>
+                        <a href="Revision.html" title="Data class for revision data">Revision</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="class" href="RevisionManager.html" title=""></a>
                         <a href="RevisionManager.html" title="">RevisionManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions."></a>
-                        <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions.">RevisionSAXHandler</a>
+                        <a class="class" href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
+                        <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandler</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content."></a>
                         <a href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content.">SourceExtractor</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="object" href="TemplateUpdater$.html" title=""></a>
-                        <a href="TemplateUpdater$.html" title="">TemplateUpdater</a>
-                      </li><li name="me.lpmg.ste.graph" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="graph"></a><a id="graph:graph"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/graph/index.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="../graph/index.html"><span class="name">graph</span></a>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
-    </li><li name="me.lpmg.ste.jobs" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
+                      </li><li name="me.lpmg.ste.jobs" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="jobs"></a><a id="jobs:jobs"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/jobs/index.html" title="Permalink">
@@ -300,7 +280,7 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="me.lpmg.ste.data.Revision" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="me.lpmg.ste.data.Revision" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="RevisionextendsSerializablewithProduct"></a><a id="Revision:Revision"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/Revision.html" title="Permalink">
@@ -312,10 +292,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a title="" href="Revision.html"><span class="name">Revision</span></a><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Long">Long</span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Int">Int</span></span>, <span name="parentId">parentId: <span class="extype" name="scala.Long">Long</span></span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Long">Long</span></span>, <span name="templatePresence">templatePresence: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templatePresenceGT">templatePresenceGT: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateAddedGT">templateAddedGT: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="templateRemovedGT">templateRemovedGT: <span class="extype" name="org.apache.spark.util.collection.BitSet">BitSet</span> = <span class="defval" name='<span class="name"><a href="../../../index.html">new BitSet(TemplateBitPositions.size)</a></span>'>...</span></span>, <span name="sources">sources: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Seq.empty</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+        <a title="Data class for revision data" href="Revision.html"><span class="name">Revision</span></a><span class="params">(<span name="revisionId">revisionId: <span class="extype" name="scala.Long">Long</span></span>, <span name="pairId">pairId: <span class="extype" name="scala.Long">Long</span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Int">Int</span></span>, <span name="templateAdded">templateAdded: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="templateRemoved">templateRemoved: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="templateAddedGT">templateAddedGT: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="templateRemovedGT">templateRemovedGT: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="sources">sources: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Seq.empty</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
       </span>
       
-      
+      <p class="shortcomment cmt">Data class for revision data
+</p><div class="fullcomment"><div class="comment cmt"><p>Data class for revision data
+</p></div><dl class="paramcmts block"><dt class="param">revisionId</dt><dd class="cmt"><p>The revision ID</p></dd><dt class="param">pairId</dt><dd class="cmt"><p>The revision ID of the pair</p></dd><dt class="param">pageId</dt><dd class="cmt"><p>The page ID</p></dd><dt class="param">templateAdded</dt><dd class="cmt"><p>Whether a template was added</p></dd><dt class="param">templateRemoved</dt><dd class="cmt"><p>Whether a template was removed</p></dd><dt class="param">templateAddedGT</dt><dd class="cmt"><p>Whether a template was added (ground truth)</p></dd><dt class="param">templateRemovedGT</dt><dd class="cmt"><p>Whether a template was removed (ground truth)</p></dd><dt class="param">sources</dt><dd class="cmt"><p>The sources</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.RevisionManager" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="RevisionManagerextendsAnyRef"></a><a id="RevisionManager:RevisionManager"></a>
       <span class="permalink">
@@ -344,10 +326,11 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="SAX handler for parsing MediaWiki XML revisions." href="RevisionSAXHandler.html"><span class="name">RevisionSAXHandler</span></a><span class="result"> extends <span class="extype" name="org.xml.sax.helpers.DefaultHandler">DefaultHandler</span></span>
+        <a title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace." href="RevisionSAXHandler.html"><span class="name">RevisionSAXHandler</span></a><span class="result"> extends <span class="extype" name="org.xml.sax.helpers.DefaultHandler">DefaultHandler</span></span>
       </span>
       
-      <p class="shortcomment cmt">SAX handler for parsing MediaWiki XML revisions.</p>
+      <p class="shortcomment cmt">SAX handler for parsing MediaWiki XML revisions, filtering for specific
+template and namespace.</p>
     </li></ol>
             </div>
 
@@ -388,26 +371,9 @@ files.</p>
         <a title="Extracts sources from Wikipedia text content." href="SourceExtractor$.html"><span class="name">SourceExtractor</span></a>
       </span>
       
-      <p class="shortcomment cmt">Extracts sources from Wikipedia text content.</p><div class="fullcomment"><div class="comment cmt"><p>Extracts sources from Wikipedia text content.
-For URLs, only extracts the main domain or first subdomain.
-For books, only extracts the ISBN.
+      <p class="shortcomment cmt">Extracts sources from Wikipedia text content.</p><div class="fullcomment"><div class="comment cmt"><p>Extracts sources from Wikipedia text content. For URLs, only extracts the
+main domain or first subdomain. For books, only extracts the ISBN.
 </p></div></div>
-    </li><li name="me.lpmg.ste.data.TemplateUpdater" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="TemplateUpdater"></a><a id="TemplateUpdater:TemplateUpdater"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/TemplateUpdater$.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="TemplateUpdater$.html"><span class="name">TemplateUpdater</span></a>
-      </span>
-      
-      
     </li>
               </ol>
             </div>

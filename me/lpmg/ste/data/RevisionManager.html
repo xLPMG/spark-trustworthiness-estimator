@@ -139,24 +139,20 @@
                         <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="Revision.html" title=""></a>
-                        <a href="Revision.html" title="">Revision</a>
+                        <a class="class" href="Revision.html" title="Data class for revision data"></a>
+                        <a href="Revision.html" title="Data class for revision data">Revision</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="class" href="" title=""></a>
                         <a href="" title="">RevisionManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions."></a>
-                        <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions.">RevisionSAXHandler</a>
+                        <a class="class" href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
+                        <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandler</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content."></a>
                         <a href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content.">SourceExtractor</a>
-                      </li><li class="current-entities indented4">
-                        <span class="separator"></span>
-                        <a class="object" href="TemplateUpdater$.html" title=""></a>
-                        <a href="TemplateUpdater$.html" title="">TemplateUpdater</a>
                       </li>
               </ul>
             </div>
@@ -351,22 +347,6 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.data.RevisionManager#dateLimit" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="dateLimit:Long"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#dateLimit:Long" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">var</span>
-      </span>
-      <span class="symbol">
-        <span class="name">dateLimit</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
-      </span>
-      
-      
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -548,9 +528,9 @@
               
         </dd></dl></div>
     </li><li name="me.lpmg.ste.data.RevisionManager#retrieveRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)]):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]"></a><a id="retrieveRevisions(RDD[(String,PortableDataStream)]):RDD[Revision]"></a>
+      <a id="retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)],template:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]"></a><a id="retrieveRevisions(RDD[(String,PortableDataStream)],String):RDD[Revision]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)]):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)],template:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -559,7 +539,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">retrieveRevisions</span><span class="params">(<span name="filesRDD">filesRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span>)]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
+        <span class="name">retrieveRevisions</span><span class="params">(<span name="filesRDD">filesRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span>)]</span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
       <p class="shortcomment cmt">Initializes the graph by reading all revisions from the dump folder.</p><div class="fullcomment"><div class="comment cmt"><p>Initializes the graph by reading all revisions from the dump folder.
@@ -581,42 +561,6 @@
       </span>
       
       <p class="shortcomment cmt">Saves the revisions to a parquet file.</p>
-    </li><li name="me.lpmg.ste.data.RevisionManager#setDateLimit" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setDateLimit(date:Long):Unit"></a><a id="setDateLimit(Long):Unit"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#setDateLimit(date:Long):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">setDateLimit</span><span class="params">(<span name="date">date: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Sets the date limit for the graph.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the date limit for the graph. Only revisions after this date will be
-included in the graph.
-</p></div></div>
-    </li><li name="me.lpmg.ste.data.RevisionManager#setDateLimit" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="setDateLimit(date:java.time.ZonedDateTime):Unit"></a><a id="setDateLimit(ZonedDateTime):Unit"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#setDateLimit(date:java.time.ZonedDateTime):Unit" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">setDateLimit</span><span class="params">(<span name="date">date: <span class="extype" name="java.time.ZonedDateTime">ZonedDateTime</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Sets the date limit for the graph.</p><div class="fullcomment"><div class="comment cmt"><p>Sets the date limit for the graph. Only revisions after this date will be
-included in the graph.
-</p></div></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
