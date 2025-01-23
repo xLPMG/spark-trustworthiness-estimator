@@ -66,7 +66,12 @@ object SourceEvalJob {
     val revisions: RDD[Revision] = revisionManager
       .loadRevisions(revisionsFolderName)
       .filter(_.revisionId < testSplitRevision)
-    val sourceProbabilities = SourceEvaluator.evaluateSources(revisions)
+    val sourceProbabilities = SourceEvaluator
+      .evaluateSources(revisions)
+      // only include sources that appeared in revisions where a template was added or removed
+      // this shouldnt be necessary though since the revisions folder only 
+      // contains revisions where a template was added or removed
+      .filter(_._2._2 > 0)
 
     import spark.implicits._
     import org.apache.spark.sql.functions._
@@ -79,20 +84,25 @@ object SourceEvalJob {
 
     val sourceProbabilitiesDF = sourceProbabilities
       .map { case (source, probabilities) =>
-
         val probsString = probabilities._1.extractValuesString
-        val probabilityTemplateAdded = probsString._1
-        val probabilityTemplateRemoved = probsString._2
+        val (probabilityTemplateAdded, probabilityTemplateRemoved) = probsString
         val occurences = probabilities._2
-
-        (source, probabilityTemplateAdded, probabilityTemplateRemoved, occurences)
+        (
+          source,
+          probabilityTemplateAdded,
+          probabilityTemplateRemoved,
+          occurences
+        )
       }
       .toSeq
-      .filter(_._4 > 0)
-      .toDF("src", "probabilityTemplateAdded", "probabilityTemplateRemoved", "occurences")
+      .toDF(
+        "src",
+        "probabilityTemplateAdded",
+        "probabilityTemplateRemoved",
+        "occurences"
+      )
 
-    sourceProbabilitiesDF
-      .write
+    sourceProbabilitiesDF.write
       .option("header", "true")
       .csv(sourceProbabilitiesOutputPath.toString)
 
