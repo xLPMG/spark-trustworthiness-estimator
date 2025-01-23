@@ -10,12 +10,15 @@ spark-submit \
   --class me.lpmg.ste.jobs.ExtractLabelsJob \
   --name Spark-Trustworthiness-Estimator-EXTLABJOB \
   --properties-file ../../spark-defaults.conf \
-  --conf spark.dynamicAllocation.maxExecutors=150 \
+  --conf spark.dynamicAllocation.maxExecutors=200 \
   --conf spark.driver.memory=12g \
-  --conf spark.executor.memory=5g \
+  --conf spark.executor.memory=3g \
   --conf spark.driver.maxResultSize=4g \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data2 \
-  revisions-2025-01-15T18-03-56Z
+  revisions-dubious-2025-01-22T10-29-24Z \
+  dubious
   
+# revisions-third-party-2025-01-22T10-22-34Z
+# revisions-dubious-2025-01-22T10-29-24Z
