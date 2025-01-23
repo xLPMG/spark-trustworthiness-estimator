@@ -10,13 +10,19 @@ spark-submit \
   --class me.lpmg.ste.jobs.RevisionEvalJob \
   --name Spark-Trustworthiness-Estimator-REVEVALJOB \
   --properties-file ../../spark-defaults.conf \
-  --conf spark.dynamicAllocation.maxExecutors=150 \
+  --conf spark.dynamicAllocation.maxExecutors=200 \
   --conf spark.driver.memory=12g \
-  --conf spark.executor.memory=5g \
+  --conf spark.executor.memory=4g \
   --conf spark.driver.maxResultSize=4g \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data2 \
-  revisions-masked-2025-01-18T09-53-39Z \
-  source-probabilities-2025-01-18T10-16-02Z
+  revisions-third-party-2025-01-22T10-22-34Z \
+  source-probabilities-third-party-2025-01-23T08-25-56Z \
+  third-party \
+  910639218
+
+# revisions-third-party-2025-01-22T10-22-34Z
+# source-probabilities-third-party-2025-01-23T08-25-56Z
+# 910639218
   
