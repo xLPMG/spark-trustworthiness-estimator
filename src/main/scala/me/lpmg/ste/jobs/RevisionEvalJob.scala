@@ -83,25 +83,15 @@ object RevisionEvalJob {
 
     // source -> TemplateProbabilityVector
     val sourceProbabilitiesMap = sourceProbabilitiesDF
-      .select("src", "probability")
       .rdd
       .map { row =>
         val source = row.getAs[String]("src")
-        val probabilitiesString = row.getAs[String]("probability")
+        val probabilityTemplateAdded = row.getAs[String]("probabilityTemplateAdded").toFloat
+        // only intialize with template added probability to ensure it adds up to 1.0f exactly
+        //val probabilityTemplateRemoved = row.getAs[String]("probabilityTemplateRemoved").toFloat
+        val occurences = row.getAs[String]("occurences").toInt
 
-        val probabilityVector =
-          if (null == probabilitiesString || probabilitiesString.isEmpty) {
-            DefaultTemplateProbabilityVector
-          } else {
-            val pA = probabilitiesString
-              .stripPrefix("(")
-              .stripSuffix(")")
-              .split(";")
-              .map(_.toFloat)
-            TemplateProbabilityVector(pA(0), pA(1))
-          }
-
-        (source, probabilityVector)
+        (source, (TemplateProbabilityVector(probabilityTemplateAdded), occurences))
       }
       .collectAsMap()
 
@@ -111,7 +101,7 @@ object RevisionEvalJob {
         val probabilities = revision.sources
           .map(source =>
             sourceProbabilitiesMap
-              .getOrElse(source, DefaultTemplateProbabilityVector)
+              .getOrElse(source, (DefaultTemplateProbabilityVector, 0))
           )
           .toSeq
 
@@ -119,18 +109,19 @@ object RevisionEvalJob {
           (revision.revisionId, DefaultTemplateProbabilityVector)
         } else {
           val accumulatedProbabilities =
-            ProbabilityHandler.logarithmicCombination(probabilities)
+            ProbabilityHandler.weightedLogarithmicCombination(probabilities)
           (revision.revisionId, accumulatedProbabilities)
         }
       }
       .filter(!_._2.isUndecided())
       // Map probability values to string representation
       .map { case (revisionId, probabilities) =>
-        (revisionId, probabilities.extractValuesString)
+        val (probabilityTemplateAdded, probabilityTemplateRemoved) = probabilities.extractValuesString
+        (revisionId, probabilityTemplateAdded, probabilityTemplateRemoved)
       }
 
     val probabilitiesDF =
-      revisionToProbabilities.toDF("revision_id", "probability")
+      revisionToProbabilities.toDF("revision_id", "probabilityTemplateAdded", "probabilityTemplateRemoved")
 
     val probabilitiesOutputPath =
       Path

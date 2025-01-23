@@ -51,18 +51,9 @@ object ExtractLabelsJob {
 
     val templateData = revisions
       .map { revision =>
-        if (revision.templateAddedGT) {
-          (revision.revisionId, revision.pairId, 1.0f)
-        } else if (revision.templateRemovedGT) {
-          (revision.revisionId, revision.pairId, 0.0f)
-        } else {
-          // should not happen
-          (revision.revisionId, revision.pairId, -1.0f)
-        }
+       (revision.revisionId, revision.pairId, revision.templateAddedGT, revision.templateRemovedGT)
       }
-      // only keep added and removed data
-      .filter(_._3 >= 0.0f)
-      .toDF("revision_id", "pair_id", "has_template")
+      .toDF("revision_id", "pair_id", "templateAdded", "templateRemoved")
 
     templateData.write
       .mode("overwrite")

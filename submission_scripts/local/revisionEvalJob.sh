@@ -8,8 +8,8 @@ spark-submit \
   --conf "spark.driver.extraJavaOptions=-Dlog4j.configuration=file:log4j.properties" \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /Users/lpmg/Bachelor/xml \
-  revisions-dubious-2025-01-22T08-27-15Z \
-  source-probabilities-dubious-2025-01-21T15-47-11Z \
+  revisions-dubious-2025-01-23T10-56-53Z \
+  source-probabilities-dubious-2025-01-23T11-50-55Z \
   dubious
 
   
