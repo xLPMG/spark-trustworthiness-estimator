@@ -16,6 +16,7 @@ import me.lpmg.ste.types.TemplateProbabilityVector
 import me.lpmg.ste.algorithms.ProbabilityHandler
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
+import org.apache.hadoop.shaded.org.checkerframework.checker.units.qual.s
 
 object SourceEvalJob {
 
@@ -78,13 +79,17 @@ object SourceEvalJob {
 
     val sourceProbabilitiesDF = sourceProbabilities
       .map { case (source, probabilities) =>
-        val probabilitiesString =
-          if (probabilities.isUndecided) null
-          else probabilities.extractValuesString
-        (source, probabilitiesString)
+
+        val probsString = probabilities._1.extractValuesString
+        val probabilityTemplateAdded = probsString._1
+        val probabilityTemplateRemoved = probsString._2
+        val occurences = probabilities._2
+
+        (source, probabilityTemplateAdded, probabilityTemplateRemoved, occurences)
       }
       .toSeq
-      .toDF("src", "probability")
+      .filter(_._4 > 0)
+      .toDF("src", "probabilityTemplateAdded", "probabilityTemplateRemoved", "occurences")
 
     sourceProbabilitiesDF
       .write

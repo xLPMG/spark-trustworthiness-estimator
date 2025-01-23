@@ -16,6 +16,8 @@ lazy val root = project
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % "test",
     libraryDependencies += "org.scalameta" %% "munit" % "1.0.0" % Test,
 
+    libraryDependencies += "de.malkusch.whois-server-list" % "public-suffix-list" % "2.2.0",
+
     assemblyMergeStrategy in assembly := {
       case PathList("META-INF", xs @ _*) => MergeStrategy.discard
       case x => MergeStrategy.first

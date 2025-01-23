@@ -14,7 +14,7 @@ final case class TemplateProbabilityVector(
     (probabilityTemplateAdded, probabilityTemplateRemoved)
   }
 
-  def extractValuesString: String = {
+  def extractValuesString: (String, String) = {
     import scala.util.{Try, Success, Failure}
 
     Try {
@@ -25,16 +25,18 @@ final case class TemplateProbabilityVector(
       val rounded2 =
         (BigDecimal(1.0) - rounded1)
           .setScale(4, BigDecimal.RoundingMode.HALF_UP)
-      s"(${rounded1.toString()};${rounded2.toString()})"
+      (s"${rounded1.toString()}", s"${rounded2.toString()}")
     } match {
       case Success(result) => result
       case Failure(error) =>
-        println(s"Error converting probability: ${probabilityTemplateAdded};${probabilityTemplateRemoved} with ${error.getMessage}")
-        "(ERROR)"
+        println(
+          s"Error converting probability: ${probabilityTemplateAdded};${probabilityTemplateRemoved} with ${error.getMessage}"
+        )
+        ("NaN", "NaN")
     }
   }
 
   override def toString(): String = {
-    extractValuesString
+    extractValuesString._1 + ";" + extractValuesString._2
   }
 }

@@ -17,7 +17,7 @@ object SourceEvaluator extends Serializable {
     */
   def evaluateSources(
       revisions: RDD[Revision]
-  ): Map[String, TemplateProbabilityVector] = {
+  ): Map[String, (TemplateProbabilityVector, Int)] = {
     evaluateSourcesDistributed(revisions)
       .collect()
       .toMap
@@ -34,8 +34,8 @@ object SourceEvaluator extends Serializable {
     */
   def evaluateSourcesDistributed(
       revisions: RDD[Revision]
-  ): RDD[(String, TemplateProbabilityVector)] = {
-     revisions
+  ): RDD[(String, (TemplateProbabilityVector, Int))] = {
+    revisions
       .flatMap { revision =>
         revision.sources.map { source =>
           val counts =
@@ -54,14 +54,16 @@ object SourceEvaluator extends Serializable {
         val total = added + removed
 
         if (total == 0) {
-          TemplateProbabilityVector(0.5f, 0.5f)
+          (TemplateProbabilityVector(0.5f, 0.5f), total)
         } else {
-          TemplateProbabilityVector(
-            added.toFloat / total.toFloat,
-            removed.toFloat / total.toFloat
+          (
+            TemplateProbabilityVector(
+              added.toFloat / total.toFloat,
+              removed.toFloat / total.toFloat
+            ),
+            total
           )
         }
       }
-      .filter(!_._2.isUndecided)
   }
 }

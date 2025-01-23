@@ -5,8 +5,6 @@ import org.apache.spark.sql.SparkSession
 import java.time.ZonedDateTime
 import java.time.ZoneId
 import me.lpmg.ste.data.RevisionManager
-import me.lpmg.ste.types.Types.TemplateBitPositions
-import org.apache.spark.util.collection.BitSet
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
 
