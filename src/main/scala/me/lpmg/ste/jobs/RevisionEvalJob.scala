@@ -109,7 +109,7 @@ object RevisionEvalJob {
           (revision.revisionId, DefaultTemplateProbabilityVector)
         } else {
           val accumulatedProbabilities =
-            ProbabilityHandler.weightedLogarithmicCombination(probabilities)
+            ProbabilityHandler.weightedCombination(probabilities)
           (revision.revisionId, accumulatedProbabilities)
         }
       }

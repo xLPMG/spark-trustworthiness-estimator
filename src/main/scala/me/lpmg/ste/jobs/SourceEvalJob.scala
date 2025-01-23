@@ -102,7 +102,8 @@ object SourceEvalJob {
         "occurences"
       )
 
-    sourceProbabilitiesDF.write
+    sourceProbabilitiesDF
+      .write
       .option("header", "true")
       .csv(sourceProbabilitiesOutputPath.toString)
 

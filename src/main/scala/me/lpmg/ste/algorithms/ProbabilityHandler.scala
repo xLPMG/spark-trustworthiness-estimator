@@ -71,7 +71,7 @@ object ProbabilityHandler {
     )
   }
 
-  def weightedLogarithmicCombination(
+  def weightedCombination(
       probsWithOccurences: Seq[(TemplateProbabilityVector, Int)]
   ): TemplateProbabilityVector = {
 
@@ -89,41 +89,16 @@ object ProbabilityHandler {
       return TemplateProbabilityVector(0.0f, 1.0f)
     }
 
-    // Compute the max weighted log probabilities for numerical stability
-    val maxLogAdd = probsWithOccurences.map { case (p, w) => w * math.log(p.probabilityTemplateAdded) }.max
-    val maxLogRemove = probsWithOccurences.map { case (p, w) => w * math.log(p.probabilityTemplateRemoved) }.max
+    val totalWeight = weights.sum
+    val scaledWeights = weights.map(_ / totalWeight)
 
-    // Compute stable log-space sum
-    val logAdd = maxLogAdd + math.log(
-      probsWithOccurences
-        .map { case (p, w) => math.exp(w * math.log(p.probabilityTemplateAdded) - maxLogAdd) }
-        .sum
-    )
-    val logRemove = maxLogRemove + math.log(
-      probsWithOccurences
-        .map { case (p, w) => math.exp(w * math.log(p.probabilityTemplateRemoved) - maxLogRemove) }
-        .sum
-    )
+    val probabilityTemplateAdded = probs.zip(scaledWeights).map(p => p._1.probabilityTemplateAdded * p._2).sum
+    val probabilityTemplateRemoved = 1.0f - probabilityTemplateAdded
 
-    // Convert back to normal space
-    val expAdd = math.exp(logAdd).toFloat
-    val expRemove = math.exp(logRemove).toFloat
-    val sumExp = expAdd + expRemove
-
-    // Handle edge case: sumExp is zero
-    if (sumExp == 0.0f) {
-      // Default to a uniform distribution to avoid NaN
-      return TemplateProbabilityVector(0.5f, 0.5f)
-    }
-
-    // Normalize and return
-    TemplateProbabilityVector(
-      expAdd / sumExp,
-      expRemove / sumExp
-    )
+    TemplateProbabilityVector(probabilityTemplateAdded, probabilityTemplateRemoved)
   }
 
-  private def occurencesToWeight(occurences: Int): Float = {
+  def occurencesToWeight(occurences: Int): Float = {
     val max = 20
     val steepness = 0.1f
 
