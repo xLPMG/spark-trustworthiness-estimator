@@ -14,6 +14,9 @@ import me.lpmg.ste.types.Types.TemplateBitPositions
 import org.apache.spark.sql.Row
 import me.lpmg.ste.types.TemplateProbabilityVector
 import me.lpmg.ste.algorithms.ProbabilityHandler
+import org.apache.spark.rdd.RDD
+import me.lpmg.ste.data.Revision
+import org.apache.hadoop.shaded.org.checkerframework.checker.units.qual.s
 
 object SourceEvalJob {
 
@@ -26,6 +29,11 @@ object SourceEvalJob {
     } else if (args.length < 2) {
       logger.error("Please specify the revisions folder name")
       System.exit(1)
+    } else if (args.length < 3) {
+      logger.error(
+        "Please specify the template name"
+      )
+      System.exit(1)
     }
 
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
@@ -33,6 +41,19 @@ object SourceEvalJob {
 
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
+    val template = args(2)
+    val escapedTemplate = template.toLowerCase().replace(" ", "-")
+
+    var testSplitRevision = Long.MaxValue
+    if (args.length > 3) {
+      try {
+        testSplitRevision = args(3).toLong
+      } catch {
+        case e: NumberFormatException =>
+          logger.error("Invalid test split revision number")
+          System.exit(1)
+      }
+    }
 
     implicit val spark = SparkSession
       .builder()
@@ -41,53 +62,49 @@ object SourceEvalJob {
     val revisionManager =
       new RevisionManager(spark, dataFolderPath)
 
-    val revisions = revisionManager.loadRevisions(revisionsFolderName)
-
-    // template -> [source -> probabilities]
-    val templateToSourceProbabilities = TemplateBitPositions.map {
-      case (template, position) =>
-        val sourceProbabilities = SourceEvaluator.evaluateSources(
-          revisions,
-          position
-        )
-
-        (template -> sourceProbabilities)
-    }.toMap
+    // only load revisions up to the test split revision for source evaluation
+    val revisions: RDD[Revision] = revisionManager
+      .loadRevisions(revisionsFolderName)
+      .filter(_.revisionId < testSplitRevision)
+    val sourceProbabilities = SourceEvaluator
+      .evaluateSources(revisions)
+      // only include sources that appeared in revisions where a template was added or removed
+      // this shouldnt be necessary though since the revisions folder only 
+      // contains revisions where a template was added or removed
+      .filter(_._2._2 > 0)
 
     import spark.implicits._
     import org.apache.spark.sql.functions._
     import org.apache.spark.sql.types._
-    val templateNames =
-      TemplateBitPositions.keySet.toSeq.map(_.toLowerCase.replace(" ", "-"))
 
     val sourceProbabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"source-probabilities-$dateString")
+        .resolve(s"source-probabilities-$escapedTemplate-$dateString")
 
-    val sourceProbabilitiesDF = templateToSourceProbabilities
-      .flatMap { case (template, sourceProbabilities) =>
-        sourceProbabilities.map { case (source, probabilities) =>
-          val probabilitiesString =
-            if (probabilities.isUndecided) ""
-            else probabilities.extractValuesString
-          (source, template.toLowerCase.replace(" ", "-"), probabilitiesString)
-        }
+    val sourceProbabilitiesDF = sourceProbabilities
+      .map { case (source, probabilities) =>
+        val probsString = probabilities._1.extractValuesString
+        val (probabilityTemplateAdded, probabilityTemplateRemoved) = probsString
+        val occurences = probabilities._2
+        (
+          source,
+          probabilityTemplateAdded,
+          probabilityTemplateRemoved,
+          occurences
+        )
       }
       .toSeq
-      .toDF("src", "template", "probabilities")
+      .toDF(
+        "src",
+        "probabilityTemplateAdded",
+        "probabilityTemplateRemoved",
+        "occurences"
+      )
 
-    val pivotedDF = sourceProbabilitiesDF
-      .groupBy("src")
-      .pivot("template", templateNames)
-      .agg(first("probabilities"))
-
-    // Replace empty strings with null
-    val cleanedDF = pivotedDF.na.replace(pivotedDF.columns, Map("" -> null))
-
-    cleanedDF.write
+    sourceProbabilitiesDF
+      .write
       .option("header", "true")
-      .option("compression", "gzip")
       .csv(sourceProbabilitiesOutputPath.toString)
 
     spark.stop()

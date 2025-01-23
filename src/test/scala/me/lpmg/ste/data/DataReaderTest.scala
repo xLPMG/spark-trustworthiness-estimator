@@ -10,64 +10,50 @@ class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
     val filePath = "src/test/resources/dump/test-dump-1.xml"
     val inputStream: InputStream = new FileInputStream(filePath)
-    val revisions = DataReader.getRevisions(inputStream)
+    val revisions = DataReader.getRevisions(inputStream, "circular")
     // only 5 out of 7 revisions are in the main namespace
-    assertEquals(revisions.length, 5)
-
+    assertEquals(revisions.length, 4)
+    var revisionsChecked = 0
     // compare the extracted revision data
-    val templatePosition: Int =
-      TemplateBitPositions.get("Circular").get.toInt
     revisions.foreach { revision =>
-      if (revision.revisionId == 1L) {
+      if (revision.revisionId == 2L) {
         assertEquals(revision.pageId, 1)
-        assertEquals(revision.parentId, -1L)
-        assertEquals(
-          revision.timestamp,
-          Instant.parse("2011-01-01T00:00:01Z").toEpochMilli()
-        )
-        assertEquals(revision.templatePresence.get(templatePosition), false)
-        assertEquals(revision.templateAdded.cardinality(), 0)
-        assertEquals(revision.templateRemoved.cardinality(), 0)
-      } else if (revision.revisionId == 2L) {
-        assertEquals(revision.pageId, 2)
-        assertEquals(revision.parentId, -1L)
-        assertEquals(
-          revision.timestamp,
-          Instant.parse("2011-01-02T00:00:01Z").toEpochMilli()
-        )
-        assertEquals(revision.templatePresence.get(templatePosition), false)
-        assertEquals(revision.templateAdded.cardinality(), 0)
-        assertEquals(revision.templateRemoved.cardinality(), 0)
+        assertEquals(revision.templateAdded, true)
+        assertEquals(revision.templateRemoved, false)
+        assertEquals(revision.pairId, 3L)
+        revisionsChecked += 1
       } else if (revision.revisionId == 3L) {
         assertEquals(revision.pageId, 1)
-        assertEquals(revision.parentId, 1L)
-        assertEquals(
-          revision.timestamp,
-          Instant.parse("2011-01-03T00:00:01Z").toEpochMilli()
-        )
-        assertEquals(revision.templatePresence.get(templatePosition), true)
-        assertEquals(revision.templateAdded.cardinality(), 1)
-        assertEquals(revision.templateRemoved.cardinality(), 0)
+        assertEquals(revision.templateAdded, false)
+        assertEquals(revision.templateRemoved, true)
+        assertEquals(revision.pairId, 2L)
+        revisionsChecked += 1
       } else if (revision.revisionId == 4L) {
-        assertEquals(revision.pageId, 2)
-        assertEquals(revision.parentId, 2L)
-        assertEquals(
-          revision.timestamp,
-          Instant.parse("2011-01-04T00:00:01Z").toEpochMilli()
-        )
-        assertEquals(revision.templatePresence.get(templatePosition), false)
-        assertEquals(revision.templateAdded.cardinality(), 0)
-        assertEquals(revision.templateRemoved.cardinality(), 0)
+        assertEquals(revision.pageId, 1)
+        assertEquals(revision.templateAdded, true)
+        assertEquals(revision.templateRemoved, false)
+        assertEquals(revision.pairId, 5L)
+        revisionsChecked += 1
+      } else if (revision.revisionId == 5L) {
+        assertEquals(revision.pageId, 1)
+        assertEquals(revision.templateAdded, false)
+        assertEquals(revision.templateRemoved, true)
+        assertEquals(revision.pairId, 4L)
+        revisionsChecked += 1
       }
     }
+
+    assertEquals(revisionsChecked, 4)
   }
 
   test("extractSources") {
     val filePath = "src/test/resources/dump/test-dump-2.xml"
     val inputStream: InputStream = new FileInputStream(filePath)
-    val revisions = DataReader.getRevisions(inputStream)
+    val revisions = DataReader.getRevisions(inputStream, "circular")
     val revision = revisions.head
     val sources = revision.sources
+
+    print(sources)
 
     // References
     assert(sources.contains("cbc.ca"))
@@ -78,7 +64,7 @@ class DataReaderTest extends munit.FunSuite {
 
     // External Links
     assert(sources.contains("fluteinfo.com"))
-    assert(sources.contains("memory.loc.gov"))
+    assert(sources.contains("loc.gov"))
     assert(sources.contains("flutehistory.com"))
     assert(sources.contains("flutes.tk"))
     assert(sources.contains("thegalwaynetwork.com"))
@@ -86,11 +72,11 @@ class DataReaderTest extends munit.FunSuite {
     assert(sources.contains("telus.net"))
     assert(sources.contains("johnmcmurtery.com"))
     assert(sources.contains("neyneva.com"))
-    assert(sources.contains("wfg.woodwind.org"))
+    assert(sources.contains("woodwind.org"))
     assert(sources.contains("webindia123.com"))
     assert(sources.contains("ronkorb.com"))
     assert(sources.contains("bansuriflute.com"))
     assert(sources.contains("pnoyandthecity.blogspot.com"))
-    assert(sources.contains("beloplatno.rastko.net"))
+    assert(sources.contains("rastko.net"))
   }
 }

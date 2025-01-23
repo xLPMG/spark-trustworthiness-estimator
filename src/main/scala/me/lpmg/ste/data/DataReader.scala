@@ -25,12 +25,14 @@ object DataReader {
     *
     * @param inputStream
     *   XML input stream
+    * @param template
+    *   template string
     * @return
     *   Sequence of revisions
     */
   def getRevisions(
       inputStream: InputStream,
-      dateLimit: Long = 0
+      template: String
   ): Seq[Revision] = {
     val saxParserFactory = SAXParserFactory.newInstance()
     saxParserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
@@ -38,7 +40,7 @@ object DataReader {
     val xmlReader = setXMLReaderProperties(
       saxParserFactory.newSAXParser().getXMLReader
     )
-    val handler = new RevisionSAXHandler(dateLimit)
+    val handler = new RevisionSAXHandler(template)
     xmlReader.setContentHandler(handler)
 
     val inputSource = new InputSource(
@@ -54,19 +56,19 @@ object DataReader {
     *
     * @param pds
     *   PortableDataStream
-    * @param dictionary
-    *   Dictionary map
+    * @param template
+    *   template string
     * @return
     *   Sequence of revisions
     */
   def getRevisionsFromPDS(
       pds: PortableDataStream,
-      dateLimit: Long = 0
+      template: String
   ): Seq[Revision] = {
     Using.resource(pds.open()) { inputStream =>
       val bz2Stream =
         new BZip2CompressorInputStream(new BufferedInputStream(inputStream))
-      getRevisions(bz2Stream, dateLimit)
+      getRevisions(bz2Stream, template)
     }
   }
 

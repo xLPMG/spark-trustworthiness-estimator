@@ -5,8 +5,8 @@ import org.apache.spark.sql.SparkSession
 import java.time.ZonedDateTime
 import java.time.ZoneId
 import me.lpmg.ste.data.RevisionManager
-import me.lpmg.ste.types.Types.TemplateBitPositions
-import org.apache.spark.util.collection.BitSet
+import org.apache.spark.rdd.RDD
+import me.lpmg.ste.data.Revision
 
 object ExtractLabelsJob {
 
@@ -19,6 +19,9 @@ object ExtractLabelsJob {
     } else if (args.length < 2) {
       logger.error("Please specify the revisions folder")
       System.exit(1)
+    } else if (args.length < 3) {
+      logger.error("Please specify the template")
+      System.exit(1)
     }
 
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
@@ -26,6 +29,8 @@ object ExtractLabelsJob {
 
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
+    val template = args(2)
+    val escapedTemplate = template.toLowerCase.replace(" ", "-")
 
     implicit val spark = SparkSession
       .builder()
@@ -35,41 +40,25 @@ object ExtractLabelsJob {
 
     // Load the data
     val revisionManager = new RevisionManager(spark, dataFolderPath)
-    val revisions = revisionManager.loadRevisions(revisionsFolderName)
+    val revisions: RDD[Revision] =
+      revisionManager.loadRevisions(revisionsFolderName)
 
     import java.nio.file.{Files, Paths}
 
-    val labelsFolderName = s"labels-$dateString"
+    val labelsFolderName = s"labels-$escapedTemplate-$dateString"
     val labelsFolderPath = Paths.get(dataFolderPath, labelsFolderName)
     Files.createDirectories(labelsFolderPath)
 
-    val templateBitPositions = TemplateBitPositions.map {
-      case (template, position) =>
-        val escapedTemplate = template.toLowerCase.replace(" ", "-")
-        escapedTemplate -> position
-    }
-
-    templateBitPositions.foreach { case (template, position) =>
-      val templateFilePath = labelsFolderPath.resolve(s"$template")
-      val templateData = revisions.map { revision =>
-
-        if(revision.templateAddedGT.get(position)) {
-          (revision.revisionId, 1.0f)
-        } else if (revision.templateRemovedGT.get(position)) {
-          (revision.revisionId, 0.0f)
-        } else {
-          (revision.revisionId, -1.0f)
-        }
+    val templateData = revisions
+      .map { revision =>
+       (revision.revisionId, revision.pairId, revision.templateAddedGT, revision.templateRemovedGT)
       }
-      // only keep added and removed data
-      .filter(_._2 >= 0.0f)
-      .toDF("revision_id", "has_template")
+      .toDF("revision_id", "pair_id", "templateAdded", "templateRemoved")
 
-      templateData.write
-        .mode("overwrite")
-        .option("header", "true")
-        .csv(templateFilePath.toString)
-    }
+    templateData.write
+      .mode("overwrite")
+      .option("header", "true")
+      .csv(labelsFolderPath.toString)
 
     spark.stop()
   }

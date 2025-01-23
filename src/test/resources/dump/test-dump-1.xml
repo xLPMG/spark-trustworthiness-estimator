@@ -26,8 +26,22 @@
       <format>text/x-wiki</format>
     </revision>
     <revision>
-      <id>3</id>
+      <id>2</id>
       <parentid>1</parentid>
+      <timestamp>2011-01-01T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 1</username>
+        <id>1</id>
+      </contributor>
+      <comment>Comment 1</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">Oh no, a template! {{Circular}}
+      </text>
+    </revision>
+    <revision>
+      <id>3</id>
+      <parentid>2</parentid>
       <timestamp>2011-01-03T00:00:01Z</timestamp>
       <contributor>
         <username>Contributor 3</username>
@@ -36,36 +50,36 @@
       <comment>Comment 3</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">This is an example page with a link to [[Page 2]].{{Circular}}
+      <text bytes="111" xml:space="preserve">No template here
       </text>
-    </revision>
-  </page>
-  <page>
-    <title>Page 2</title>
-    <ns>0</ns>
-    <id>2</id>
-    <revision>
-      <id>2</id>
-      <timestamp>2011-01-02T00:00:01Z</timestamp>
-      <contributor>
-        <username>Contributor 2</username>
-        <id>2</id>
-      </contributor>
-      <comment>Comment 2</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
     </revision>
     <revision>
       <id>4</id>
-      <parentid>2</parentid>
-      <timestamp>2011-01-04T00:00:01Z</timestamp>
+      <parentid>3</parentid>
+      <timestamp>2011-01-01T00:00:01Z</timestamp>
       <contributor>
-        <username>Contributor 4</username>
-        <id>4</id>
+        <username>Contributor 1</username>
+        <id>1</id>
       </contributor>
-      <comment>Comment 4</comment>
+      <comment>Comment 1</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">Oh no, a template! {{Circular}}
+      </text>
+    </revision>
+    <revision>
+      <id>5</id>
+      <parentid>4</parentid>
+      <timestamp>2011-01-03T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 3</username>
+        <id>3</id>
+      </contributor>
+      <comment>Comment 3</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">No template here
+      </text>
     </revision>
   </page>
   <page>
@@ -82,6 +96,8 @@
       <comment>Comment 998</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">This is an example page with a link to [[Page 2]].{{Circular}}
+      </text>
     </revision>
     <revision>
       <id>999</id>
@@ -110,6 +126,8 @@
       <comment>Comment 11</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">{{Circular}}
+      </text>
     </revision>
   </page>
 </mediawiki>

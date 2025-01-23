@@ -7,27 +7,32 @@ import java.time.Instant
 import me.lpmg.ste.types.Types.{TemplateBitPositions}
 import org.apache.spark.util.collection.BitSet
 
-/** SAX handler for parsing MediaWiki XML revisions.
+/** SAX handler for parsing MediaWiki XML revisions, filtering for specific
+  * template and namespace.
+  *
+  * @param template
+  *   The template to search for within page revisions
   */
-class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
+class RevisionSAXHandler(template: String) extends DefaultHandler {
   private val revisions = ArrayBuffer[Revision]()
 
+  // State tracking variables
   private var insidePage = false
   private var insideRevision = false
   private var isMainNamespace = false
+  private var isRedirect = false
 
-  private var pageTitle: String = ""
-  private var pageId: Int = 0
-  private var revisionId: Long = 0
-  private var parentId: Option[Long] = None
-  private var timestamp: Long = 0
-  private var templateBitset: BitSet = new BitSet(TemplateBitPositions.size)
-  private var parentTemplateBitset: BitSet = new BitSet(
-    TemplateBitPositions.size
-  )
-  private var isRedirect: Boolean = false
-  private var sources: Seq[String] = Seq.empty
+  // Current page and revision context
+  private var pageId: Option[Int] = None
+  private var currentRevisionId: Option[Long] = None
+  private var currentRevisionText: String = ""
 
+  // Template tracking
+  private var firstTemplateRevision: Option[Revision] = None
+  private var lastTemplateRevision: Option[Revision] = None
+  private var currentTemplatePresent: Boolean = false
+
+  // Buffering for parsing
   private val charBuffer = new StringBuilder
 
   override def startElement(
@@ -39,20 +44,25 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
     charBuffer.clear()
 
     qName match {
+      case "revision" if !isRedirect && isMainNamespace =>
+        insideRevision = true
+        currentRevisionId = None
+        currentTemplatePresent = false
+        currentRevisionText = ""
+
       case "page" =>
         insidePage = true
-        isMainNamespace = false // reset
-        pageTitle = ""
-        parentTemplateBitset = new BitSet(TemplateBitPositions.size)
-      case "revision" =>
-        insideRevision = true
-        revisionId = 0
-        parentId = None
-        timestamp = 0
+        isMainNamespace = false
         isRedirect = false
-        templateBitset = new BitSet(TemplateBitPositions.size)
-        sources = Seq.empty
-      case _ => // No-op for other tags
+        pageId = None
+        firstTemplateRevision = None
+        lastTemplateRevision = None
+
+      case "redirect" =>
+        isRedirect = true
+
+      case _ =>
+      // Do nothing for other elements
     }
   }
 
@@ -61,19 +71,85 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
       localName: String,
       qName: String
   ): Unit = {
-    if (insideRevision) {
-      // revision specific data
-      handleRevision(qName)
-    } else if (insidePage && !insideRevision) {
-      // page specific data
-      qName match {
-        case "title" => pageTitle = getBuffer
-        case "page"  => insidePage = false
-        case "ns" =>
-          if ("0".equals(getBuffer)) isMainNamespace = true
-        case "id" => pageId = getBuffer.toInt
-        case _    => // No-op for other elements
-      }
+    val bufferContent = charBuffer.toString.trim
+    qName match {
+      // REVISION RELATED
+      case "revision" if !isRedirect && isMainNamespace =>
+        // Process revision
+        val templateCheck = checkTemplatePresence(currentRevisionText)
+
+        if (templateCheck) {
+          // First revision with template
+          if (firstTemplateRevision.isEmpty) {
+            firstTemplateRevision = Some(
+              Revision(
+                revisionId = currentRevisionId.getOrElse(-1L),
+                pairId = -1L, // Will be set later
+                pageId = pageId.getOrElse(-1),
+                templateAdded = true,
+                templateRemoved = false,
+                templateAddedGT = true,
+                templateRemovedGT = false,
+                sources = SourceExtractor.extractSources(currentRevisionText)
+              )
+            )
+          }
+          currentTemplatePresent = true
+        } else if (firstTemplateRevision.isDefined && !currentTemplatePresent) {
+          // Second revision without template
+          lastTemplateRevision = Some(
+            Revision(
+              revisionId = currentRevisionId.getOrElse(-1L),
+              pairId = firstTemplateRevision.map(_.revisionId).getOrElse(-1L), // Link to the first revision
+              pageId = pageId.getOrElse(-1),
+              templateAdded = false,
+              templateRemoved = true,
+              templateAddedGT = false,
+              templateRemovedGT = true,
+              sources = SourceExtractor.extractSources(currentRevisionText)
+            )
+          )
+
+          // Add the pair to revisions if both are present
+          for {
+            first <- firstTemplateRevision
+            last <- lastTemplateRevision
+          } {
+            // Update firstTemplateRevision's pairId with last revision's revisionId
+            val updatedFirst = first.copy(pairId = last.revisionId)
+            revisions.append(updatedFirst)
+            revisions.append(last)
+          }
+
+          // Reset for next potential pair
+          firstTemplateRevision = None
+          lastTemplateRevision = None
+        }
+
+        insideRevision = false
+
+      case "id" if insideRevision && !currentRevisionId.isDefined =>
+        currentRevisionId = Some(bufferContent.toLong)
+
+      case "text" if insideRevision =>
+        currentRevisionText = bufferContent
+
+      // PAGE RELATED
+      case "page" =>
+        // Reset page-level tracking
+        insidePage = false
+
+      case "ns" =>
+        // Check if main namespace
+        if (bufferContent == "0") {
+          isMainNamespace = true
+        }
+
+      case "id" if insidePage && !insideRevision && !pageId.isDefined =>
+        pageId = Some(bufferContent.toInt)
+
+      case _ =>
+      // Do nothing for other elements
     }
   }
 
@@ -85,82 +161,22 @@ class RevisionSAXHandler(dateLimit: Long = 0) extends DefaultHandler {
     charBuffer.appendAll(ch, start, length)
   }
 
-  /** Handles the revision elements in the XML.
-    *
-    * @param currentElement
-    */
-  private def handleRevision(currentElement: String): Unit = {
-    currentElement match {
-      case "id" if revisionId == 0 =>
-        revisionId = getBuffer.toLong
-      case "parentid" =>
-        parentId = Some(getBuffer.toLong)
-      case "timestamp" =>
-        try {
-          timestamp = Instant.parse(getBuffer).toEpochMilli()
-        } catch {
-          case e: Exception =>
-            println(
-              s"Error parsing timestamp: ${getBuffer} for revision: $revisionId in page: $pageId"
-            )
-        }
-      case "text" =>
-        val content = getBuffer
-        isRedirect = content.startsWith("#REDIRECT")
-        if (!isRedirect) {
-          // set template bits
-          // TODO: check for things like {{Unreferenced|date=March 2019}}
-          TemplateBitPositions.foreach(template =>
-            if (
-              content.contains("{{" + template._1 + "}}") ||
-              content.contains("{{" + template._1.toLowerCase + "}}") ||
-              // inline templates
-              content.contains("{{" + template._1 + "|") ||
-              content.contains("{{" + template._1.toLowerCase + "|")
-            ) {
-              templateBitset.set(template._2)
-            }
-          )
-
-          // extract sources
-          sources = SourceExtractor
-            .extractSources(content)
-            .map(_.intern())
-        }
-      case "revision" =>
-        // only add the revision if it is in the main namespace
-        if (!isRedirect && insidePage && isMainNamespace) {
-          // assuming that revisions are in chronological order
-          val (templateAdded, templateRemoved) =
-            TemplateUpdater.getTemplateChangeBitsets(
-              templateBitset,
-              parentTemplateBitset
-            )
-          parentTemplateBitset = templateBitset
-
-          if (timestamp > dateLimit) {
-            revisions += new Revision(
-              revisionId,
-              pageId,
-              parentId.getOrElse(-1),
-              timestamp,
-              templateBitset,
-              templateAdded,
-              templateRemoved,
-              // GT
-              templateBitset,
-              templateAdded,
-              templateRemoved,
-              sources
-            )
-          }
-        }
-        insideRevision = false
-      case _ => // No-op for other elements
-    }
+  /** Check if the template is present in the text (case-insensitive) */
+  private def checkTemplatePresence(text: String): Boolean = {
+    val lowercaseText = text.toLowerCase
+    val lowercaseTemplate = template.toLowerCase
+    lowercaseText.contains(s"{{$lowercaseTemplate}}") ||
+    lowercaseText.contains(s"{{ $lowercaseTemplate }}") ||
+    lowercaseText.contains(s"{{$lowercaseTemplate|")
   }
 
-  private def getBuffer: String = charBuffer.toString.trim
+  // TODO: Implement these methods
+  private def resetRevision(): Unit = {
+  }
 
+  private def resetPage(): Unit = {
+  }
+
+  /** Get the collected revisions */
   def getRevisions: Seq[Revision] = revisions
 }

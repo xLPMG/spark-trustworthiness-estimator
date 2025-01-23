@@ -16,10 +16,9 @@ object SourceEvaluator extends Serializable {
     *   Map of source URLs and their trust scores
     */
   def evaluateSources(
-      revisions: RDD[Revision],
-      sourceTemplatePosition: Byte
-  ): Map[String, TemplateProbabilityVector] = {
-    evaluateSourcesDistributed(revisions, sourceTemplatePosition)
+      revisions: RDD[Revision]
+  ): Map[String, (TemplateProbabilityVector, Int)] = {
+    evaluateSourcesDistributed(revisions)
       .collect()
       .toMap
   }
@@ -30,25 +29,18 @@ object SourceEvaluator extends Serializable {
     *
     * @param revisions
     *   RDD of revisions
-    * @param sourceTemplatePositions
-    *   Sequence of template positions
     * @return
-    *   RDD of source URLs and their probabilities (added, removed, unchanged)
+    *   RDD of source URLs and their probabilities (added, removed)
     */
   def evaluateSourcesDistributed(
-      revisions: RDD[Revision],
-      sourceTemplatePosition: Byte
-  ): RDD[(String, TemplateProbabilityVector)] = {
+      revisions: RDD[Revision]
+  ): RDD[(String, (TemplateProbabilityVector, Int))] = {
     revisions
       .flatMap { revision =>
-        val templateAdded = revision.templateAdded.get(sourceTemplatePosition)
-        val templateRemoved =
-          revision.templateRemoved.get(sourceTemplatePosition)
-
         revision.sources.map { source =>
           val counts =
-            if (templateAdded) (1, 0)
-            else if (templateRemoved) (0, 1)
+            if (revision.templateAdded) (1, 0)
+            else if (revision.templateRemoved) (0, 1)
             else (0, 0)
 
           (source, counts)
@@ -58,15 +50,20 @@ object SourceEvaluator extends Serializable {
       .reduceByKey { case ((added1, removed1), (added2, removed2)) =>
         (added1 + added2, removed1 + removed2)
       }
-      // Calculate probabilities with additive smoothing
       .mapValues { case (added, removed) =>
-        val alpha = 1.0f
-        val total = (added + alpha) + (removed + alpha)
-        TemplateProbabilityVector(
-          (added + alpha) / total,
-          (removed + alpha) / total
-        )
+        val total = added + removed
+
+        if (total == 0) {
+          (TemplateProbabilityVector(0.5f, 0.5f), total)
+        } else {
+          (
+            TemplateProbabilityVector(
+              added.toFloat / total.toFloat,
+              removed.toFloat / total.toFloat
+            ),
+            total
+          )
+        }
       }
-      .filter(!_._2.isUndecided)
   }
 }
