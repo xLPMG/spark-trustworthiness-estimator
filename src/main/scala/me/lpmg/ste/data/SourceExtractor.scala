@@ -19,7 +19,7 @@ object SourceExtractor {
   private val IsbnPattern = """(?i)isbn\s*=\s*([^|\}]+)""".r
   private val UrlInRefPattern = """https?://[^\s<>"]+""".r
   private val ExternalLinkPattern = """\*\s*\[(https?://[^\s\]]+)[^\]]*\]""".r
- 
+
   // Initialize PublicSuffixList
   private val publicSuffixList: PublicSuffixList =
     new PublicSuffixListFactory().build()
@@ -27,10 +27,18 @@ object SourceExtractor {
   private def extractDomain(urlStr: String): Option[String] = {
     Try {
       val trimmedUrlStr = urlStr.trim
+      val lastTwoChars = trimmedUrlStr.takeRight(2)
+      val lastChar = trimmedUrlStr.last
+
       val cleanedUrlStr =
-        if (trimmedUrlStr.endsWith("}}")) trimmedUrlStr.dropRight(2)
+        if ("}}".equals(lastTwoChars) || "]]".equals(lastTwoChars))
+          trimmedUrlStr.dropRight(2)
+        else if (
+          ",".equals(lastChar) || "]"
+            .equals(lastChar) || ")".equals(lastChar) || "}".equals(lastChar))
+            trimmedUrlStr.dropRight(1)
         else trimmedUrlStr
-      if (cleanedUrlStr.isEmpty()) {
+      if (cleanedUrlStr.isEmpty() || cleanedUrlStr.contains("{{")) {
         return None
       }
 

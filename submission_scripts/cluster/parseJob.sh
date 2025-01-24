@@ -8,7 +8,7 @@ fi
 
 spark-submit \
   --class me.lpmg.ste.jobs.ParseJob \
-  --name Spark-Trustworthiness-Estimator-PARSEJOB \
+  --name ste-parse-job \
   --properties-file ../../spark-defaults.conf \
   --conf spark.dynamicAllocation.maxExecutors=150 \
   --conf spark.driver.memory=12g \

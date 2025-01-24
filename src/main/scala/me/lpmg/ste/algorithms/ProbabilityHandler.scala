@@ -132,8 +132,8 @@ object ProbabilityHandler {
   }
 
   def occurencesToWeight(occurences: Int): Float = {
-    val max = 20
-    val steepness = 0.1f
+    val max = 100
+    val steepness = 0.05f
 
     val clampedOccurences = math.min(occurences, max)
 

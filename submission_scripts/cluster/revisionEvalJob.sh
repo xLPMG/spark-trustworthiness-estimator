@@ -17,10 +17,10 @@ spark-submit \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5 \
-  revisions-third-party-2025-01-23T23-06-18Z \
-  source-probabilities-third-party-2025-01-24T09-23-46Z \
-  "Third-party" \
-  910639218
+  revisions-dubious-2025-01-23T23-00-16Z \
+  source-probabilities-dubious-2025-01-24T09-19-29Z \
+  "dubious" \
+  743038329
 
 # revisions-dubious-2025-01-23T23-00-16Z,743038329,source-probabilities-dubious-2025-01-24T09-19-29Z
 
