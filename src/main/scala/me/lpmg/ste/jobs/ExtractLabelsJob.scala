@@ -51,7 +51,7 @@ object ExtractLabelsJob {
 
     val templateData = revisions
       .map { revision =>
-       (revision.revisionId, revision.pairId, revision.templateAddedGT, revision.templateRemovedGT)
+       (revision.revisionId, revision.pairId, if(revision.templateAddedGT) "1.0" else "0.0", if(revision.templateRemovedGT) "1.0" else "0.0")
       }
       .toDF("revision_id", "pair_id", "templateAdded", "templateRemoved")
 
