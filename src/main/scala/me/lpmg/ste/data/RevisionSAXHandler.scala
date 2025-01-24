@@ -85,19 +85,16 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
                 sources = SourceExtractor.extractSources(currentRevisionText)
               )
             )
-            currentTemplatePresent = true
-          } else {
-            // Reset if template is found again without removal
-            currentTemplatePresent = true
           }
+          currentTemplatePresent = true
+
+        // no template anymore but we already set the first revision
         } else if (firstTemplateRevision.isDefined && !currentTemplatePresent) {
-          // Revision without template after a template was added
+          // Second revision without template
           lastTemplateRevision = Some(
             Revision(
               revisionId = currentRevisionId.getOrElse(-1L),
-              pairId = firstTemplateRevision
-                .map(_.revisionId)
-                .getOrElse(-1L), // Link to the first revision
+              pairId = firstTemplateRevision.map(_.revisionId).getOrElse(-1L), // Link to the first revision
               pageId = pageId.getOrElse(-1),
               templateAdded = false,
               templateRemoved = true,
@@ -107,10 +104,15 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
             )
           )
 
-          // Add the pair to revisions if both are present and last revision has sources
+          // Add the pair to revisions if both are present and the last revision has sources
+          // Before checking for sources in the second revision, I noticed that it often happens
+          // that all sources were removed with the template. Shortly after, the template and
+          // all sources were added again. I guess this is some kind of vandalism that should
+          // be ignored.
           for {
             first <- firstTemplateRevision
-            last <- lastTemplateRevision if last.sources.nonEmpty
+            last <- lastTemplateRevision
+            if last.sources.nonEmpty
           } {
             // Update firstTemplateRevision's pairId with last revision's revisionId
             val updatedFirst = first.copy(pairId = last.revisionId)
@@ -121,10 +123,6 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           // Reset for next potential pair
           firstTemplateRevision = None
           lastTemplateRevision = None
-          currentTemplatePresent = false
-        } else {
-          // No template or no significant change
-          currentTemplatePresent = templateCheck
         }
 
         insideRevision = false
