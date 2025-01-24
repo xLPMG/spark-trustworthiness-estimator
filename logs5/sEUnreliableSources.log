@@ -1,0 +1,565 @@
+25/01/24 09:24:07 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Files file:///mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-71dd192e-7d37-4438-a694-c6363c786460/spark-trustworthiness-estimator-assembly-0.1.0.jar from /mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-71dd192e-7d37-4438-a694-c6363c786460/spark-trustworthiness-estimator-assembly-0.1.0.jar to /tmp/spark-trustworthiness-estimator-assembly-0.1.0.jar
+25/01/24 09:27:41 INFO SparkContext: Running Spark version 3.5.0
+25/01/24 09:27:41 INFO SparkContext: OS info Linux, 6.8.0-48-generic, amd64
+25/01/24 09:27:41 INFO SparkContext: Java version 11.0.21
+25/01/24 09:27:41 INFO ResourceUtils: ==============================================================
+25/01/24 09:27:41 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/01/24 09:27:41 INFO ResourceUtils: ==============================================================
+25/01/24 09:27:41 INFO SparkContext: Submitted application: ste-source-eval-job
+25/01/24 09:27:42 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 4096, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/01/24 09:27:42 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+25/01/24 09:27:42 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/01/24 09:27:42 INFO SecurityManager: Changing view acls to: spark,lpmg
+25/01/24 09:27:42 INFO SecurityManager: Changing modify acls to: spark,lpmg
+25/01/24 09:27:42 INFO SecurityManager: Changing view acls groups to: 
+25/01/24 09:27:42 INFO SecurityManager: Changing modify acls groups to: 
+25/01/24 09:27:42 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark, lpmg; groups with view permissions: EMPTY; users with modify permissions: spark, lpmg; groups with modify permissions: EMPTY
+25/01/24 09:27:43 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
+25/01/24 09:27:43 INFO SparkEnv: Registering MapOutputTracker
+25/01/24 09:27:43 INFO SparkEnv: Registering BlockManagerMaster
+25/01/24 09:27:43 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/01/24 09:27:43 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/01/24 09:27:43 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/01/24 09:27:43 INFO DiskBlockManager: Created local directory at /var/data/spark-9773c46f-f046-46f1-8b67-4adf8fbac3cb/blockmgr-52b2369d-9265-4553-ab47-b395c252bcb5
+25/01/24 09:27:43 INFO MemoryStore: MemoryStore started with capacity 6.8 GiB
+25/01/24 09:27:43 INFO SparkEnv: Registering OutputCommitCoordinator
+25/01/24 09:27:44 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/01/24 09:27:44 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/01/24 09:27:44 INFO SparkContext: Added JAR file:/mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-71dd192e-7d37-4438-a694-c6363c786460/spark-trustworthiness-estimator-assembly-0.1.0.jar at spark://ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc:7078/jars/spark-trustworthiness-estimator-assembly-0.1.0.jar with timestamp 1737710861826
+25/01/24 09:27:44 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
+25/01/24 09:27:48 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
+25/01/24 09:27:49 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+25/01/24 09:27:49 INFO NettyBlockTransferService: Server created on ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc 10.23.142.153:7079
+25/01/24 09:27:49 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/01/24 09:27:49 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc, 7079, None)
+25/01/24 09:27:49 INFO BlockManagerMasterEndpoint: Registering block manager ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc:7079 with 6.8 GiB RAM, BlockManagerId(driver, ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc, 7079, None)
+25/01/24 09:27:49 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc, 7079, None)
+25/01/24 09:27:49 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc, 7079, None)
+25/01/24 09:27:49 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
+25/01/24 09:27:49 INFO ExecutorAllocationManager: Dynamic allocation is enabled without a shuffle service.
+25/01/24 09:27:50 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+25/01/24 09:27:50 INFO RevisionManager: Loading revisions with Ground Truth data
+25/01/24 09:27:50 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+25/01/24 09:27:50 INFO SharedState: Warehouse path is 'file:/tmp/spark-warehouse'.
+25/01/24 09:27:54 INFO InMemoryFileIndex: It took 1401 ms to list leaf files for 1 paths.
+25/01/24 09:27:56 INFO SparkContext: Starting job: parquet at RevisionManager.scala:107
+25/01/24 09:27:56 INFO DAGScheduler: Got job 0 (parquet at RevisionManager.scala:107) with 1 output partitions
+25/01/24 09:27:56 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at RevisionManager.scala:107)
+25/01/24 09:27:56 INFO DAGScheduler: Parents of final stage: List()
+25/01/24 09:27:56 INFO DAGScheduler: Missing parents: List()
+25/01/24 09:27:56 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at RevisionManager.scala:107), which has no missing parents
+25/01/24 09:27:56 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 109.5 KiB, free 6.8 GiB)
+25/01/24 09:27:57 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 39.8 KiB, free 6.8 GiB)
+25/01/24 09:27:57 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc:7079 (size: 39.8 KiB, free: 6.8 GiB)
+25/01/24 09:27:57 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1580
+25/01/24 09:27:57 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at RevisionManager.scala:107) (first 15 tasks are for partitions Vector(0))
+25/01/24 09:27:57 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+25/01/24 09:27:57 INFO ExecutorAllocationManager: Requesting 1 new executor because tasks are backlogged (new desired total will be 1 for resource profile id: 0)
+25/01/24 09:27:57 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
+25/01/24 09:27:57 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 09:27:58 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:10 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.94:46682
+25/01/24 09:28:12 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.202.94:46694) with ID 1,  ResourceProfileId 0
+25/01/24 09:28:12 INFO ExecutorMonitor: New executor 1 has registered (new total is 1)
+25/01/24 09:28:12 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
+25/01/24 09:28:12 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.202.94:43399 with 2.1 GiB RAM, BlockManagerId(1, 10.23.202.94, 43399, None)
+25/01/24 09:28:16 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (10.23.202.94, executor 1, partition 0, PROCESS_LOCAL, 8150 bytes) 
+25/01/24 09:28:17 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.202.94:43399 (size: 39.8 KiB, free: 2.1 GiB)
+25/01/24 09:28:20 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 3594 ms on 10.23.202.94 (executor 1) (1/1)
+25/01/24 09:28:20 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+25/01/24 09:28:20 INFO DAGScheduler: ResultStage 0 (parquet at RevisionManager.scala:107) finished in 23.665 s
+25/01/24 09:28:20 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+25/01/24 09:28:20 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+25/01/24 09:28:20 INFO DAGScheduler: Job 0 finished: parquet at RevisionManager.scala:107, took 23.868113 s
+25/01/24 09:28:21 INFO BlockManagerInfo: Removed broadcast_0_piece0 on ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc:7079 in memory (size: 39.8 KiB, free: 6.8 GiB)
+25/01/24 09:28:21 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 10.23.202.94:43399 in memory (size: 39.8 KiB, free: 2.1 GiB)
+25/01/24 09:28:24 INFO FileSourceStrategy: Pushed Filters: 
+25/01/24 09:28:24 INFO FileSourceStrategy: Post-Scan Filters: 
+25/01/24 09:28:25 INFO CodeGenerator: Code generated in 1102.937643 ms
+25/01/24 09:28:25 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 211.6 KiB, free 6.8 GiB)
+25/01/24 09:28:25 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 37.8 KiB, free 6.8 GiB)
+25/01/24 09:28:25 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc:7079 (size: 37.8 KiB, free: 6.8 GiB)
+25/01/24 09:28:25 INFO SparkContext: Created broadcast 1 from rdd at RevisionManager.scala:110
+25/01/24 09:28:26 INFO FileSourceScanExec: Planning scan with bin packing, max size: 134217728 bytes, open cost is considered as scanning 4194304 bytes.
+25/01/24 09:28:26 INFO SparkContext: Starting job: collect at SourceEvaluator.scala:21
+25/01/24 09:28:26 INFO DAGScheduler: Registering RDD 10 (flatMap at SourceEvaluator.scala:39) as input to shuffle 0
+25/01/24 09:28:26 INFO DAGScheduler: Got job 1 (collect at SourceEvaluator.scala:21) with 24 output partitions
+25/01/24 09:28:26 INFO DAGScheduler: Final stage: ResultStage 2 (collect at SourceEvaluator.scala:21)
+25/01/24 09:28:26 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 1)
+25/01/24 09:28:26 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 1)
+25/01/24 09:28:27 INFO DAGScheduler: Submitting ShuffleMapStage 1 (MapPartitionsRDD[10] at flatMap at SourceEvaluator.scala:39), which has no missing parents
+25/01/24 09:28:27 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 42.9 KiB, free 6.8 GiB)
+25/01/24 09:28:27 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 17.3 KiB, free 6.8 GiB)
+25/01/24 09:28:27 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc:7079 (size: 17.3 KiB, free: 6.8 GiB)
+25/01/24 09:28:27 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1580
+25/01/24 09:28:27 INFO DAGScheduler: Submitting 24 missing tasks from ShuffleMapStage 1 (MapPartitionsRDD[10] at flatMap at SourceEvaluator.scala:39) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+25/01/24 09:28:27 INFO TaskSchedulerImpl: Adding task set 1.0 with 24 tasks resource profile 0
+25/01/24 09:28:27 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (10.23.202.94, executor 1, partition 0, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:27 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.202.94:43399 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:28 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 2 for resource profile id: 0)
+25/01/24 09:28:28 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 2, known: 1, sharedSlotFromPendingPods: 2147483647.
+25/01/24 09:28:28 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 09:28:28 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:29 INFO ExecutorAllocationManager: Requesting 1 new executor because tasks are backlogged (new desired total will be 3 for resource profile id: 0)
+25/01/24 09:28:29 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 3, known: 2, sharedSlotFromPendingPods: 2147483646.
+25/01/24 09:28:29 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 09:28:29 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:30 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 5 for resource profile id: 0)
+25/01/24 09:28:30 INFO ExecutorPodsAllocator: Going to request 2 executors from Kubernetes for ResourceProfile Id: 0, target: 5, known: 3, sharedSlotFromPendingPods: 2147483645.
+25/01/24 09:28:30 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 09:28:30 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:30 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:31 INFO ExecutorAllocationManager: Requesting 4 new executors because tasks are backlogged (new desired total will be 9 for resource profile id: 0)
+25/01/24 09:28:31 INFO ExecutorPodsAllocator: Going to request 4 executors from Kubernetes for ResourceProfile Id: 0, target: 9, known: 5, sharedSlotFromPendingPods: 2147483643.
+25/01/24 09:28:31 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 09:28:31 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:31 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:31 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:32 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:32 INFO ExecutorAllocationManager: Requesting 8 new executors because tasks are backlogged (new desired total will be 17 for resource profile id: 0)
+25/01/24 09:28:33 INFO ExecutorAllocationManager: Requesting 7 new executors because tasks are backlogged (new desired total will be 24 for resource profile id: 0)
+25/01/24 09:28:33 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 24, known: 9, sharedSlotFromPendingPods: 2147483639.
+25/01/24 09:28:33 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 09:28:33 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:33 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:33 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:33 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:33 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:34 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 24, known: 14, sharedSlotFromPendingPods: 2147483636.
+25/01/24 09:28:34 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 09:28:34 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:34 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:34 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:35 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.202.94:43399 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:28:35 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:35 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:36 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 24, known: 19, sharedSlotFromPendingPods: 2147483633.
+25/01/24 09:28:36 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 09:28:36 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:36 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:36 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:36 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:36 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 09:28:40 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 2) (10.23.202.94, executor 1, partition 1, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:40 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 13006 ms on 10.23.202.94 (executor 1) (1/24)
+25/01/24 09:28:42 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.147.249:53068
+25/01/24 09:28:42 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.67.238:40758
+25/01/24 09:28:43 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.98.132:46836
+25/01/24 09:28:43 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 3) (10.23.202.94, executor 1, partition 2, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:43 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 2) in 2881 ms on 10.23.202.94 (executor 1) (2/24)
+25/01/24 09:28:43 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.67.238:40764) with ID 4,  ResourceProfileId 0
+25/01/24 09:28:43 INFO ExecutorMonitor: New executor 4 has registered (new total is 2)
+25/01/24 09:28:44 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.147.249:53080) with ID 2,  ResourceProfileId 0
+25/01/24 09:28:44 INFO ExecutorMonitor: New executor 2 has registered (new total is 3)
+25/01/24 09:28:44 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.67.238:38697 with 2.1 GiB RAM, BlockManagerId(4, 10.23.67.238, 38697, None)
+25/01/24 09:28:44 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.147.249:44813 with 2.1 GiB RAM, BlockManagerId(2, 10.23.147.249, 44813, None)
+25/01/24 09:28:44 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.13.146:39136
+25/01/24 09:28:44 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.98.132:46846) with ID 6,  ResourceProfileId 0
+25/01/24 09:28:44 INFO ExecutorMonitor: New executor 6 has registered (new total is 4)
+25/01/24 09:28:44 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.98.132:45891 with 2.1 GiB RAM, BlockManagerId(6, 10.23.98.132, 45891, None)
+25/01/24 09:28:44 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.157.191:49528
+25/01/24 09:28:45 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.60.130:38550
+25/01/24 09:28:45 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 4) (10.23.202.94, executor 1, partition 3, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:45 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 3) in 2455 ms on 10.23.202.94 (executor 1) (3/24)
+25/01/24 09:28:45 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.13.146:39140) with ID 5,  ResourceProfileId 0
+25/01/24 09:28:45 INFO ExecutorMonitor: New executor 5 has registered (new total is 5)
+25/01/24 09:28:46 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.13.146:43405 with 2.1 GiB RAM, BlockManagerId(5, 10.23.13.146, 43405, None)
+25/01/24 09:28:46 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.75.176:41106
+25/01/24 09:28:46 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.72.136:35522
+25/01/24 09:28:46 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.157.191:49530) with ID 7,  ResourceProfileId 0
+25/01/24 09:28:46 INFO ExecutorMonitor: New executor 7 has registered (new total is 6)
+25/01/24 09:28:47 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.60.130:38554) with ID 8,  ResourceProfileId 0
+25/01/24 09:28:47 INFO ExecutorMonitor: New executor 8 has registered (new total is 7)
+25/01/24 09:28:47 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.157.191:37681 with 2.1 GiB RAM, BlockManagerId(7, 10.23.157.191, 37681, None)
+25/01/24 09:28:47 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.60.130:45413 with 2.1 GiB RAM, BlockManagerId(8, 10.23.60.130, 45413, None)
+25/01/24 09:28:47 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.150.255:55592
+25/01/24 09:28:47 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.151.87:40088
+25/01/24 09:28:47 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.26.90:37148
+25/01/24 09:28:47 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.43.89:41440
+25/01/24 09:28:47 INFO TaskSetManager: Starting task 4.0 in stage 1.0 (TID 5) (10.23.202.94, executor 1, partition 4, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:47 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 4) in 2118 ms on 10.23.202.94 (executor 1) (4/24)
+25/01/24 09:28:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.75.176:41118) with ID 16,  ResourceProfileId 0
+25/01/24 09:28:48 INFO ExecutorMonitor: New executor 16 has registered (new total is 8)
+25/01/24 09:28:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.72.136:35532) with ID 3,  ResourceProfileId 0
+25/01/24 09:28:48 INFO ExecutorMonitor: New executor 3 has registered (new total is 9)
+25/01/24 09:28:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.8.34:55696
+25/01/24 09:28:48 INFO TaskSetManager: Starting task 5.0 in stage 1.0 (TID 6) (10.23.67.238, executor 4, partition 5, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.76.37:56846
+25/01/24 09:28:48 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.75.176:37053 with 2.1 GiB RAM, BlockManagerId(16, 10.23.75.176, 37053, None)
+25/01/24 09:28:48 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.72.136:43511 with 2.1 GiB RAM, BlockManagerId(3, 10.23.72.136, 43511, None)
+25/01/24 09:28:48 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.67.238:38697 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.156.240:44140
+25/01/24 09:28:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.150.255:55606) with ID 14,  ResourceProfileId 0
+25/01/24 09:28:49 INFO ExecutorMonitor: New executor 14 has registered (new total is 10)
+25/01/24 09:28:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.151.87:40090) with ID 12,  ResourceProfileId 0
+25/01/24 09:28:49 INFO ExecutorMonitor: New executor 12 has registered (new total is 11)
+25/01/24 09:28:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.26.90:37160) with ID 10,  ResourceProfileId 0
+25/01/24 09:28:49 INFO ExecutorMonitor: New executor 10 has registered (new total is 12)
+25/01/24 09:28:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.43.89:41454) with ID 11,  ResourceProfileId 0
+25/01/24 09:28:49 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.151.87:39425 with 2.1 GiB RAM, BlockManagerId(12, 10.23.151.87, 39425, None)
+25/01/24 09:28:49 INFO ExecutorMonitor: New executor 11 has registered (new total is 13)
+25/01/24 09:28:49 INFO TaskSetManager: Starting task 6.0 in stage 1.0 (TID 7) (10.23.98.132, executor 6, partition 6, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:49 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.8.34:55712) with ID 13,  ResourceProfileId 0
+25/01/24 09:28:49 INFO ExecutorMonitor: New executor 13 has registered (new total is 14)
+25/01/24 09:28:49 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.26.90:39269 with 2.1 GiB RAM, BlockManagerId(10, 10.23.26.90, 39269, None)
+25/01/24 09:28:49 INFO TaskSetManager: Starting task 7.0 in stage 1.0 (TID 8) (10.23.147.249, executor 2, partition 7, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:49 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.150.255:42159 with 2.1 GiB RAM, BlockManagerId(14, 10.23.150.255, 42159, None)
+25/01/24 09:28:50 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.8.34:33029 with 2.1 GiB RAM, BlockManagerId(13, 10.23.8.34, 33029, None)
+25/01/24 09:28:50 INFO TaskSetManager: Starting task 8.0 in stage 1.0 (TID 9) (10.23.202.94, executor 1, partition 8, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:50 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 5) in 2066 ms on 10.23.202.94 (executor 1) (5/24)
+25/01/24 09:28:50 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.43.89:41273 with 2.1 GiB RAM, BlockManagerId(11, 10.23.43.89, 41273, None)
+25/01/24 09:28:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.76.37:56852) with ID 15,  ResourceProfileId 0
+25/01/24 09:28:50 INFO ExecutorMonitor: New executor 15 has registered (new total is 15)
+25/01/24 09:28:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.247.14:48368
+25/01/24 09:28:50 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.147.249:44813 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:50 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.98.132:45891 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:50 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.76.37:33643 with 2.1 GiB RAM, BlockManagerId(15, 10.23.76.37, 33643, None)
+25/01/24 09:28:50 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.156.240:44148) with ID 17,  ResourceProfileId 0
+25/01/24 09:28:50 INFO ExecutorMonitor: New executor 17 has registered (new total is 16)
+25/01/24 09:28:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.240.211:40036
+25/01/24 09:28:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.88.196:42370
+25/01/24 09:28:51 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.156.240:35963 with 2.1 GiB RAM, BlockManagerId(17, 10.23.156.240, 35963, None)
+25/01/24 09:28:51 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.151.58:51320
+25/01/24 09:28:51 INFO TaskSetManager: Starting task 9.0 in stage 1.0 (TID 10) (10.23.157.191, executor 7, partition 9, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:52 INFO TaskSetManager: Starting task 10.0 in stage 1.0 (TID 11) (10.23.13.146, executor 5, partition 10, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:52 INFO TaskSetManager: Starting task 11.0 in stage 1.0 (TID 12) (10.23.202.94, executor 1, partition 11, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:52 INFO TaskSetManager: Finished task 8.0 in stage 1.0 (TID 9) in 2071 ms on 10.23.202.94 (executor 1) (6/24)
+25/01/24 09:28:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.97.59:49700
+25/01/24 09:28:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.247.14:48370) with ID 24,  ResourceProfileId 0
+25/01/24 09:28:52 INFO ExecutorMonitor: New executor 24 has registered (new total is 17)
+25/01/24 09:28:52 INFO TaskSetManager: Starting task 12.0 in stage 1.0 (TID 13) (10.23.60.130, executor 8, partition 12, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:52 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.157.191:37681 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.51.231:40312
+25/01/24 09:28:52 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.240.211:40040) with ID 21,  ResourceProfileId 0
+25/01/24 09:28:52 INFO ExecutorMonitor: New executor 21 has registered (new total is 18)
+25/01/24 09:28:52 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.247.14:43167 with 2.1 GiB RAM, BlockManagerId(24, 10.23.247.14, 43167, None)
+25/01/24 09:28:52 INFO TaskSetManager: Starting task 13.0 in stage 1.0 (TID 14) (10.23.202.94, executor 1, partition 13, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:52 INFO TaskSetManager: Finished task 11.0 in stage 1.0 (TID 12) in 707 ms on 10.23.202.94 (executor 1) (7/24)
+25/01/24 09:28:52 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.13.146:43405 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.240.211:43767 with 2.1 GiB RAM, BlockManagerId(21, 10.23.240.211, 43767, None)
+25/01/24 09:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.88.196:42376) with ID 22,  ResourceProfileId 0
+25/01/24 09:28:53 INFO ExecutorMonitor: New executor 22 has registered (new total is 19)
+25/01/24 09:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.151.58:51324) with ID 23,  ResourceProfileId 0
+25/01/24 09:28:53 INFO ExecutorMonitor: New executor 23 has registered (new total is 20)
+25/01/24 09:28:53 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.60.130:45413 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.97.59:49708) with ID 19,  ResourceProfileId 0
+25/01/24 09:28:53 INFO ExecutorMonitor: New executor 19 has registered (new total is 21)
+25/01/24 09:28:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.88.196:42935 with 2.1 GiB RAM, BlockManagerId(22, 10.23.88.196, 42935, None)
+25/01/24 09:28:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.249.25:46206
+25/01/24 09:28:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.151.58:35143 with 2.1 GiB RAM, BlockManagerId(23, 10.23.151.58, 35143, None)
+25/01/24 09:28:53 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.97.59:40563 with 2.1 GiB RAM, BlockManagerId(19, 10.23.97.59, 40563, None)
+25/01/24 09:28:53 INFO TaskSetManager: Starting task 14.0 in stage 1.0 (TID 15) (10.23.75.176, executor 16, partition 14, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.51.231:40316) with ID 18,  ResourceProfileId 0
+25/01/24 09:28:54 INFO ExecutorMonitor: New executor 18 has registered (new total is 22)
+25/01/24 09:28:54 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.51.231:46379 with 2.1 GiB RAM, BlockManagerId(18, 10.23.51.231, 46379, None)
+25/01/24 09:28:54 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.75.176:37053 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:54 INFO TaskSetManager: Starting task 15.0 in stage 1.0 (TID 16) (10.23.202.94, executor 1, partition 15, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:54 INFO TaskSetManager: Finished task 13.0 in stage 1.0 (TID 14) in 2011 ms on 10.23.202.94 (executor 1) (8/24)
+25/01/24 09:28:54 INFO TaskSetManager: Starting task 16.0 in stage 1.0 (TID 17) (10.23.8.34, executor 13, partition 16, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:54 INFO TaskSetManager: Starting task 17.0 in stage 1.0 (TID 18) (10.23.151.87, executor 12, partition 17, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:54 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.249.25:46212) with ID 20,  ResourceProfileId 0
+25/01/24 09:28:54 INFO ExecutorMonitor: New executor 20 has registered (new total is 23)
+25/01/24 09:28:55 INFO TaskSetManager: Starting task 18.0 in stage 1.0 (TID 19) (10.23.26.90, executor 10, partition 18, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:55 INFO TaskSetManager: Starting task 19.0 in stage 1.0 (TID 20) (10.23.72.136, executor 3, partition 19, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:55 INFO TaskSetManager: Starting task 20.0 in stage 1.0 (TID 21) (10.23.43.89, executor 11, partition 20, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:55 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.8.34:33029 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:55 INFO TaskSetManager: Starting task 21.0 in stage 1.0 (TID 22) (10.23.150.255, executor 14, partition 21, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:55 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.249.25:34865 with 2.1 GiB RAM, BlockManagerId(20, 10.23.249.25, 34865, None)
+25/01/24 09:28:55 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.151.87:39425 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:55 INFO TaskSetManager: Starting task 22.0 in stage 1.0 (TID 23) (10.23.76.37, executor 15, partition 22, PROCESS_LOCAL, 16675 bytes) 
+25/01/24 09:28:55 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.72.136:43511 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:55 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.43.89:41273 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:56 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.150.255:42159 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:56 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.26.90:39269 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:56 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.76.37:33643 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:56 INFO TaskSetManager: Starting task 23.0 in stage 1.0 (TID 24) (10.23.156.240, executor 17, partition 23, PROCESS_LOCAL, 14603 bytes) 
+25/01/24 09:28:56 INFO TaskSetManager: Finished task 15.0 in stage 1.0 (TID 16) in 1958 ms on 10.23.202.94 (executor 1) (9/24)
+25/01/24 09:28:56 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.67.238:38697 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:28:57 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.156.240:35963 (size: 17.3 KiB, free: 2.1 GiB)
+25/01/24 09:28:58 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.98.132:45891 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:28:59 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.147.249:44813 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:01 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.157.191:37681 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:02 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.60.130:45413 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:02 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.13.146:43405 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:02 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.8.34:33029 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.151.87:39425 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.150.255:42159 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.75.176:37053 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:04 INFO TaskSetManager: Finished task 5.0 in stage 1.0 (TID 6) in 16519 ms on 10.23.67.238 (executor 4) (10/24)
+25/01/24 09:29:04 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.43.89:41273 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:05 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.72.136:43511 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:05 INFO TaskSetManager: Finished task 6.0 in stage 1.0 (TID 7) in 15437 ms on 10.23.98.132 (executor 6) (11/24)
+25/01/24 09:29:05 INFO TaskSetManager: Finished task 7.0 in stage 1.0 (TID 8) in 15358 ms on 10.23.147.249 (executor 2) (12/24)
+25/01/24 09:29:05 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.76.37:33643 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:05 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.156.240:35963 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:06 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.26.90:39269 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 09:29:07 INFO TaskSetManager: Finished task 9.0 in stage 1.0 (TID 10) in 15765 ms on 10.23.157.191 (executor 7) (13/24)
+25/01/24 09:29:08 INFO TaskSetManager: Finished task 12.0 in stage 1.0 (TID 13) in 15494 ms on 10.23.60.130 (executor 8) (14/24)
+25/01/24 09:29:09 INFO TaskSetManager: Finished task 16.0 in stage 1.0 (TID 17) in 14338 ms on 10.23.8.34 (executor 13) (15/24)
+25/01/24 09:29:09 INFO TaskSetManager: Finished task 10.0 in stage 1.0 (TID 11) in 17501 ms on 10.23.13.146 (executor 5) (16/24)
+25/01/24 09:29:10 INFO TaskSetManager: Finished task 21.0 in stage 1.0 (TID 22) in 15403 ms on 10.23.150.255 (executor 14) (17/24)
+25/01/24 09:29:10 INFO TaskSetManager: Finished task 17.0 in stage 1.0 (TID 18) in 16042 ms on 10.23.151.87 (executor 12) (18/24)
+25/01/24 09:29:10 INFO TaskSetManager: Finished task 23.0 in stage 1.0 (TID 24) in 14303 ms on 10.23.156.240 (executor 17) (19/24)
+25/01/24 09:29:11 INFO TaskSetManager: Finished task 14.0 in stage 1.0 (TID 15) in 17173 ms on 10.23.75.176 (executor 16) (20/24)
+25/01/24 09:29:11 INFO TaskSetManager: Finished task 20.0 in stage 1.0 (TID 21) in 16074 ms on 10.23.43.89 (executor 11) (21/24)
+25/01/24 09:29:11 INFO TaskSetManager: Finished task 22.0 in stage 1.0 (TID 23) in 15751 ms on 10.23.76.37 (executor 15) (22/24)
+25/01/24 09:29:12 INFO TaskSetManager: Finished task 19.0 in stage 1.0 (TID 20) in 16847 ms on 10.23.72.136 (executor 3) (23/24)
+25/01/24 09:29:13 INFO TaskSetManager: Finished task 18.0 in stage 1.0 (TID 19) in 18147 ms on 10.23.26.90 (executor 10) (24/24)
+25/01/24 09:29:13 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+25/01/24 09:29:13 INFO DAGScheduler: ShuffleMapStage 1 (flatMap at SourceEvaluator.scala:39) finished in 46.123 s
+25/01/24 09:29:13 INFO DAGScheduler: looking for newly runnable stages
+25/01/24 09:29:13 INFO DAGScheduler: running: Set()
+25/01/24 09:29:13 INFO DAGScheduler: waiting: Set(ResultStage 2)
+25/01/24 09:29:13 INFO DAGScheduler: failed: Set()
+25/01/24 09:29:13 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[12] at mapValues at SourceEvaluator.scala:53), which has no missing parents
+25/01/24 09:29:13 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 5.5 KiB, free 6.8 GiB)
+25/01/24 09:29:13 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 3.0 KiB, free 6.8 GiB)
+25/01/24 09:29:13 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc:7079 (size: 3.0 KiB, free: 6.8 GiB)
+25/01/24 09:29:13 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1580
+25/01/24 09:29:13 INFO DAGScheduler: Submitting 24 missing tasks from ResultStage 2 (MapPartitionsRDD[12] at mapValues at SourceEvaluator.scala:53) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+25/01/24 09:29:13 INFO TaskSchedulerImpl: Adding task set 2.0 with 24 tasks resource profile 0
+25/01/24 09:29:13 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 25) (10.23.202.94, executor 1, partition 0, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:13 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.202.94:43399 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:13 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.202.94:46694
+25/01/24 09:29:14 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 26) (10.23.202.94, executor 1, partition 1, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:14 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 25) in 987 ms on 10.23.202.94 (executor 1) (1/24)
+25/01/24 09:29:14 INFO ExecutorAllocationManager: Requesting 23 new executors because tasks are backlogged (new desired total will be 24 for resource profile id: 0)
+25/01/24 09:29:14 INFO TaskSetManager: Starting task 2.0 in stage 2.0 (TID 27) (10.23.202.94, executor 1, partition 2, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:14 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 26) in 436 ms on 10.23.202.94 (executor 1) (2/24)
+25/01/24 09:29:14 INFO TaskSetManager: Starting task 3.0 in stage 2.0 (TID 28) (10.23.202.94, executor 1, partition 3, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:14 INFO TaskSetManager: Finished task 2.0 in stage 2.0 (TID 27) in 299 ms on 10.23.202.94 (executor 1) (3/24)
+25/01/24 09:29:15 INFO TaskSetManager: Starting task 4.0 in stage 2.0 (TID 29) (10.23.202.94, executor 1, partition 4, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:15 INFO TaskSetManager: Finished task 3.0 in stage 2.0 (TID 28) in 423 ms on 10.23.202.94 (executor 1) (4/24)
+25/01/24 09:29:15 INFO TaskSetManager: Starting task 5.0 in stage 2.0 (TID 30) (10.23.202.94, executor 1, partition 5, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:15 INFO TaskSetManager: Finished task 4.0 in stage 2.0 (TID 29) in 312 ms on 10.23.202.94 (executor 1) (5/24)
+25/01/24 09:29:15 INFO TaskSetManager: Starting task 6.0 in stage 2.0 (TID 31) (10.23.202.94, executor 1, partition 6, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:15 INFO TaskSetManager: Finished task 5.0 in stage 2.0 (TID 30) in 195 ms on 10.23.202.94 (executor 1) (6/24)
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 7.0 in stage 2.0 (TID 32) (10.23.202.94, executor 1, partition 7, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Finished task 6.0 in stage 2.0 (TID 31) in 284 ms on 10.23.202.94 (executor 1) (7/24)
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 8.0 in stage 2.0 (TID 33) (10.23.202.94, executor 1, partition 8, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Finished task 7.0 in stage 2.0 (TID 32) in 258 ms on 10.23.202.94 (executor 1) (8/24)
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 9.0 in stage 2.0 (TID 34) (10.23.202.94, executor 1, partition 9, NODE_LOCAL, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Finished task 8.0 in stage 2.0 (TID 33) in 236 ms on 10.23.202.94 (executor 1) (9/24)
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 10.0 in stage 2.0 (TID 35) (10.23.67.238, executor 4, partition 10, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 11.0 in stage 2.0 (TID 36) (10.23.151.58, executor 23, partition 11, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 12.0 in stage 2.0 (TID 37) (10.23.51.231, executor 18, partition 12, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 13.0 in stage 2.0 (TID 38) (10.23.157.191, executor 7, partition 13, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 14.0 in stage 2.0 (TID 39) (10.23.247.14, executor 24, partition 14, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 15.0 in stage 2.0 (TID 40) (10.23.60.130, executor 8, partition 15, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 16.0 in stage 2.0 (TID 41) (10.23.13.146, executor 5, partition 16, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 17.0 in stage 2.0 (TID 42) (10.23.88.196, executor 22, partition 17, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 18.0 in stage 2.0 (TID 43) (10.23.72.136, executor 3, partition 18, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 19.0 in stage 2.0 (TID 44) (10.23.98.132, executor 6, partition 19, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 20.0 in stage 2.0 (TID 45) (10.23.97.59, executor 19, partition 20, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 21.0 in stage 2.0 (TID 46) (10.23.26.90, executor 10, partition 21, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 22.0 in stage 2.0 (TID 47) (10.23.75.176, executor 16, partition 22, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO TaskSetManager: Starting task 23.0 in stage 2.0 (TID 48) (10.23.43.89, executor 11, partition 23, ANY, 7710 bytes) 
+25/01/24 09:29:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.67.238:38697 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.72.136:43511 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.75.176:37053 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.26.90:39269 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.98.132:45891 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.60.130:45413 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.43.89:41273 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.157.191:37681 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:16 INFO TaskSetManager: Finished task 9.0 in stage 2.0 (TID 34) in 293 ms on 10.23.202.94 (executor 1) (10/24)
+25/01/24 09:29:16 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.13.146:43405 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:16 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.72.136:35532
+25/01/24 09:29:16 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.60.130:38554
+25/01/24 09:29:16 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.67.238:40764
+25/01/24 09:29:16 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.43.89:41454
+25/01/24 09:29:16 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.75.176:41118
+25/01/24 09:29:16 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.98.132:46846
+25/01/24 09:29:17 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.157.191:49530
+25/01/24 09:29:17 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.13.146:39140
+25/01/24 09:29:17 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.51.231:46379 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:17 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.26.90:37160
+25/01/24 09:29:17 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.151.58:35143 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:17 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.247.14:43167 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:17 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.88.196:42935 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:17 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.97.59:40563 (size: 3.0 KiB, free: 2.1 GiB)
+25/01/24 09:29:17 INFO TaskSetManager: Finished task 22.0 in stage 2.0 (TID 47) in 1024 ms on 10.23.75.176 (executor 16) (11/24)
+25/01/24 09:29:17 INFO TaskSetManager: Finished task 13.0 in stage 2.0 (TID 38) in 1123 ms on 10.23.157.191 (executor 7) (12/24)
+25/01/24 09:29:17 INFO TaskSetManager: Finished task 16.0 in stage 2.0 (TID 41) in 1190 ms on 10.23.13.146 (executor 5) (13/24)
+25/01/24 09:29:17 INFO TaskSetManager: Finished task 19.0 in stage 2.0 (TID 44) in 1220 ms on 10.23.98.132 (executor 6) (14/24)
+25/01/24 09:29:17 INFO TaskSetManager: Finished task 15.0 in stage 2.0 (TID 40) in 1258 ms on 10.23.60.130 (executor 8) (15/24)
+25/01/24 09:29:17 INFO TaskSetManager: Finished task 10.0 in stage 2.0 (TID 35) in 1279 ms on 10.23.67.238 (executor 4) (16/24)
+25/01/24 09:29:17 INFO TaskSetManager: Finished task 23.0 in stage 2.0 (TID 48) in 1322 ms on 10.23.43.89 (executor 11) (17/24)
+25/01/24 09:29:17 INFO TaskSetManager: Finished task 18.0 in stage 2.0 (TID 43) in 1333 ms on 10.23.72.136 (executor 3) (18/24)
+25/01/24 09:29:18 INFO TaskSetManager: Finished task 21.0 in stage 2.0 (TID 46) in 1457 ms on 10.23.26.90 (executor 10) (19/24)
+25/01/24 09:29:18 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.51.231:40316
+25/01/24 09:29:18 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.151.58:51324
+25/01/24 09:29:18 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.88.196:42376
+25/01/24 09:29:18 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.97.59:49708
+25/01/24 09:29:18 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.23.247.14:48370
+25/01/24 09:29:19 INFO TaskSetManager: Finished task 12.0 in stage 2.0 (TID 37) in 3301 ms on 10.23.51.231 (executor 18) (20/24)
+25/01/24 09:29:20 INFO TaskSetManager: Finished task 20.0 in stage 2.0 (TID 45) in 3449 ms on 10.23.97.59 (executor 19) (21/24)
+25/01/24 09:29:20 INFO TaskSetManager: Finished task 11.0 in stage 2.0 (TID 36) in 3578 ms on 10.23.151.58 (executor 23) (22/24)
+25/01/24 09:29:20 INFO TaskSetManager: Finished task 14.0 in stage 2.0 (TID 39) in 3670 ms on 10.23.247.14 (executor 24) (23/24)
+25/01/24 09:29:20 INFO TaskSetManager: Finished task 17.0 in stage 2.0 (TID 42) in 3833 ms on 10.23.88.196 (executor 22) (24/24)
+25/01/24 09:29:20 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+25/01/24 09:29:20 INFO DAGScheduler: ResultStage 2 (collect at SourceEvaluator.scala:21) finished in 7.242 s
+25/01/24 09:29:20 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+25/01/24 09:29:20 INFO TaskSchedulerImpl: Killing all running tasks in stage 2: Stage finished
+25/01/24 09:29:20 INFO DAGScheduler: Job 1 finished: collect at SourceEvaluator.scala:21, took 53.598371 s
+25/01/24 09:29:26 INFO CodeGenerator: Code generated in 272.506092 ms
+25/01/24 09:29:28 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+25/01/24 09:29:28 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+25/01/24 09:29:28 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter
+25/01/24 09:29:29 INFO CodeGenerator: Code generated in 60.678146 ms
+25/01/24 09:29:29 INFO SparkContext: Starting job: csv at SourceEvalJob.scala:108
+25/01/24 09:29:29 INFO DAGScheduler: Got job 2 (csv at SourceEvalJob.scala:108) with 23 output partitions
+25/01/24 09:29:29 INFO DAGScheduler: Final stage: ResultStage 3 (csv at SourceEvalJob.scala:108)
+25/01/24 09:29:29 INFO DAGScheduler: Parents of final stage: List()
+25/01/24 09:29:29 INFO DAGScheduler: Missing parents: List()
+25/01/24 09:29:29 INFO DAGScheduler: Submitting ResultStage 3 (MapPartitionsRDD[15] at csv at SourceEvalJob.scala:108), which has no missing parents
+25/01/24 09:29:29 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 220.4 KiB, free 6.8 GiB)
+25/01/24 09:29:29 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 79.4 KiB, free 6.8 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc:7079 (size: 79.4 KiB, free: 6.8 GiB)
+25/01/24 09:29:29 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:1580
+25/01/24 09:29:29 INFO DAGScheduler: Submitting 23 missing tasks from ResultStage 3 (MapPartitionsRDD[15] at csv at SourceEvalJob.scala:108) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+25/01/24 09:29:29 INFO TaskSchedulerImpl: Adding task set 3.0 with 23 tasks resource profile 0
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 49) (10.23.157.191, executor 7, partition 0, PROCESS_LOCAL, 220722 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 1.0 in stage 3.0 (TID 50) (10.23.151.58, executor 23, partition 1, PROCESS_LOCAL, 220810 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 2.0 in stage 3.0 (TID 51) (10.23.72.136, executor 3, partition 2, PROCESS_LOCAL, 220002 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 3.0 in stage 3.0 (TID 52) (10.23.97.59, executor 19, partition 3, PROCESS_LOCAL, 220602 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 4.0 in stage 3.0 (TID 53) (10.23.151.87, executor 12, partition 4, PROCESS_LOCAL, 220394 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 5.0 in stage 3.0 (TID 54) (10.23.75.176, executor 16, partition 5, PROCESS_LOCAL, 220602 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 6.0 in stage 3.0 (TID 55) (10.23.13.146, executor 5, partition 6, PROCESS_LOCAL, 220666 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 7.0 in stage 3.0 (TID 56) (10.23.60.130, executor 8, partition 7, PROCESS_LOCAL, 220178 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 8.0 in stage 3.0 (TID 57) (10.23.202.94, executor 1, partition 8, PROCESS_LOCAL, 220282 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 9.0 in stage 3.0 (TID 58) (10.23.156.240, executor 17, partition 9, PROCESS_LOCAL, 221213 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 10.0 in stage 3.0 (TID 59) (10.23.88.196, executor 22, partition 10, PROCESS_LOCAL, 220722 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 11.0 in stage 3.0 (TID 60) (10.23.98.132, executor 6, partition 11, PROCESS_LOCAL, 220506 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 12.0 in stage 3.0 (TID 61) (10.23.26.90, executor 10, partition 12, PROCESS_LOCAL, 220498 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 13.0 in stage 3.0 (TID 62) (10.23.249.25, executor 20, partition 13, PROCESS_LOCAL, 220658 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 14.0 in stage 3.0 (TID 63) (10.23.76.37, executor 15, partition 14, PROCESS_LOCAL, 220362 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 15.0 in stage 3.0 (TID 64) (10.23.67.238, executor 4, partition 15, PROCESS_LOCAL, 220170 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 16.0 in stage 3.0 (TID 65) (10.23.147.249, executor 2, partition 16, PROCESS_LOCAL, 220682 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 17.0 in stage 3.0 (TID 66) (10.23.150.255, executor 14, partition 17, PROCESS_LOCAL, 220410 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 18.0 in stage 3.0 (TID 67) (10.23.8.34, executor 13, partition 18, PROCESS_LOCAL, 220098 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 19.0 in stage 3.0 (TID 68) (10.23.51.231, executor 18, partition 19, PROCESS_LOCAL, 220426 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 20.0 in stage 3.0 (TID 69) (10.23.43.89, executor 11, partition 20, PROCESS_LOCAL, 220106 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 21.0 in stage 3.0 (TID 70) (10.23.240.211, executor 21, partition 21, PROCESS_LOCAL, 220314 bytes) 
+25/01/24 09:29:29 INFO TaskSetManager: Starting task 22.0 in stage 3.0 (TID 71) (10.23.247.14, executor 24, partition 22, PROCESS_LOCAL, 219915 bytes) 
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.202.94:43399 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.60.130:45413 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.157.191:37681 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.151.58:35143 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.98.132:45891 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.43.89:41273 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.72.136:43511 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.156.240:35963 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.67.238:38697 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.150.255:42159 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.26.90:39269 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.75.176:37053 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.247.14:43167 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.147.249:44813 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.151.87:39425 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.97.59:40563 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.88.196:42935 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.13.146:43405 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.51.231:46379 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.8.34:33029 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:29 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.76.37:33643 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:30 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.249.25:34865 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:30 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.23.240.211:43767 (size: 79.4 KiB, free: 2.1 GiB)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 8.0 in stage 3.0 (TID 57) in 1067 ms on 10.23.202.94 (executor 1) (1/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 16.0 in stage 3.0 (TID 65) in 1026 ms on 10.23.147.249 (executor 2) (2/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 7.0 in stage 3.0 (TID 56) in 1114 ms on 10.23.60.130 (executor 8) (3/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 49) in 1190 ms on 10.23.157.191 (executor 7) (4/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 12.0 in stage 3.0 (TID 61) in 1181 ms on 10.23.26.90 (executor 10) (5/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 4.0 in stage 3.0 (TID 53) in 1201 ms on 10.23.151.87 (executor 12) (6/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 9.0 in stage 3.0 (TID 58) in 1190 ms on 10.23.156.240 (executor 17) (7/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 18.0 in stage 3.0 (TID 67) in 1153 ms on 10.23.8.34 (executor 13) (8/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 15.0 in stage 3.0 (TID 64) in 1200 ms on 10.23.67.238 (executor 4) (9/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 2.0 in stage 3.0 (TID 51) in 1282 ms on 10.23.72.136 (executor 3) (10/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 5.0 in stage 3.0 (TID 54) in 1279 ms on 10.23.75.176 (executor 16) (11/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 14.0 in stage 3.0 (TID 63) in 1286 ms on 10.23.76.37 (executor 15) (12/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 11.0 in stage 3.0 (TID 60) in 1328 ms on 10.23.98.132 (executor 6) (13/23)
+25/01/24 09:29:30 INFO TaskSetManager: Finished task 6.0 in stage 3.0 (TID 55) in 1353 ms on 10.23.13.146 (executor 5) (14/23)
+25/01/24 09:29:31 INFO TaskSetManager: Finished task 17.0 in stage 3.0 (TID 66) in 2037 ms on 10.23.150.255 (executor 14) (15/23)
+25/01/24 09:29:31 INFO TaskSetManager: Finished task 3.0 in stage 3.0 (TID 52) in 2194 ms on 10.23.97.59 (executor 19) (16/23)
+25/01/24 09:29:31 INFO TaskSetManager: Finished task 20.0 in stage 3.0 (TID 69) in 2125 ms on 10.23.43.89 (executor 11) (17/23)
+25/01/24 09:29:31 INFO TaskSetManager: Finished task 1.0 in stage 3.0 (TID 50) in 2334 ms on 10.23.151.58 (executor 23) (18/23)
+25/01/24 09:29:31 INFO TaskSetManager: Finished task 22.0 in stage 3.0 (TID 71) in 2209 ms on 10.23.247.14 (executor 24) (19/23)
+25/01/24 09:29:32 INFO TaskSetManager: Finished task 19.0 in stage 3.0 (TID 68) in 2466 ms on 10.23.51.231 (executor 18) (20/23)
+25/01/24 09:29:32 INFO ExecutorPodsAllocator: Deleting 1 excess pod requests (9).
+25/01/24 09:29:32 INFO TaskSetManager: Finished task 10.0 in stage 3.0 (TID 59) in 2703 ms on 10.23.88.196 (executor 22) (21/23)
+25/01/24 09:29:33 INFO BlockManagerMaster: Removal of executor 9 requested
+25/01/24 09:29:33 INFO BlockManagerMasterEndpoint: Trying to remove executor 9 from BlockManagerMaster.
+25/01/24 09:29:33 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asked to remove non-existent executor 9
+25/01/24 09:29:33 INFO TaskSetManager: Finished task 21.0 in stage 3.0 (TID 70) in 3850 ms on 10.23.240.211 (executor 21) (22/23)
+25/01/24 09:29:34 INFO TaskSetManager: Finished task 13.0 in stage 3.0 (TID 62) in 4399 ms on 10.23.249.25 (executor 20) (23/23)
+25/01/24 09:29:34 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+25/01/24 09:29:34 INFO DAGScheduler: ResultStage 3 (csv at SourceEvalJob.scala:108) finished in 4.810 s
+25/01/24 09:29:34 INFO DAGScheduler: Job 2 is finished. Cancelling potential speculative or zombie tasks for this job
+25/01/24 09:29:34 INFO TaskSchedulerImpl: Killing all running tasks in stage 3: Stage finished
+25/01/24 09:29:34 INFO DAGScheduler: Job 2 finished: csv at SourceEvalJob.scala:108, took 4.819398 s
+25/01/24 09:29:34 INFO FileFormatWriter: Start to commit write Job 068c889e-a541-4c16-a937-4f85b4ce2a70.
+25/01/24 09:29:35 INFO FileFormatWriter: Write Job 068c889e-a541-4c16-a937-4f85b4ce2a70 committed. Elapsed time: 1078 ms.
+25/01/24 09:29:35 INFO FileFormatWriter: Finished processing stats for write job 068c889e-a541-4c16-a937-4f85b4ce2a70.
+25/01/24 09:29:35 INFO SparkContext: SparkContext is stopping with exitCode 0.
+25/01/24 09:29:35 INFO SparkUI: Stopped Spark web UI at http://ste-source-eval-job-9d4ae794979ffd1d-driver-svc.spark-jobs.svc:4040
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend: Shutting down all executors
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asking each executor to shut down
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Disabling executor 15.
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.76.37:38564
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Disabling executor 2.
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.147.249:53090
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Disabling executor 8.
+25/01/24 09:29:35 WARN ExecutorPodsWatchSnapshotSource: Kubernetes client has been closed.
+25/01/24 09:29:35 ERROR Utils: Uncaught exception in thread dispatcher-CoarseGrainedScheduler
+org.apache.spark.SparkException: Could not find CoarseGrainedScheduler.
+	at org.apache.spark.rpc.netty.Dispatcher.postMessage(Dispatcher.scala:178)
+	at org.apache.spark.rpc.netty.Dispatcher.postOneWayMessage(Dispatcher.scala:150)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.send(NettyRpcEnv.scala:193)
+	at org.apache.spark.rpc.netty.NettyRpcEndpointRef.send(NettyRpcEnv.scala:563)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend.$anonfun$reviveOffers$1(CoarseGrainedSchedulerBackend.scala:676)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1375)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend.reviveOffers(CoarseGrainedSchedulerBackend.scala:676)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.executorLost(TaskSchedulerImpl.scala:1071)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend$DriverEndpoint.disableExecutor(CoarseGrainedSchedulerBackend.scala:520)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint.onDisconnected(KubernetesClusterSchedulerBackend.scala:346)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:141)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.60.130:38560
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Disabling executor 21.
+25/01/24 09:29:35 ERROR Utils: Uncaught exception in thread dispatcher-CoarseGrainedScheduler
+org.apache.spark.SparkException: Could not find CoarseGrainedScheduler.
+	at org.apache.spark.rpc.netty.Dispatcher.postMessage(Dispatcher.scala:178)
+	at org.apache.spark.rpc.netty.Dispatcher.postOneWayMessage(Dispatcher.scala:150)
+	at org.apache.spark.rpc.netty.NettyRpcEnv.send(NettyRpcEnv.scala:193)
+	at org.apache.spark.rpc.netty.NettyRpcEndpointRef.send(NettyRpcEnv.scala:563)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend.$anonfun$reviveOffers$1(CoarseGrainedSchedulerBackend.scala:676)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1375)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend.reviveOffers(CoarseGrainedSchedulerBackend.scala:676)
+	at org.apache.spark.scheduler.TaskSchedulerImpl.executorLost(TaskSchedulerImpl.scala:1071)
+	at org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend$DriverEndpoint.disableExecutor(CoarseGrainedSchedulerBackend.scala:520)
+	at org.apache.spark.scheduler.cluster.k8s.KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint.onDisconnected(KubernetesClusterSchedulerBackend.scala:346)
+	at org.apache.spark.rpc.netty.Inbox.$anonfun$process$1(Inbox.scala:141)
+	at org.apache.spark.rpc.netty.Inbox.safelyCall(Inbox.scala:213)
+	at org.apache.spark.rpc.netty.Inbox.process(Inbox.scala:100)
+	at org.apache.spark.rpc.netty.MessageLoop.org$apache$spark$rpc$netty$MessageLoop$$receiveLoop(MessageLoop.scala:75)
+	at org.apache.spark.rpc.netty.MessageLoop$$anon$1.run(MessageLoop.scala:41)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+25/01/24 09:29:35 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.240.211:40052
+25/01/24 09:29:36 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/01/24 09:29:36 INFO MemoryStore: MemoryStore cleared
+25/01/24 09:29:36 INFO BlockManager: BlockManager stopped
+25/01/24 09:29:36 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/01/24 09:29:36 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/01/24 09:29:36 INFO SparkContext: Successfully stopped SparkContext
+25/01/24 09:29:36 INFO ShutdownHookManager: Shutdown hook called
+25/01/24 09:29:36 INFO ShutdownHookManager: Deleting directory /var/data/spark-9773c46f-f046-46f1-8b67-4adf8fbac3cb/spark-28632835-e7cf-488c-b2e1-fc096c485c5a
+25/01/24 09:29:36 INFO ShutdownHookManager: Deleting directory /tmp/spark-1c946ba8-e697-4849-9156-3e72121c7ee8

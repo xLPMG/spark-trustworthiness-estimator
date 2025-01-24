@@ -45,13 +45,12 @@ object TemplateProbabilityVector {
   def apply(probabilityTemplateAdded: Float, probabilityTemplateRemoved: Float): TemplateProbabilityVector = {
     require(
       Math.abs(probabilityTemplateAdded + probabilityTemplateRemoved - 1.0) < 0.0001,
-      "The probabilities must add up to 1.0"
+      s"The probabilities dont add up to 1.0! $probabilityTemplateAdded + $probabilityTemplateRemoved"
     )
     new TemplateProbabilityVector(probabilityTemplateAdded, probabilityTemplateRemoved)
   }
 
   def apply(probabilityTemplateAdded: Float): TemplateProbabilityVector = {
-    val probabilityTemplateRemoved = 1.0f - probabilityTemplateAdded
-    new TemplateProbabilityVector(probabilityTemplateAdded, probabilityTemplateRemoved)
+    new TemplateProbabilityVector(probabilityTemplateAdded, 1.0f - probabilityTemplateAdded)
   }
 }
