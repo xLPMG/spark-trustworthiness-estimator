@@ -214,4 +214,37 @@ class ProbabilityHandlerTest extends munit.FunSuite {
     assertEqualsFloat(result_4.probabilityTemplateRemoved, 0.5f, tolerance)
   }
 
+  test("testWeightedCombination_Errors") {
+
+  intercept[IllegalArgumentException] {
+    ProbabilityHandler.weightedCombination(
+      Seq((TemplateProbabilityVector(-0.1f, 0.5f), 1))
+    )
+  }
+
+  intercept[IllegalArgumentException] {
+    ProbabilityHandler.weightedCombination(
+      Seq((TemplateProbabilityVector(0.5f, -0.1f), 1))
+    )
+  }
+
+  intercept[IllegalArgumentException] {
+    ProbabilityHandler.weightedCombination(
+      Seq((TemplateProbabilityVector(0.5f, 0.5f), -1))
+    )
+  }
+
+  intercept[IllegalArgumentException] {
+    ProbabilityHandler.weightedCombination(
+      Seq((TemplateProbabilityVector(Float.NaN, 0.5f), 1))
+    )
+  }
+
+  intercept[IllegalArgumentException] {
+    ProbabilityHandler.weightedCombination(
+      Seq((TemplateProbabilityVector(0.5f, Float.NaN), 1))
+    )
+  }
+  }
+
 }

@@ -1,698 +1,389 @@
-25/01/24 10:24:52 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-Files file:///mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-7d4704ac-77c0-4aa2-995a-6667b5cd9ecd/spark-trustworthiness-estimator-assembly-0.1.0.jar from /mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-7d4704ac-77c0-4aa2-995a-6667b5cd9ecd/spark-trustworthiness-estimator-assembly-0.1.0.jar to /tmp/spark-trustworthiness-estimator-assembly-0.1.0.jar
-25/01/24 10:28:33 INFO SparkContext: Running Spark version 3.5.0
-25/01/24 10:28:33 INFO SparkContext: OS info Linux, 6.8.0-49-generic, amd64
-25/01/24 10:28:33 INFO SparkContext: Java version 11.0.21
-25/01/24 10:28:33 INFO ResourceUtils: ==============================================================
-25/01/24 10:28:33 INFO ResourceUtils: No custom resources configured for spark.driver.
-25/01/24 10:28:33 INFO ResourceUtils: ==============================================================
-25/01/24 10:28:33 INFO SparkContext: Submitted application: ste-revision-eval-job
-25/01/24 10:28:33 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 4096, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
-25/01/24 10:28:33 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
-25/01/24 10:28:33 INFO ResourceProfileManager: Added ResourceProfile id: 0
-25/01/24 10:28:33 INFO SecurityManager: Changing view acls to: spark,lpmg
-25/01/24 10:28:33 INFO SecurityManager: Changing modify acls to: spark,lpmg
-25/01/24 10:28:33 INFO SecurityManager: Changing view acls groups to: 
-25/01/24 10:28:33 INFO SecurityManager: Changing modify acls groups to: 
-25/01/24 10:28:33 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark, lpmg; groups with view permissions: EMPTY; users with modify permissions: spark, lpmg; groups with modify permissions: EMPTY
-25/01/24 10:28:34 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
-25/01/24 10:28:34 INFO SparkEnv: Registering MapOutputTracker
-25/01/24 10:28:35 INFO SparkEnv: Registering BlockManagerMaster
-25/01/24 10:28:35 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-25/01/24 10:28:35 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-25/01/24 10:28:35 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
-25/01/24 10:28:35 INFO DiskBlockManager: Created local directory at /var/data/spark-97f49cdd-1bd2-4fe9-8572-86e4a5102a4e/blockmgr-eeeaae2c-8882-4312-bc18-0097782bc417
-25/01/24 10:28:35 INFO MemoryStore: MemoryStore started with capacity 6.8 GiB
-25/01/24 10:28:35 INFO SparkEnv: Registering OutputCommitCoordinator
-25/01/24 10:28:35 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
-25/01/24 10:28:36 INFO Utils: Successfully started service 'SparkUI' on port 4040.
-25/01/24 10:28:36 INFO SparkContext: Added JAR file:/mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-7d4704ac-77c0-4aa2-995a-6667b5cd9ecd/spark-trustworthiness-estimator-assembly-0.1.0.jar at spark://ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7078/jars/spark-trustworthiness-estimator-assembly-0.1.0.jar with timestamp 1737714513392
-25/01/24 10:28:36 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
-25/01/24 10:28:40 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
-25/01/24 10:28:41 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
-25/01/24 10:28:41 INFO NettyBlockTransferService: Server created on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc 10.23.72.134:7079
-25/01/24 10:28:41 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-25/01/24 10:28:41 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc, 7079, None)
-25/01/24 10:28:41 INFO BlockManagerMasterEndpoint: Registering block manager ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 with 6.8 GiB RAM, BlockManagerId(driver, ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc, 7079, None)
-25/01/24 10:28:41 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc, 7079, None)
-25/01/24 10:28:41 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc, 7079, None)
-25/01/24 10:28:41 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
-25/01/24 10:28:41 INFO ExecutorAllocationManager: Dynamic allocation is enabled without a shuffle service.
-25/01/24 10:28:41 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
-25/01/24 10:28:42 INFO RevisionManager: Loading revisions with Ground Truth data
-25/01/24 10:28:42 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
-25/01/24 10:28:42 INFO SharedState: Warehouse path is 'file:/tmp/spark-warehouse'.
-25/01/24 10:28:47 INFO InMemoryFileIndex: It took 1638 ms to list leaf files for 1 paths.
-25/01/24 10:28:49 INFO SparkContext: Starting job: parquet at RevisionManager.scala:107
-25/01/24 10:28:49 INFO DAGScheduler: Got job 0 (parquet at RevisionManager.scala:107) with 1 output partitions
-25/01/24 10:28:49 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at RevisionManager.scala:107)
-25/01/24 10:28:49 INFO DAGScheduler: Parents of final stage: List()
-25/01/24 10:28:49 INFO DAGScheduler: Missing parents: List()
-25/01/24 10:28:49 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at RevisionManager.scala:107), which has no missing parents
-25/01/24 10:28:50 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 109.6 KiB, free 6.8 GiB)
-25/01/24 10:28:50 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 39.8 KiB, free 6.8 GiB)
-25/01/24 10:28:50 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 (size: 39.8 KiB, free: 6.8 GiB)
-25/01/24 10:28:50 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1580
-25/01/24 10:28:50 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at RevisionManager.scala:107) (first 15 tasks are for partitions Vector(0))
-25/01/24 10:28:50 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
-25/01/24 10:28:50 INFO ExecutorAllocationManager: Requesting 1 new executor because tasks are backlogged (new desired total will be 1 for resource profile id: 0)
-25/01/24 10:28:50 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
-25/01/24 10:28:50 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-25/01/24 10:28:51 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.109:50338
-25/01/24 10:29:05 WARN TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient resources
-25/01/24 10:29:06 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.202.109:50344) with ID 1,  ResourceProfileId 0
-25/01/24 10:29:06 INFO ExecutorMonitor: New executor 1 has registered (new total is 1)
-25/01/24 10:29:06 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.202.109:39161 with 2.1 GiB RAM, BlockManagerId(1, 10.23.202.109, 39161, None)
-25/01/24 10:29:10 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (10.23.202.109, executor 1, partition 0, PROCESS_LOCAL, 8145 bytes) 
-25/01/24 10:29:11 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.202.109:39161 (size: 39.8 KiB, free: 2.1 GiB)
-25/01/24 10:29:14 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 3756 ms on 10.23.202.109 (executor 1) (1/1)
-25/01/24 10:29:14 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
-25/01/24 10:29:14 INFO DAGScheduler: ResultStage 0 (parquet at RevisionManager.scala:107) finished in 24.889 s
-25/01/24 10:29:14 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
-25/01/24 10:29:14 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
-25/01/24 10:29:14 INFO DAGScheduler: Job 0 finished: parquet at RevisionManager.scala:107, took 25.174777 s
-25/01/24 10:29:15 INFO BlockManagerInfo: Removed broadcast_0_piece0 on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 in memory (size: 39.8 KiB, free: 6.8 GiB)
-25/01/24 10:29:15 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 10.23.202.109:39161 in memory (size: 39.8 KiB, free: 2.1 GiB)
-25/01/24 10:29:18 INFO FileSourceStrategy: Pushed Filters: 
-25/01/24 10:29:18 INFO FileSourceStrategy: Post-Scan Filters: 
-25/01/24 10:29:19 INFO CodeGenerator: Code generated in 568.74306 ms
-25/01/24 10:29:19 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 211.7 KiB, free 6.8 GiB)
-25/01/24 10:29:19 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 37.8 KiB, free 6.8 GiB)
-25/01/24 10:29:19 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 (size: 37.8 KiB, free: 6.8 GiB)
-25/01/24 10:29:19 INFO SparkContext: Created broadcast 1 from rdd at RevisionManager.scala:110
-25/01/24 10:29:20 INFO FileSourceScanExec: Planning scan with bin packing, max size: 134217728 bytes, open cost is considered as scanning 4194304 bytes.
-25/01/24 10:29:20 INFO InMemoryFileIndex: It took 60 ms to list leaf files for 1 paths.
-25/01/24 10:29:21 INFO InMemoryFileIndex: It took 39 ms to list leaf files for 22 paths.
-25/01/24 10:29:26 INFO FileSourceStrategy: Pushed Filters: 
-25/01/24 10:29:26 INFO FileSourceStrategy: Post-Scan Filters: (length(trim(value#18, None)) > 0)
-25/01/24 10:29:27 INFO CodeGenerator: Code generated in 64.383468 ms
-25/01/24 10:29:27 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 209.4 KiB, free 6.8 GiB)
-25/01/24 10:29:27 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 37.0 KiB, free 6.8 GiB)
-25/01/24 10:29:27 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 (size: 37.0 KiB, free: 6.8 GiB)
-25/01/24 10:29:27 INFO SparkContext: Created broadcast 2 from csv at RevisionEvalJob.scala:79
-25/01/24 10:29:27 INFO FileSourceScanExec: Planning scan with bin packing, max size: 46611570 bytes, open cost is considered as scanning 4194304 bytes.
-25/01/24 10:29:27 INFO SparkContext: Starting job: csv at RevisionEvalJob.scala:79
-25/01/24 10:29:27 INFO DAGScheduler: Got job 1 (csv at RevisionEvalJob.scala:79) with 1 output partitions
-25/01/24 10:29:27 INFO DAGScheduler: Final stage: ResultStage 1 (csv at RevisionEvalJob.scala:79)
-25/01/24 10:29:27 INFO DAGScheduler: Parents of final stage: List()
-25/01/24 10:29:27 INFO DAGScheduler: Missing parents: List()
-25/01/24 10:29:27 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[13] at csv at RevisionEvalJob.scala:79), which has no missing parents
-25/01/24 10:29:27 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 13.5 KiB, free 6.8 GiB)
-25/01/24 10:29:27 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 6.4 KiB, free 6.8 GiB)
-25/01/24 10:29:27 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 (size: 6.4 KiB, free: 6.8 GiB)
-25/01/24 10:29:27 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1580
-25/01/24 10:29:27 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[13] at csv at RevisionEvalJob.scala:79) (first 15 tasks are for partitions Vector(0))
-25/01/24 10:29:27 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
-25/01/24 10:29:27 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (10.23.202.109, executor 1, partition 0, PROCESS_LOCAL, 11172 bytes) 
-25/01/24 10:29:27 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.202.109:39161 (size: 6.4 KiB, free: 2.1 GiB)
-25/01/24 10:29:30 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.202.109:39161 (size: 37.0 KiB, free: 2.1 GiB)
-25/01/24 10:29:31 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 3522 ms on 10.23.202.109 (executor 1) (1/1)
-25/01/24 10:29:31 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
-25/01/24 10:29:31 INFO DAGScheduler: ResultStage 1 (csv at RevisionEvalJob.scala:79) finished in 3.700 s
-25/01/24 10:29:31 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
-25/01/24 10:29:31 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
-25/01/24 10:29:31 INFO DAGScheduler: Job 1 finished: csv at RevisionEvalJob.scala:79, took 3.763050 s
-25/01/24 10:29:31 INFO CodeGenerator: Code generated in 49.445407 ms
-25/01/24 10:29:31 INFO FileSourceStrategy: Pushed Filters: 
-25/01/24 10:29:31 INFO FileSourceStrategy: Post-Scan Filters: 
-25/01/24 10:29:31 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 209.4 KiB, free 6.8 GiB)
-25/01/24 10:29:31 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 37.0 KiB, free 6.8 GiB)
-25/01/24 10:29:31 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 (size: 37.0 KiB, free: 6.8 GiB)
-25/01/24 10:29:31 INFO SparkContext: Created broadcast 4 from csv at RevisionEvalJob.scala:79
-25/01/24 10:29:31 INFO FileSourceScanExec: Planning scan with bin packing, max size: 46611570 bytes, open cost is considered as scanning 4194304 bytes.
-25/01/24 10:29:31 INFO FileSourceStrategy: Pushed Filters: 
-25/01/24 10:29:31 INFO FileSourceStrategy: Post-Scan Filters: 
-25/01/24 10:29:31 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 209.3 KiB, free 6.8 GiB)
-25/01/24 10:29:31 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 36.9 KiB, free 6.8 GiB)
-25/01/24 10:29:31 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 (size: 36.9 KiB, free: 6.8 GiB)
-25/01/24 10:29:31 INFO SparkContext: Created broadcast 5 from rdd at RevisionEvalJob.scala:85
-25/01/24 10:29:31 INFO FileSourceScanExec: Planning scan with bin packing, max size: 46611570 bytes, open cost is considered as scanning 4194304 bytes.
-25/01/24 10:29:32 INFO SparkContext: Starting job: collectAsMap at RevisionEvalJob.scala:87
-25/01/24 10:29:32 INFO DAGScheduler: Got job 2 (collectAsMap at RevisionEvalJob.scala:87) with 2 output partitions
-25/01/24 10:29:32 INFO DAGScheduler: Final stage: ResultStage 2 (collectAsMap at RevisionEvalJob.scala:87)
-25/01/24 10:29:32 INFO DAGScheduler: Parents of final stage: List()
-25/01/24 10:29:32 INFO DAGScheduler: Missing parents: List()
-25/01/24 10:29:32 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[25] at map at RevisionEvalJob.scala:87), which has no missing parents
-25/01/24 10:29:32 INFO BlockManagerInfo: Removed broadcast_4_piece0 on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 in memory (size: 37.0 KiB, free: 6.8 GiB)
-25/01/24 10:29:32 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 30.1 KiB, free 6.8 GiB)
-25/01/24 10:29:32 INFO BlockManagerInfo: Removed broadcast_3_piece0 on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 in memory (size: 6.4 KiB, free: 6.8 GiB)
-25/01/24 10:29:32 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 10.23.202.109:39161 in memory (size: 6.4 KiB, free: 2.1 GiB)
-25/01/24 10:29:32 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 13.4 KiB, free 6.8 GiB)
-25/01/24 10:29:32 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 (size: 13.4 KiB, free: 6.8 GiB)
-25/01/24 10:29:32 INFO SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:1580
-25/01/24 10:29:32 INFO BlockManagerInfo: Removed broadcast_2_piece0 on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 in memory (size: 37.0 KiB, free: 6.8 GiB)
-25/01/24 10:29:32 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 2 (MapPartitionsRDD[25] at map at RevisionEvalJob.scala:87) (first 15 tasks are for partitions Vector(0, 1))
-25/01/24 10:29:32 INFO TaskSchedulerImpl: Adding task set 2.0 with 2 tasks resource profile 0
-25/01/24 10:29:32 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 10.23.202.109:39161 in memory (size: 37.0 KiB, free: 2.1 GiB)
-25/01/24 10:29:32 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 2) (10.23.202.109, executor 1, partition 0, PROCESS_LOCAL, 11172 bytes) 
-25/01/24 10:29:32 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 10.23.202.109:39161 (size: 13.4 KiB, free: 2.1 GiB)
-25/01/24 10:29:33 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 2 for resource profile id: 0)
-25/01/24 10:29:33 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 2, known: 1, sharedSlotFromPendingPods: 2147483647.
-25/01/24 10:29:33 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-25/01/24 10:29:33 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:37 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 10.23.202.109:39161 (size: 36.9 KiB, free: 2.1 GiB)
-25/01/24 10:29:39 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 3) (10.23.202.109, executor 1, partition 1, PROCESS_LOCAL, 11172 bytes) 
-25/01/24 10:29:39 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 2) in 7636 ms on 10.23.202.109 (executor 1) (1/2)
-25/01/24 10:29:40 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 3) in 1288 ms on 10.23.202.109 (executor 1) (2/2)
-25/01/24 10:29:40 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
-25/01/24 10:29:40 INFO DAGScheduler: ResultStage 2 (collectAsMap at RevisionEvalJob.scala:87) finished in 8.640 s
-25/01/24 10:29:40 INFO DAGScheduler: Job 2 is finished. Cancelling potential speculative or zombie tasks for this job
-25/01/24 10:29:40 INFO TaskSchedulerImpl: Killing all running tasks in stage 2: Stage finished
-25/01/24 10:29:40 INFO DAGScheduler: Job 2 finished: collectAsMap at RevisionEvalJob.scala:87, took 8.756699 s
-25/01/24 10:29:42 INFO BlockManagerInfo: Removed broadcast_6_piece0 on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 in memory (size: 13.4 KiB, free: 6.8 GiB)
-25/01/24 10:29:42 INFO BlockManagerInfo: Removed broadcast_6_piece0 on 10.23.202.109:39161 in memory (size: 13.4 KiB, free: 2.1 GiB)
-25/01/24 10:29:42 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
-25/01/24 10:29:42 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-25/01/24 10:29:42 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter
-25/01/24 10:29:42 INFO CodeGenerator: Code generated in 91.893535 ms
-25/01/24 10:29:43 INFO SparkContext: Starting job: csv at RevisionEvalJob.scala:135
-25/01/24 10:29:43 INFO DAGScheduler: Got job 3 (csv at RevisionEvalJob.scala:135) with 23 output partitions
-25/01/24 10:29:43 INFO DAGScheduler: Final stage: ResultStage 3 (csv at RevisionEvalJob.scala:135)
-25/01/24 10:29:43 INFO DAGScheduler: Parents of final stage: List()
-25/01/24 10:29:43 INFO DAGScheduler: Missing parents: List()
-25/01/24 10:29:43 INFO DAGScheduler: Submitting ResultStage 3 (MapPartitionsRDD[31] at csv at RevisionEvalJob.scala:135), which has no missing parents
-25/01/24 10:29:43 WARN DAGScheduler: Broadcasting large task binary with size 1507.0 KiB
-25/01/24 10:29:43 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 1507.1 KiB, free 6.8 GiB)
-25/01/24 10:29:43 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 629.9 KiB, free 6.8 GiB)
-25/01/24 10:29:43 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:7079 (size: 629.9 KiB, free: 6.8 GiB)
-25/01/24 10:29:43 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1580
-25/01/24 10:29:43 INFO DAGScheduler: Submitting 23 missing tasks from ResultStage 3 (MapPartitionsRDD[31] at csv at RevisionEvalJob.scala:135) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
-25/01/24 10:29:43 INFO TaskSchedulerImpl: Adding task set 3.0 with 23 tasks resource profile 0
-25/01/24 10:29:43 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 4) (10.23.202.109, executor 1, partition 0, PROCESS_LOCAL, 16464 bytes) 
-25/01/24 10:29:43 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.202.109:39161 (size: 629.9 KiB, free: 2.1 GiB)
-25/01/24 10:29:44 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 2 for resource profile id: 0)
-25/01/24 10:29:45 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.202.109:39161 (size: 37.8 KiB, free: 2.1 GiB)
-25/01/24 10:29:45 INFO ExecutorAllocationManager: Requesting 1 new executor because tasks are backlogged (new desired total will be 3 for resource profile id: 0)
-25/01/24 10:29:45 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 3, known: 2, sharedSlotFromPendingPods: 2147483647.
-25/01/24 10:29:45 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-25/01/24 10:29:45 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:46 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 5 for resource profile id: 0)
-25/01/24 10:29:46 INFO ExecutorPodsAllocator: Going to request 2 executors from Kubernetes for ResourceProfile Id: 0, target: 5, known: 3, sharedSlotFromPendingPods: 2147483646.
-25/01/24 10:29:46 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-25/01/24 10:29:46 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:46 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:46 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.148.204:44868
-25/01/24 10:29:47 INFO ExecutorAllocationManager: Requesting 4 new executors because tasks are backlogged (new desired total will be 9 for resource profile id: 0)
-25/01/24 10:29:47 INFO ExecutorPodsAllocator: Going to request 4 executors from Kubernetes for ResourceProfile Id: 0, target: 9, known: 5, sharedSlotFromPendingPods: 2147483644.
-25/01/24 10:29:47 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-25/01/24 10:29:47 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:47 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:47 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:47 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:48 INFO ExecutorAllocationManager: Requesting 8 new executors because tasks are backlogged (new desired total will be 17 for resource profile id: 0)
-25/01/24 10:29:48 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.148.204:44876) with ID 2,  ResourceProfileId 0
-25/01/24 10:29:48 INFO ExecutorMonitor: New executor 2 has registered (new total is 2)
-25/01/24 10:29:48 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.148.204:40647 with 2.1 GiB RAM, BlockManagerId(2, 10.23.148.204, 40647, None)
-25/01/24 10:29:48 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 17, known: 9, sharedSlotFromPendingPods: 2147483640.
-25/01/24 10:29:48 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-25/01/24 10:29:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:48 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:49 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:49 INFO ExecutorAllocationManager: Requesting 6 new executors because tasks are backlogged (new desired total will be 23 for resource profile id: 0)
-25/01/24 10:29:49 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:50 INFO TaskSetManager: Starting task 1.0 in stage 3.0 (TID 5) (10.23.202.109, executor 1, partition 1, PROCESS_LOCAL, 16464 bytes) 
-25/01/24 10:29:50 WARN TaskSetManager: Lost task 0.0 in stage 3.0 (TID 4) (10.23.202.109 executor 1): org.apache.spark.SparkException: [TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.
-	at org.apache.spark.sql.errors.QueryExecutionErrors$.taskFailedWhileWritingRowsError(QueryExecutionErrors.scala:774)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:420)
-	at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:890)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:890)
-	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
-	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)
-	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)
-	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
-	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)
-	at org.apache.spark.scheduler.Task.run(Task.scala:141)
-	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
-	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
-	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: java.lang.IllegalArgumentException: requirement failed: The probabilities dont add up to 1.0! NaN + NaN
-	at scala.Predef$.require(Predef.scala:281)
-	at me.lpmg.ste.types.TemplateProbabilityVector$.apply(TemplateProbabilityVector.scala:48)
-	at me.lpmg.ste.algorithms.ProbabilityHandler$.weightedCombination(ProbabilityHandler.scala:113)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.$anonfun$main$3(RevisionEvalJob.scala:112)
-	at scala.collection.Iterator$$anon$10.next(Iterator.scala:461)
-	at scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:514)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)
-	at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)
-	at org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCodegenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:43)
-	at org.apache.spark.sql.execution.datasources.FileFormatDataWriter.writeWithIterator(FileFormatDataWriter.scala:91)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeTask$1(FileFormatWriter.scala:403)
-	at org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:410)
-	... 17 more
-
-25/01/24 10:29:50 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 23, known: 14, sharedSlotFromPendingPods: 2147483636.
-25/01/24 10:29:50 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-25/01/24 10:29:50 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:50 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:50 INFO TaskSetManager: Starting task 0.1 in stage 3.0 (TID 6) (10.23.202.109, executor 1, partition 0, PROCESS_LOCAL, 16464 bytes) 
-25/01/24 10:29:50 INFO TaskSetManager: Lost task 1.0 in stage 3.0 (TID 5) on 10.23.202.109, executor 1: org.apache.spark.SparkException ([TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.) [duplicate 1]
-25/01/24 10:29:50 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:50 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:50 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:52 INFO ExecutorPodsAllocator: Going to request 4 executors from Kubernetes for ResourceProfile Id: 0, target: 23, known: 19, sharedSlotFromPendingPods: 2147483634.
-25/01/24 10:29:52 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
-25/01/24 10:29:52 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:52 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:52 INFO TaskSetManager: Starting task 1.1 in stage 3.0 (TID 7) (10.23.202.109, executor 1, partition 1, PROCESS_LOCAL, 16464 bytes) 
-25/01/24 10:29:52 INFO TaskSetManager: Lost task 0.1 in stage 3.0 (TID 6) on 10.23.202.109, executor 1: org.apache.spark.SparkException ([TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.) [duplicate 2]
-25/01/24 10:29:52 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:52 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
-25/01/24 10:29:52 INFO TaskSetManager: Starting task 0.2 in stage 3.0 (TID 8) (10.23.202.109, executor 1, partition 0, PROCESS_LOCAL, 16464 bytes) 
-25/01/24 10:29:52 INFO TaskSetManager: Lost task 1.1 in stage 3.0 (TID 7) on 10.23.202.109, executor 1: org.apache.spark.SparkException ([TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.) [duplicate 3]
-25/01/24 10:29:53 INFO TaskSetManager: Starting task 1.2 in stage 3.0 (TID 9) (10.23.148.204, executor 2, partition 1, PROCESS_LOCAL, 16464 bytes) 
-25/01/24 10:29:54 INFO TaskSetManager: Starting task 2.0 in stage 3.0 (TID 10) (10.23.202.109, executor 1, partition 2, PROCESS_LOCAL, 16464 bytes) 
-25/01/24 10:29:54 INFO TaskSetManager: Lost task 0.2 in stage 3.0 (TID 8) on 10.23.202.109, executor 1: org.apache.spark.SparkException ([TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.) [duplicate 4]
-25/01/24 10:29:54 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.148.204:40647 (size: 629.9 KiB, free: 2.1 GiB)
-25/01/24 10:29:54 INFO TaskSetManager: Starting task 0.3 in stage 3.0 (TID 11) (10.23.202.109, executor 1, partition 0, PROCESS_LOCAL, 16464 bytes) 
-25/01/24 10:29:54 INFO TaskSetManager: Lost task 2.0 in stage 3.0 (TID 10) on 10.23.202.109, executor 1: org.apache.spark.SparkException ([TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.) [duplicate 5]
-25/01/24 10:29:55 INFO TaskSetManager: Starting task 2.1 in stage 3.0 (TID 12) (10.23.202.109, executor 1, partition 2, PROCESS_LOCAL, 16464 bytes) 
-25/01/24 10:29:55 INFO TaskSetManager: Lost task 0.3 in stage 3.0 (TID 11) on 10.23.202.109, executor 1: org.apache.spark.SparkException ([TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.) [duplicate 6]
-25/01/24 10:29:55 ERROR TaskSetManager: Task 0 in stage 3.0 failed 4 times; aborting job
-25/01/24 10:29:55 INFO TaskSchedulerImpl: Cancelling stage 3
-25/01/24 10:29:55 INFO TaskSchedulerImpl: Killing all running tasks in stage 3: Stage cancelled: Job aborted due to stage failure: Task 0 in stage 3.0 failed 4 times, most recent failure: Lost task 0.3 in stage 3.0 (TID 11) (10.23.202.109 executor 1): org.apache.spark.SparkException: [TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.
-	at org.apache.spark.sql.errors.QueryExecutionErrors$.taskFailedWhileWritingRowsError(QueryExecutionErrors.scala:774)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:420)
-	at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:890)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:890)
-	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
-	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)
-	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)
-	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
-	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)
-	at org.apache.spark.scheduler.Task.run(Task.scala:141)
-	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
-	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
-	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: java.lang.IllegalArgumentException: requirement failed: The probabilities dont add up to 1.0! NaN + NaN
-	at scala.Predef$.require(Predef.scala:281)
-	at me.lpmg.ste.types.TemplateProbabilityVector$.apply(TemplateProbabilityVector.scala:48)
-	at me.lpmg.ste.algorithms.ProbabilityHandler$.weightedCombination(ProbabilityHandler.scala:113)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.$anonfun$main$3(RevisionEvalJob.scala:112)
-	at scala.collection.Iterator$$anon$10.next(Iterator.scala:461)
-	at scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:514)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)
-	at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)
-	at org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCodegenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:43)
-	at org.apache.spark.sql.execution.datasources.FileFormatDataWriter.writeWithIterator(FileFormatDataWriter.scala:91)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeTask$1(FileFormatWriter.scala:403)
-	at org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:410)
-	... 17 more
-
-Driver stacktrace:
-25/01/24 10:29:55 INFO TaskSchedulerImpl: Stage 3 was cancelled
-25/01/24 10:29:55 INFO DAGScheduler: ResultStage 3 (csv at RevisionEvalJob.scala:135) failed in 12.823 s due to Job aborted due to stage failure: Task 0 in stage 3.0 failed 4 times, most recent failure: Lost task 0.3 in stage 3.0 (TID 11) (10.23.202.109 executor 1): org.apache.spark.SparkException: [TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.
-	at org.apache.spark.sql.errors.QueryExecutionErrors$.taskFailedWhileWritingRowsError(QueryExecutionErrors.scala:774)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:420)
-	at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:890)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:890)
-	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
-	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)
-	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)
-	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
-	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)
-	at org.apache.spark.scheduler.Task.run(Task.scala:141)
-	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
-	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
-	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: java.lang.IllegalArgumentException: requirement failed: The probabilities dont add up to 1.0! NaN + NaN
-	at scala.Predef$.require(Predef.scala:281)
-	at me.lpmg.ste.types.TemplateProbabilityVector$.apply(TemplateProbabilityVector.scala:48)
-	at me.lpmg.ste.algorithms.ProbabilityHandler$.weightedCombination(ProbabilityHandler.scala:113)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.$anonfun$main$3(RevisionEvalJob.scala:112)
-	at scala.collection.Iterator$$anon$10.next(Iterator.scala:461)
-	at scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:514)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)
-	at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)
-	at org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCodegenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:43)
-	at org.apache.spark.sql.execution.datasources.FileFormatDataWriter.writeWithIterator(FileFormatDataWriter.scala:91)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeTask$1(FileFormatWriter.scala:403)
-	at org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:410)
-	... 17 more
-
-Driver stacktrace:
-25/01/24 10:29:55 INFO DAGScheduler: Job 3 failed: csv at RevisionEvalJob.scala:135, took 12.865955 s
-25/01/24 10:29:55 ERROR FileFormatWriter: Aborting job 79be5188-b59a-47f8-8cd2-dbf79899e0f0.
-org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3.0 failed 4 times, most recent failure: Lost task 0.3 in stage 3.0 (TID 11) (10.23.202.109 executor 1): org.apache.spark.SparkException: [TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.
-	at org.apache.spark.sql.errors.QueryExecutionErrors$.taskFailedWhileWritingRowsError(QueryExecutionErrors.scala:774)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:420)
-	at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:890)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:890)
-	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
-	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)
-	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)
-	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
-	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)
-	at org.apache.spark.scheduler.Task.run(Task.scala:141)
-	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
-	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
-	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: java.lang.IllegalArgumentException: requirement failed: The probabilities dont add up to 1.0! NaN + NaN
-	at scala.Predef$.require(Predef.scala:281)
-	at me.lpmg.ste.types.TemplateProbabilityVector$.apply(TemplateProbabilityVector.scala:48)
-	at me.lpmg.ste.algorithms.ProbabilityHandler$.weightedCombination(ProbabilityHandler.scala:113)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.$anonfun$main$3(RevisionEvalJob.scala:112)
-	at scala.collection.Iterator$$anon$10.next(Iterator.scala:461)
-	at scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:514)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)
-	at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)
-	at org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCodegenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:43)
-	at org.apache.spark.sql.execution.datasources.FileFormatDataWriter.writeWithIterator(FileFormatDataWriter.scala:91)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeTask$1(FileFormatWriter.scala:403)
-	at org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:410)
-	... 17 more
-
-Driver stacktrace:
-	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2844)
-	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2780)
-	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2779)
-	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
-	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
-	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
-	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2779)
-	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1242)
-	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1242)
-	at scala.Option.foreach(Option.scala:407)
-	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1242)
-	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3048)
-	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2982)
-	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2971)
-	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
-	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:984)
-	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2398)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeWrite$4(FileFormatWriter.scala:307)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.writeAndCommit(FileFormatWriter.scala:271)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeWrite(FileFormatWriter.scala:304)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:190)
-	at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:190)
-	at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:113)
-	at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:111)
-	at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:125)
-	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
-	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
-	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
-	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
-	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
-	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
-	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
-	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
-	at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
-	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
-	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
-	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
-	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
-	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
-	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
-	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
-	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
-	at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
-	at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
-	at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
-	at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
-	at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:859)
-	at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:388)
-	at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:361)
-	at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:240)
-	at org.apache.spark.sql.DataFrameWriter.csv(DataFrameWriter.scala:850)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.main(RevisionEvalJob.scala:135)
-	at me.lpmg.ste.jobs.RevisionEvalJob.main(RevisionEvalJob.scala)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
-	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:1029)
-	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:194)
-	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:217)
-	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:91)
-	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1120)
-	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1129)
-	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
-Caused by: org.apache.spark.SparkException: [TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.
-	at org.apache.spark.sql.errors.QueryExecutionErrors$.taskFailedWhileWritingRowsError(QueryExecutionErrors.scala:774)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:420)
-	at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:890)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:890)
-	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
-	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)
-	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)
-	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
-	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)
-	at org.apache.spark.scheduler.Task.run(Task.scala:141)
-	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
-	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
-	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: java.lang.IllegalArgumentException: requirement failed: The probabilities dont add up to 1.0! NaN + NaN
-	at scala.Predef$.require(Predef.scala:281)
-	at me.lpmg.ste.types.TemplateProbabilityVector$.apply(TemplateProbabilityVector.scala:48)
-	at me.lpmg.ste.algorithms.ProbabilityHandler$.weightedCombination(ProbabilityHandler.scala:113)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.$anonfun$main$3(RevisionEvalJob.scala:112)
-	at scala.collection.Iterator$$anon$10.next(Iterator.scala:461)
-	at scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:514)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)
-	at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)
-	at org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCodegenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:43)
-	at org.apache.spark.sql.execution.datasources.FileFormatDataWriter.writeWithIterator(FileFormatDataWriter.scala:91)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeTask$1(FileFormatWriter.scala:403)
-	at org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:410)
-	... 17 more
-25/01/24 10:29:56 WARN TaskSetManager: Lost task 2.1 in stage 3.0 (TID 12) (10.23.202.109 executor 1): TaskKilled (Stage cancelled: Job aborted due to stage failure: Task 0 in stage 3.0 failed 4 times, most recent failure: Lost task 0.3 in stage 3.0 (TID 11) (10.23.202.109 executor 1): org.apache.spark.SparkException: [TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.
-	at org.apache.spark.sql.errors.QueryExecutionErrors$.taskFailedWhileWritingRowsError(QueryExecutionErrors.scala:774)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:420)
-	at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:890)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:890)
-	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
-	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)
-	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)
-	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
-	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)
-	at org.apache.spark.scheduler.Task.run(Task.scala:141)
-	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
-	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
-	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: java.lang.IllegalArgumentException: requirement failed: The probabilities dont add up to 1.0! NaN + NaN
-	at scala.Predef$.require(Predef.scala:281)
-	at me.lpmg.ste.types.TemplateProbabilityVector$.apply(TemplateProbabilityVector.scala:48)
-	at me.lpmg.ste.algorithms.ProbabilityHandler$.weightedCombination(ProbabilityHandler.scala:113)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.$anonfun$main$3(RevisionEvalJob.scala:112)
-	at scala.collection.Iterator$$anon$10.next(Iterator.scala:461)
-	at scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:514)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)
-	at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)
-	at org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCodegenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:43)
-	at org.apache.spark.sql.execution.datasources.FileFormatDataWriter.writeWithIterator(FileFormatDataWriter.scala:91)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeTask$1(FileFormatWriter.scala:403)
-	at org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:410)
-	... 17 more
-
-Driver stacktrace:)
-25/01/24 10:29:56 INFO SparkContext: SparkContext is stopping with exitCode 0.
-25/01/24 10:29:56 INFO SparkUI: Stopped Spark web UI at http://ste-revision-eval-job-3cb8269497d7903d-driver-svc.spark-jobs.svc:4040
-25/01/24 10:29:56 INFO KubernetesClusterSchedulerBackend: Shutting down all executors
-25/01/24 10:29:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asking each executor to shut down
-25/01/24 10:29:56 WARN ExecutorPodsWatchSnapshotSource: Kubernetes client has been closed.
-25/01/24 10:29:57 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
-25/01/24 10:29:57 INFO MemoryStore: MemoryStore cleared
-25/01/24 10:29:57 INFO BlockManager: BlockManager stopped
-25/01/24 10:29:58 INFO BlockManagerMaster: BlockManagerMaster stopped
-25/01/24 10:29:58 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
-25/01/24 10:29:58 INFO SparkContext: Successfully stopped SparkContext
-Exception in thread "main" org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 3.0 failed 4 times, most recent failure: Lost task 0.3 in stage 3.0 (TID 11) (10.23.202.109 executor 1): org.apache.spark.SparkException: [TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.
-	at org.apache.spark.sql.errors.QueryExecutionErrors$.taskFailedWhileWritingRowsError(QueryExecutionErrors.scala:774)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:420)
-	at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:890)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:890)
-	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
-	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)
-	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)
-	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
-	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)
-	at org.apache.spark.scheduler.Task.run(Task.scala:141)
-	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
-	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
-	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: java.lang.IllegalArgumentException: requirement failed: The probabilities dont add up to 1.0! NaN + NaN
-	at scala.Predef$.require(Predef.scala:281)
-	at me.lpmg.ste.types.TemplateProbabilityVector$.apply(TemplateProbabilityVector.scala:48)
-	at me.lpmg.ste.algorithms.ProbabilityHandler$.weightedCombination(ProbabilityHandler.scala:113)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.$anonfun$main$3(RevisionEvalJob.scala:112)
-	at scala.collection.Iterator$$anon$10.next(Iterator.scala:461)
-	at scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:514)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)
-	at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)
-	at org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCodegenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:43)
-	at org.apache.spark.sql.execution.datasources.FileFormatDataWriter.writeWithIterator(FileFormatDataWriter.scala:91)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeTask$1(FileFormatWriter.scala:403)
-	at org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:410)
-	... 17 more
-
-Driver stacktrace:
-	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2844)
-	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2780)
-	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2779)
-	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
-	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
-	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
-	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2779)
-	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1242)
-	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1242)
-	at scala.Option.foreach(Option.scala:407)
-	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1242)
-	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3048)
-	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2982)
-	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2971)
-	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
-	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:984)
-	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2398)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeWrite$4(FileFormatWriter.scala:307)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.writeAndCommit(FileFormatWriter.scala:271)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeWrite(FileFormatWriter.scala:304)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:190)
-	at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:190)
-	at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:113)
-	at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:111)
-	at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:125)
-	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
-	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
-	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
-	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
-	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
-	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
-	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
-	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
-	at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
-	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
-	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
-	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
-	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
-	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
-	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
-	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
-	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
-	at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
-	at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
-	at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
-	at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
-	at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:859)
-	at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:388)
-	at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:361)
-	at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:240)
-	at org.apache.spark.sql.DataFrameWriter.csv(DataFrameWriter.scala:850)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.main(RevisionEvalJob.scala:135)
-	at me.lpmg.ste.jobs.RevisionEvalJob.main(RevisionEvalJob.scala)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
-	at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
-	at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:1029)
-	at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:194)
-	at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:217)
-	at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:91)
-	at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1120)
-	at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1129)
-	at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
-Caused by: org.apache.spark.SparkException: [TASK_WRITE_FAILED] Task failed while writing rows to file:/mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-28-33Z.
-	at org.apache.spark.sql.errors.QueryExecutionErrors$.taskFailedWhileWritingRowsError(QueryExecutionErrors.scala:774)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:420)
-	at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:890)
-	at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:890)
-	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
-	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:364)
-	at org.apache.spark.rdd.RDD.iterator(RDD.scala:328)
-	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
-	at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:161)
-	at org.apache.spark.scheduler.Task.run(Task.scala:141)
-	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:620)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
-	at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
-	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
-	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:623)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.base/java.lang.Thread.run(Unknown Source)
-Caused by: java.lang.IllegalArgumentException: requirement failed: The probabilities dont add up to 1.0! NaN + NaN
-	at scala.Predef$.require(Predef.scala:281)
-	at me.lpmg.ste.types.TemplateProbabilityVector$.apply(TemplateProbabilityVector.scala:48)
-	at me.lpmg.ste.algorithms.ProbabilityHandler$.weightedCombination(ProbabilityHandler.scala:113)
-	at me.lpmg.ste.jobs.RevisionEvalJob$.$anonfun$main$3(RevisionEvalJob.scala:112)
-	at scala.collection.Iterator$$anon$10.next(Iterator.scala:461)
-	at scala.collection.Iterator$$anon$12.hasNext(Iterator.scala:514)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at scala.collection.Iterator$$anon$10.hasNext(Iterator.scala:460)
-	at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIteratorForCodegenStage1.processNext(Unknown Source)
-	at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)
-	at org.apache.spark.sql.execution.WholeStageCodegenEvaluatorFactory$WholeStageCodegenPartitionEvaluator$$anon$1.hasNext(WholeStageCodegenEvaluatorFactory.scala:43)
-	at org.apache.spark.sql.execution.datasources.FileFormatDataWriter.writeWithIterator(FileFormatDataWriter.scala:91)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeTask$1(FileFormatWriter.scala:403)
-	at org.apache.spark.util.Utils$.tryWithSafeFinallyAndFailureCallbacks(Utils.scala:1397)
-	at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:410)
-	... 17 more
-25/01/24 10:29:58 INFO ShutdownHookManager: Shutdown hook called
-25/01/24 10:29:58 INFO ShutdownHookManager: Deleting directory /tmp/spark-093bc70c-3c0b-43fe-bb20-e9fb6e3567aa
-25/01/24 10:29:58 INFO ShutdownHookManager: Deleting directory /var/data/spark-97f49cdd-1bd2-4fe9-8572-86e4a5102a4e/spark-22cece0a-512a-457e-bcff-15ec5ceaf5e4
+25/01/24 10:40:02 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Files file:///mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-d3f5af0a-6497-45ed-8832-f790594e14ea/spark-trustworthiness-estimator-assembly-0.1.0.jar from /mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-d3f5af0a-6497-45ed-8832-f790594e14ea/spark-trustworthiness-estimator-assembly-0.1.0.jar to /tmp/spark-trustworthiness-estimator-assembly-0.1.0.jar
+25/01/24 10:43:28 INFO SparkContext: Running Spark version 3.5.0
+25/01/24 10:43:28 INFO SparkContext: OS info Linux, 6.8.0-49-generic, amd64
+25/01/24 10:43:28 INFO SparkContext: Java version 11.0.21
+25/01/24 10:43:29 INFO ResourceUtils: ==============================================================
+25/01/24 10:43:29 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/01/24 10:43:29 INFO ResourceUtils: ==============================================================
+25/01/24 10:43:29 INFO SparkContext: Submitted application: ste-revision-eval-job
+25/01/24 10:43:29 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 4096, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/01/24 10:43:29 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+25/01/24 10:43:29 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/01/24 10:43:29 INFO SecurityManager: Changing view acls to: spark,lpmg
+25/01/24 10:43:29 INFO SecurityManager: Changing modify acls to: spark,lpmg
+25/01/24 10:43:29 INFO SecurityManager: Changing view acls groups to: 
+25/01/24 10:43:29 INFO SecurityManager: Changing modify acls groups to: 
+25/01/24 10:43:29 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: spark, lpmg; groups with view permissions: EMPTY; users with modify permissions: spark, lpmg; groups with modify permissions: EMPTY
+25/01/24 10:43:30 INFO Utils: Successfully started service 'sparkDriver' on port 7078.
+25/01/24 10:43:30 INFO SparkEnv: Registering MapOutputTracker
+25/01/24 10:43:30 INFO SparkEnv: Registering BlockManagerMaster
+25/01/24 10:43:30 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/01/24 10:43:30 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/01/24 10:43:30 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/01/24 10:43:31 INFO DiskBlockManager: Created local directory at /var/data/spark-8a060ad3-02c9-4890-b7c0-18f087456d8b/blockmgr-bc71c0b1-3fd2-4a78-8afb-71ca73e7db37
+25/01/24 10:43:31 INFO MemoryStore: MemoryStore started with capacity 6.8 GiB
+25/01/24 10:43:31 INFO SparkEnv: Registering OutputCommitCoordinator
+25/01/24 10:43:31 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/01/24 10:43:31 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/01/24 10:43:32 INFO SparkContext: Added JAR file:/mnt/ceph/storage/data-tmp/current/li83keq/spark-upload/spark-upload-d3f5af0a-6497-45ed-8832-f790594e14ea/spark-trustworthiness-estimator-assembly-0.1.0.jar at spark://ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7078/jars/spark-trustworthiness-estimator-assembly-0.1.0.jar with timestamp 1737715408891
+25/01/24 10:43:32 INFO SparkKubernetesClientFactory: Auto-configuring K8S client using current context from users K8S config file
+25/01/24 10:43:37 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
+25/01/24 10:43:38 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 7079.
+25/01/24 10:43:38 INFO NettyBlockTransferService: Server created on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc 10.23.72.133:7079
+25/01/24 10:43:38 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/01/24 10:43:38 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc, 7079, None)
+25/01/24 10:43:38 INFO BlockManagerMasterEndpoint: Registering block manager ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 with 6.8 GiB RAM, BlockManagerId(driver, ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc, 7079, None)
+25/01/24 10:43:38 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc, 7079, None)
+25/01/24 10:43:38 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc, 7079, None)
+25/01/24 10:43:38 INFO Utils: Using initial executors = 0, max of spark.dynamicAllocation.initialExecutors, spark.dynamicAllocation.minExecutors and spark.executor.instances
+25/01/24 10:43:38 INFO ExecutorAllocationManager: Dynamic allocation is enabled without a shuffle service.
+25/01/24 10:43:39 INFO KubernetesClusterSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+25/01/24 10:43:39 INFO RevisionManager: Loading revisions with Ground Truth data
+25/01/24 10:43:39 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+25/01/24 10:43:39 INFO SharedState: Warehouse path is 'file:/tmp/spark-warehouse'.
+25/01/24 10:43:44 INFO InMemoryFileIndex: It took 1363 ms to list leaf files for 1 paths.
+25/01/24 10:43:45 INFO SparkContext: Starting job: parquet at RevisionManager.scala:107
+25/01/24 10:43:45 INFO DAGScheduler: Got job 0 (parquet at RevisionManager.scala:107) with 1 output partitions
+25/01/24 10:43:45 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at RevisionManager.scala:107)
+25/01/24 10:43:45 INFO DAGScheduler: Parents of final stage: List()
+25/01/24 10:43:45 INFO DAGScheduler: Missing parents: List()
+25/01/24 10:43:45 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at RevisionManager.scala:107), which has no missing parents
+25/01/24 10:43:46 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 109.6 KiB, free 6.8 GiB)
+25/01/24 10:43:46 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 39.8 KiB, free 6.8 GiB)
+25/01/24 10:43:46 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 (size: 39.8 KiB, free: 6.8 GiB)
+25/01/24 10:43:46 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1580
+25/01/24 10:43:46 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at RevisionManager.scala:107) (first 15 tasks are for partitions Vector(0))
+25/01/24 10:43:46 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+25/01/24 10:43:47 INFO ExecutorAllocationManager: Requesting 1 new executor because tasks are backlogged (new desired total will be 1 for resource profile id: 0)
+25/01/24 10:43:47 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 1, known: 0, sharedSlotFromPendingPods: 2147483647.
+25/01/24 10:43:47 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 10:43:47 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:43:59 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.67.219:60680
+25/01/24 10:44:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.67.219:60686) with ID 1,  ResourceProfileId 0
+25/01/24 10:44:00 INFO ExecutorMonitor: New executor 1 has registered (new total is 1)
+25/01/24 10:44:01 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.67.219:40047 with 2.1 GiB RAM, BlockManagerId(1, 10.23.67.219, 40047, None)
+25/01/24 10:44:05 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (10.23.67.219, executor 1, partition 0, PROCESS_LOCAL, 8145 bytes) 
+25/01/24 10:44:06 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.23.67.219:40047 (size: 39.8 KiB, free: 2.1 GiB)
+25/01/24 10:44:09 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 3411 ms on 10.23.67.219 (executor 1) (1/1)
+25/01/24 10:44:09 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+25/01/24 10:44:09 INFO DAGScheduler: ResultStage 0 (parquet at RevisionManager.scala:107) finished in 23.103 s
+25/01/24 10:44:09 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+25/01/24 10:44:09 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+25/01/24 10:44:09 INFO DAGScheduler: Job 0 finished: parquet at RevisionManager.scala:107, took 23.446548 s
+25/01/24 10:44:10 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 10.23.67.219:40047 in memory (size: 39.8 KiB, free: 2.1 GiB)
+25/01/24 10:44:10 INFO BlockManagerInfo: Removed broadcast_0_piece0 on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 in memory (size: 39.8 KiB, free: 6.8 GiB)
+25/01/24 10:44:13 INFO FileSourceStrategy: Pushed Filters: 
+25/01/24 10:44:13 INFO FileSourceStrategy: Post-Scan Filters: 
+25/01/24 10:44:15 INFO CodeGenerator: Code generated in 847.12768 ms
+25/01/24 10:44:15 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 211.7 KiB, free 6.8 GiB)
+25/01/24 10:44:15 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 37.8 KiB, free 6.8 GiB)
+25/01/24 10:44:15 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 (size: 37.8 KiB, free: 6.8 GiB)
+25/01/24 10:44:15 INFO SparkContext: Created broadcast 1 from rdd at RevisionManager.scala:110
+25/01/24 10:44:15 INFO FileSourceScanExec: Planning scan with bin packing, max size: 134217728 bytes, open cost is considered as scanning 4194304 bytes.
+25/01/24 10:44:16 INFO InMemoryFileIndex: It took 10 ms to list leaf files for 1 paths.
+25/01/24 10:44:16 INFO InMemoryFileIndex: It took 28 ms to list leaf files for 22 paths.
+25/01/24 10:44:21 INFO FileSourceStrategy: Pushed Filters: 
+25/01/24 10:44:21 INFO FileSourceStrategy: Post-Scan Filters: (length(trim(value#18, None)) > 0)
+25/01/24 10:44:21 INFO CodeGenerator: Code generated in 79.64589 ms
+25/01/24 10:44:21 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 209.4 KiB, free 6.8 GiB)
+25/01/24 10:44:21 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 37.0 KiB, free 6.8 GiB)
+25/01/24 10:44:21 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 (size: 37.0 KiB, free: 6.8 GiB)
+25/01/24 10:44:21 INFO SparkContext: Created broadcast 2 from csv at RevisionEvalJob.scala:79
+25/01/24 10:44:21 INFO FileSourceScanExec: Planning scan with bin packing, max size: 46611570 bytes, open cost is considered as scanning 4194304 bytes.
+25/01/24 10:44:22 INFO SparkContext: Starting job: csv at RevisionEvalJob.scala:79
+25/01/24 10:44:22 INFO DAGScheduler: Got job 1 (csv at RevisionEvalJob.scala:79) with 1 output partitions
+25/01/24 10:44:22 INFO DAGScheduler: Final stage: ResultStage 1 (csv at RevisionEvalJob.scala:79)
+25/01/24 10:44:22 INFO DAGScheduler: Parents of final stage: List()
+25/01/24 10:44:22 INFO DAGScheduler: Missing parents: List()
+25/01/24 10:44:22 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[13] at csv at RevisionEvalJob.scala:79), which has no missing parents
+25/01/24 10:44:22 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 13.5 KiB, free 6.8 GiB)
+25/01/24 10:44:22 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 6.4 KiB, free 6.8 GiB)
+25/01/24 10:44:22 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 (size: 6.4 KiB, free: 6.8 GiB)
+25/01/24 10:44:22 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1580
+25/01/24 10:44:22 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[13] at csv at RevisionEvalJob.scala:79) (first 15 tasks are for partitions Vector(0))
+25/01/24 10:44:22 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
+25/01/24 10:44:22 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (10.23.67.219, executor 1, partition 0, PROCESS_LOCAL, 11172 bytes) 
+25/01/24 10:44:22 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.23.67.219:40047 (size: 6.4 KiB, free: 2.1 GiB)
+25/01/24 10:44:24 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.23.67.219:40047 (size: 37.0 KiB, free: 2.1 GiB)
+25/01/24 10:44:25 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 2892 ms on 10.23.67.219 (executor 1) (1/1)
+25/01/24 10:44:25 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+25/01/24 10:44:25 INFO DAGScheduler: ResultStage 1 (csv at RevisionEvalJob.scala:79) finished in 3.003 s
+25/01/24 10:44:25 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+25/01/24 10:44:25 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+25/01/24 10:44:25 INFO DAGScheduler: Job 1 finished: csv at RevisionEvalJob.scala:79, took 3.033560 s
+25/01/24 10:44:25 INFO CodeGenerator: Code generated in 79.382837 ms
+25/01/24 10:44:25 INFO FileSourceStrategy: Pushed Filters: 
+25/01/24 10:44:25 INFO FileSourceStrategy: Post-Scan Filters: 
+25/01/24 10:44:25 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 209.4 KiB, free 6.8 GiB)
+25/01/24 10:44:25 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 37.0 KiB, free 6.8 GiB)
+25/01/24 10:44:25 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 (size: 37.0 KiB, free: 6.8 GiB)
+25/01/24 10:44:25 INFO SparkContext: Created broadcast 4 from csv at RevisionEvalJob.scala:79
+25/01/24 10:44:25 INFO FileSourceScanExec: Planning scan with bin packing, max size: 46611570 bytes, open cost is considered as scanning 4194304 bytes.
+25/01/24 10:44:25 INFO FileSourceStrategy: Pushed Filters: 
+25/01/24 10:44:25 INFO FileSourceStrategy: Post-Scan Filters: 
+25/01/24 10:44:25 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 209.3 KiB, free 6.8 GiB)
+25/01/24 10:44:25 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 36.9 KiB, free 6.8 GiB)
+25/01/24 10:44:25 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 (size: 36.9 KiB, free: 6.8 GiB)
+25/01/24 10:44:25 INFO SparkContext: Created broadcast 5 from rdd at RevisionEvalJob.scala:85
+25/01/24 10:44:25 INFO FileSourceScanExec: Planning scan with bin packing, max size: 46611570 bytes, open cost is considered as scanning 4194304 bytes.
+25/01/24 10:44:26 INFO SparkContext: Starting job: collectAsMap at RevisionEvalJob.scala:87
+25/01/24 10:44:26 INFO DAGScheduler: Got job 2 (collectAsMap at RevisionEvalJob.scala:87) with 2 output partitions
+25/01/24 10:44:26 INFO DAGScheduler: Final stage: ResultStage 2 (collectAsMap at RevisionEvalJob.scala:87)
+25/01/24 10:44:26 INFO DAGScheduler: Parents of final stage: List()
+25/01/24 10:44:26 INFO DAGScheduler: Missing parents: List()
+25/01/24 10:44:26 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[25] at map at RevisionEvalJob.scala:87), which has no missing parents
+25/01/24 10:44:26 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 30.1 KiB, free 6.8 GiB)
+25/01/24 10:44:26 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 13.4 KiB, free 6.8 GiB)
+25/01/24 10:44:26 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 (size: 13.4 KiB, free: 6.8 GiB)
+25/01/24 10:44:26 INFO BlockManagerInfo: Removed broadcast_2_piece0 on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 in memory (size: 37.0 KiB, free: 6.8 GiB)
+25/01/24 10:44:26 INFO SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:1580
+25/01/24 10:44:26 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 2 (MapPartitionsRDD[25] at map at RevisionEvalJob.scala:87) (first 15 tasks are for partitions Vector(0, 1))
+25/01/24 10:44:26 INFO TaskSchedulerImpl: Adding task set 2.0 with 2 tasks resource profile 0
+25/01/24 10:44:26 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 10.23.67.219:40047 in memory (size: 37.0 KiB, free: 2.1 GiB)
+25/01/24 10:44:26 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 2) (10.23.67.219, executor 1, partition 0, PROCESS_LOCAL, 11172 bytes) 
+25/01/24 10:44:26 INFO BlockManagerInfo: Removed broadcast_3_piece0 on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 in memory (size: 6.4 KiB, free: 6.8 GiB)
+25/01/24 10:44:26 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 10.23.67.219:40047 in memory (size: 6.4 KiB, free: 2.1 GiB)
+25/01/24 10:44:26 INFO BlockManagerInfo: Removed broadcast_4_piece0 on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 in memory (size: 37.0 KiB, free: 6.8 GiB)
+25/01/24 10:44:26 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 10.23.67.219:40047 (size: 13.4 KiB, free: 2.1 GiB)
+25/01/24 10:44:27 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 2 for resource profile id: 0)
+25/01/24 10:44:27 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 2, known: 1, sharedSlotFromPendingPods: 2147483647.
+25/01/24 10:44:27 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 10:44:27 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:31 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 10.23.67.219:40047 (size: 36.9 KiB, free: 2.1 GiB)
+25/01/24 10:44:33 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 3) (10.23.67.219, executor 1, partition 1, PROCESS_LOCAL, 11172 bytes) 
+25/01/24 10:44:34 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 2) in 7693 ms on 10.23.67.219 (executor 1) (1/2)
+25/01/24 10:44:34 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 3) in 1246 ms on 10.23.67.219 (executor 1) (2/2)
+25/01/24 10:44:34 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+25/01/24 10:44:34 INFO DAGScheduler: ResultStage 2 (collectAsMap at RevisionEvalJob.scala:87) finished in 8.789 s
+25/01/24 10:44:34 INFO DAGScheduler: Job 2 is finished. Cancelling potential speculative or zombie tasks for this job
+25/01/24 10:44:34 INFO TaskSchedulerImpl: Killing all running tasks in stage 2: Stage finished
+25/01/24 10:44:34 INFO DAGScheduler: Job 2 finished: collectAsMap at RevisionEvalJob.scala:87, took 8.799965 s
+25/01/24 10:44:36 INFO BlockManagerInfo: Removed broadcast_6_piece0 on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 in memory (size: 13.4 KiB, free: 6.8 GiB)
+25/01/24 10:44:36 INFO BlockManagerInfo: Removed broadcast_6_piece0 on 10.23.67.219:40047 in memory (size: 13.4 KiB, free: 2.1 GiB)
+25/01/24 10:44:36 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+25/01/24 10:44:36 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+25/01/24 10:44:36 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter
+25/01/24 10:44:37 INFO CodeGenerator: Code generated in 99.299577 ms
+25/01/24 10:44:37 INFO SparkContext: Starting job: csv at RevisionEvalJob.scala:135
+25/01/24 10:44:37 INFO DAGScheduler: Got job 3 (csv at RevisionEvalJob.scala:135) with 23 output partitions
+25/01/24 10:44:37 INFO DAGScheduler: Final stage: ResultStage 3 (csv at RevisionEvalJob.scala:135)
+25/01/24 10:44:37 INFO DAGScheduler: Parents of final stage: List()
+25/01/24 10:44:37 INFO DAGScheduler: Missing parents: List()
+25/01/24 10:44:37 INFO DAGScheduler: Submitting ResultStage 3 (MapPartitionsRDD[31] at csv at RevisionEvalJob.scala:135), which has no missing parents
+25/01/24 10:44:37 WARN DAGScheduler: Broadcasting large task binary with size 1507.0 KiB
+25/01/24 10:44:37 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 1507.1 KiB, free 6.8 GiB)
+25/01/24 10:44:37 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 629.9 KiB, free 6.8 GiB)
+25/01/24 10:44:37 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:7079 (size: 629.9 KiB, free: 6.8 GiB)
+25/01/24 10:44:37 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1580
+25/01/24 10:44:37 INFO DAGScheduler: Submitting 23 missing tasks from ResultStage 3 (MapPartitionsRDD[31] at csv at RevisionEvalJob.scala:135) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+25/01/24 10:44:37 INFO TaskSchedulerImpl: Adding task set 3.0 with 23 tasks resource profile 0
+25/01/24 10:44:37 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 4) (10.23.67.219, executor 1, partition 0, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:37 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.67.219:40047 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:44:38 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 2 for resource profile id: 0)
+25/01/24 10:44:39 INFO ExecutorAllocationManager: Requesting 1 new executor because tasks are backlogged (new desired total will be 3 for resource profile id: 0)
+25/01/24 10:44:39 INFO ExecutorPodsAllocator: Going to request 1 executors from Kubernetes for ResourceProfile Id: 0, target: 3, known: 2, sharedSlotFromPendingPods: 2147483647.
+25/01/24 10:44:39 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 10:44:39 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:39 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.67.219:40047 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:44:40 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.202.119:57968
+25/01/24 10:44:40 INFO ExecutorAllocationManager: Requesting 2 new executors because tasks are backlogged (new desired total will be 5 for resource profile id: 0)
+25/01/24 10:44:41 INFO ExecutorPodsAllocator: Going to request 2 executors from Kubernetes for ResourceProfile Id: 0, target: 5, known: 3, sharedSlotFromPendingPods: 2147483646.
+25/01/24 10:44:41 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 10:44:41 INFO ExecutorAllocationManager: Requesting 4 new executors because tasks are backlogged (new desired total will be 9 for resource profile id: 0)
+25/01/24 10:44:41 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:41 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:41 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.202.119:57970) with ID 2,  ResourceProfileId 0
+25/01/24 10:44:41 INFO ExecutorMonitor: New executor 2 has registered (new total is 2)
+25/01/24 10:44:41 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.202.119:45401 with 2.1 GiB RAM, BlockManagerId(2, 10.23.202.119, 45401, None)
+25/01/24 10:44:42 INFO ExecutorAllocationManager: Requesting 8 new executors because tasks are backlogged (new desired total will be 17 for resource profile id: 0)
+25/01/24 10:44:42 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 17, known: 5, sharedSlotFromPendingPods: 2147483644.
+25/01/24 10:44:42 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 10:44:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:42 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:43 INFO ExecutorAllocationManager: Requesting 6 new executors because tasks are backlogged (new desired total will be 23 for resource profile id: 0)
+25/01/24 10:44:43 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 23, known: 10, sharedSlotFromPendingPods: 2147483639.
+25/01/24 10:44:44 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 10:44:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:44 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:44 INFO TaskSetManager: Starting task 1.0 in stage 3.0 (TID 5) (10.23.67.219, executor 1, partition 1, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:44 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 4) in 7041 ms on 10.23.67.219 (executor 1) (1/23)
+25/01/24 10:44:45 INFO ExecutorPodsAllocator: Going to request 5 executors from Kubernetes for ResourceProfile Id: 0, target: 22, known: 15, sharedSlotFromPendingPods: 2147483636.
+25/01/24 10:44:45 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 10:44:45 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:45 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:45 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:46 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:46 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:46 INFO TaskSetManager: Starting task 2.0 in stage 3.0 (TID 6) (10.23.202.119, executor 2, partition 2, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:47 INFO ExecutorPodsAllocator: Going to request 2 executors from Kubernetes for ResourceProfile Id: 0, target: 22, known: 20, sharedSlotFromPendingPods: 2147483632.
+25/01/24 10:44:47 INFO ExecutorPodsAllocator: Found 0 reusable PVCs from 0 PVCs
+25/01/24 10:44:47 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:47 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.202.119:45401 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:44:47 INFO BasicExecutorFeatureStep: Decommissioning not enabled, skipping shutdown script
+25/01/24 10:44:47 INFO TaskSetManager: Starting task 3.0 in stage 3.0 (TID 7) (10.23.67.219, executor 1, partition 3, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:47 INFO TaskSetManager: Finished task 1.0 in stage 3.0 (TID 5) in 2999 ms on 10.23.67.219 (executor 1) (2/23)
+25/01/24 10:44:50 INFO TaskSetManager: Starting task 4.0 in stage 3.0 (TID 8) (10.23.67.219, executor 1, partition 4, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:50 INFO TaskSetManager: Finished task 3.0 in stage 3.0 (TID 7) in 2120 ms on 10.23.67.219 (executor 1) (3/23)
+25/01/24 10:44:51 INFO TaskSetManager: Starting task 5.0 in stage 3.0 (TID 9) (10.23.67.219, executor 1, partition 5, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:51 INFO TaskSetManager: Finished task 4.0 in stage 3.0 (TID 8) in 1817 ms on 10.23.67.219 (executor 1) (4/23)
+25/01/24 10:44:53 INFO TaskSetManager: Starting task 6.0 in stage 3.0 (TID 10) (10.23.67.219, executor 1, partition 6, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:53 INFO TaskSetManager: Finished task 5.0 in stage 3.0 (TID 9) in 1924 ms on 10.23.67.219 (executor 1) (5/23)
+25/01/24 10:44:53 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.147.249:40974
+25/01/24 10:44:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.147.249:40990) with ID 3,  ResourceProfileId 0
+25/01/24 10:44:55 INFO ExecutorMonitor: New executor 3 has registered (new total is 3)
+25/01/24 10:44:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.98.132:57558
+25/01/24 10:44:55 INFO TaskSetManager: Starting task 7.0 in stage 3.0 (TID 11) (10.23.67.219, executor 1, partition 7, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:55 INFO TaskSetManager: Finished task 6.0 in stage 3.0 (TID 10) in 1842 ms on 10.23.67.219 (executor 1) (6/23)
+25/01/24 10:44:55 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.157.135:51550
+25/01/24 10:44:55 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.147.249:43809 with 2.1 GiB RAM, BlockManagerId(3, 10.23.147.249, 43809, None)
+25/01/24 10:44:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.43.92:39206
+25/01/24 10:44:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.60.143:33034
+25/01/24 10:44:56 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.75.190:46462
+25/01/24 10:44:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.157.135:51560) with ID 5,  ResourceProfileId 0
+25/01/24 10:44:57 INFO ExecutorMonitor: New executor 5 has registered (new total is 4)
+25/01/24 10:44:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.26.110:55560
+25/01/24 10:44:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.43.92:39216) with ID 6,  ResourceProfileId 0
+25/01/24 10:44:57 INFO ExecutorMonitor: New executor 6 has registered (new total is 5)
+25/01/24 10:44:57 INFO TaskSetManager: Starting task 8.0 in stage 3.0 (TID 12) (10.23.67.219, executor 1, partition 8, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:57 INFO TaskSetManager: Finished task 7.0 in stage 3.0 (TID 11) in 1772 ms on 10.23.67.219 (executor 1) (7/23)
+25/01/24 10:44:57 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.157.135:37087 with 2.1 GiB RAM, BlockManagerId(5, 10.23.157.135, 37087, None)
+25/01/24 10:44:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.151.98:38340
+25/01/24 10:44:57 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.43.92:37289 with 2.1 GiB RAM, BlockManagerId(6, 10.23.43.92, 37289, None)
+25/01/24 10:44:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.98.132:57572) with ID 4,  ResourceProfileId 0
+25/01/24 10:44:57 INFO ExecutorMonitor: New executor 4 has registered (new total is 6)
+25/01/24 10:44:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.75.190:46474) with ID 14,  ResourceProfileId 0
+25/01/24 10:44:57 INFO ExecutorMonitor: New executor 14 has registered (new total is 7)
+25/01/24 10:44:57 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.60.143:33042) with ID 7,  ResourceProfileId 0
+25/01/24 10:44:57 INFO ExecutorMonitor: New executor 7 has registered (new total is 8)
+25/01/24 10:44:57 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.202.119:45401 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:44:57 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.75.190:42123 with 2.1 GiB RAM, BlockManagerId(14, 10.23.75.190, 42123, None)
+25/01/24 10:44:57 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.98.132:39281 with 2.1 GiB RAM, BlockManagerId(4, 10.23.98.132, 39281, None)
+25/01/24 10:44:58 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.60.143:38865 with 2.1 GiB RAM, BlockManagerId(7, 10.23.60.143, 38865, None)
+25/01/24 10:44:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.76.59:53000
+25/01/24 10:44:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.26.110:55570) with ID 10,  ResourceProfileId 0
+25/01/24 10:44:58 INFO ExecutorMonitor: New executor 10 has registered (new total is 9)
+25/01/24 10:44:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.150.208:48556
+25/01/24 10:44:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.8.19:41436
+25/01/24 10:44:58 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.26.110:35885 with 2.1 GiB RAM, BlockManagerId(10, 10.23.26.110, 35885, None)
+25/01/24 10:44:58 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.151.98:38354) with ID 8,  ResourceProfileId 0
+25/01/24 10:44:58 INFO ExecutorMonitor: New executor 8 has registered (new total is 10)
+25/01/24 10:44:59 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.151.98:37587 with 2.1 GiB RAM, BlockManagerId(8, 10.23.151.98, 37587, None)
+25/01/24 10:44:59 INFO TaskSetManager: Starting task 9.0 in stage 3.0 (TID 13) (10.23.67.219, executor 1, partition 9, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:44:59 INFO TaskSetManager: Finished task 8.0 in stage 3.0 (TID 12) in 1950 ms on 10.23.67.219 (executor 1) (8/23)
+25/01/24 10:44:59 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.156.244:47352
+25/01/24 10:44:59 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.249.31:47100
+25/01/24 10:44:59 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.76.59:53006) with ID 12,  ResourceProfileId 0
+25/01/24 10:44:59 INFO ExecutorMonitor: New executor 12 has registered (new total is 11)
+25/01/24 10:45:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.150.208:48572) with ID 11,  ResourceProfileId 0
+25/01/24 10:45:00 INFO ExecutorMonitor: New executor 11 has registered (new total is 12)
+25/01/24 10:45:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.88.206:35602
+25/01/24 10:45:00 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.76.59:45035 with 2.1 GiB RAM, BlockManagerId(12, 10.23.76.59, 45035, None)
+25/01/24 10:45:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.8.19:41452) with ID 13,  ResourceProfileId 0
+25/01/24 10:45:00 INFO ExecutorMonitor: New executor 13 has registered (new total is 13)
+25/01/24 10:45:00 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.150.208:41077 with 2.1 GiB RAM, BlockManagerId(11, 10.23.150.208, 41077, None)
+25/01/24 10:45:00 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.8.19:34877 with 2.1 GiB RAM, BlockManagerId(13, 10.23.8.19, 34877, None)
+25/01/24 10:45:00 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.156.244:47364) with ID 15,  ResourceProfileId 0
+25/01/24 10:45:00 INFO ExecutorMonitor: New executor 15 has registered (new total is 14)
+25/01/24 10:45:01 INFO TaskSetManager: Starting task 10.0 in stage 3.0 (TID 14) (10.23.67.219, executor 1, partition 10, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:01 INFO TaskSetManager: Finished task 9.0 in stage 3.0 (TID 13) in 1726 ms on 10.23.67.219 (executor 1) (9/23)
+25/01/24 10:45:01 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.156.244:46565 with 2.1 GiB RAM, BlockManagerId(15, 10.23.156.244, 46565, None)
+25/01/24 10:45:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.249.31:47106) with ID 19,  ResourceProfileId 0
+25/01/24 10:45:01 INFO ExecutorMonitor: New executor 19 has registered (new total is 15)
+25/01/24 10:45:01 INFO TaskSetManager: Starting task 11.0 in stage 3.0 (TID 15) (10.23.147.249, executor 3, partition 11, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:01 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.249.31:33885 with 2.1 GiB RAM, BlockManagerId(19, 10.23.249.31, 33885, None)
+25/01/24 10:45:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.88.206:35608) with ID 20,  ResourceProfileId 0
+25/01/24 10:45:01 INFO ExecutorMonitor: New executor 20 has registered (new total is 16)
+25/01/24 10:45:01 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.151.50:60196
+25/01/24 10:45:01 INFO TaskSetManager: Starting task 12.0 in stage 3.0 (TID 16) (10.23.98.132, executor 4, partition 12, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:01 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.147.249:43809 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:45:02 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.88.206:38705 with 2.1 GiB RAM, BlockManagerId(20, 10.23.88.206, 38705, None)
+25/01/24 10:45:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.97.7:34304
+25/01/24 10:45:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.247.21:51086
+25/01/24 10:45:02 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.98.132:39281 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:45:02 INFO TaskSetManager: Starting task 13.0 in stage 3.0 (TID 17) (10.23.75.190, executor 14, partition 13, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:02 INFO TaskSetManager: Starting task 14.0 in stage 3.0 (TID 18) (10.23.157.135, executor 5, partition 14, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:02 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.240.219:44974
+25/01/24 10:45:02 INFO TaskSetManager: Starting task 15.0 in stage 3.0 (TID 19) (10.23.67.219, executor 1, partition 15, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:02 INFO TaskSetManager: Finished task 10.0 in stage 3.0 (TID 14) in 1921 ms on 10.23.67.219 (executor 1) (10/23)
+25/01/24 10:45:03 INFO TaskSetManager: Starting task 16.0 in stage 3.0 (TID 20) (10.23.60.143, executor 7, partition 16, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:03 INFO TaskSetManager: Starting task 17.0 in stage 3.0 (TID 21) (10.23.43.92, executor 6, partition 17, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:03 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.75.190:42123 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:45:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.151.50:60210) with ID 21,  ResourceProfileId 0
+25/01/24 10:45:03 INFO ExecutorMonitor: New executor 21 has registered (new total is 17)
+25/01/24 10:45:03 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.157.135:37087 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:45:03 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.151.50:37483 with 2.1 GiB RAM, BlockManagerId(21, 10.23.151.50, 37483, None)
+25/01/24 10:45:03 INFO TaskSetManager: Starting task 18.0 in stage 3.0 (TID 22) (10.23.202.119, executor 2, partition 18, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:03 INFO TaskSetManager: Finished task 2.0 in stage 3.0 (TID 6) in 17288 ms on 10.23.202.119 (executor 2) (11/23)
+25/01/24 10:45:03 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.97.7:34308) with ID 16,  ResourceProfileId 0
+25/01/24 10:45:03 INFO ExecutorMonitor: New executor 16 has registered (new total is 18)
+25/01/24 10:45:03 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.60.143:38865 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:45:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.240.219:44986) with ID 18,  ResourceProfileId 0
+25/01/24 10:45:04 INFO ExecutorMonitor: New executor 18 has registered (new total is 19)
+25/01/24 10:45:04 INFO TaskSetManager: Starting task 19.0 in stage 3.0 (TID 23) (10.23.26.110, executor 10, partition 19, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:04 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.43.92:37289 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:45:04 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.97.7:42451 with 2.1 GiB RAM, BlockManagerId(16, 10.23.97.7, 42451, None)
+25/01/24 10:45:04 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.240.219:41929 with 2.1 GiB RAM, BlockManagerId(18, 10.23.240.219, 41929, None)
+25/01/24 10:45:04 INFO TaskSetManager: Starting task 20.0 in stage 3.0 (TID 24) (10.23.151.98, executor 8, partition 20, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:04 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.247.21:51098) with ID 22,  ResourceProfileId 0
+25/01/24 10:45:04 INFO ExecutorMonitor: New executor 22 has registered (new total is 20)
+25/01/24 10:45:04 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.26.110:35885 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:45:04 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.247.21:40171 with 2.1 GiB RAM, BlockManagerId(22, 10.23.247.21, 40171, None)
+25/01/24 10:45:04 INFO TaskSetManager: Starting task 21.0 in stage 3.0 (TID 25) (10.23.67.219, executor 1, partition 21, PROCESS_LOCAL, 16464 bytes) 
+25/01/24 10:45:04 INFO TaskSetManager: Finished task 15.0 in stage 3.0 (TID 19) in 2047 ms on 10.23.67.219 (executor 1) (12/23)
+25/01/24 10:45:05 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.151.98:37587 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:45:05 INFO TaskSetManager: Starting task 22.0 in stage 3.0 (TID 26) (10.23.76.59, executor 12, partition 22, PROCESS_LOCAL, 12684 bytes) 
+25/01/24 10:45:05 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: No executor found for 10.23.51.240:38874
+25/01/24 10:45:06 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 10.23.76.59:45035 (size: 629.9 KiB, free: 2.1 GiB)
+25/01/24 10:45:06 INFO TaskSetManager: Finished task 21.0 in stage 3.0 (TID 25) in 1884 ms on 10.23.67.219 (executor 1) (13/23)
+25/01/24 10:45:06 INFO TaskSetManager: Finished task 18.0 in stage 3.0 (TID 22) in 3120 ms on 10.23.202.119 (executor 2) (14/23)
+25/01/24 10:45:07 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.23.51.240:38884) with ID 17,  ResourceProfileId 0
+25/01/24 10:45:07 INFO ExecutorMonitor: New executor 17 has registered (new total is 21)
+25/01/24 10:45:07 INFO BlockManagerMasterEndpoint: Registering block manager 10.23.51.240:33923 with 2.1 GiB RAM, BlockManagerId(17, 10.23.51.240, 33923, None)
+25/01/24 10:45:12 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.75.190:42123 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:45:12 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.147.249:43809 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:45:13 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.98.132:39281 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:45:13 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.157.135:37087 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:45:14 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.60.143:38865 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:45:14 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.43.92:37289 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:45:15 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.26.110:35885 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:45:15 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.151.98:37587 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:45:18 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.23.76.59:45035 (size: 37.8 KiB, free: 2.1 GiB)
+25/01/24 10:45:18 INFO TaskSetManager: Finished task 13.0 in stage 3.0 (TID 17) in 16040 ms on 10.23.75.190 (executor 14) (15/23)
+25/01/24 10:45:18 INFO TaskSetManager: Finished task 11.0 in stage 3.0 (TID 15) in 17767 ms on 10.23.147.249 (executor 3) (16/23)
+25/01/24 10:45:19 INFO TaskSetManager: Finished task 12.0 in stage 3.0 (TID 16) in 17824 ms on 10.23.98.132 (executor 4) (17/23)
+25/01/24 10:45:19 INFO TaskSetManager: Finished task 16.0 in stage 3.0 (TID 20) in 16808 ms on 10.23.60.143 (executor 7) (18/23)
+25/01/24 10:45:19 INFO TaskSetManager: Finished task 14.0 in stage 3.0 (TID 18) in 17188 ms on 10.23.157.135 (executor 5) (19/23)
+25/01/24 10:45:21 INFO TaskSetManager: Finished task 19.0 in stage 3.0 (TID 23) in 17012 ms on 10.23.26.110 (executor 10) (20/23)
+25/01/24 10:45:21 INFO TaskSetManager: Finished task 17.0 in stage 3.0 (TID 21) in 18413 ms on 10.23.43.92 (executor 6) (21/23)
+25/01/24 10:45:21 INFO TaskSetManager: Finished task 20.0 in stage 3.0 (TID 24) in 17209 ms on 10.23.151.98 (executor 8) (22/23)
+25/01/24 10:45:23 INFO TaskSetManager: Finished task 22.0 in stage 3.0 (TID 26) in 18150 ms on 10.23.76.59 (executor 12) (23/23)
+25/01/24 10:45:23 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+25/01/24 10:45:23 INFO DAGScheduler: ResultStage 3 (csv at RevisionEvalJob.scala:135) finished in 46.134 s
+25/01/24 10:45:23 INFO DAGScheduler: Job 3 is finished. Cancelling potential speculative or zombie tasks for this job
+25/01/24 10:45:23 INFO TaskSchedulerImpl: Killing all running tasks in stage 3: Stage finished
+25/01/24 10:45:23 INFO DAGScheduler: Job 3 finished: csv at RevisionEvalJob.scala:135, took 46.183065 s
+25/01/24 10:45:23 INFO FileFormatWriter: Start to commit write Job a5ecd898-f24e-467d-a3e9-1588c85bcdf1.
+25/01/24 10:45:24 INFO FileFormatWriter: Write Job a5ecd898-f24e-467d-a3e9-1588c85bcdf1 committed. Elapsed time: 825 ms.
+25/01/24 10:45:24 INFO FileFormatWriter: Finished processing stats for write job a5ecd898-f24e-467d-a3e9-1588c85bcdf1.
+25/01/24 10:45:24 WARN RevisionEvalJob$: CSV file saved: /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5/probabilities-third-party-2025-01-24T10-43-28Z
+25/01/24 10:45:24 INFO SparkContext: SparkContext is stopping with exitCode 0.
+25/01/24 10:45:24 INFO SparkUI: Stopped Spark web UI at http://ste-revision-eval-job-3f98439497e573c7-driver-svc.spark-jobs.svc:4040
+25/01/24 10:45:24 INFO KubernetesClusterSchedulerBackend: Shutting down all executors
+25/01/24 10:45:24 INFO KubernetesClusterSchedulerBackend$KubernetesDriverEndpoint: Asking each executor to shut down
+25/01/24 10:45:24 WARN ExecutorPodsWatchSnapshotSource: Kubernetes client has been closed.
+25/01/24 10:45:25 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/01/24 10:45:25 INFO MemoryStore: MemoryStore cleared
+25/01/24 10:45:25 INFO BlockManager: BlockManager stopped
+25/01/24 10:45:25 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/01/24 10:45:25 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/01/24 10:45:26 INFO SparkContext: Successfully stopped SparkContext
+25/01/24 10:45:26 INFO ShutdownHookManager: Shutdown hook called
+25/01/24 10:45:26 INFO ShutdownHookManager: Deleting directory /tmp/spark-3de74839-9224-4e14-87f9-360273341b2b
+25/01/24 10:45:26 INFO ShutdownHookManager: Deleting directory /var/data/spark-8a060ad3-02c9-4890-b7c0-18f087456d8b/spark-c447f540-aef5-46f1-b7db-f36929297c13
