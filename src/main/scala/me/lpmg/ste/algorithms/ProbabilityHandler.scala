@@ -35,9 +35,15 @@ object ProbabilityHandler {
     }
 
     // Compute the max log probabilities for numerical stability
-    val maxLogAdd = probs.map(p => math.log(p.probabilityTemplateAdded)).reduceOption(_ max _).getOrElse(Double.NegativeInfinity)
+    val maxLogAdd = probs
+      .map(p => math.log(p.probabilityTemplateAdded))
+      .reduceOption(_ max _)
+      .getOrElse(Double.NegativeInfinity)
     val maxLogRemove =
-      probs.map(p => math.log(p.probabilityTemplateRemoved)).reduceOption(_ max _).getOrElse(Double.NegativeInfinity)
+      probs
+        .map(p => math.log(p.probabilityTemplateRemoved))
+        .reduceOption(_ max _)
+        .getOrElse(Double.NegativeInfinity)
 
     // Compute stable log-space sum
     val logAdd = maxLogAdd + math.log(
@@ -75,20 +81,30 @@ object ProbabilityHandler {
       probsWithOccurences: Seq[(TemplateProbabilityVector, Int)]
   ): TemplateProbabilityVector = {
 
-    // Diagnostic logging
-    println(s"Input probabilities and weights: ${probsWithOccurences.map(p => s"(${p._1.probabilityTemplateAdded}, ${p._1.probabilityTemplateRemoved}, ${p._2})")}")
-
-    val probs = probsWithOccurences.map(_._1)
-    val weights = probsWithOccurences.map(_._2).map(occurencesToWeight)
-    println(s"Total weight: ${weights.sum}")
-
-    val totalWeight = weights.sum
-    val scaledWeights = weights.map(_ / totalWeight)
-    println(s"Scaled weights: ${scaledWeights}")
-
     // Handle edge case: Empty input
     if (probsWithOccurences.isEmpty) {
       throw new IllegalArgumentException("Input sequence is empty")
+    }
+
+    val probs = probsWithOccurences.map(_._1)
+    val weights = probsWithOccurences.map(_._2).map(occurencesToWeight)
+
+    // Check for negative or NaN values in probs
+    if (
+      probs.exists(p =>
+        p.probabilityTemplateAdded < 0 || p.probabilityTemplateAdded.isNaN || p.probabilityTemplateRemoved < 0 || p.probabilityTemplateRemoved.isNaN
+      )
+    ) {
+      throw new IllegalArgumentException(
+        "Probabilities contain negative or NaN values"
+      )
+    }
+
+    // Check for negative or NaN values in weights
+    if (weights.exists(w => w < 0 || w.isNaN)) {
+      throw new IllegalArgumentException(
+        "Weights contain negative or NaN values"
+      )
     }
 
     if (probs.forall(_.probabilityTemplateAdded >= 0.999999f)) {
@@ -97,17 +113,22 @@ object ProbabilityHandler {
       return TemplateProbabilityVector(0.0f, 1.0f)
     }
 
-    val probabilityTemplateAdded = probs.zip(scaledWeights).map { case (prob, scaledWeight) => 
-      val contribution = prob.probabilityTemplateAdded * scaledWeight
-      println(s"Contribution: ${prob.probabilityTemplateAdded} * $scaledWeight = $contribution")
-      contribution
-    }.sum
-    println(s"Probability Template Added: $probabilityTemplateAdded")
+    val totalWeight = weights.sum
+    if (totalWeight < 0.001) {
+      return TemplateProbabilityVector(0.5f, 0.5f)
+    }
+    val scaledWeights = weights.map(_ / totalWeight)
 
+    val probabilityTemplateAdded = probs
+      .zip(scaledWeights)
+      .map(p => p._1.probabilityTemplateAdded * p._2)
+      .sum
     val probabilityTemplateRemoved = 1.0f - probabilityTemplateAdded
-    println(s"Probability Template Removed: $probabilityTemplateRemoved")
 
-    TemplateProbabilityVector(probabilityTemplateAdded, probabilityTemplateRemoved)
+    TemplateProbabilityVector(
+      probabilityTemplateAdded,
+      probabilityTemplateRemoved
+    )
   }
 
   def occurencesToWeight(occurences: Int): Float = {
@@ -115,7 +136,9 @@ object ProbabilityHandler {
     val steepness = 0.1f
 
     val clampedOccurences = math.min(occurences, max)
-    
-    max - (max - clampedOccurences) * math.pow(Math.E.toFloat, -steepness * clampedOccurences.toFloat).toFloat
+
+    max - (max - clampedOccurences) * math
+      .pow(Math.E.toFloat, -steepness * clampedOccurences.toFloat)
+      .toFloat
   }
 }
