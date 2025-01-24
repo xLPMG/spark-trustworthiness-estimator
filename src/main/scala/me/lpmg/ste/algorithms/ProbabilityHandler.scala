@@ -75,13 +75,21 @@ object ProbabilityHandler {
       probsWithOccurences: Seq[(TemplateProbabilityVector, Int)]
   ): TemplateProbabilityVector = {
 
+    // Diagnostic logging
+    println(s"Input probabilities and weights: ${probsWithOccurences.map(p => s"(${p._1.probabilityTemplateAdded}, ${p._1.probabilityTemplateRemoved}, ${p._2})")}")
+
+    val probs = probsWithOccurences.map(_._1)
+    val weights = probsWithOccurences.map(_._2).map(occurencesToWeight)
+    println(s"Total weight: ${weights.sum}")
+
+    val totalWeight = weights.sum
+    val scaledWeights = weights.map(_ / totalWeight)
+    println(s"Scaled weights: ${scaledWeights}")
+
     // Handle edge case: Empty input
     if (probsWithOccurences.isEmpty) {
       throw new IllegalArgumentException("Input sequence is empty")
     }
-
-    val probs = probsWithOccurences.map(_._1)
-    val weights = probsWithOccurences.map(_._2).map(occurencesToWeight)
 
     if (probs.forall(_.probabilityTemplateAdded >= 0.999999f)) {
       return TemplateProbabilityVector(1.0f, 0.0f)
@@ -89,11 +97,15 @@ object ProbabilityHandler {
       return TemplateProbabilityVector(0.0f, 1.0f)
     }
 
-    val totalWeight = weights.sum
-    val scaledWeights = weights.map(_ / totalWeight)
+    val probabilityTemplateAdded = probs.zip(scaledWeights).map { case (prob, scaledWeight) => 
+      val contribution = prob.probabilityTemplateAdded * scaledWeight
+      println(s"Contribution: ${prob.probabilityTemplateAdded} * $scaledWeight = $contribution")
+      contribution
+    }.sum
+    println(s"Probability Template Added: $probabilityTemplateAdded")
 
-    val probabilityTemplateAdded = probs.zip(scaledWeights).map(p => p._1.probabilityTemplateAdded * p._2).sum
     val probabilityTemplateRemoved = 1.0f - probabilityTemplateAdded
+    println(s"Probability Template Removed: $probabilityTemplateRemoved")
 
     TemplateProbabilityVector(probabilityTemplateAdded, probabilityTemplateRemoved)
   }
