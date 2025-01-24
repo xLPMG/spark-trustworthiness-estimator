@@ -45,18 +45,10 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
 
     qName match {
       case "revision" if !isRedirect && isMainNamespace =>
-        insideRevision = true
-        currentRevisionId = None
-        currentTemplatePresent = false
-        currentRevisionText = ""
+        resetRevision()
 
       case "page" =>
-        insidePage = true
-        isMainNamespace = false
-        isRedirect = false
-        pageId = None
-        firstTemplateRevision = None
-        lastTemplateRevision = None
+        resetPage()
 
       case "redirect" =>
         isRedirect = true
@@ -93,14 +85,19 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
                 sources = SourceExtractor.extractSources(currentRevisionText)
               )
             )
+            currentTemplatePresent = true
+          } else {
+            // Reset if template is found again without removal
+            currentTemplatePresent = true
           }
-          currentTemplatePresent = true
         } else if (firstTemplateRevision.isDefined && !currentTemplatePresent) {
-          // Second revision without template
+          // Revision without template after a template was added
           lastTemplateRevision = Some(
             Revision(
               revisionId = currentRevisionId.getOrElse(-1L),
-              pairId = firstTemplateRevision.map(_.revisionId).getOrElse(-1L), // Link to the first revision
+              pairId = firstTemplateRevision
+                .map(_.revisionId)
+                .getOrElse(-1L), // Link to the first revision
               pageId = pageId.getOrElse(-1),
               templateAdded = false,
               templateRemoved = true,
@@ -110,10 +107,10 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
             )
           )
 
-          // Add the pair to revisions if both are present
+          // Add the pair to revisions if both are present and last revision has sources
           for {
             first <- firstTemplateRevision
-            last <- lastTemplateRevision
+            last <- lastTemplateRevision if last.sources.nonEmpty
           } {
             // Update firstTemplateRevision's pairId with last revision's revisionId
             val updatedFirst = first.copy(pairId = last.revisionId)
@@ -124,6 +121,10 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           // Reset for next potential pair
           firstTemplateRevision = None
           lastTemplateRevision = None
+          currentTemplatePresent = false
+        } else {
+          // No template or no significant change
+          currentTemplatePresent = templateCheck
         }
 
         insideRevision = false
@@ -166,15 +167,23 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
     val lowercaseText = text.toLowerCase
     val lowercaseTemplate = template.toLowerCase
     lowercaseText.contains(s"{{$lowercaseTemplate}}") ||
-    lowercaseText.contains(s"{{ $lowercaseTemplate }}") ||
     lowercaseText.contains(s"{{$lowercaseTemplate|")
   }
 
-  // TODO: Implement these methods
   private def resetRevision(): Unit = {
+    insideRevision = true
+    currentRevisionId = None
+    currentTemplatePresent = false
+    currentRevisionText = ""
   }
 
   private def resetPage(): Unit = {
+    insidePage = true
+    isMainNamespace = false
+    isRedirect = false
+    pageId = None
+    firstTemplateRevision = None
+    lastTemplateRevision = None
   }
 
   /** Get the collected revisions */

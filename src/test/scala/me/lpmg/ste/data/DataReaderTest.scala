@@ -28,13 +28,16 @@ class DataReaderTest extends munit.FunSuite {
         assertEquals(revision.templateRemoved, true)
         assertEquals(revision.pairId, 2L)
         revisionsChecked += 1
+        
       } else if (revision.revisionId == 4L) {
         assertEquals(revision.pageId, 1)
         assertEquals(revision.templateAdded, true)
         assertEquals(revision.templateRemoved, false)
-        assertEquals(revision.pairId, 5L)
+        assertEquals(revision.pairId, 6L)
         revisionsChecked += 1
       } else if (revision.revisionId == 5L) {
+        assert(false, "Revision 5 should not exist")
+      } else if (revision.revisionId == 6L) {
         assertEquals(revision.pageId, 1)
         assertEquals(revision.templateAdded, false)
         assertEquals(revision.templateRemoved, true)

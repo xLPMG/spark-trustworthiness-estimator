@@ -37,7 +37,7 @@
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text bytes="111" xml:space="preserve">Oh no, a template! {{Circular}}
-      </text>
+*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
     </revision>
     <revision>
       <id>3</id>
@@ -51,7 +51,7 @@
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text bytes="111" xml:space="preserve">No template here
-      </text>
+*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
     </revision>
     <revision>
       <id>4</id>
@@ -65,11 +65,25 @@
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text bytes="111" xml:space="preserve">Oh no, a template! {{Circular}}
-      </text>
+*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
     </revision>
     <revision>
       <id>5</id>
       <parentid>4</parentid>
+      <timestamp>2011-01-01T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 1</username>
+        <id>1</id>
+      </contributor>
+      <comment>Comment 1</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">template is still here {{Circular}}
+*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
+    </revision>
+    <revision>
+      <id>6</id>
+      <parentid>5</parentid>
       <timestamp>2011-01-03T00:00:01Z</timestamp>
       <contributor>
         <username>Contributor 3</username>
@@ -79,7 +93,21 @@
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text bytes="111" xml:space="preserve">No template here
-      </text>
+*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
+    </revision>
+    <revision>
+      <id>7</id>
+      <parentid>6</parentid>
+      <timestamp>2011-01-03T00:00:01Z</timestamp>
+      <contributor>
+        <username>Contributor 3</username>
+        <id>3</id>
+      </contributor>
+      <comment>Comment 3</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text bytes="111" xml:space="preserve">this revision adds a template {{Circular}} but it has no following revision that removes it
+*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
     </revision>
   </page>
   <page>
@@ -97,7 +125,7 @@
       <model>wikitext</model>
       <format>text/x-wiki</format>
       <text bytes="111" xml:space="preserve">This is an example page with a link to [[Page 2]].{{Circular}}
-      </text>
+*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
     </revision>
     <revision>
       <id>999</id>
