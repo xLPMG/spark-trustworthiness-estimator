@@ -14,7 +14,7 @@ import org.apache.spark.util.collection.BitSet
   *   The template to search for within page revisions
   */
 class RevisionSAXHandler(template: String) extends DefaultHandler {
-  private val revisions = ArrayBuffer[Revision]()
+  private val revisions = ArrayBuffer[RevisionPair]()
 
   // State tracking variables
   private var insidePage = false
@@ -88,13 +88,15 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           }
           currentTemplatePresent = true
 
-        // no template anymore but we already set the first revision
+          // no template anymore but we already set the first revision
         } else if (firstTemplateRevision.isDefined && !currentTemplatePresent) {
           // Second revision without template
           lastTemplateRevision = Some(
             Revision(
               revisionId = currentRevisionId.getOrElse(-1L),
-              pairId = firstTemplateRevision.map(_.revisionId).getOrElse(-1L), // Link to the first revision
+              pairId = firstTemplateRevision
+                .map(_.revisionId)
+                .getOrElse(-1L), // Link to the first revision
               pageId = pageId.getOrElse(-1),
               templateAdded = false,
               templateRemoved = true,
@@ -114,10 +116,17 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
             last <- lastTemplateRevision
             if last.sources.nonEmpty
           } {
-            // Update firstTemplateRevision's pairId with last revision's revisionId
-            val updatedFirst = first.copy(pairId = last.revisionId)
-            revisions.append(updatedFirst)
-            revisions.append(last)
+
+            // Create a new pair
+            val pair = RevisionPair(
+              revisionIdTemplateAdded = first.revisionId,
+              revisionIdTemplateRemoved = last.revisionId,
+              pageId = first.pageId,
+              sourcesTemplateAdded = first.sources,
+              sourcesTemplateRemoved = last.sources
+            )
+
+            revisions.append(pair)
           }
 
           // Reset for next potential pair
@@ -185,5 +194,5 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
   }
 
   /** Get the collected revisions */
-  def getRevisions: Seq[Revision] = revisions
+  def getRevisionPairs: Seq[RevisionPair] = revisions
 }

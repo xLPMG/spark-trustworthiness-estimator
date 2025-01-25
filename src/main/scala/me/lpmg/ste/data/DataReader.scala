@@ -21,19 +21,10 @@ import com.typesafe.scalalogging.Logger
   */
 object DataReader {
 
-  /** Parse an XML input stream to retrieve a sequence of revisions.
-    *
-    * @param inputStream
-    *   XML input stream
-    * @param template
-    *   template string
-    * @return
-    *   Sequence of revisions
-    */
-  def getRevisions(
+  def getRevisionPairs(
       inputStream: InputStream,
       template: String
-  ): Seq[Revision] = {
+  ): Seq[RevisionPair] = {
     val saxParserFactory = SAXParserFactory.newInstance()
     saxParserFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true)
 
@@ -47,20 +38,9 @@ object DataReader {
       new InputStreamReader(inputStream, "UTF-8")
     )
     xmlReader.parse(inputSource)
-    handler.getRevisions
+    handler.getRevisionPairs
   }
 
-  /** Parse a (bz2 zipped) XML PortableDataStream to retrieve a sequence of
-    * revisions. The dictionary map is used to directly resolve page titles to
-    * page IDs.
-    *
-    * @param pds
-    *   PortableDataStream
-    * @param template
-    *   template string
-    * @return
-    *   Sequence of revisions
-    */
   def getRevisionsFromPDS(
       pds: PortableDataStream,
       template: String
@@ -68,16 +48,44 @@ object DataReader {
     Using.resource(pds.open()) { inputStream =>
       val bz2Stream =
         new BZip2CompressorInputStream(new BufferedInputStream(inputStream))
-      getRevisions(bz2Stream, template)
+      val revisionPairs = getRevisionPairs(bz2Stream, template)
+      revisionPairs.flatMap { pair =>
+        val revision_1 = Revision(
+          pair.revisionIdTemplateAdded,
+          pair.revisionIdTemplateRemoved,
+          pair.pageId,
+          true,
+          false,
+          true,
+          false,
+          pair.sourcesTemplateAdded
+        )
+        val revision_2 = Revision(
+          pair.revisionIdTemplateRemoved,
+          pair.revisionIdTemplateAdded,
+          pair.pageId,
+          false,
+          true,
+          false,
+          true,
+          pair.sourcesTemplateRemoved
+        )
+        Seq(revision_1, revision_2)
+      }
     }
   }
 
-  /**
-    * Set properties for the XML reader
-    *
-    * @param xmlReader
-    * @return
-    */
+  def getRevisionPairsFromPDS(
+      pds: PortableDataStream,
+      template: String
+  ): Seq[RevisionPair] = {
+    Using.resource(pds.open()) { inputStream =>
+      val bz2Stream =
+        new BZip2CompressorInputStream(new BufferedInputStream(inputStream))
+      getRevisionPairs(bz2Stream, template)
+    }
+  }
+
   private def setXMLReaderProperties(xmlReader: XMLReader): XMLReader = {
     xmlReader.setProperty(
       "http://www.oracle.com/xml/jaxp/properties/entityExpansionLimit",
