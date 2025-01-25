@@ -12,8 +12,9 @@ import me.lpmg.ste.types.TemplateProbabilityVector
 import me.lpmg.ste.algorithms.ProbabilityHandler
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
+import me.lpmg.ste.data.RevisionPair
 
-object SourceEvalJob {
+object PairSourceEvalJob {
 
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)
@@ -58,11 +59,11 @@ object SourceEvalJob {
       new RevisionManager(spark, dataFolderPath)
 
     // only load revisions up to the test split revision for source evaluation
-    val revisions: RDD[Revision] = revisionManager
-      .loadRevisions(revisionsFolderName)
-      .filter(_.revisionId < testSplitRevision)
+    val revisions: RDD[RevisionPair] = revisionManager
+      .loadRevisionPairs(revisionsFolderName)
+      .filter(_.revisionIdTemplateAdded < testSplitRevision)
     val sourceProbabilities = SourceEvaluator
-      .evaluateSources(revisions)
+      .evaluateSourcesFromPairs(revisions)
       // only include sources that appeared in revisions where a template was added or removed
       // this shouldnt be necessary though since the revisions folder only 
       // contains revisions where a template was added or removed
@@ -75,7 +76,7 @@ object SourceEvalJob {
     val sourceProbabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"source-probabilities-$escapedTemplate-$dateString")
+        .resolve(s"source-pair-probabilities-$escapedTemplate-$dateString")
 
     val sourceProbabilitiesDF = sourceProbabilities
       .map { case (source, probabilities) =>

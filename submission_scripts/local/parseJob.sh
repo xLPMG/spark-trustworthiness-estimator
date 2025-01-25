@@ -1,5 +1,5 @@
 spark-submit \
-  --class me.lpmg.ste.jobs.ParseJob \
+  --class me.lpmg.ste.jobs.PairParseJob \
   --name Spark-Trustworthiness-Estimator-PARSEJOB \
   --master local[10] \
   --driver-memory 26g \
