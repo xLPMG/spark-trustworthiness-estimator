@@ -113,7 +113,6 @@ object RevisionEvalJob {
           (revision.revisionId, accumulatedProbabilities)
         }
       }
-      .filter(!_._2.isUndecided())
       // Map probability values to string representation
       .map { case (revisionId, probabilities) =>
         val (probabilityTemplateAdded, probabilityTemplateRemoved) = probabilities.extractValuesString

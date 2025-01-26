@@ -9,7 +9,7 @@ spark-submit \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /Users/lpmg/Bachelor/xml \
   revisions-dubious-2025-01-23T10-56-53Z \
-  source-probabilities-dubious-2025-01-23T11-50-55Z \
+  source-pair-probabilities-dubious-2025-01-25T20-50-30Z \
   dubious
 
   
