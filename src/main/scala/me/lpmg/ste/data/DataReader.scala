@@ -48,30 +48,37 @@ object DataReader {
     Using.resource(pds.open()) { inputStream =>
       val bz2Stream =
         new BZip2CompressorInputStream(new BufferedInputStream(inputStream))
-      val revisionPairs = getRevisionPairs(bz2Stream, template)
-      revisionPairs.flatMap { pair =>
-        val revision_1 = Revision(
-          pair.revisionIdTemplateAdded,
-          pair.revisionIdTemplateRemoved,
-          pair.pageId,
-          true,
-          false,
-          true,
-          false,
-          pair.sourcesTemplateAdded
-        )
-        val revision_2 = Revision(
-          pair.revisionIdTemplateRemoved,
-          pair.revisionIdTemplateAdded,
-          pair.pageId,
-          false,
-          true,
-          false,
-          true,
-          pair.sourcesTemplateRemoved
-        )
-        Seq(revision_1, revision_2)
-      }
+      getRevisions(bz2Stream, template)
+    }
+  }
+
+  def getRevisions(
+      inputStream: InputStream,
+      template: String
+  ): Seq[Revision] = {
+    val revisionPairs = getRevisionPairs(inputStream, template)
+    revisionPairs.flatMap { pair =>
+      val revision_1 = Revision(
+        pair.revisionIdTemplateAdded,
+        pair.revisionIdTemplateRemoved,
+        pair.pageId,
+        true,
+        false,
+        true,
+        false,
+        pair.sourcesTemplateAdded
+      )
+      val revision_2 = Revision(
+        pair.revisionIdTemplateRemoved,
+        pair.revisionIdTemplateAdded,
+        pair.pageId,
+        false,
+        true,
+        false,
+        true,
+        pair.sourcesTemplateRemoved
+      )
+      Seq(revision_1, revision_2)
     }
   }
 
