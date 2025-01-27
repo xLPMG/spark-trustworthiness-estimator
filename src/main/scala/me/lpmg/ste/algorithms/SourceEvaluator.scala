@@ -105,4 +105,132 @@ object SourceEvaluator extends Serializable {
         }
       }
   }
+
+  def evaluateSourcesFromPairsWithoutUnchangedSources(
+      revisionPairs: RDD[RevisionPair]
+  ): Map[String, (TemplateProbabilityVector, Int)] = {
+    evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed(revisionPairs)
+      .collect()
+      .toMap
+  }
+
+  def evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed(
+      revisionPairs: RDD[RevisionPair]
+  ): RDD[(String, (TemplateProbabilityVector, Int))] = {
+    revisionPairs
+      .flatMap { revisionPair =>
+        val combinedSources =
+          (revisionPair.sourcesTemplateAdded ++ revisionPair.sourcesTemplateRemoved).distinct
+
+        combinedSources.map { source =>
+          val sourceExistsWhenTemplateRemoved =
+            revisionPair.sourcesTemplateRemoved.contains(source)
+          val sourceExistsWhenTemplateAdded =
+            revisionPair.sourcesTemplateAdded.contains(source)
+
+          if (sourceExistsWhenTemplateAdded && !sourceExistsWhenTemplateRemoved) {
+            // source was removed when template was removed
+            (source, (1, 0))
+          } else if (!sourceExistsWhenTemplateAdded && sourceExistsWhenTemplateRemoved) {
+            // source was added when template was removed
+            (source, (0, 1))
+          } else {
+            // unchanged source
+            (source, (0, 0))
+          }
+        }
+      }
+      .reduceByKey {
+        case (
+              (addedCount_1, removedCount_1),
+              (addedCount_2, removedCount_2)
+            ) =>
+          (
+            addedCount_1 + addedCount_2,
+            removedCount_1 + removedCount_2
+          )
+      }
+      .mapValues { case (addedCount, removedCount) =>
+        val totalPairCount = addedCount + removedCount
+        if (totalPairCount == 0) {
+          (TemplateProbabilityVector(0.5f, 0.5f), totalPairCount)
+        } else {
+          (
+            TemplateProbabilityVector(
+              addedCount.toFloat / totalPairCount.toFloat,
+              removedCount.toFloat / totalPairCount.toFloat
+            ),
+            totalPairCount
+          )
+        }
+      }
+  }
+
+  def evaluateSourcesFromPairsWithUnchangedSources(
+      revisionPairs: RDD[RevisionPair]
+  ): Map[String, ((Float, Float, Float), Int)] = {
+    evaluateSourcesFromPairsWithUnchangedSourcesDistributed(revisionPairs)
+      .collect()
+      .toMap
+  }
+
+  def evaluateSourcesFromPairsWithUnchangedSourcesDistributed(
+      revisionPairs: RDD[RevisionPair]
+  ): RDD[(String, ((Float, Float, Float), Int))] = {
+    revisionPairs
+      .flatMap { revisionPair =>
+        val combinedSources =
+          (revisionPair.sourcesTemplateAdded ++ revisionPair.sourcesTemplateRemoved).distinct
+
+        combinedSources.map { source =>
+          val sourceExistsWhenTemplateRemoved =
+            revisionPair.sourcesTemplateRemoved.contains(source)
+          val sourceExistsWhenTemplateAdded =
+            revisionPair.sourcesTemplateAdded.contains(source)
+
+          if (
+            sourceExistsWhenTemplateRemoved && sourceExistsWhenTemplateAdded
+          ) {
+            // unchanged source
+            (source, (0, 0, 1))
+          } else if (sourceExistsWhenTemplateRemoved) {
+            // source was added when template was removed
+            (source, (0, 1, 0))
+          } else if (sourceExistsWhenTemplateAdded) {
+            // source was removed when template was added
+            (source, (1, 0, 0))
+          } else {
+            // should not happen
+            (source, (0, 0, 0))
+          }
+        }
+      }
+      .reduceByKey {
+        case (
+              (addedCount_1, removedCount_1, unchangedCount_1),
+              (addedCount_2, removedCount_2, unchangedCount_2)
+            ) =>
+          (
+            addedCount_1 + addedCount_2,
+            removedCount_1 + removedCount_2,
+            unchangedCount_1 + unchangedCount_2
+          )
+      }
+      .mapValues { case (addedCount, removedCount, unchangedCount) =>
+        val totalPairCount = addedCount + removedCount + unchangedCount
+        if (totalPairCount == 0) {
+          // should not happen
+          ((0.33f, 0.33f, 0.34f), totalPairCount)
+        } else {
+          (
+            (
+              addedCount.toFloat / totalPairCount.toFloat,
+              removedCount.toFloat / totalPairCount.toFloat,
+              unchangedCount.toFloat / totalPairCount.toFloat
+            ),
+            totalPairCount
+          )
+        }
+      }
+  }
 }

@@ -7,15 +7,14 @@ if [ "$(kubectl auth can-i create pod)" != "yes" ]; then
 fi
 
 spark-submit \
-  --class me.lpmg.ste.jobs.PairParseJob \
-  --name ste-parse-job \
+  --class me.lpmg.ste.jobs.CountSourceChangesJob \
+  --name ste-src-change-job \
   --properties-file ../../spark-defaults.conf \
-  --conf spark.dynamicAllocation.maxExecutors=150 \
+  --conf spark.dynamicAllocation.maxExecutors=50 \
   --conf spark.driver.memory=12g \
-  --conf spark.executor.memory=4g \
+  --conf spark.executor.memory=3g \
+  --conf spark.driver.maxResultSize=4g \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
-  /mnt/ceph/storage/corpora/corpora-thirdparty/corpus-wikipedia/wikimedia-history-snapshots/enwiki-20220901 \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data6 \
-  "Dubious"
-  
+  revision-pairs-dubious-2025-01-25T21-09-50Z

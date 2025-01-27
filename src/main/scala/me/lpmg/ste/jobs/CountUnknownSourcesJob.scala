@@ -14,7 +14,7 @@ import org.apache.spark.sql.Row
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
 
-object RevisionEvalJob {
+object CountUnknownSourcesJob {
   val DefaultTemplateProbabilityVector = TemplateProbabilityVector(0.5f, 0.5f)
 
   def main(args: Array[String]): Unit = {
@@ -95,47 +95,26 @@ object RevisionEvalJob {
       }
       .collectAsMap()
 
-    val revisionToProbabilities = revisions
+    val totalRevisionsCount = revisions.count()
+    val revisionsWithUnknownSources = revisions
       .map { revision =>
-        // probabilities for each source
-        val probabilities = revision.sources
-          .map(source =>
-            sourceProbabilitiesMap
-              .getOrElse(source, (DefaultTemplateProbabilityVector, 0))
-          )
-          .toSeq
-
-        if (probabilities.isEmpty) {
-          (revision.revisionId, DefaultTemplateProbabilityVector)
-        } else {
-          val accumulatedProbabilities =
-            ProbabilityHandler.maxTemplateAddedWithoutUnknownSources(probabilities)
-          (revision.revisionId, accumulatedProbabilities)
-        }
+        val unknownSources = revision.sources.count(source => !sourceProbabilitiesMap.contains(source))
+        val allSources = revision.sources.size
+        (unknownSources, allSources)
       }
-      // Map probability values to string representation
-      .map { case (revisionId, probabilities) =>
-        val (probabilityTemplateAdded, probabilityTemplateRemoved) = probabilities.extractValuesString
-        (revisionId, probabilityTemplateAdded, probabilityTemplateRemoved)
-      }
+      .filter { case (unknownSources, _) => unknownSources > 0 }
+      .cache()
 
-    val probabilitiesDF =
-      revisionToProbabilities.toDF("revision_id", "probabilityTemplateAdded", "probabilityTemplateRemoved")
+    val countRevisionsWithUnknownSources = revisionsWithUnknownSources.count()
+    val averageUnknownSourceRatio = revisionsWithUnknownSources
+      .map { case (unknownSources, allSources) => unknownSources.toDouble / allSources }
+      .mean()
 
-    val probabilitiesOutputPath =
-      Path
-        .of(dataFolderPath)
-        .resolve(s"probabilities-$escapedTemplate-$dateString")
+    val percentageRevisionsWithUnknownSources = (countRevisionsWithUnknownSources.toDouble / totalRevisionsCount) * 100
 
-    probabilitiesDF.write
-      .mode("overwrite")
-      .option("header", "true")
-      .option("nullValue", "")
-      .csv(probabilitiesOutputPath.toString)
-
-    logger.warn(
-      s"CSV file saved: ${probabilitiesOutputPath.toString()}"
-    )
+    logger.info(s"Number of revisions with at least one unknown source: $countRevisionsWithUnknownSources")
+    logger.info(f"Percentage of revisions with unknown sources: $percentageRevisionsWithUnknownSources%.2f%%")
+    logger.info(f"Average ratio of unknown sources to all sources: $averageUnknownSourceRatio%.2f")
 
     spark.stop()
   }

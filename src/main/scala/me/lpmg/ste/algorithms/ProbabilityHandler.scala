@@ -132,8 +132,6 @@ object ProbabilityHandler {
   }
 
   def occurencesToWeight(occurences: Int): Float = {
-    return 1.0f
-
     val max = 100
     val steepness = 0.05f
 
@@ -142,5 +140,57 @@ object ProbabilityHandler {
     max - (max - clampedOccurences) * math
       .pow(Math.E.toFloat, -steepness * clampedOccurences.toFloat)
       .toFloat
+  }
+
+
+  def maxTemplateAdded(
+      probsWithOccurences: Seq[(TemplateProbabilityVector, Int)]
+  ): TemplateProbabilityVector = {
+    val maxProb = probsWithOccurences
+      .map(_._1.probabilityTemplateAdded)
+      .max
+    TemplateProbabilityVector(maxProb, 1.0f - maxProb)
+  }
+
+  def maxTemplateAddedWithoutUnknownSources(
+      probsWithOccurences: Seq[(TemplateProbabilityVector, Int)]
+  ): TemplateProbabilityVector = {
+    val probs = probsWithOccurences
+    .filter(_._2 > 2)
+      .map(_._1.probabilityTemplateAdded)
+
+    if (probs.isEmpty) {
+      return TemplateProbabilityVector(0.5f, 0.5f)
+    }else{
+      val maxProb = probs.max
+      TemplateProbabilityVector(maxProb, 1.0f - maxProb)
+    }
+  }
+
+  def thresholdRatio(
+      probsWithOccurences: Seq[(TemplateProbabilityVector, Int)]
+  ): TemplateProbabilityVector = {
+    val threshold = 0.5f
+    val occurenceTreshold = 4
+
+    val sourcesWithEvaluation = probsWithOccurences
+      .filter(_._2 >= occurenceTreshold)
+      .map(_._1)
+
+    if (sourcesWithEvaluation.isEmpty) {
+      return TemplateProbabilityVector(0.5f, 0.5f)
+    }
+
+    val trustworthySources = sourcesWithEvaluation
+      .filter(p => p.probabilityTemplateAdded <= threshold)
+      .size
+
+    val untrustworthySources = sourcesWithEvaluation
+      .filter(p => p.probabilityTemplateAdded > threshold)
+      .size
+
+    val probabilityTemplateAdded = untrustworthySources.toFloat / sourcesWithEvaluation.size
+    val probabilityTemplateRemoved = 1.0f - probabilityTemplateAdded
+    TemplateProbabilityVector(probabilityTemplateAdded, probabilityTemplateRemoved)
   }
 }

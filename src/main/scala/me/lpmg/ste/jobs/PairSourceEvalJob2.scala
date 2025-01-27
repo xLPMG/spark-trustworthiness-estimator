@@ -14,7 +14,7 @@ import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
 import me.lpmg.ste.data.RevisionPair
 
-object PairSourceEvalJob {
+object PairSourceEvalJob2 {
 
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)
@@ -63,9 +63,9 @@ object PairSourceEvalJob {
       .loadRevisionPairs(revisionsFolderName)
       .filter(_.revisionIdTemplateAdded < testSplitRevision)
     val sourceProbabilities = SourceEvaluator
-      .evaluateSourcesFromPairsWithoutUnchangedSources(revisions)
+      .evaluateSourcesFromPairsWithUnchangedSources(revisions)
       // only include sources that appeared in revisions where a template was added or removed
-      // this shouldnt be necessary though since the revisions folder only 
+      // this shouldnt be necessary though since the revisions folder only
       // contains revisions where a template was added or removed
       .filter(_._2._2 > 0)
 
@@ -76,18 +76,30 @@ object PairSourceEvalJob {
     val sourceProbabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"sources-noUnchanged-probabilities-$escapedTemplate-$dateString")
+        .resolve(s"source-pair-probabilities-$escapedTemplate-$dateString")
 
     val sourceProbabilitiesDF = sourceProbabilities
       .map { case (source, probabilities) =>
-        val probsString = probabilities._1.extractValuesString
-        val (probabilityTemplateAdded, probabilityTemplateRemoved) = probsString
-        val occurences = probabilities._2
+        val rounded1 = BigDecimal(probabilities._1._1).setScale(
+          4,
+          BigDecimal.RoundingMode.HALF_UP
+        )
+
+        val rounded3 = BigDecimal(probabilities._1._3).setScale(
+          4,
+          BigDecimal.RoundingMode.HALF_UP
+        )
+
+        val rounded2 =
+          (BigDecimal(1.0) - rounded1 - rounded3)
+            .setScale(4, BigDecimal.RoundingMode.HALF_UP)
+
         (
           source,
-          probabilityTemplateAdded,
-          probabilityTemplateRemoved,
-          occurences
+          rounded1,
+          rounded2,
+          rounded3,
+          probabilities._2
         )
       }
       .toSeq
@@ -95,11 +107,11 @@ object PairSourceEvalJob {
         "src",
         "probabilityTemplateAdded",
         "probabilityTemplateRemoved",
+        "probabilityTemplateUnchanged",
         "occurences"
       )
 
-    sourceProbabilitiesDF
-      .write
+    sourceProbabilitiesDF.write
       .option("header", "true")
       .csv(sourceProbabilitiesOutputPath.toString)
 
