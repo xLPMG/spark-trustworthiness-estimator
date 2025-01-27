@@ -109,7 +109,7 @@ object RevisionEvalJob {
           (revision.revisionId, DefaultTemplateProbabilityVector)
         } else {
           val accumulatedProbabilities =
-            ProbabilityHandler.maxTemplateAddedWithoutUnknownSources(probabilities)
+            ProbabilityHandler.weightedCombinationNoUnsureResults(probabilities)
           (revision.revisionId, accumulatedProbabilities)
         }
       }

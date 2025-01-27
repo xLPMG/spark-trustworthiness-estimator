@@ -4,6 +4,8 @@ import me.lpmg.ste.types.TemplateProbabilityVector
 
 object ProbabilityHandler {
 
+  val NonsenseVector = TemplateProbabilityVector(-0.5f, 1.5f)
+
   def multiplicativeCombination(
       probs: Seq[TemplateProbabilityVector]
   ): TemplateProbabilityVector = {
@@ -116,6 +118,72 @@ object ProbabilityHandler {
     val totalWeight = weights.sum
     if (totalWeight < 0.001) {
       return TemplateProbabilityVector(0.5f, 0.5f)
+    }
+    val scaledWeights = weights.map(_ / totalWeight)
+
+    val probabilityTemplateAdded = probs
+      .zip(scaledWeights)
+      .map(p => p._1.probabilityTemplateAdded * p._2)
+      .sum
+    val probabilityTemplateRemoved = 1.0f - probabilityTemplateAdded
+
+    TemplateProbabilityVector(
+      probabilityTemplateAdded,
+      probabilityTemplateRemoved
+    )
+  }
+
+    def weightedCombinationNoUnsureResults(
+      probsWithOccurences: Seq[(TemplateProbabilityVector, Int)]
+  ): TemplateProbabilityVector = {
+
+    // Handle edge case: Empty input
+    if (probsWithOccurences.isEmpty) {
+      throw new IllegalArgumentException("Input sequence is empty")
+    }
+
+    // at least 5 occurences
+    val probsWithOccurencesFiltered = probsWithOccurences.filter(_._2 > 4)
+    if (probsWithOccurencesFiltered.isEmpty) {
+      return NonsenseVector
+    }
+
+    // count number of probs for which we have no information
+    val numProbsWithoutOccurences= probsWithOccurences.filter(_._2 < 1).size
+    if (numProbsWithoutOccurences > 3) {
+      return NonsenseVector
+    }
+
+    val probs = probsWithOccurencesFiltered.map(_._1)
+    val weights = probsWithOccurencesFiltered.map(_._2).map(occurencesToWeight)
+
+    // Check for negative or NaN values in probs
+    if (
+      probs.exists(p =>
+        p.probabilityTemplateAdded < 0 || p.probabilityTemplateAdded.isNaN || p.probabilityTemplateRemoved < 0 || p.probabilityTemplateRemoved.isNaN
+      )
+    ) {
+      throw new IllegalArgumentException(
+        "Probabilities contain negative or NaN values"
+      )
+    }
+
+    // Check for negative or NaN values in weights
+    if (weights.exists(w => w < 0 || w.isNaN)) {
+      throw new IllegalArgumentException(
+        "Weights contain negative or NaN values"
+      )
+    }
+
+    if (probs.forall(_.probabilityTemplateAdded >= 0.999999f)) {
+      return TemplateProbabilityVector(1.0f, 0.0f)
+    } else if (probs.forall(_.probabilityTemplateRemoved >= 0.999999f)) {
+      return TemplateProbabilityVector(0.0f, 1.0f)
+    }
+
+    val totalWeight = weights.sum
+    if (totalWeight < 0.001) {
+      return NonsenseVector
     }
     val scaledWeights = weights.map(_ / totalWeight)
 
