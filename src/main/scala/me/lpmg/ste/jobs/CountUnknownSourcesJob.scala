@@ -112,8 +112,9 @@ object CountUnknownSourcesJob {
 
     val percentageRevisionsWithUnknownSources = (countRevisionsWithUnknownSources.toDouble / totalRevisionsCount) * 100
 
+    logger.info(s"Total number of revisions: $totalRevisionsCount")
     logger.info(s"Number of revisions with at least one unknown source: $countRevisionsWithUnknownSources")
-    logger.info(f"Percentage of revisions with unknown sources: $percentageRevisionsWithUnknownSources%.2f%%")
+    logger.info(f"Percentage of revisions with at least one unknown source: $percentageRevisionsWithUnknownSources%.2f%%")
     logger.info(f"Average ratio of unknown sources to all sources: $averageUnknownSourceRatio%.2f")
 
     spark.stop()

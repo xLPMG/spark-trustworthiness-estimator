@@ -16,9 +16,9 @@ spark-submit \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
   /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data6 \
-  revision-pairs-dubious-2025-01-25T21-09-50Z \
-  "Dubious" \
-  766873810
+  revision-pairs-unreliable-sources-2025-01-25T21-00-14Z \
+  "Unreliable sources" \
+  920856275
   
 # revisions-dubious-2025-01-23T23-00-16Z,743038329
 # revisions-third-party-2025-01-23T23-06-18Z,910639218
