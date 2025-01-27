@@ -142,15 +142,16 @@ object ProbabilityHandler {
       throw new IllegalArgumentException("Input sequence is empty")
     }
 
-    // at least 5 occurences
-    val probsWithOccurencesFiltered = probsWithOccurences.filter(_._2 > 4)
-    if (probsWithOccurencesFiltered.isEmpty) {
+    // count number of probs for which we have no information
+    val numProbsWithoutEvaluation= probsWithOccurences.filter(_._2 < 1).size.toFloat
+    // there should be max 10% of probs without evaluation
+    if (numProbsWithoutEvaluation / probsWithOccurences.size.toFloat > 0.05) {
       return NonsenseVector
     }
 
-    // count number of probs for which we have no information
-    val numProbsWithoutOccurences= probsWithOccurences.filter(_._2 < 1).size
-    if (numProbsWithoutOccurences > 3) {
+    // at least 7 evaluations per source
+    val probsWithOccurencesFiltered = probsWithOccurences.filter(_._2 > 7)
+    if (probsWithOccurencesFiltered.size < 3) {
       return NonsenseVector
     }
 
