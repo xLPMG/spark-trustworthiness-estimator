@@ -12,19 +12,18 @@ import de.malkusch.whoisServerList.publicSuffixList.PublicSuffixListFactory
   */
 object SourceExtractor {
   // Regex patterns for source extraction
-  private val RefTagPattern = """<ref[^>]*>(.*?)</ref>""".r
+  private val RefTagPattern = """(?i)(?:<ref[^>]*>(.*?)</ref>|&lt;ref[^&]*&gt;(.*?)&lt;/ref&gt;)""".r
   private val CiteTemplatePattern =
     """\{\{(?i)(cite|citation|vcite2|vcite|vancite|wikicite|wayback)[^}]*\}\}""".r
   private val UrlPattern = """(?i)url\s*=\s*([^|\}]+)""".r
   private val IsbnPattern = """(?i)isbn\s*=\s*([^|\}]+)""".r
   private val UrlInRefPattern = """https?://[^\s<>"]+""".r
-  private val ExternalLinkPattern = """\*\s*\[(https?://[^\s\]]+)[^\]]*\]""".r
 
   // Initialize PublicSuffixList
   private val publicSuffixList: PublicSuffixList =
     new PublicSuffixListFactory().build()
 
-  private def extractDomain(urlStr: String): Option[String] = {
+  def extractDomain(urlStr: String): Option[String] = {
     Try {
       val trimmedUrlStr = urlStr.trim
       val lastTwoChars = trimmedUrlStr.takeRight(2)
@@ -91,17 +90,6 @@ object SourceExtractor {
       }
     }
 
-    // Extract from external links section
-    ExternalLinkPattern.findAllMatchIn(text).foreach { m =>
-      extractDomain(m.group(1)).foreach(sources += _)
-    }
-
-    // Clean up links
-    val cleanedSources = sources.map { source =>
-      val pipeIndex = source.indexOf('|')
-      if (pipeIndex >= 0) source.substring(0, pipeIndex) else source
-    }
-
-    cleanedSources.distinct
+    sources.distinct
   }
 }
