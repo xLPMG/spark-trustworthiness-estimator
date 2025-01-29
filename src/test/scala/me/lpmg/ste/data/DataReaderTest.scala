@@ -3,8 +3,6 @@ package me.lpmg.ste.data
 import org.apache.spark.input.PortableDataStream
 import java.io.InputStream
 import java.io.FileInputStream
-import java.time.Instant
-import me.lpmg.ste.types.Types.TemplateBitPositions
 
 class DataReaderTest extends munit.FunSuite {
   test("testReadData") {
