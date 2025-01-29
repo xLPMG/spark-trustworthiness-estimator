@@ -18,12 +18,12 @@ final case class TemplateProbabilityVector(
     import scala.util.{Try, Success, Failure}
 
     Try {
-      val rounded1 = BigDecimal(probabilityTemplateAdded).setScale(
+      val rounded1 = BigDecimal.valueOf(probabilityTemplateAdded.toDouble).setScale(
         4,
         BigDecimal.RoundingMode.HALF_UP
       )
       val rounded2 =
-        (BigDecimal(1.0) - rounded1)
+        (BigDecimal.valueOf(1.0) - rounded1)
           .setScale(4, BigDecimal.RoundingMode.HALF_UP)
       (s"${rounded1.toString()}", s"${rounded2.toString()}")
     } match {
@@ -43,10 +43,6 @@ final case class TemplateProbabilityVector(
 
 object TemplateProbabilityVector {
   def apply(probabilityTemplateAdded: Float, probabilityTemplateRemoved: Float): TemplateProbabilityVector = {
-    require(
-      Math.abs(probabilityTemplateAdded + probabilityTemplateRemoved - 1.0) < 0.0001,
-      s"The probabilities dont add up to 1.0! $probabilityTemplateAdded + $probabilityTemplateRemoved"
-    )
     new TemplateProbabilityVector(probabilityTemplateAdded, probabilityTemplateRemoved)
   }
 

@@ -3,11 +3,10 @@ package me.lpmg.ste.jobs
 import com.typesafe.scalalogging.Logger
 import me.lpmg.ste.data.RevisionManager
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.util.collection.BitSet
 import java.nio.file.Path
 import java.time.ZonedDateTime
 import java.time.ZoneId
-import me.lpmg.ste.types.Types.{TemplateBitPositions, escapeTemplates}
+import me.lpmg.ste.types.Templates.escapeTemplates
 
 object MaskDataJob {
   def main(args: Array[String]): Unit = {

@@ -7,7 +7,6 @@ import org.apache.spark.sql.SparkSession
 import me.lpmg.ste.data.RevisionManager
 import java.nio.file.Path
 import me.lpmg.ste.types.TemplateProbabilityVector
-import me.lpmg.ste.types.Types.TemplateBitPositions
 import me.lpmg.ste.algorithms.ProbabilityHandler
 import scala.collection.mutable
 import org.apache.spark.sql.Row
@@ -116,7 +115,6 @@ object PairRevisionEvalJob {
             sourceProbabilitiesMap
               .getOrElse(source, (DefaultTemplateProbabilityVector, 0))
           )
-          .toSeq
 
         if (probabilities.isEmpty) {
           (revision.revisionId, DefaultTemplateProbabilityVector)

@@ -3,9 +3,6 @@ package me.lpmg.ste.data
 import org.xml.sax.helpers.DefaultHandler
 import scala.collection.mutable.{ArrayBuffer, StringBuilder}
 import org.xml.sax.{Attributes, InputSource}
-import java.time.Instant
-import me.lpmg.ste.types.Types.{TemplateBitPositions}
-import org.apache.spark.util.collection.BitSet
 
 /** SAX handler for parsing MediaWiki XML revisions, filtering for specific
   * template and namespace.
@@ -93,9 +90,10 @@ class RevisionSAXHandlerInline(template: String) extends DefaultHandler {
         } else if (firstTemplateRevision.isDefined && !currentTemplatePresent) {
           // Second revision without template
           // If all templates removed, filter sources still present
-          val existingSources = firstTemplateRevision.get.sources.filter(
-            currentRevisionText.contains
-          )
+          val existingSources = firstTemplateRevision match {
+            case Some(revision) => revision.sources.filter(currentRevisionText.contains)
+            case None => Seq.empty
+          }
           lastTemplateRevision = Some(
             Revision(
               revisionId = currentRevisionId.getOrElse(-1L),

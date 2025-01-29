@@ -84,18 +84,18 @@ object PairSourceUnchangedEvalJob {
 
     val sourceProbabilitiesDF = sourceProbabilities
       .map { case (source, probabilities) =>
-        val rounded1 = BigDecimal(probabilities._1._1).setScale(
+        val rounded1 = BigDecimal.valueOf(probabilities._1._1.toDouble).setScale(
           4,
           BigDecimal.RoundingMode.HALF_UP
         )
 
-        val rounded3 = BigDecimal(probabilities._1._3).setScale(
+        val rounded3 = BigDecimal.valueOf(probabilities._1._3.toDouble).setScale(
           4,
           BigDecimal.RoundingMode.HALF_UP
         )
 
         val rounded2 =
-          (BigDecimal(1.0) - rounded1 - rounded3)
+          (BigDecimal.valueOf(1.0) - rounded1 - rounded3)
             .setScale(4, BigDecimal.RoundingMode.HALF_UP)
 
         (
