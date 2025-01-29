@@ -76,7 +76,7 @@ object PairSourceEvalJob2 {
     val sourceProbabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"source-pair-probabilities-$escapedTemplate-$dateString")
+        .resolve(s"source-pair-wU-probabilities-$escapedTemplate-$dateString")
 
     val sourceProbabilitiesDF = sourceProbabilities
       .map { case (source, probabilities) =>

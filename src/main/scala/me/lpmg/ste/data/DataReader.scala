@@ -15,6 +15,7 @@ import java.io.InputStream
 import scala.util.Using
 import org.apache.spark.input.PortableDataStream
 import com.typesafe.scalalogging.Logger
+import org.apache.spark.rdd.RDD
 
 /** Provides functionality to read and parse XML data from BZip2 compressed
   * files.
@@ -100,6 +101,34 @@ object DataReader {
   def revisionPairsToRevisions(
       revisionPairs: Seq[RevisionPair]
   ): Seq[Revision] = {
+    revisionPairs.flatMap { pair =>
+      val revision_1 = Revision(
+        pair.revisionIdTemplateAdded,
+        pair.revisionIdTemplateRemoved,
+        pair.pageId,
+        true,
+        false,
+        true,
+        false,
+        pair.sourcesTemplateAdded
+      )
+      val revision_2 = Revision(
+        pair.revisionIdTemplateRemoved,
+        pair.revisionIdTemplateAdded,
+        pair.pageId,
+        false,
+        true,
+        false,
+        true,
+        pair.sourcesTemplateRemoved
+      )
+      Seq(revision_1, revision_2)
+    }
+  }
+
+  def revisionPairsToRevisionsDistributed(
+      revisionPairs: RDD[RevisionPair]
+  ): RDD[Revision] = {
     revisionPairs.flatMap { pair =>
       val revision_1 = Revision(
         pair.revisionIdTemplateAdded,
