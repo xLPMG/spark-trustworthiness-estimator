@@ -56,7 +56,15 @@ class DataReaderTest extends munit.FunSuite {
     val revision = revisions.head
     val sources = revision.sources
 
-    print(sources)
+    //sources: lugnet.com, youtube.com, cbc.ca, whyfiles.org, ISBN:0684182413, mdw.ac.at, unsw.edu.au, antiquity.ac.uk
+    assert(sources.contains("lugnet.com"))
+    assert(sources.contains("youtube.com"))
+    assert(sources.contains("cbc.ca"))
+    assert(sources.contains("whyfiles.org"))
+    assert(sources.contains("ISBN:0684182413"))
+    assert(sources.contains("mdw.ac.at"))
+    assert(sources.contains("unsw.edu.au"))
+    assert(sources.contains("antiquity.ac.uk"))
   }
 
   test("extractInlineSources") {

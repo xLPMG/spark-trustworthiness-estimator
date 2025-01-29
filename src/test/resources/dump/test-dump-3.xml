@@ -26,13 +26,13 @@
         <model>wikitext</model>
         <format>text/x-wiki</format>
         <text bytes="21878" xml:space="preserve">{{circular}}{{dablink|This article is about the family of musical instruments. For the specific instrument, see [[Western concert flute]]. For the sailing ship, see [[Fluyt]]. For the drinkware, see [[Champagne flute]].}}
-
-&lt;ref&gt;www.badsite.com&lt;/ref&gt; {{Unreliable source?|date=January 2025}}
-&lt;ref&gt;www.goodsite.com&lt;/ref&gt; {{Unreliable source?|date=January 2025}}
+&lt;ref&gt;http://www.badsite.com&lt;/ref&gt; {{Unreliable source?|date=January 2025}}
+&lt;ref&gt;http://www.goodsite.com&lt;/ref&gt; {{Unreliable source?|date=January 2025}}
 
 {{limitedgeographicscope}}
 
 The '''flute''' is a [[musical instrument]] of the [[woodwind]] family. Unlike other woodwind instruments, a flute produces its sound from the flow of air against an edge, instead of using a [[Reed (music)|reed]]. A [[musician]] who plays the flute is generally referred to as either a [[flautist|''flautist'']] (common term) or a ''flutist'' (american term).  
+&lt;ref&gt;http://www.anothersite.com&lt;/ref&gt; {{Unreliable source?|date=January 2025}}
 
 Flute tones are sweet in character and blend well with other instruments. The flute's pitch, and various aspects of its [[timbre]] are flexible, allowing a very high degree of instantaneous expressive control.
 
@@ -51,7 +51,7 @@ The stream beats against the air in a resonator, usually a tube.  The player cha
 Because the air-stream has a lower mass than most resonators used in musical instruments, it can beat faster, but with less momentum.  As a result, flutes tend to be softer, but higher-pitched, than other sound generators of the same size.
 
 To be louder, a flute must use a larger resonator and a wider air-stream.  A flute can generally be made louder by making its resonator and tone-holes larger.  This is why police whistles, a form of flute, are very wide for their pitch, and why organs can be far louder than concert flutes: an organ pipe's tone-hole may be several [[inch]]es wide, while a concert flute's is a fraction of an inch.
-
+&lt;ref&gt;http://www.thissie.com&lt;/ref&gt; {{Unreliable source?|date=January 2025}}
 The air-stream must be flat, and precisely aimed at the correct angle and velocity, or else it will not vibrate.  In fippled flutes, a precisely machined slot extrudes the air.  In organs, the air is supplied by a regulated blower.
 
 In non-fipple flutes, especially the concert flute and piccolo, the player must form and direct the stream with his or her lips, which is called an [[embouchure]].  This allows the player a wide range of expressions in pitch, volume, and timbre, especially in comparison to fipple flutes.  However, it also makes the transverse flute immensely more difficult for a beginner to get a full sound out of than fipple flutes such as the [[recorder]]. Transverse flutes also take more air to play, which requires deeper breathing and makes [[circular breathing]] trickier, but still not impossible.
@@ -268,7 +268,8 @@ A double flute made of a single piece of wood, with six sound holes on one side.
         <format>text/x-wiki</format>
         <text bytes="21878" xml:space="preserve">{{dablink|This article is about the family of musical instruments. For the specific instrument, see [[Western concert flute]]. For the sailing ship, see [[Fluyt]]. For the drinkware, see [[Champagne flute]].}}
 
-<ref>www.goodsite.com</ref>
+&lt;/ref&gt;http://www.goodsite.com&lt;/ref&gt;
+&lt;/ref&gt;http://www.randomsite.com&lt;/ref&gt;
 
 {{limitedgeographicscope}}
 

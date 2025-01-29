@@ -36,8 +36,7 @@
       <comment>Comment 1</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">Oh no, a template! {{Circular}}
-*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
+      <text bytes="111" xml:space="preserve">Oh no, a template! {{Circular}} &lt;ref&gt;http://www.badsite.com&lt;/ref&gt;</text>
     </revision>
     <revision>
       <id>3</id>
@@ -50,8 +49,7 @@
       <comment>Comment 3</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">No template here
-*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
+      <text bytes="111" xml:space="preserve">No template here &lt;ref&gt;http://www.badsite.com&lt;/ref&gt;</text>
     </revision>
     <revision>
       <id>4</id>
@@ -64,8 +62,7 @@
       <comment>Comment 1</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">Oh no, a template! {{Circular}}
-*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
+      <text bytes="111" xml:space="preserve">Oh no, a template! {{Circular}} &lt;ref&gt;http://www.badsite.com&lt;/ref&gt;</text>
     </revision>
     <revision>
       <id>5</id>
@@ -92,8 +89,7 @@
       <comment>Comment 3</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">No template here
-*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
+      <text bytes="111" xml:space="preserve">No template here &lt;ref&gt;http://www.badsite.com&lt;/ref&gt;</text>
     </revision>
     <revision>
       <id>7</id>
@@ -106,8 +102,7 @@
       <comment>Comment 3</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">this revision adds a template {{Circular}} but it has no following revision that removes it
-*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
+      <text bytes="111" xml:space="preserve">this revision adds a template {{Circular}} but it has no following revision that removes it &lt;ref&gt;http://www.badsite.com&lt;/ref&gt;</text>
     </revision>
   </page>
   <page>
@@ -124,8 +119,7 @@
       <comment>Comment 998</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="111" xml:space="preserve">This is an example page with a link to [[Page 2]].{{Circular}}
-*[http://www.FluteInfo.com FluteInfo] Contains fingering charts, performance articles, free sheet music and other musical information.</text>
+      <text bytes="111" xml:space="preserve">This is an example page with a link to [[Page 2]].{{Circular}}&lt;ref&gt;http://www.badsite.com&lt;/ref&gt;</text>
     </revision>
     <revision>
       <id>999</id>

@@ -207,11 +207,17 @@ class RevisionSAXHandlerInline(template: String) extends DefaultHandler {
   ): Seq[String] = {
     // Assumes inline usage: <ref>...</ref>{{TemplateName...}}
     val pattern =
-      s"(?i)(?:<ref[^>]*>(.*?)<ref>|&lt;ref[^&]*&gt;(.*?)&lt;/ref&gt;)\\s*?\\{\\{\\Q$template\\E".r
-    pattern
+      s"(?i)(?:<ref[^>]*>(.*?)</ref>|&lt;ref[^&]*&gt;(.*?)&lt;/ref&gt;)\\s*?\\{\\{\\Q$template\\E".r
+    val sources = pattern
       .findAllMatchIn(text)
-      .map(_.group(2))
+      .flatMap { m =>
+        val group1 = Option(m.group(1))
+        val group2 = Option(m.group(2))
+        group1.orElse(group2)
+      }
       .flatMap(SourceExtractor.extractDomain)
       .toSeq
+
+    sources.distinct
   }
 }
