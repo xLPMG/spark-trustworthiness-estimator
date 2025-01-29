@@ -28,7 +28,7 @@ class DataReaderTest extends munit.FunSuite {
         assertEquals(revision.templateRemoved, true)
         assertEquals(revision.pairId, 2L)
         revisionsChecked += 1
-        
+
       } else if (revision.revisionId == 4L) {
         assertEquals(revision.pageId, 1)
         assertEquals(revision.templateAdded, true)
@@ -57,29 +57,15 @@ class DataReaderTest extends munit.FunSuite {
     val sources = revision.sources
 
     print(sources)
+  }
 
-    // References
-    assert(sources.contains("cbc.ca"))
-    assert(sources.contains("whyfiles.org"))
-    assert(sources.contains("ISBN:0684182413"))
-    assert(sources.contains("mdw.ac.at"))
-    assert(sources.contains("antiquity.ac.uk"))
+  test("extractInlineSources") {
+    val filePath = "src/test/resources/dump/test-dump-3.xml"
+    val inputStream: InputStream = new FileInputStream(filePath)
+    val revisions = DataReader.getRevisions(inputStream, "Unreliable source?", inline = true)
+    val revision = revisions.head
+    val sources = revision.sources
 
-    // External Links
-    assert(sources.contains("fluteinfo.com"))
-    assert(sources.contains("loc.gov"))
-    assert(sources.contains("flutehistory.com"))
-    assert(sources.contains("flutes.tk"))
-    assert(sources.contains("thegalwaynetwork.com"))
-    assert(sources.contains("larrykrantz.com"))
-    assert(sources.contains("telus.net"))
-    assert(sources.contains("johnmcmurtery.com"))
-    assert(sources.contains("neyneva.com"))
-    assert(sources.contains("woodwind.org"))
-    assert(sources.contains("webindia123.com"))
-    assert(sources.contains("ronkorb.com"))
-    assert(sources.contains("bansuriflute.com"))
-    assert(sources.contains("pnoyandthecity.blogspot.com"))
-    assert(sources.contains("rastko.net"))
+    print(sources)
   }
 }

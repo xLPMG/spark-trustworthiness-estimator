@@ -13,7 +13,7 @@ import org.apache.spark.util.collection.BitSet
   * @param template
   *   The template to search for within page revisions
   */
-class RevisionSAXHandler(template: String) extends DefaultHandler {
+class RevisionSAXHandlerInline(template: String) extends DefaultHandler {
   private val revisions = ArrayBuffer[RevisionPair]()
 
   // State tracking variables
@@ -82,7 +82,8 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
                 templateRemoved = false,
                 templateAddedGT = true,
                 templateRemovedGT = false,
-                sources = SourceExtractor.extractSources(currentRevisionText)
+                sources =
+                  extractSourcesBeforeTemplates(currentRevisionText, template)
               )
             )
           }
@@ -91,6 +92,10 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
           // no template anymore but we already set the first revision
         } else if (firstTemplateRevision.isDefined && !currentTemplatePresent) {
           // Second revision without template
+          // If all templates removed, filter sources still present
+          val existingSources = firstTemplateRevision.get.sources.filter(
+            currentRevisionText.contains
+          )
           lastTemplateRevision = Some(
             Revision(
               revisionId = currentRevisionId.getOrElse(-1L),
@@ -102,7 +107,7 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
               templateRemoved = true,
               templateAddedGT = false,
               templateRemovedGT = true,
-              sources = SourceExtractor.extractSources(currentRevisionText)
+              sources = existingSources
             )
           )
 
@@ -195,4 +200,18 @@ class RevisionSAXHandler(template: String) extends DefaultHandler {
 
   /** Get the collected revisions */
   def getRevisionPairs: Seq[RevisionPair] = revisions
+
+  private def extractSourcesBeforeTemplates(
+      text: String,
+      template: String
+  ): Seq[String] = {
+    // Assumes inline usage: <ref>...</ref>{{TemplateName...}}
+    val pattern =
+      s"(?i)(?:<ref[^>]*>(.*?)<ref>|&lt;ref[^&]*&gt;(.*?)&lt;/ref&gt;)\\s*?\\{\\{\\Q$template\\E".r
+    pattern
+      .findAllMatchIn(text)
+      .map(_.group(2))
+      .flatMap(SourceExtractor.extractDomain)
+      .toSeq
+  }
 }

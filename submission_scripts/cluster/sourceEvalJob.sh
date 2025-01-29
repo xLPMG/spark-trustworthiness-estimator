@@ -7,7 +7,7 @@ if [ "$(kubectl auth can-i create pod)" != "yes" ]; then
 fi
 
 spark-submit \
-  --class me.lpmg.ste.jobs.SourceEvalJob \
+  --class me.lpmg.ste.jobs.PairSourceEvalJob \
   --name ste-source-eval-job \
   --properties-file ../../spark-defaults.conf \
   --conf spark.dynamicAllocation.maxExecutors=100 \
@@ -15,10 +15,10 @@ spark-submit \
   --conf spark.executor.memory=4g \
   --verbose \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
-  /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data5 \
-  revisions-unreliable-sources-2025-01-23T22-56-00Z \
+  /mnt/ceph/storage/data-in-progress/data-teaching/theses/thesis-grumbach/data6 \
+  revision-pairs-unreliable-sources-2025-01-25T21-00-14Z \
   "Unreliable sources" \
-  914360344
+  920856275
   
 # revisions-dubious-2025-01-23T23-00-16Z,743038329
 # revisions-third-party-2025-01-23T23-06-18Z,910639218

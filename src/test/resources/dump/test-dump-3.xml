@@ -26,7 +26,10 @@
         <model>wikitext</model>
         <format>text/x-wiki</format>
         <text bytes="21878" xml:space="preserve">{{circular}}{{dablink|This article is about the family of musical instruments. For the specific instrument, see [[Western concert flute]]. For the sailing ship, see [[Fluyt]]. For the drinkware, see [[Champagne flute]].}}
-&lt;ref&gt;http://news.lugnet.com/announce/?n=3637|date=1&lt;/ref&gt;
+
+&lt;ref&gt;www.badsite.com&lt;/ref&gt; {{Unreliable source?|date=January 2025}}
+&lt;ref&gt;www.goodsite.com&lt;/ref&gt; {{Unreliable source?|date=January 2025}}
+
 {{limitedgeographicscope}}
 
 The '''flute''' is a [[musical instrument]] of the [[woodwind]] family. Unlike other woodwind instruments, a flute produces its sound from the flow of air against an edge, instead of using a [[Reed (music)|reed]]. A [[musician]] who plays the flute is generally referred to as either a [[flautist|''flautist'']] (common term) or a ''flutist'' (american term).  
@@ -264,7 +267,9 @@ A double flute made of a single piece of wood, with six sound holes on one side.
         <model>wikitext</model>
         <format>text/x-wiki</format>
         <text bytes="21878" xml:space="preserve">{{dablink|This article is about the family of musical instruments. For the specific instrument, see [[Western concert flute]]. For the sailing ship, see [[Fluyt]]. For the drinkware, see [[Champagne flute]].}}
-&lt;ref&gt;http://news.lugnet.com/announce/?n=3637|date=1&lt;/ref&gt;
+
+<ref>www.goodsite.com</ref>
+
 {{limitedgeographicscope}}
 
 The '''flute''' is a [[musical instrument]] of the [[woodwind]] family. Unlike other woodwind instruments, a flute produces its sound from the flow of air against an edge, instead of using a [[Reed (music)|reed]]. A [[musician]] who plays the flute is generally referred to as either a [[flautist|''flautist'']] (common term) or a ''flutist'' (american term).  

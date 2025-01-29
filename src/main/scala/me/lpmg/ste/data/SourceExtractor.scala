@@ -12,19 +12,19 @@ import de.malkusch.whoisServerList.publicSuffixList.PublicSuffixListFactory
   */
 object SourceExtractor {
   // Regex patterns for source extraction
-  private val RefTagPattern = """<ref[^>]*>(.*?)</ref>""".r
+  private val RefTagPattern =
+    """(?i)(?:<ref[^>]*>(.*?)</ref>|&lt;ref[^&]*&gt;(.*?)&lt;/ref&gt;)""".r
   private val CiteTemplatePattern =
     """\{\{(?i)(cite|citation|vcite2|vcite|vancite|wikicite|wayback)[^}]*\}\}""".r
   private val UrlPattern = """(?i)url\s*=\s*([^|\}]+)""".r
   private val IsbnPattern = """(?i)isbn\s*=\s*([^|\}]+)""".r
   private val UrlInRefPattern = """https?://[^\s<>"]+""".r
-  private val ExternalLinkPattern = """\*\s*\[(https?://[^\s\]]+)[^\]]*\]""".r
 
   // Initialize PublicSuffixList
   private val publicSuffixList: PublicSuffixList =
     new PublicSuffixListFactory().build()
 
-  private def extractDomain(urlStr: String): Option[String] = {
+  def extractDomain(urlStr: String): Option[String] = {
     Try {
       val trimmedUrlStr = urlStr.trim
       val lastTwoChars = trimmedUrlStr.takeRight(2)
@@ -35,8 +35,9 @@ object SourceExtractor {
           trimmedUrlStr.dropRight(2)
         else if (
           ",".equals(lastChar) || "]"
-            .equals(lastChar) || ")".equals(lastChar) || "}".equals(lastChar))
-            trimmedUrlStr.dropRight(1)
+            .equals(lastChar) || ")".equals(lastChar) || "}".equals(lastChar)
+        )
+          trimmedUrlStr.dropRight(1)
         else trimmedUrlStr
       if (cleanedUrlStr.isEmpty() || cleanedUrlStr.contains("{{")) {
         return None
@@ -60,48 +61,48 @@ object SourceExtractor {
 
   /** Extract all sources from a Wikipedia text. Returns a sequence of either
     * domain names (for URLs) or ISBNs (for books).
+    *
+    * Note: Wikiepdia says that cites should be enclosed in ref tags as well.
+    * However in practice, I have seen many revisions where editors did not
+    * follow this rule. So, I am also extracting cites using cite templates.
+    * This means that in many cases, we will match the same source multiple
+    * times, however by using .distinct at the end, we only keep unique sources.
     */
   def extractSources(text: String): Seq[String] = {
     val sources = ArrayBuffer[String]()
 
-    // Extract from ref tags
-    RefTagPattern.findAllMatchIn(text).foreach { m =>
-      val refContent = m.group(1)
-      // Extract URLs from ref content
-      UrlInRefPattern.findAllMatchIn(refContent).foreach { urlMatch =>
-        extractDomain(urlMatch.group(0)).foreach(sources += _)
-      }
-    }
-
-    // Extract from cite templates
-    CiteTemplatePattern.findAllMatchIn(text).foreach { m =>
-      val template = m.group(0)
-
-      // Extract URLs
-      UrlPattern.findFirstMatchIn(template).foreach { urlMatch =>
-        extractDomain(urlMatch.group(1)).foreach(sources += _)
+    if (text != null) {
+      // Extract from ref tags
+      RefTagPattern.findAllMatchIn(text).foreach { m =>
+        val refContent = m.group(1)
+        if (refContent != null) {
+          // Extract URLs from ref content
+          UrlInRefPattern.findAllMatchIn(refContent).foreach { urlMatch =>
+            extractDomain(urlMatch.group(0)).foreach(sources += _)
+          }
+        }
       }
 
-      // Extract ISBNs
-      IsbnPattern.findFirstMatchIn(template).foreach { isbnMatch =>
-        val isbn = cleanIsbn(isbnMatch.group(1))
-        if (isbn.nonEmpty) {
-          sources += s"ISBN:$isbn"
+      // Extract from cite templates
+      CiteTemplatePattern.findAllMatchIn(text).foreach { m =>
+        val template = m.group(0)
+        if (template != null) {
+          // Extract URLs
+          UrlPattern.findFirstMatchIn(template).foreach { urlMatch =>
+            extractDomain(urlMatch.group(1)).foreach(sources += _)
+          }
+
+          // Extract ISBNs
+          IsbnPattern.findFirstMatchIn(template).foreach { isbnMatch =>
+            val isbn = cleanIsbn(isbnMatch.group(1))
+            if (isbn.nonEmpty) {
+              sources += s"ISBN:$isbn"
+            }
+          }
         }
       }
     }
 
-    // Extract from external links section
-    ExternalLinkPattern.findAllMatchIn(text).foreach { m =>
-      extractDomain(m.group(1)).foreach(sources += _)
-    }
-
-    // Clean up links
-    val cleanedSources = sources.map { source =>
-      val pipeIndex = source.indexOf('|')
-      if (pipeIndex >= 0) source.substring(0, pipeIndex) else source
-    }
-
-    cleanedSources.distinct
+    sources.distinct
   }
 }

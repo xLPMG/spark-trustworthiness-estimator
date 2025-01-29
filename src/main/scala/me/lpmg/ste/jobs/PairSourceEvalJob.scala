@@ -12,12 +12,12 @@ import me.lpmg.ste.types.TemplateProbabilityVector
 import me.lpmg.ste.algorithms.ProbabilityHandler
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
+import me.lpmg.ste.data.RevisionPair
 
-/**
-  * This job evaluates the sources of revisions. Unchanged sources are not included in the evaluation.
-  * Arguments: <data-folder-path> <revisions-folder> <template> <test-split-revision>
-  */
-object SourceEvalJob {
+/* This job evaluates the sources of revision pairs. Unchanged sources are not included in the evaluation.
+ * Arguments: <data-folder-path> <revisions-folder> <template> <test-split-revision>
+ */
+object PairSourceEvalJob {
 
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)
@@ -26,7 +26,7 @@ object SourceEvalJob {
       logger.error("Please specify the data folder path")
       System.exit(1)
     } else if (args.length < 2) {
-      logger.error("Please specify the revisions folder name")
+      logger.error("Please specify the revision pairs folder name")
       System.exit(1)
     } else if (args.length < 3) {
       logger.error(
@@ -62,13 +62,13 @@ object SourceEvalJob {
       new RevisionManager(spark, dataFolderPath)
 
     // only load revisions up to the test split revision for source evaluation
-    val revisions: RDD[Revision] = revisionManager
-      .loadRevisions(revisionsFolderName)
-      .filter(_.revisionId < testSplitRevision)
+    val revisions: RDD[RevisionPair] = revisionManager
+      .loadRevisionPairs(revisionsFolderName)
+      .filter(_.revisionIdTemplateAdded < testSplitRevision)
     val sourceProbabilities = SourceEvaluator
-      .evaluateSources(revisions)
+      .evaluateSourcesFromPairsWithoutUnchangedSources(revisions)
       // only include sources that appeared in revisions where a template was added or removed
-      // this shouldnt be necessary though since the revisions folder only 
+      // this shouldnt be necessary though since the revisions folder only
       // contains revisions where a template was added or removed
       .filter(_._2._2 > 0)
 
@@ -79,7 +79,9 @@ object SourceEvalJob {
     val sourceProbabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"source-probabilities-$escapedTemplate-$dateString")
+        .resolve(
+          s"sources-noUnchanged-probabilities-$escapedTemplate-$dateString"
+        )
 
     val sourceProbabilitiesDF = sourceProbabilities
       .map { case (source, probabilities) =>
@@ -102,6 +104,7 @@ object SourceEvalJob {
       )
 
     sourceProbabilitiesDF
+      .coalesce(1)
       .write
       .option("header", "true")
       .csv(sourceProbabilitiesOutputPath.toString)

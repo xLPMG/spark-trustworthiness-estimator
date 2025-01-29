@@ -7,11 +7,10 @@ import java.time.ZoneId
 import me.lpmg.ste.data.RevisionManager
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
+import me.lpmg.ste.data.RevisionPair
+import me.lpmg.ste.data.DataReader
 
-/** This job extracts the labels for the template
- * Arguments: <data-folder-path> <revisions-folder> <template>
-  */
-object ExtractLabelsJob {
+object PairExtractLabelsJob {
 
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)
@@ -20,7 +19,7 @@ object ExtractLabelsJob {
       logger.error("Please specify the data folder path")
       System.exit(1)
     } else if (args.length < 2) {
-      logger.error("Please specify the revisions folder")
+      logger.error("Please specify the revision pairs folder")
       System.exit(1)
     } else if (args.length < 3) {
       logger.error("Please specify the template")
@@ -43,8 +42,9 @@ object ExtractLabelsJob {
 
     // Load the data
     val revisionManager = new RevisionManager(spark, dataFolderPath)
-    val revisions: RDD[Revision] =
-      revisionManager.loadRevisions(revisionsFolderName)
+    val revisionPairs: RDD[RevisionPair] =
+      revisionManager.loadRevisionPairs(revisionsFolderName)
+    val revisions = DataReader.revisionPairsToRevisionsDistributed(revisionPairs)
 
     import java.nio.file.{Files, Paths}
 
@@ -58,7 +58,9 @@ object ExtractLabelsJob {
       }
       .toDF("revision_id", "pair_id", "templateAdded", "templateRemoved")
 
-    templateData.write
+    templateData
+      .coalesce(1)
+      .write
       .mode("overwrite")
       .option("header", "true")
       .csv(labelsFolderPath.toString)
