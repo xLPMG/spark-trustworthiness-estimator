@@ -151,6 +151,10 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="object" href="AdditionalSourceCleanup$.html" title="This object contains the logic to further clean up the source data."></a>
+                        <a href="AdditionalSourceCleanup$.html" title="This object contains the logic to further clean up the source data.">AdditionalSourceCleanup</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="object" href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files."></a>
                         <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
                       </li><li class="current-entities indented4">
@@ -163,8 +167,16 @@
                         <a href="RevisionManager.html" title="">RevisionManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="class" href="RevisionPair.html" title=""></a>
+                        <a href="RevisionPair.html" title="">RevisionPair</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="class" href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
                         <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandler</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
+                        <a href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandlerInline</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content."></a>
@@ -314,6 +326,27 @@
       </span>
       
       
+    </li><li name="me.lpmg.ste.data.RevisionPair" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="RevisionPairextendsSerializablewithProduct"></a><a id="RevisionPair:RevisionPair"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionPair.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="RevisionPair.html"><span class="name">RevisionPair</span></a><span class="params">(<span name="revisionIdTemplateAdded">revisionIdTemplateAdded: <span class="extype" name="scala.Long">Long</span></span>, <span name="revisionIdTemplateRemoved">revisionIdTemplateRemoved: <span class="extype" name="scala.Long">Long</span></span>, <span name="pageId">pageId: <span class="extype" name="scala.Int">Int</span></span>, <span name="sourcesTemplateAdded">sourcesTemplateAdded: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Seq.empty</span></span>, <span name="sourcesTemplateRemoved">sourcesTemplateRemoved: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Seq.empty</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+      </span>
+      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">revisionIdTemplateAdded</dt><dd class="cmt"><p>
+  The ID of the revision where the template was added.</p></dd><dt class="param">revisionIdTemplateRemoved</dt><dd class="cmt"><p>
+  The ID of the revision where the template was removed.</p></dd><dt class="param">pageId</dt><dd class="cmt"><p>
+  The ID of the page.</p></dd><dt class="param">sourcesTemplateAdded</dt><dd class="cmt"><p>
+  A sequence of sources present when the template was added.</p></dd><dt class="param">sourcesTemplateRemoved</dt><dd class="cmt"><p>
+  A sequence of sources present when the template was removed.</p></dd></dl></div>
     </li><li name="me.lpmg.ste.data.RevisionSAXHandler" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="RevisionSAXHandlerextendsDefaultHandler"></a><a id="RevisionSAXHandler:RevisionSAXHandler"></a>
       <span class="permalink">
@@ -331,6 +364,23 @@
       
       <p class="shortcomment cmt">SAX handler for parsing MediaWiki XML revisions, filtering for specific
 template and namespace.</p>
+    </li><li name="me.lpmg.ste.data.RevisionSAXHandlerInline" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RevisionSAXHandlerInlineextendsDefaultHandler"></a><a id="RevisionSAXHandlerInline:RevisionSAXHandlerInline"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionSAXHandlerInline.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace." href="RevisionSAXHandlerInline.html"><span class="name">RevisionSAXHandlerInline</span></a><span class="result"> extends <span class="extype" name="org.xml.sax.helpers.DefaultHandler">DefaultHandler</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">SAX handler for parsing MediaWiki XML revisions, filtering for specific
+template and namespace.</p>
     </li></ol>
             </div>
 
@@ -339,7 +389,23 @@ template and namespace.</p>
         <div class="values members">
               <h3>Value Members</h3>
               <ol>
-                <li name="me.lpmg.ste.data.DataReader" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+                <li name="me.lpmg.ste.data.AdditionalSourceCleanup" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AdditionalSourceCleanup"></a><a id="AdditionalSourceCleanup:AdditionalSourceCleanup"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/AdditionalSourceCleanup$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="This object contains the logic to further clean up the source data." href="AdditionalSourceCleanup$.html"><span class="name">AdditionalSourceCleanup</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">This object contains the logic to further clean up the source data.</p>
+    </li><li name="me.lpmg.ste.data.DataReader" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="DataReader"></a><a id="DataReader:DataReader"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/DataReader$.html" title="Permalink">

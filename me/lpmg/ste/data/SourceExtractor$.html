@@ -135,6 +135,10 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="object" href="AdditionalSourceCleanup$.html" title="This object contains the logic to further clean up the source data."></a>
+                        <a href="AdditionalSourceCleanup$.html" title="This object contains the logic to further clean up the source data.">AdditionalSourceCleanup</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="object" href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files."></a>
                         <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
                       </li><li class="current-entities indented4">
@@ -147,8 +151,16 @@
                         <a href="RevisionManager.html" title="">RevisionManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="class" href="RevisionPair.html" title=""></a>
+                        <a href="RevisionPair.html" title="">RevisionPair</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="class" href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
                         <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandler</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
+                        <a href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandlerInline</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="" title="Extracts sources from Wikipedia text content."></a>
@@ -362,6 +374,22 @@ main domain or first subdomain. For books, only extracts the ISBN.
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="me.lpmg.ste.data.SourceExtractor#extractDomain" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="extractDomain(urlStr:String):Option[String]"></a><a id="extractDomain(String):Option[String]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/SourceExtractor$.html#extractDomain(urlStr:String):Option[String]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">extractDomain</span><span class="params">(<span name="urlStr">urlStr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      
+      
     </li><li name="me.lpmg.ste.data.SourceExtractor#extractSources" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="extractSources(text:String):Seq[String]"></a><a id="extractSources(String):Seq[String]"></a>
       <span class="permalink">
@@ -378,7 +406,11 @@ main domain or first subdomain. For books, only extracts the ISBN.
       </span>
       
       <p class="shortcomment cmt">Extract all sources from a Wikipedia text.</p><div class="fullcomment"><div class="comment cmt"><p>Extract all sources from a Wikipedia text. Returns a sequence of either
-domain names (for URLs) or ISBNs (for books).
+domain names (for URLs) or ISBNs (for books).</p><p>Note: Wikiepdia says that cites should be enclosed in ref tags as well.
+However in practice, I have seen many revisions where editors did not
+follow this rule. So, I am also extracting cites using cite templates.
+This means that in many cases, we will match the same source multiple
+times, however by using .distinct at the end, we only keep unique sources.
 </p></div></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>

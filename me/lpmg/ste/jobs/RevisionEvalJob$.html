@@ -135,32 +135,56 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="ExampleJob$.html" title=""></a>
-                        <a href="ExampleJob$.html" title="">ExampleJob</a>
+                        <a class="object" href="CountSourceChangesJob$.html" title="This job counts the number of revision pairs where the sources have changed."></a>
+                        <a href="CountSourceChangesJob$.html" title="This job counts the number of revision pairs where the sources have changed.">CountSourceChangesJob</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="ExtractLabelsJob$.html" title=""></a>
-                        <a href="ExtractLabelsJob$.html" title="">ExtractLabelsJob</a>
+                        <a class="object" href="CountUnknownSourcesJob$.html" title="This job counts the number of revisions where there is at least one unknown source."></a>
+                        <a href="CountUnknownSourcesJob$.html" title="This job counts the number of revisions where there is at least one unknown source.">CountUnknownSourcesJob</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="object" href="ExampleJob$.html" title="Minimal example job to test if the Spark cluster is working"></a>
+                        <a href="ExampleJob$.html" title="Minimal example job to test if the Spark cluster is working">ExampleJob</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="object" href="ExtractLabelsJob$.html" title="This job extracts the labels for the template Arguments: &lt;data-folder-path&gt; &lt;revisions-folder&gt; &lt;template&gt;"></a>
+                        <a href="ExtractLabelsJob$.html" title="This job extracts the labels for the template Arguments: &lt;data-folder-path&gt; &lt;revisions-folder&gt; &lt;template&gt;">ExtractLabelsJob</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="MaskDataJob$.html" title=""></a>
                         <a href="MaskDataJob$.html" title="">MaskDataJob</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="ParseJob$.html" title=""></a>
-                        <a href="ParseJob$.html" title="">ParseJob</a>
+                        <a class="object" href="PairExtractLabelsJob$.html" title=""></a>
+                        <a href="PairExtractLabelsJob$.html" title="">PairExtractLabelsJob</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="" title=""></a>
-                        <a href="" title="">RevisionEvalJob</a>
+                        <a class="object" href="PairParseJob$.html" title="This job extracts the revision pairs for the specified template from a Wikipedia dump."></a>
+                        <a href="PairParseJob$.html" title="This job extracts the revision pairs for the specified template from a Wikipedia dump.">PairParseJob</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="SourceCountChangeJob$.html" title=""></a>
-                        <a href="SourceCountChangeJob$.html" title="">SourceCountChangeJob</a>
+                        <a class="object" href="PairRevisionEvalJob$.html" title="This job evaluates revisions based on their sources."></a>
+                        <a href="PairRevisionEvalJob$.html" title="This job evaluates revisions based on their sources.">PairRevisionEvalJob</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="SourceEvalJob$.html" title=""></a>
-                        <a href="SourceEvalJob$.html" title="">SourceEvalJob</a>
+                        <a class="object" href="PairSourceEvalJob$.html" title=""></a>
+                        <a href="PairSourceEvalJob$.html" title="">PairSourceEvalJob</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="object" href="PairSourceUnchangedEvalJob$.html" title="This job evaluates the sources of revision pairs."></a>
+                        <a href="PairSourceUnchangedEvalJob$.html" title="This job evaluates the sources of revision pairs.">PairSourceUnchangedEvalJob</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="object" href="ParseJob$.html" title="This job extracts the revisions for the specified template from a Wikipedia dump."></a>
+                        <a href="ParseJob$.html" title="This job extracts the revisions for the specified template from a Wikipedia dump.">ParseJob</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="object" href="" title="This job evaluates revisions based on their sources."></a>
+                        <a href="" title="This job evaluates revisions based on their sources.">RevisionEvalJob</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="object" href="SourceEvalJob$.html" title="This job evaluates the sources of revisions."></a>
+                        <a href="SourceEvalJob$.html" title="This job evaluates the sources of revisions.">SourceEvalJob</a>
                       </li>
               </ul>
             </div>
@@ -189,7 +213,9 @@
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This job evaluates revisions based on their sources.
+Arguments: &lt;data-folder-path&gt; &lt;revisions-folder&gt; &lt;source-probabilities-folder&gt; &lt;template&gt; &lt;test-split-revision&gt;
+</p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>

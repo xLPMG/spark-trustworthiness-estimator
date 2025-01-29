@@ -135,6 +135,10 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="object" href="AdditionalSourceCleanup$.html" title="This object contains the logic to further clean up the source data."></a>
+                        <a href="AdditionalSourceCleanup$.html" title="This object contains the logic to further clean up the source data.">AdditionalSourceCleanup</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="object" href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files."></a>
                         <a href="DataReader$.html" title="Provides functionality to read and parse XML data from BZip2 compressed files.">DataReader</a>
                       </li><li class="current-entities indented4">
@@ -147,8 +151,16 @@
                         <a href="" title="">RevisionManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
+                        <a class="class" href="RevisionPair.html" title=""></a>
+                        <a href="RevisionPair.html" title="">RevisionPair</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
                         <a class="class" href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
                         <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandler</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
+                        <a href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandlerInline</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content."></a>
@@ -437,6 +449,22 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="me.lpmg.ste.data.RevisionManager#loadRevisionPairs" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="loadRevisionPairs(inputFolder:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]"></a><a id="loadRevisionPairs(String):RDD[RevisionPair]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#loadRevisionPairs(inputFolder:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">loadRevisionPairs</span><span class="params">(<span name="inputFolder">inputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>
+      </span>
+      
+      
     </li><li name="me.lpmg.ste.data.RevisionManager#loadRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="loadRevisions(inputFolder:String,hasGTData:Boolean):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]"></a><a id="loadRevisions(String,Boolean):RDD[Revision]"></a>
       <span class="permalink">
@@ -527,7 +555,23 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.data.RevisionManager#retrieveRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="me.lpmg.ste.data.RevisionManager#retrieveRevisionPairs" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="retrieveRevisionPairs(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)],template:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]"></a><a id="retrieveRevisionPairs(RDD[(String,PortableDataStream)],String):RDD[RevisionPair]"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#retrieveRevisionPairs(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)],template:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">retrieveRevisionPairs</span><span class="params">(<span name="filesRDD">filesRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span>)]</span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>
+      </span>
+      
+      
+    </li><li name="me.lpmg.ste.data.RevisionManager#retrieveRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)],template:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]"></a><a id="retrieveRevisions(RDD[(String,PortableDataStream)],String):RDD[Revision]"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/RevisionManager.html#retrieveRevisions(filesRDD:org.apache.spark.rdd.RDD[(String,org.apache.spark.input.PortableDataStream)],template:String):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]" title="Permalink">
@@ -542,9 +586,23 @@
         <span class="name">retrieveRevisions</span><span class="params">(<span name="filesRDD">filesRDD: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span>)]</span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
-      <p class="shortcomment cmt">Initializes the graph by reading all revisions from the dump folder.</p><div class="fullcomment"><div class="comment cmt"><p>Initializes the graph by reading all revisions from the dump folder.
-</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>
-  The revision graph</p></dd></dl></div>
+      
+    </li><li name="me.lpmg.ste.data.RevisionManager#saveRevisionPairsToFile" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="saveRevisionPairsToFile(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair],outputFolder:String):Unit"></a><a id="saveRevisionPairsToFile(RDD[RevisionPair],String):Unit"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/RevisionManager.html#saveRevisionPairsToFile(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair],outputFolder:String):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">saveRevisionPairsToFile</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>, <span name="outputFolder">outputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      
     </li><li name="me.lpmg.ste.data.RevisionManager#saveRevisionsToFile" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="saveRevisionsToFile(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision],outputFolder:String):Unit"></a><a id="saveRevisionsToFile(RDD[Revision],String):Unit"></a>
       <span class="permalink">
@@ -560,7 +618,7 @@
         <span class="name">saveRevisionsToFile</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>, <span name="outputFolder">outputFolder: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
-      <p class="shortcomment cmt">Saves the revisions to a parquet file.</p>
+      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
