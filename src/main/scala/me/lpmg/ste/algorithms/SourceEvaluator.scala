@@ -6,6 +6,7 @@ import org.apache.spark.storage.StorageLevel
 import me.lpmg.ste.data.Revision
 import me.lpmg.ste.types.TemplateProbabilityVector
 import me.lpmg.ste.data.RevisionPair
+import me.lpmg.ste.data.AdditionalSourceCleanup
 
 object SourceEvaluator extends Serializable {
 
@@ -119,14 +120,22 @@ object SourceEvaluator extends Serializable {
   ): RDD[(String, (TemplateProbabilityVector, Int))] = {
     revisionPairs
       .flatMap { revisionPair =>
+
+        val cleanedAddedSources = revisionPair.sourcesTemplateAdded.map { source =>
+          AdditionalSourceCleanup.cleanupSource(source)
+        }
+        val cleanedRemovedSources = revisionPair.sourcesTemplateRemoved.map { source =>
+          AdditionalSourceCleanup.cleanupSource(source)
+        }
+
         val combinedSources =
-          (revisionPair.sourcesTemplateAdded ++ revisionPair.sourcesTemplateRemoved).distinct
+          (cleanedAddedSources ++ cleanedRemovedSources).distinct
 
         combinedSources.map { source =>
           val sourceExistsWhenTemplateRemoved =
-            revisionPair.sourcesTemplateRemoved.contains(source)
+            cleanedRemovedSources.contains(source)
           val sourceExistsWhenTemplateAdded =
-            revisionPair.sourcesTemplateAdded.contains(source)
+            cleanedAddedSources.contains(source)
 
           if (sourceExistsWhenTemplateAdded && !sourceExistsWhenTemplateRemoved) {
             // source was removed when template was removed

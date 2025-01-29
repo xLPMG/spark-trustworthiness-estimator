@@ -14,7 +14,11 @@ import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
 import me.lpmg.ste.data.RevisionPair
 
-object PairSourceEvalJob2 {
+/** This job evaluates the sources of revision pairs. Unchanged sources are
+  * included in the evaluation. Arguments: <data-folder-path> <revisions-folder>
+  * <template> <test-split-revision>
+  */
+object PairSourceUnchangedEvalJob {
 
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)

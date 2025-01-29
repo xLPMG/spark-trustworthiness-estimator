@@ -8,6 +8,9 @@ import org.apache.spark.sql.SparkSession
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
+/** This job extracts the revisions for the specified template from a Wikipedia dump.
+  * Arguments: <dump-folder-path> <data-folder-path> <template>
+  */
 object ParseJob {
 
   def main(args: Array[String]): Unit = {

@@ -8,6 +8,9 @@ import org.apache.spark.sql.SparkSession
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
+/** This job extracts the revision pairs for the specified template from a
+  * Wikipedia dump. Arguments: <dump-folder-path> <data-folder-path> <template>
+  */
 object PairParseJob {
 
   def main(args: Array[String]): Unit = {
@@ -44,7 +47,10 @@ object PairParseJob {
 
     val date = ZonedDateTime.now(ZoneId.of("UTC"))
     val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
-    revisionManager.saveRevisionPairsToFile(revisions, s"revision-pairs-$escapedTemplate-$dateString")
+    revisionManager.saveRevisionPairsToFile(
+      revisions,
+      s"revision-pairs-$escapedTemplate-$dateString"
+    )
 
     logger.warn(s"Total Time: ${Watch.stopFormatted("parseJob")}")
     spark.stop()

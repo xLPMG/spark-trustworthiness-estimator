@@ -13,12 +13,15 @@ import scala.collection.mutable
 import org.apache.spark.sql.Row
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
+import me.lpmg.ste.data.RevisionPair
+import javax.xml.crypto.Data
+import me.lpmg.ste.data.DataReader
 
 /**
   * This job evaluates revisions based on their sources.
   * Arguments: <data-folder-path> <revisions-folder> <source-probabilities-folder> <template> <test-split-revision>
   */
-object RevisionEvalJob {
+object PairRevisionEvalJob {
   val DefaultTemplateProbabilityVector = TemplateProbabilityVector(0.5f, 0.5f)
 
   def main(args: Array[String]): Unit = {
@@ -66,9 +69,12 @@ object RevisionEvalJob {
       new RevisionManager(spark, dataFolderPath)
 
     // only load test split revisions for evaluation
-    val revisions: RDD[Revision] = revisionManager
-      .loadRevisions(revisionsFolderName)
-      .filter(_.revisionId >= testSplitRevision)
+    val revisionPairs: RDD[RevisionPair] = revisionManager
+      .loadRevisionPairs(revisionsFolderName)
+      .filter(_.revisionIdTemplateAdded >= testSplitRevision)
+
+    val revisions =
+      DataReader.revisionPairsToRevisionsDistributed(revisionPairs)
 
     val sourceProbabilitiesFolderPath =
       Path.of(dataFolderPath).resolve(sourceProbabilitiesFolderName)
@@ -86,16 +92,19 @@ object RevisionEvalJob {
     import spark.implicits._
 
     // source -> TemplateProbabilityVector
-    val sourceProbabilitiesMap = sourceProbabilitiesDF
-      .rdd
+    val sourceProbabilitiesMap = sourceProbabilitiesDF.rdd
       .map { row =>
         val source = row.getAs[String]("src")
-        val probabilityTemplateAdded = row.getAs[String]("probabilityTemplateAdded").toFloat
+        val probabilityTemplateAdded =
+          row.getAs[String]("probabilityTemplateAdded").toFloat
         // only intialize with template added probability to ensure it adds up to 1.0f exactly
-        //val probabilityTemplateRemoved = row.getAs[String]("probabilityTemplateRemoved").toFloat
+        // val probabilityTemplateRemoved = row.getAs[String]("probabilityTemplateRemoved").toFloat
         val occurences = row.getAs[String]("occurences").toInt
 
-        (source, (TemplateProbabilityVector(probabilityTemplateAdded), occurences))
+        (
+          source,
+          (TemplateProbabilityVector(probabilityTemplateAdded), occurences)
+        )
       }
       .collectAsMap()
 
@@ -119,12 +128,17 @@ object RevisionEvalJob {
       }
       // Map probability values to string representation
       .map { case (revisionId, probabilities) =>
-        val (probabilityTemplateAdded, probabilityTemplateRemoved) = probabilities.extractValuesString
+        val (probabilityTemplateAdded, probabilityTemplateRemoved) =
+          probabilities.extractValuesString
         (revisionId, probabilityTemplateAdded, probabilityTemplateRemoved)
       }
 
     val probabilitiesDF =
-      revisionToProbabilities.toDF("revision_id", "probabilityTemplateAdded", "probabilityTemplateRemoved")
+      revisionToProbabilities.toDF(
+        "revision_id",
+        "probabilityTemplateAdded",
+        "probabilityTemplateRemoved"
+      )
 
     val probabilitiesOutputPath =
       Path

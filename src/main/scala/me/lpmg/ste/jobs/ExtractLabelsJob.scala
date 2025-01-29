@@ -8,6 +8,9 @@ import me.lpmg.ste.data.RevisionManager
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
 
+/** This job extracts the labels for the template
+ * Arguments: <data-folder-path> <revisions-folder> <template>
+  */
 object ExtractLabelsJob {
 
   def main(args: Array[String]): Unit = {

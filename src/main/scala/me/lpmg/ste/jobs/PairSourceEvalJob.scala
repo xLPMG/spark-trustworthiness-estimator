@@ -14,6 +14,9 @@ import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
 import me.lpmg.ste.data.RevisionPair
 
+/* This job evaluates the sources of revision pairs. Unchanged sources are not included in the evaluation.
+ * Arguments: <data-folder-path> <revisions-folder> <template> <test-split-revision>
+ */
 object PairSourceEvalJob {
 
   def main(args: Array[String]): Unit = {
@@ -23,7 +26,7 @@ object PairSourceEvalJob {
       logger.error("Please specify the data folder path")
       System.exit(1)
     } else if (args.length < 2) {
-      logger.error("Please specify the revisions folder name")
+      logger.error("Please specify the revision pairs folder name")
       System.exit(1)
     } else if (args.length < 3) {
       logger.error(
@@ -65,7 +68,7 @@ object PairSourceEvalJob {
     val sourceProbabilities = SourceEvaluator
       .evaluateSourcesFromPairsWithoutUnchangedSources(revisions)
       // only include sources that appeared in revisions where a template was added or removed
-      // this shouldnt be necessary though since the revisions folder only 
+      // this shouldnt be necessary though since the revisions folder only
       // contains revisions where a template was added or removed
       .filter(_._2._2 > 0)
 
@@ -76,7 +79,9 @@ object PairSourceEvalJob {
     val sourceProbabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"sources-noUnchanged-probabilities-$escapedTemplate-$dateString")
+        .resolve(
+          s"sources-noUnchanged-probabilities-$escapedTemplate-$dateString"
+        )
 
     val sourceProbabilitiesDF = sourceProbabilities
       .map { case (source, probabilities) =>
@@ -99,6 +104,7 @@ object PairSourceEvalJob {
       )
 
     sourceProbabilitiesDF
+      .coalesce(1)
       .write
       .option("header", "true")
       .csv(sourceProbabilitiesOutputPath.toString)

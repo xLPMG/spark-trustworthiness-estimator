@@ -58,7 +58,9 @@ object PairExtractLabelsJob {
       }
       .toDF("revision_id", "pair_id", "templateAdded", "templateRemoved")
 
-    templateData.write
+    templateData
+      .coalesce(1)
+      .write
       .mode("overwrite")
       .option("header", "true")
       .csv(labelsFolderPath.toString)

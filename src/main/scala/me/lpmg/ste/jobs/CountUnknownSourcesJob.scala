@@ -1,22 +1,22 @@
 package me.lpmg.ste.jobs
 
 import com.typesafe.scalalogging.Logger
-import java.time.ZonedDateTime
-import java.time.ZoneId
 import org.apache.spark.sql.SparkSession
 import me.lpmg.ste.data.RevisionManager
 import java.nio.file.Path
 import me.lpmg.ste.types.TemplateProbabilityVector
-import me.lpmg.ste.types.Types.TemplateBitPositions
-import me.lpmg.ste.algorithms.ProbabilityHandler
 import scala.collection.mutable
 import org.apache.spark.sql.Row
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
+import me.lpmg.ste.data.DataReader
+import me.lpmg.ste.data.RevisionPair
 
+/** This job counts the number of revisions where there is at least one unknown
+  * source. Arguments: <data-folder-path> <revisions-folder>
+  * <source-probabilities-folder> <template> [<test-split-revision>]
+  */
 object CountUnknownSourcesJob {
-  val DefaultTemplateProbabilityVector = TemplateProbabilityVector(0.5f, 0.5f)
-
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)
 
@@ -24,7 +24,7 @@ object CountUnknownSourcesJob {
       logger.error("Please specify the data folder path")
       System.exit(1)
     } else if (args.length < 2) {
-      logger.error("Please specify the revisions folder")
+      logger.error("Please specify the revisions pairs folder")
       System.exit(1)
     } else if (args.length < 3) {
       logger.error("Please specify the source probabilities folder")
@@ -33,9 +33,6 @@ object CountUnknownSourcesJob {
       logger.error("Please specify the template")
       System.exit(1)
     }
-
-    val date = ZonedDateTime.now(ZoneId.of("UTC"))
-    val dateString = date.toString().replace(":", "-").split("\\.")(0) + "Z"
 
     val dataFolderPath = args(0)
     val revisionsFolderName = args(1)
@@ -62,9 +59,12 @@ object CountUnknownSourcesJob {
       new RevisionManager(spark, dataFolderPath)
 
     // only load test split revisions for evaluation
-    val revisions: RDD[Revision] = revisionManager
-      .loadRevisions(revisionsFolderName)
-      .filter(_.revisionId >= testSplitRevision)
+    val revisionPairs: RDD[RevisionPair] = revisionManager
+      .loadRevisionPairs(revisionsFolderName)
+      .filter(_.revisionIdTemplateAdded >= testSplitRevision)
+
+    val revisions =
+      DataReader.revisionPairsToRevisionsDistributed(revisionPairs)
 
     val sourceProbabilitiesFolderPath =
       Path.of(dataFolderPath).resolve(sourceProbabilitiesFolderName)
@@ -82,23 +82,28 @@ object CountUnknownSourcesJob {
     import spark.implicits._
 
     // source -> TemplateProbabilityVector
-    val sourceProbabilitiesMap = sourceProbabilitiesDF
-      .rdd
+    val sourceProbabilitiesMap = sourceProbabilitiesDF.rdd
       .map { row =>
         val source = row.getAs[String]("src")
-        val probabilityTemplateAdded = row.getAs[String]("probabilityTemplateAdded").toFloat
+        val probabilityTemplateAdded =
+          row.getAs[String]("probabilityTemplateAdded").toFloat
         // only intialize with template added probability to ensure it adds up to 1.0f exactly
-        //val probabilityTemplateRemoved = row.getAs[String]("probabilityTemplateRemoved").toFloat
+        // val probabilityTemplateRemoved = row.getAs[String]("probabilityTemplateRemoved").toFloat
         val occurences = row.getAs[String]("occurences").toInt
 
-        (source, (TemplateProbabilityVector(probabilityTemplateAdded), occurences))
+        (
+          source,
+          (TemplateProbabilityVector(probabilityTemplateAdded), occurences)
+        )
       }
       .collectAsMap()
 
     val totalRevisionsCount = revisions.count()
     val revisionsWithUnknownSources = revisions
       .map { revision =>
-        val unknownSources = revision.sources.count(source => !sourceProbabilitiesMap.contains(source))
+        val unknownSources = revision.sources.count(source =>
+          !sourceProbabilitiesMap.contains(source)
+        )
         val allSources = revision.sources.size
         (unknownSources, allSources)
       }
@@ -107,15 +112,24 @@ object CountUnknownSourcesJob {
 
     val countRevisionsWithUnknownSources = revisionsWithUnknownSources.count()
     val averageUnknownSourceRatio = revisionsWithUnknownSources
-      .map { case (unknownSources, allSources) => unknownSources.toDouble / allSources }
+      .map { case (unknownSources, allSources) =>
+        unknownSources.toDouble / allSources
+      }
       .mean()
 
-    val percentageRevisionsWithUnknownSources = (countRevisionsWithUnknownSources.toDouble / totalRevisionsCount) * 100
+    val percentageRevisionsWithUnknownSources =
+      (countRevisionsWithUnknownSources.toDouble / totalRevisionsCount) * 100
 
     logger.info(s"Total number of revisions: $totalRevisionsCount")
-    logger.info(s"Number of revisions with at least one unknown source: $countRevisionsWithUnknownSources")
-    logger.info(f"Percentage of revisions with at least one unknown source: $percentageRevisionsWithUnknownSources%.2f%%")
-    logger.info(f"Average ratio of unknown sources to all sources: $averageUnknownSourceRatio%.2f")
+    logger.info(
+      s"Number of revisions with at least one unknown source: $countRevisionsWithUnknownSources"
+    )
+    logger.info(
+      f"Percentage of revisions with at least one unknown source: $percentageRevisionsWithUnknownSources%.2f%%"
+    )
+    logger.info(
+      f"Average ratio of unknown sources to all sources: $averageUnknownSourceRatio%.2f"
+    )
 
     spark.stop()
   }

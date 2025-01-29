@@ -4,6 +4,8 @@ import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.SparkSession
 import scala.util.Random
 
+/** Minimal example job to test if the Spark cluster is working
+  */
 object ExampleJob {
   def main(args: Array[String]): Unit = {
     val logger = Logger(getClass.getName)

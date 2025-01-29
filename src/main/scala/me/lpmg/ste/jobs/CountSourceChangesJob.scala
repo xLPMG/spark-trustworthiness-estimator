@@ -9,6 +9,9 @@ import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
 import me.lpmg.ste.data.RevisionPair
 
+/** This job counts the number of revision pairs where the sources have changed.
+ * Arguments: <data-folder-path> <revisions-folder>‚
+  */
 object CountSourceChangesJob {
 
   def main(args: Array[String]): Unit = {
@@ -18,7 +21,7 @@ object CountSourceChangesJob {
       logger.error("Please specify the data folder path")
       System.exit(1)
     } else if (args.length < 2) {
-      logger.error("Please specify the revisions folder")
+      logger.error("Please specify the revision pairs folder")
       System.exit(1)
     }
 
@@ -39,17 +42,25 @@ object CountSourceChangesJob {
     val revisions: RDD[RevisionPair] =
       revisionManager.loadRevisionPairs(revisionsFolderName)
 
+    //logger.info("Number of revision pairs: " + revisions.count())
+
     // Count the number of source changes
     // (changed, unchanged)
-    val sourceChanges = revisions.map { revisionPair =>
-      if(revisionPair.sourcesTemplateAdded.length != revisionPair.sourcesTemplateRemoved.length) {
-      (1, 0)
-      } else if(revisionPair.sourcesTemplateAdded.toSet == revisionPair.sourcesTemplateRemoved.toSet) {
-      (0, 1)
-      } else {
-      (1, 0)
+    val sourceChanges = revisions
+      .map { revisionPair =>
+        if (
+          revisionPair.sourcesTemplateAdded.length != revisionPair.sourcesTemplateRemoved.length
+        ) {
+          (1, 0)
+        } else if (
+          revisionPair.sourcesTemplateAdded.toSet == revisionPair.sourcesTemplateRemoved.toSet
+        ) {
+          (0, 1)
+        } else {
+          (1, 0)
+        }
       }
-    }.reduce((a, b) => (a._1 + b._1, a._2 + b._2))
+      .reduce((a, b) => (a._1 + b._1, a._2 + b._2))
 
     logger.error("Sources changed: " + sourceChanges._1)
     logger.error("Sources unchanged: " + sourceChanges._2)

@@ -13,6 +13,10 @@ import me.lpmg.ste.algorithms.ProbabilityHandler
 import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
 
+/**
+  * This job evaluates the sources of revisions. Unchanged sources are not included in the evaluation.
+  * Arguments: <data-folder-path> <revisions-folder> <template> <test-split-revision>
+  */
 object SourceEvalJob {
 
   def main(args: Array[String]): Unit = {
