@@ -119,6 +119,7 @@ object PairRevisionEvalJob {
         if (probabilities.isEmpty) {
           (revision.revisionId, DefaultTemplateProbabilityVector)
         } else {
+          // CHANGE ACCUMULATION FUCNTION HERE
           val accumulatedProbabilities =
             ProbabilityHandler.weightedCombinationNoUnsureResults(probabilities)
           (revision.revisionId, accumulatedProbabilities)
@@ -141,7 +142,7 @@ object PairRevisionEvalJob {
     val probabilitiesOutputPath =
       Path
         .of(dataFolderPath)
-        .resolve(s"probabilities-$escapedTemplate-$dateString")
+        .resolve(s"probabilities-sure-0.0-$escapedTemplate-$dateString")
 
     probabilitiesDF.write
       .mode("overwrite")

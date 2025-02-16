@@ -7,6 +7,6 @@ spark-submit \
   --conf spark.driver.host=127.0.0.1 \
   --conf "spark.driver.extraJavaOptions=-Dlog4j.configuration=file:log4j.properties" \
   ../../target/scala-2.12/spark-trustworthiness-estimator-assembly-0.1.0.jar \
-  /Users/lpmg/Bachelor/localEval \
-  revision-pairs-third-party-2025-01-28T16-19-39Z \
-  third-party
+  /Users/lpmg/Bachelor/localEval/independent_sources \
+  revision-pairs-independent-sources-2025-02-14T21-04-52Z \
+  independent-sources
