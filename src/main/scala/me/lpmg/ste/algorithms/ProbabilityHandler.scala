@@ -1,11 +1,24 @@
 package me.lpmg.ste.algorithms
 
-import me.lpmg.ste.types.TemplateProbabilityVector
+import me.lpmg.ste.data.TemplateProbabilityVector
 
+/** This object provides functions to combine multiple probability vectors into
+  * a single one. The combination can be done in different ways, e.g. by taking
+  * the product of probabilities or by summing up the logarithms of
+  * probabilities.
+  */
 object ProbabilityHandler {
 
   val NonsenseVector = TemplateProbabilityVector(-0.5f, 1.5f)
 
+  /** Combines multiple probability vectors into a single one using
+    * multiplicative combination.
+    *
+    * @param probs
+    *   The probability vectors to combine.
+    * @return
+    *   The combined probability vector.
+    */
   def multiplicativeCombination(
       probs: Seq[TemplateProbabilityVector]
   ): TemplateProbabilityVector = {
@@ -21,6 +34,14 @@ object ProbabilityHandler {
     )
   }
 
+  /** Combines multiple probability vectors into a single one using logarithmic
+    * combination.
+    *
+    * @param probs
+    *   The probability vectors to combine.
+    * @return
+    *   The combined probability vector.
+    */
   def logarithmicCombination(
       probs: Seq[TemplateProbabilityVector]
   ): TemplateProbabilityVector = {
@@ -79,6 +100,14 @@ object ProbabilityHandler {
     )
   }
 
+  /** Combines multiple probability vectors into a single one using weighted
+    * combination.
+    *
+    * @param probsWithOccurences
+    *   The probability vectors to combine with their respective occurences.
+    * @return
+    *   The combined probability vector.
+    */
   def weightedCombination(
       probsWithOccurences: Seq[(TemplateProbabilityVector, Int)]
   ): TemplateProbabilityVector = {
@@ -133,7 +162,16 @@ object ProbabilityHandler {
     )
   }
 
-    def weightedCombinationNoUnsureResults(
+  /** Combines multiple probability vectors into a single one using weighted
+    * combination. Returns special vectors with a negative result for the
+    * "Added" probability if the result is uncertain.
+    *
+    * @param probsWithOccurences
+    *   The probability vectors to combine with their respective occurences.
+    * @return
+    *   The combined probability vector.
+    */
+  def weightedCombinationNoUnsureResults(
       probsWithOccurences: Seq[(TemplateProbabilityVector, Int)]
   ): TemplateProbabilityVector = {
 
@@ -142,7 +180,7 @@ object ProbabilityHandler {
       throw new IllegalArgumentException("Input sequence is empty")
     }
 
-    val numProbsWithoutEvaluation= probsWithOccurences.filter(_._2 < 1).size
+    val numProbsWithoutEvaluation = probsWithOccurences.filter(_._2 < 1).size
     // there should be max 10% of probs without evaluation
     if (numProbsWithoutEvaluation > 0) {
       return NonsenseVector
@@ -199,6 +237,13 @@ object ProbabilityHandler {
     )
   }
 
+  /** Converts the number of occurences of a probability vector to a weight.
+    *
+    * @param occurences
+    *   The number of occurences.
+    * @return
+    *   The weight.
+    */
   def occurencesToWeight(occurences: Int): Float = {
     val max = 100
     val steepness = 0.05f

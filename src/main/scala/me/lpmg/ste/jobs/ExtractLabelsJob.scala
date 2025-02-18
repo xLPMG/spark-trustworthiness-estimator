@@ -1,12 +1,13 @@
 package me.lpmg.ste.jobs
 
 import com.typesafe.scalalogging.Logger
-import org.apache.spark.sql.SparkSession
-import java.time.ZonedDateTime
-import java.time.ZoneId
+import me.lpmg.ste.data.Revision
 import me.lpmg.ste.data.RevisionManager
 import org.apache.spark.rdd.RDD
-import me.lpmg.ste.data.Revision
+import org.apache.spark.sql.SparkSession
+
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 /** This job extracts the labels for the template
  * Arguments: <data-folder-path> <revisions-folder> <template>

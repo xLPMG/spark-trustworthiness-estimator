@@ -2,6 +2,7 @@ package me.lpmg.ste.jobs
 
 import com.typesafe.scalalogging.Logger
 import org.apache.spark.sql.SparkSession
+
 import scala.util.Random
 
 /** Minimal example job to test if the Spark cluster is working

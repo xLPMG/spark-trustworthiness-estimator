@@ -1,27 +1,44 @@
 package me.lpmg.ste.data
 
-import org.apache.spark.sql.SparkSession
-import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream
-import java.io.{BufferedInputStream, InputStreamReader}
-import javax.xml.parsers.{SAXParser, SAXParserFactory}
-import org.xml.sax.helpers.DefaultHandler
-import org.xml.sax.{Attributes, InputSource}
-import org.apache.hadoop.fs.{FileSystem, Path}
-import org.apache.hadoop.conf.Configuration
-import scala.collection.mutable.ArrayBuffer
-import javax.xml.XMLConstants
-import org.xml.sax.XMLReader
-import java.io.InputStream
-import scala.util.Using
-import org.apache.spark.input.PortableDataStream
 import com.typesafe.scalalogging.Logger
+import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream
+import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.FileSystem
+import org.apache.hadoop.fs.Path
+import org.apache.spark.input.PortableDataStream
 import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.SparkSession
+import org.xml.sax.Attributes
+import org.xml.sax.InputSource
+import org.xml.sax.XMLReader
+import org.xml.sax.helpers.DefaultHandler
+
+import java.io.BufferedInputStream
+import java.io.InputStream
+import java.io.InputStreamReader
+import javax.xml.XMLConstants
+import javax.xml.parsers.SAXParser
+import javax.xml.parsers.SAXParserFactory
+import scala.collection.mutable.ArrayBuffer
+import scala.util.Using
 
 /** Provides functionality to read and parse XML data from BZip2 compressed
   * files.
   */
 object DataReader {
 
+  /** Parses XML data from an InputStream and returns a sequence of RevisionPair
+    * objects.
+    *
+    * @param inputStream
+    *   The input stream containing the XML data.
+    * @param template
+    *   The template string to be used for parsing.
+    * @param inline
+    *   A flag indicating whether to use inline parsing.
+    * @return
+    *   A sequence of RevisionPair objects.
+    */
   def getRevisionPairs(
       inputStream: InputStream,
       template: String,
@@ -54,6 +71,18 @@ object DataReader {
     }
   }
 
+  /** Reads and parses XML data from a PortableDataStream and returns a sequence
+    * of Revision objects.
+    *
+    * @param pds
+    *   The PortableDataStream containing the XML data.
+    * @param template
+    *   The template string to be used for parsing.
+    * @param inline
+    *   A flag indicating whether to use inline parsing.
+    * @return
+    *   A sequence of Revision objects.
+    */
   def getRevisionsFromPDS(
       pds: PortableDataStream,
       template: String,
@@ -66,6 +95,18 @@ object DataReader {
     }
   }
 
+  /** Parses XML data from an InputStream and returns a sequence of Revision
+    * objects.
+    *
+    * @param inputStream
+    *   The input stream containing the XML data.
+    * @param template
+    *   The template string to be used for parsing.
+    * @param inline
+    *   A flag indicating whether to use inline parsing.
+    * @return
+    *   A sequence of Revision objects.
+    */
   def getRevisions(
       inputStream: InputStream,
       template: String,
@@ -74,6 +115,18 @@ object DataReader {
     revisionPairsToRevisions(getRevisionPairs(inputStream, template, inline))
   }
 
+  /** Reads and parses XML data from a PortableDataStream and returns a sequence
+    * of RevisionPair objects.
+    *
+    * @param pds
+    *   The PortableDataStream containing the XML data.
+    * @param template
+    *   The template string to be used for parsing.
+    * @param inline
+    *   A flag indicating whether to use inline parsing.
+    * @return
+    *   A sequence of RevisionPair objects.
+    */
   def getRevisionPairsFromPDS(
       pds: PortableDataStream,
       template: String,
@@ -98,6 +151,14 @@ object DataReader {
     xmlReader
   }
 
+  /** Converts a sequence of RevisionPair objects to a sequence of Revision
+    * objects.
+    *
+    * @param revisionPairs
+    *   The sequence of RevisionPair objects.
+    * @return
+    *   A sequence of Revision objects.
+    */
   def revisionPairsToRevisions(
       revisionPairs: Seq[RevisionPair]
   ): Seq[Revision] = {
@@ -126,6 +187,14 @@ object DataReader {
     }
   }
 
+  /** Converts a sequence of RevisionPa‚ir objects to a sequence of Revision
+    * objects in a distributed manner.
+    *
+    * @param revisionPairs
+    *   The sequence of RevisionPair objects.
+    * @return
+    *   A sequence of Revision objects.
+    */
   def revisionPairsToRevisionsDistributed(
       revisionPairs: RDD[RevisionPair]
   ): RDD[Revision] = {

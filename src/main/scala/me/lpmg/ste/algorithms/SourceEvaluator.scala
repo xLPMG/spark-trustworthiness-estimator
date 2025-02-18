@@ -1,13 +1,16 @@
 package me.lpmg.ste.algorithms
 
-import org.apache.spark.rdd.RDD
-import org.apache.spark.graphx.Graph
-import org.apache.spark.storage.StorageLevel
-import me.lpmg.ste.data.Revision
-import me.lpmg.ste.types.TemplateProbabilityVector
-import me.lpmg.ste.data.RevisionPair
 import me.lpmg.ste.data.AdditionalSourceCleanup
+import me.lpmg.ste.data.Revision
+import me.lpmg.ste.data.RevisionPair
+import me.lpmg.ste.data.TemplateProbabilityVector
+import org.apache.spark.graphx.Graph
+import org.apache.spark.rdd.RDD
+import org.apache.spark.storage.StorageLevel
 
+/** This object provides functions to evaluate external sources based on the
+  * revisions they appear in
+  */
 object SourceEvaluator extends Serializable {
 
   def evaluateSources(
@@ -120,12 +123,13 @@ object SourceEvaluator extends Serializable {
   ): RDD[(String, (TemplateProbabilityVector, Int))] = {
     revisionPairs
       .flatMap { revisionPair =>
-
-        val cleanedAddedSources = revisionPair.sourcesTemplateAdded.map { source =>
-          AdditionalSourceCleanup.cleanupSource(source)
+        val cleanedAddedSources = revisionPair.sourcesTemplateAdded.map {
+          source =>
+            AdditionalSourceCleanup.cleanupSource(source)
         }
-        val cleanedRemovedSources = revisionPair.sourcesTemplateRemoved.map { source =>
-          AdditionalSourceCleanup.cleanupSource(source)
+        val cleanedRemovedSources = revisionPair.sourcesTemplateRemoved.map {
+          source =>
+            AdditionalSourceCleanup.cleanupSource(source)
         }
 
         val combinedSources =
@@ -137,10 +141,14 @@ object SourceEvaluator extends Serializable {
           val sourceExistsWhenTemplateAdded =
             cleanedAddedSources.contains(source)
 
-          if (sourceExistsWhenTemplateAdded && !sourceExistsWhenTemplateRemoved) {
+          if (
+            sourceExistsWhenTemplateAdded && !sourceExistsWhenTemplateRemoved
+          ) {
             // source was removed when template was removed
             (source, (1, 0))
-          } else if (!sourceExistsWhenTemplateAdded && sourceExistsWhenTemplateRemoved) {
+          } else if (
+            !sourceExistsWhenTemplateAdded && sourceExistsWhenTemplateRemoved
+          ) {
             // source was added when template was removed
             (source, (0, 1))
           } else {

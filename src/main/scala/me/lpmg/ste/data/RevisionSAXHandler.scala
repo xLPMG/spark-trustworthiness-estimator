@@ -1,8 +1,11 @@
 package me.lpmg.ste.data
 
+import org.xml.sax.Attributes
+import org.xml.sax.InputSource
 import org.xml.sax.helpers.DefaultHandler
-import scala.collection.mutable.{ArrayBuffer, StringBuilder}
-import org.xml.sax.{Attributes, InputSource}
+
+import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.StringBuilder
 
 /** SAX handler for parsing MediaWiki XML revisions, filtering for specific
   * template and namespace.

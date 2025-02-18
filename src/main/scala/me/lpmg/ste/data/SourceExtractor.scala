@@ -1,11 +1,12 @@
 package me.lpmg.ste.data
 
-import scala.collection.mutable.ArrayBuffer
-import scala.util.matching.Regex
-import java.net.URL
-import scala.util.Try
 import de.malkusch.whoisServerList.publicSuffixList.PublicSuffixList
 import de.malkusch.whoisServerList.publicSuffixList.PublicSuffixListFactory
+
+import java.net.URL
+import scala.collection.mutable.ArrayBuffer
+import scala.util.Try
+import scala.util.matching.Regex
 
 /** Extracts sources from Wikipedia text content. For URLs, only extracts the
   * main domain or first subdomain. For books, only extracts the ISBN.
@@ -62,7 +63,7 @@ object SourceExtractor {
   /** Extract all sources from a Wikipedia text. Returns a sequence of either
     * domain names (for URLs) or ISBNs (for books).
     *
-    * Note: Wikiepdia says that cites should be enclosed in ref tags as well.
+    * Note: Wikipedia says that cites should be enclosed in ref tags as well.
     * However in practice, I have seen many revisions where editors did not
     * follow this rule. So, I am also extracting cites using cite templates.
     * This means that in many cases, we will match the same source multiple

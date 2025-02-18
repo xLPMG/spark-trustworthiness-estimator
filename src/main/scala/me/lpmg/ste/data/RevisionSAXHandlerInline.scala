@@ -1,11 +1,14 @@
 package me.lpmg.ste.data
 
+import org.xml.sax.Attributes
+import org.xml.sax.InputSource
 import org.xml.sax.helpers.DefaultHandler
-import scala.collection.mutable.{ArrayBuffer, StringBuilder}
-import org.xml.sax.{Attributes, InputSource}
+
+import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.StringBuilder
 
 /** SAX handler for parsing MediaWiki XML revisions, filtering for specific
-  * template and namespace.
+  * inline templates and namespace.
   *
   * @param template
   *   The template to search for within page revisions
@@ -91,7 +94,8 @@ class RevisionSAXHandlerInline(template: String) extends DefaultHandler {
           // Second revision without template
           // If all templates removed, filter sources still present
           val existingSources = firstTemplateRevision match {
-            case Some(revision) => revision.sources.filter(currentRevisionText.contains)
+            case Some(revision) =>
+              revision.sources.filter(currentRevisionText.contains)
             case None => Seq.empty
           }
           lastTemplateRevision = Some(

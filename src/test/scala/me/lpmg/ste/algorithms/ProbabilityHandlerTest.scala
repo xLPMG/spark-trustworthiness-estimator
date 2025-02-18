@@ -1,6 +1,6 @@
 package me.lpmg.ste.algorithms
 
-import me.lpmg.ste.types.TemplateProbabilityVector
+import me.lpmg.ste.data.TemplateProbabilityVector
 
 class ProbabilityHandlerTest extends munit.FunSuite {
   test("testMultiplicativeCombination") {

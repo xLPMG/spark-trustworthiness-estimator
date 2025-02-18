@@ -1,13 +1,14 @@
 package me.lpmg.ste.jobs
 
 import com.typesafe.scalalogging.Logger
-import org.apache.spark.sql.SparkSession
-import java.time.ZonedDateTime
-import java.time.ZoneId
-import me.lpmg.ste.data.RevisionManager
-import org.apache.spark.rdd.RDD
 import me.lpmg.ste.data.Revision
+import me.lpmg.ste.data.RevisionManager
 import me.lpmg.ste.data.RevisionPair
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.SparkSession
+
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 /** This job counts the number of revision pairs where the sources have changed.
  * Arguments: <data-folder-path> <revisions-folder>‚

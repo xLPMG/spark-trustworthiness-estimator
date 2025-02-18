@@ -1,17 +1,20 @@
 package me.lpmg.ste.jobs
 
 import com.typesafe.scalalogging.Logger
-import me.lpmg.ste.time.Watch
-import me.lpmg.ste.data.RevisionManager
-import org.apache.spark.sql.{SparkSession, DataFrame, Column}
-import me.lpmg.ste.algorithms.SourceEvaluator
-import java.nio.file.Path
-import java.time.ZonedDateTime
-import java.time.ZoneId
-import me.lpmg.ste.types.TemplateProbabilityVector
 import me.lpmg.ste.algorithms.ProbabilityHandler
-import org.apache.spark.rdd.RDD
+import me.lpmg.ste.algorithms.SourceEvaluator
 import me.lpmg.ste.data.Revision
+import me.lpmg.ste.data.RevisionManager
+import me.lpmg.ste.data.TemplateProbabilityVector
+import me.lpmg.ste.time.Watch
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.Column
+import org.apache.spark.sql.DataFrame
+import org.apache.spark.sql.SparkSession
+
+import java.nio.file.Path
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 /**
   * This job evaluates the sources of revisions. Unchanged sources are not included in the evaluation.

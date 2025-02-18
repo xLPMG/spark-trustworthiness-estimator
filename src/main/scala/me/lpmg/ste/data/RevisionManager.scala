@@ -1,16 +1,24 @@
 package me.lpmg.ste.data
 
 import com.typesafe.scalalogging.Logger
-import org.apache.spark.sql.SparkSession
 import me.lpmg.ste.time.Watch
-import java.nio.file.Path
+import org.apache.hadoop.shaded.org.checkerframework.checker.units.qual.s
+import org.apache.spark.input.PortableDataStream
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.DataFrame
+import org.apache.spark.sql.SparkSession
+
+import java.nio.file.Path
 import java.time.LocalDateTime
 import java.time.ZonedDateTime
-import org.apache.spark.rdd.RDD
-import org.apache.spark.input.PortableDataStream
-import org.apache.hadoop.shaded.org.checkerframework.checker.units.qual.s
 
+/** This class provides functionality to manage revisions and revision pairs.
+  *
+  * @param spark
+  *   The Spark session to use.
+  * @param dataFolderPath
+  *   The path to the data f‚older.
+  */
 class RevisionManager(
     spark: SparkSession,
     dataFolderPath: String
