@@ -163,8 +163,8 @@
                         <a href="Revision.html" title="Data class for revision data">Revision</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionManager.html" title=""></a>
-                        <a href="RevisionManager.html" title="">RevisionManager</a>
+                        <a class="class" href="RevisionManager.html" title="This class provides functionality to manage revisions and revision pairs."></a>
+                        <a href="RevisionManager.html" title="This class provides functionality to manage revisions and revision pairs.">RevisionManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="class" href="RevisionPair.html" title=""></a>
@@ -175,12 +175,16 @@
                         <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandler</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
-                        <a href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandlerInline</a>
+                        <a class="class" href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific inline templates and namespace."></a>
+                        <a href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific inline templates and namespace.">RevisionSAXHandlerInline</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content."></a>
                         <a href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content.">SourceExtractor</a>
+                      </li><li class="current-entities indented4">
+                        <a class="object" href="TemplateProbabilityVector$.html" title="Companion object for TemplateProbabilityVector."></a>
+                        <a class="class" href="TemplateProbabilityVector.html" title="A case class representing a vector of probabilities for template addition and removal."></a>
+                        <a href="TemplateProbabilityVector.html" title="A case class representing a vector of probabilities for template addition and removal.">TemplateProbabilityVector</a>
                       </li><li name="me.lpmg.ste.jobs" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="jobs"></a><a id="jobs:jobs"></a>
       <span class="permalink">
@@ -210,22 +214,6 @@
       </span>
       <span class="symbol">
         <a title="" href="../time/index.html"><span class="name">time</span></a>
-      </span>
-      
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
-    </li><li name="me.lpmg.ste.types" visbl="pub" class="indented4 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="types"></a><a id="types:types"></a>
-      <span class="permalink">
-      <a href="../../../../me/lpmg/ste/types/index.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">package</span>
-      </span>
-      <span class="symbol">
-        <a title="" href="../types/index.html"><span class="name">types</span></a>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
@@ -322,10 +310,10 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="" href="RevisionManager.html"><span class="name">RevisionManager</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a title="This class provides functionality to manage revisions and revision pairs." href="RevisionManager.html"><span class="name">RevisionManager</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
-      
+      <p class="shortcomment cmt">This class provides functionality to manage revisions and revision pairs.</p>
     </li><li name="me.lpmg.ste.data.RevisionPair" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="RevisionPairextendsSerializablewithProduct"></a><a id="RevisionPair:RevisionPair"></a>
       <span class="permalink">
@@ -376,11 +364,28 @@ template and namespace.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace." href="RevisionSAXHandlerInline.html"><span class="name">RevisionSAXHandlerInline</span></a><span class="result"> extends <span class="extype" name="org.xml.sax.helpers.DefaultHandler">DefaultHandler</span></span>
+        <a title="SAX handler for parsing MediaWiki XML revisions, filtering for specific inline templates and namespace." href="RevisionSAXHandlerInline.html"><span class="name">RevisionSAXHandlerInline</span></a><span class="result"> extends <span class="extype" name="org.xml.sax.helpers.DefaultHandler">DefaultHandler</span></span>
       </span>
       
       <p class="shortcomment cmt">SAX handler for parsing MediaWiki XML revisions, filtering for specific
-template and namespace.</p>
+inline templates and namespace.</p>
+    </li><li name="me.lpmg.ste.data.TemplateProbabilityVector" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="TemplateProbabilityVectorextendsSerializablewithProduct"></a><a id="TemplateProbabilityVector:TemplateProbabilityVector"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/TemplateProbabilityVector.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a title="A case class representing a vector of probabilities for template addition and removal." href="TemplateProbabilityVector.html"><span class="name">TemplateProbabilityVector</span></a><span class="params">(<span name="probabilityTemplateAdded">probabilityTemplateAdded: <span class="extype" name="scala.Float">Float</span></span>, <span name="probabilityTemplateRemoved">probabilityTemplateRemoved: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">A case class representing a vector of probabilities for template addition and removal.</p><div class="fullcomment"><div class="comment cmt"><p>A case class representing a vector of probabilities for template addition and removal.
+</p></div><dl class="paramcmts block"><dt class="param">probabilityTemplateAdded</dt><dd class="cmt"><p>Probability that a template is added.</p></dd><dt class="param">probabilityTemplateRemoved</dt><dd class="cmt"><p>Probability that a template is removed.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -440,6 +445,22 @@ files.</p>
       <p class="shortcomment cmt">Extracts sources from Wikipedia text content.</p><div class="fullcomment"><div class="comment cmt"><p>Extracts sources from Wikipedia text content. For URLs, only extracts the
 main domain or first subdomain. For books, only extracts the ISBN.
 </p></div></div>
+    </li><li name="me.lpmg.ste.data.TemplateProbabilityVector" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TemplateProbabilityVector"></a><a id="TemplateProbabilityVector:TemplateProbabilityVector"></a>
+      <span class="permalink">
+      <a href="../../../../me/lpmg/ste/data/TemplateProbabilityVector$.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a title="Companion object for TemplateProbabilityVector." href="TemplateProbabilityVector$.html"><span class="name">TemplateProbabilityVector</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Companion object for TemplateProbabilityVector.</p>
     </li>
               </ol>
             </div>

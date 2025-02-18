@@ -135,12 +135,12 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="ProbabilityHandler$.html" title=""></a>
-                        <a href="ProbabilityHandler$.html" title="">ProbabilityHandler</a>
+                        <a class="object" href="ProbabilityHandler$.html" title="This object provides functions to combine multiple probability vectors into a single one."></a>
+                        <a href="ProbabilityHandler$.html" title="This object provides functions to combine multiple probability vectors into a single one.">ProbabilityHandler</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="" title=""></a>
-                        <a href="" title="">SourceEvaluator</a>
+                        <a class="object" href="" title="This object provides functions to evaluate external sources based on the revisions they appear in"></a>
+                        <a href="" title="This object provides functions to evaluate external sources based on the revisions they appear in">SourceEvaluator</a>
                       </li>
               </ul>
             </div>
@@ -169,7 +169,9 @@
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This object provides functions to evaluate external sources based on the
+revisions they appear in
+</p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -349,9 +351,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.SourceEvaluator#evaluateSources" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):Map[String,(me.lpmg.ste.types.TemplateProbabilityVector,Int)]"></a><a id="evaluateSources(RDD[Revision]):Map[String,(TemplateProbabilityVector,Int)]"></a>
+      <a id="evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):Map[String,(me.lpmg.ste.data.TemplateProbabilityVector,Int)]"></a><a id="evaluateSources(RDD[Revision]):Map[String,(TemplateProbabilityVector,Int)]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):Map[String,(me.lpmg.ste.types.TemplateProbabilityVector,Int)]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSources(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):Map[String,(me.lpmg.ste.data.TemplateProbabilityVector,Int)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -360,14 +362,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateSources</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, (<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>
+        <span class="name">evaluateSources</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, (<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>
       </span>
       
       
     </li><li name="me.lpmg.ste.algorithms.SourceEvaluator#evaluateSourcesDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.types.TemplateProbabilityVector,Int))]"></a><a id="evaluateSourcesDistributed(RDD[Revision]):RDD[(String,(TemplateProbabilityVector,Int))]"></a>
+      <a id="evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.data.TemplateProbabilityVector,Int))]"></a><a id="evaluateSourcesDistributed(RDD[Revision]):RDD[(String,(TemplateProbabilityVector,Int))]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.types.TemplateProbabilityVector,Int))]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesDistributed(revisions:org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.data.TemplateProbabilityVector,Int))]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -376,14 +378,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateSourcesDistributed</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, (<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>))]</span>
+        <span class="name">evaluateSourcesDistributed</span><span class="params">(<span name="revisions">revisions: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, (<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>))]</span>
       </span>
       
       
     </li><li name="me.lpmg.ste.algorithms.SourceEvaluator#evaluateSourcesFromPairs" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="evaluateSourcesFromPairs(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):Map[String,(me.lpmg.ste.types.TemplateProbabilityVector,Int)]"></a><a id="evaluateSourcesFromPairs(RDD[RevisionPair]):Map[String,(TemplateProbabilityVector,Int)]"></a>
+      <a id="evaluateSourcesFromPairs(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):Map[String,(me.lpmg.ste.data.TemplateProbabilityVector,Int)]"></a><a id="evaluateSourcesFromPairs(RDD[RevisionPair]):Map[String,(TemplateProbabilityVector,Int)]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesFromPairs(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):Map[String,(me.lpmg.ste.types.TemplateProbabilityVector,Int)]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesFromPairs(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):Map[String,(me.lpmg.ste.data.TemplateProbabilityVector,Int)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -392,14 +394,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateSourcesFromPairs</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, (<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>
+        <span class="name">evaluateSourcesFromPairs</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, (<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>
       </span>
       
       
     </li><li name="me.lpmg.ste.algorithms.SourceEvaluator#evaluateSourcesFromPairsDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="evaluateSourcesFromPairsDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.types.TemplateProbabilityVector,Int))]"></a><a id="evaluateSourcesFromPairsDistributed(RDD[RevisionPair]):RDD[(String,(TemplateProbabilityVector,Int))]"></a>
+      <a id="evaluateSourcesFromPairsDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.data.TemplateProbabilityVector,Int))]"></a><a id="evaluateSourcesFromPairsDistributed(RDD[RevisionPair]):RDD[(String,(TemplateProbabilityVector,Int))]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesFromPairsDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.types.TemplateProbabilityVector,Int))]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesFromPairsDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.data.TemplateProbabilityVector,Int))]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -408,7 +410,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateSourcesFromPairsDistributed</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, (<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>))]</span>
+        <span class="name">evaluateSourcesFromPairsDistributed</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, (<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>))]</span>
       </span>
       
       
@@ -445,9 +447,9 @@
       
       
     </li><li name="me.lpmg.ste.algorithms.SourceEvaluator#evaluateSourcesFromPairsWithoutUnchangedSources" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="evaluateSourcesFromPairsWithoutUnchangedSources(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):Map[String,(me.lpmg.ste.types.TemplateProbabilityVector,Int)]"></a><a id="evaluateSourcesFromPairsWithoutUnchangedSources(RDD[RevisionPair]):Map[String,(TemplateProbabilityVector,Int)]"></a>
+      <a id="evaluateSourcesFromPairsWithoutUnchangedSources(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):Map[String,(me.lpmg.ste.data.TemplateProbabilityVector,Int)]"></a><a id="evaluateSourcesFromPairsWithoutUnchangedSources(RDD[RevisionPair]):Map[String,(TemplateProbabilityVector,Int)]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesFromPairsWithoutUnchangedSources(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):Map[String,(me.lpmg.ste.types.TemplateProbabilityVector,Int)]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesFromPairsWithoutUnchangedSources(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):Map[String,(me.lpmg.ste.data.TemplateProbabilityVector,Int)]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -456,14 +458,14 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateSourcesFromPairsWithoutUnchangedSources</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, (<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>
+        <span class="name">evaluateSourcesFromPairsWithoutUnchangedSources</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, (<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>
       </span>
       
       
     </li><li name="me.lpmg.ste.algorithms.SourceEvaluator#evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.types.TemplateProbabilityVector,Int))]"></a><a id="evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed(RDD[RevisionPair]):RDD[(String,(TemplateProbabilityVector,Int))]"></a>
+      <a id="evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.data.TemplateProbabilityVector,Int))]"></a><a id="evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed(RDD[RevisionPair]):RDD[(String,(TemplateProbabilityVector,Int))]"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.types.TemplateProbabilityVector,Int))]" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/SourceEvaluator$.html#evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[(String,(me.lpmg.ste.data.TemplateProbabilityVector,Int))]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -472,7 +474,7 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, (<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>))]</span>
+        <span class="name">evaluateSourcesFromPairsWithoutUnchangedSourcesDistributed</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../data/RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, (<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>))]</span>
       </span>
       
       

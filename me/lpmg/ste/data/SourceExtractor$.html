@@ -147,8 +147,8 @@
                         <a href="Revision.html" title="Data class for revision data">Revision</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionManager.html" title=""></a>
-                        <a href="RevisionManager.html" title="">RevisionManager</a>
+                        <a class="class" href="RevisionManager.html" title="This class provides functionality to manage revisions and revision pairs."></a>
+                        <a href="RevisionManager.html" title="This class provides functionality to manage revisions and revision pairs.">RevisionManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="class" href="RevisionPair.html" title=""></a>
@@ -159,12 +159,16 @@
                         <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandler</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
-                        <a href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandlerInline</a>
+                        <a class="class" href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific inline templates and namespace."></a>
+                        <a href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific inline templates and namespace.">RevisionSAXHandlerInline</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="" title="Extracts sources from Wikipedia text content."></a>
                         <a href="" title="Extracts sources from Wikipedia text content.">SourceExtractor</a>
+                      </li><li class="current-entities indented4">
+                        <a class="object" href="TemplateProbabilityVector$.html" title="Companion object for TemplateProbabilityVector."></a>
+                        <a class="class" href="TemplateProbabilityVector.html" title="A case class representing a vector of probabilities for template addition and removal."></a>
+                        <a href="TemplateProbabilityVector.html" title="A case class representing a vector of probabilities for template addition and removal.">TemplateProbabilityVector</a>
                       </li>
               </ul>
             </div>
@@ -406,7 +410,7 @@ main domain or first subdomain. For books, only extracts the ISBN.
       </span>
       
       <p class="shortcomment cmt">Extract all sources from a Wikipedia text.</p><div class="fullcomment"><div class="comment cmt"><p>Extract all sources from a Wikipedia text. Returns a sequence of either
-domain names (for URLs) or ISBNs (for books).</p><p>Note: Wikiepdia says that cites should be enclosed in ref tags as well.
+domain names (for URLs) or ISBNs (for books).</p><p>Note: Wikipedia says that cites should be enclosed in ref tags as well.
 However in practice, I have seen many revisions where editors did not
 follow this rule. So, I am also extracting cites using cite templates.
 This means that in many cases, we will match the same source multiple

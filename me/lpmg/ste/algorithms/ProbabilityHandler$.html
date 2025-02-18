@@ -135,12 +135,12 @@
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="me.lpmg.ste">ste</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="" title=""></a>
-                        <a href="" title="">ProbabilityHandler</a>
+                        <a class="object" href="" title="This object provides functions to combine multiple probability vectors into a single one."></a>
+                        <a href="" title="This object provides functions to combine multiple probability vectors into a single one.">ProbabilityHandler</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="object" href="SourceEvaluator$.html" title=""></a>
-                        <a href="SourceEvaluator$.html" title="">SourceEvaluator</a>
+                        <a class="object" href="SourceEvaluator$.html" title="This object provides functions to evaluate external sources based on the revisions they appear in"></a>
+                        <a href="SourceEvaluator$.html" title="This object provides functions to evaluate external sources based on the revisions they appear in">SourceEvaluator</a>
                       </li>
               </ul>
             </div>
@@ -169,7 +169,11 @@
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This object provides functions to combine multiple probability vectors into
+a single one. The combination can be done in different ways, e.g. by taking
+the product of probabilities or by summing up the logarithms of
+probabilities.
+</p></div><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
@@ -275,9 +279,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#NonsenseVector" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="NonsenseVector:me.lpmg.ste.types.TemplateProbabilityVector"></a><a id="NonsenseVector:TemplateProbabilityVector"></a>
+      <a id="NonsenseVector:me.lpmg.ste.data.TemplateProbabilityVector"></a><a id="NonsenseVector:TemplateProbabilityVector"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#NonsenseVector:me.lpmg.ste.types.TemplateProbabilityVector" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#NonsenseVector:me.lpmg.ste.data.TemplateProbabilityVector" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -286,7 +290,7 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">NonsenseVector</span><span class="result">: <a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
+        <span class="name">NonsenseVector</span><span class="result">: <a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
       </span>
       
       
@@ -422,10 +426,10 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#logarithmicCombination" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="logarithmicCombination(probs:Seq[me.lpmg.ste.types.TemplateProbabilityVector]):me.lpmg.ste.types.TemplateProbabilityVector"></a><a id="logarithmicCombination(Seq[TemplateProbabilityVector]):TemplateProbabilityVector"></a>
+    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#logarithmicCombination" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="logarithmicCombination(probs:Seq[me.lpmg.ste.data.TemplateProbabilityVector]):me.lpmg.ste.data.TemplateProbabilityVector"></a><a id="logarithmicCombination(Seq[TemplateProbabilityVector]):TemplateProbabilityVector"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#logarithmicCombination(probs:Seq[me.lpmg.ste.types.TemplateProbabilityVector]):me.lpmg.ste.types.TemplateProbabilityVector" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#logarithmicCombination(probs:Seq[me.lpmg.ste.data.TemplateProbabilityVector]):me.lpmg.ste.data.TemplateProbabilityVector" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -434,14 +438,19 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">logarithmicCombination</span><span class="params">(<span name="probs">probs: <span class="extype" name="scala.Seq">Seq</span>[<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>]</span>)</span><span class="result">: <a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
+        <span class="name">logarithmicCombination</span><span class="params">(<span name="probs">probs: <span class="extype" name="scala.Seq">Seq</span>[<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>]</span>)</span><span class="result">: <a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
       </span>
       
-      
-    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#multiplicativeCombination" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="multiplicativeCombination(probs:Seq[me.lpmg.ste.types.TemplateProbabilityVector]):me.lpmg.ste.types.TemplateProbabilityVector"></a><a id="multiplicativeCombination(Seq[TemplateProbabilityVector]):TemplateProbabilityVector"></a>
+      <p class="shortcomment cmt">Combines multiple probability vectors into a single one using logarithmic
+combination.</p><div class="fullcomment"><div class="comment cmt"><p>Combines multiple probability vectors into a single one using logarithmic
+combination.
+</p></div><dl class="paramcmts block"><dt class="param">probs</dt><dd class="cmt"><p>
+  The probability vectors to combine.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  The combined probability vector.</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#multiplicativeCombination" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="multiplicativeCombination(probs:Seq[me.lpmg.ste.data.TemplateProbabilityVector]):me.lpmg.ste.data.TemplateProbabilityVector"></a><a id="multiplicativeCombination(Seq[TemplateProbabilityVector]):TemplateProbabilityVector"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#multiplicativeCombination(probs:Seq[me.lpmg.ste.types.TemplateProbabilityVector]):me.lpmg.ste.types.TemplateProbabilityVector" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#multiplicativeCombination(probs:Seq[me.lpmg.ste.data.TemplateProbabilityVector]):me.lpmg.ste.data.TemplateProbabilityVector" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -450,10 +459,15 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">multiplicativeCombination</span><span class="params">(<span name="probs">probs: <span class="extype" name="scala.Seq">Seq</span>[<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>]</span>)</span><span class="result">: <a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
+        <span class="name">multiplicativeCombination</span><span class="params">(<span name="probs">probs: <span class="extype" name="scala.Seq">Seq</span>[<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>]</span>)</span><span class="result">: <a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
       </span>
       
-      
+      <p class="shortcomment cmt">Combines multiple probability vectors into a single one using
+multiplicative combination.</p><div class="fullcomment"><div class="comment cmt"><p>Combines multiple probability vectors into a single one using
+multiplicative combination.
+</p></div><dl class="paramcmts block"><dt class="param">probs</dt><dd class="cmt"><p>
+  The probability vectors to combine.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  The combined probability vector.</p></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -512,7 +526,7 @@
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#occurencesToWeight" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#occurencesToWeight" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="occurencesToWeight(occurences:Int):Float"></a><a id="occurencesToWeight(Int):Float"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#occurencesToWeight(occurences:Int):Float" title="Permalink">
@@ -527,7 +541,10 @@
         <span class="name">occurencesToWeight</span><span class="params">(<span name="occurences">occurences: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
       </span>
       
-      
+      <p class="shortcomment cmt">Converts the number of occurences of a probability vector to a weight.</p><div class="fullcomment"><div class="comment cmt"><p>Converts the number of occurences of a probability vector to a weight.
+</p></div><dl class="paramcmts block"><dt class="param">occurences</dt><dd class="cmt"><p>
+  The number of occurences.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  The weight.</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -626,10 +643,10 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#weightedCombination" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="weightedCombination(probsWithOccurences:Seq[(me.lpmg.ste.types.TemplateProbabilityVector,Int)]):me.lpmg.ste.types.TemplateProbabilityVector"></a><a id="weightedCombination(Seq[(TemplateProbabilityVector,Int)]):TemplateProbabilityVector"></a>
+    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#weightedCombination" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="weightedCombination(probsWithOccurences:Seq[(me.lpmg.ste.data.TemplateProbabilityVector,Int)]):me.lpmg.ste.data.TemplateProbabilityVector"></a><a id="weightedCombination(Seq[(TemplateProbabilityVector,Int)]):TemplateProbabilityVector"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#weightedCombination(probsWithOccurences:Seq[(me.lpmg.ste.types.TemplateProbabilityVector,Int)]):me.lpmg.ste.types.TemplateProbabilityVector" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#weightedCombination(probsWithOccurences:Seq[(me.lpmg.ste.data.TemplateProbabilityVector,Int)]):me.lpmg.ste.data.TemplateProbabilityVector" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -638,14 +655,19 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">weightedCombination</span><span class="params">(<span name="probsWithOccurences">probsWithOccurences: <span class="extype" name="scala.Seq">Seq</span>[(<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>)</span><span class="result">: <a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
+        <span class="name">weightedCombination</span><span class="params">(<span name="probsWithOccurences">probsWithOccurences: <span class="extype" name="scala.Seq">Seq</span>[(<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>)</span><span class="result">: <a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
       </span>
       
-      
-    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#weightedCombinationNoUnsureResults" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="weightedCombinationNoUnsureResults(probsWithOccurences:Seq[(me.lpmg.ste.types.TemplateProbabilityVector,Int)]):me.lpmg.ste.types.TemplateProbabilityVector"></a><a id="weightedCombinationNoUnsureResults(Seq[(TemplateProbabilityVector,Int)]):TemplateProbabilityVector"></a>
+      <p class="shortcomment cmt">Combines multiple probability vectors into a single one using weighted
+combination.</p><div class="fullcomment"><div class="comment cmt"><p>Combines multiple probability vectors into a single one using weighted
+combination.
+</p></div><dl class="paramcmts block"><dt class="param">probsWithOccurences</dt><dd class="cmt"><p>
+  The probability vectors to combine with their respective occurences.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  The combined probability vector.</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.algorithms.ProbabilityHandler#weightedCombinationNoUnsureResults" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="weightedCombinationNoUnsureResults(probsWithOccurences:Seq[(me.lpmg.ste.data.TemplateProbabilityVector,Int)]):me.lpmg.ste.data.TemplateProbabilityVector"></a><a id="weightedCombinationNoUnsureResults(Seq[(TemplateProbabilityVector,Int)]):TemplateProbabilityVector"></a>
       <span class="permalink">
-      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#weightedCombinationNoUnsureResults(probsWithOccurences:Seq[(me.lpmg.ste.types.TemplateProbabilityVector,Int)]):me.lpmg.ste.types.TemplateProbabilityVector" title="Permalink">
+      <a href="../../../../me/lpmg/ste/algorithms/ProbabilityHandler$.html#weightedCombinationNoUnsureResults(probsWithOccurences:Seq[(me.lpmg.ste.data.TemplateProbabilityVector,Int)]):me.lpmg.ste.data.TemplateProbabilityVector" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -654,10 +676,16 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">weightedCombinationNoUnsureResults</span><span class="params">(<span name="probsWithOccurences">probsWithOccurences: <span class="extype" name="scala.Seq">Seq</span>[(<a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>)</span><span class="result">: <a href="../types/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.types.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
+        <span class="name">weightedCombinationNoUnsureResults</span><span class="params">(<span name="probsWithOccurences">probsWithOccurences: <span class="extype" name="scala.Seq">Seq</span>[(<a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a>, <span class="extype" name="scala.Int">Int</span>)]</span>)</span><span class="result">: <a href="../data/TemplateProbabilityVector.html" class="extype" name="me.lpmg.ste.data.TemplateProbabilityVector">TemplateProbabilityVector</a></span>
       </span>
       
-      
+      <p class="shortcomment cmt">Combines multiple probability vectors into a single one using weighted
+combination.</p><div class="fullcomment"><div class="comment cmt"><p>Combines multiple probability vectors into a single one using weighted
+combination. Returns special vectors with a negative result for the
+&quot;Added&quot; probability if the result is uncertain.
+</p></div><dl class="paramcmts block"><dt class="param">probsWithOccurences</dt><dd class="cmt"><p>
+  The probability vectors to combine with their respective occurences.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  The combined probability vector.</p></dd></dl></div>
     </li>
               </ol>
             </div>

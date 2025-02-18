@@ -147,8 +147,8 @@
                         <a href="Revision.html" title="Data class for revision data">Revision</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionManager.html" title=""></a>
-                        <a href="RevisionManager.html" title="">RevisionManager</a>
+                        <a class="class" href="RevisionManager.html" title="This class provides functionality to manage revisions and revision pairs."></a>
+                        <a href="RevisionManager.html" title="This class provides functionality to manage revisions and revision pairs.">RevisionManager</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="class" href="RevisionPair.html" title=""></a>
@@ -159,12 +159,16 @@
                         <a href="RevisionSAXHandler.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandler</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace."></a>
-                        <a href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific template and namespace.">RevisionSAXHandlerInline</a>
+                        <a class="class" href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific inline templates and namespace."></a>
+                        <a href="RevisionSAXHandlerInline.html" title="SAX handler for parsing MediaWiki XML revisions, filtering for specific inline templates and namespace.">RevisionSAXHandlerInline</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="object" href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content."></a>
                         <a href="SourceExtractor$.html" title="Extracts sources from Wikipedia text content.">SourceExtractor</a>
+                      </li><li class="current-entities indented4">
+                        <a class="object" href="TemplateProbabilityVector$.html" title="Companion object for TemplateProbabilityVector."></a>
+                        <a class="class" href="TemplateProbabilityVector.html" title="A case class representing a vector of probabilities for template addition and removal."></a>
+                        <a href="TemplateProbabilityVector.html" title="A case class representing a vector of probabilities for template addition and removal.">TemplateProbabilityVector</a>
                       </li>
               </ul>
             </div>
@@ -395,7 +399,7 @@ files.
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.data.DataReader#getRevisionPairs" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="me.lpmg.ste.data.DataReader#getRevisionPairs" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getRevisionPairs(inputStream:java.io.InputStream,template:String,inline:Boolean):Seq[me.lpmg.ste.data.RevisionPair]"></a><a id="getRevisionPairs(InputStream,String,Boolean):Seq[RevisionPair]"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/DataReader$.html#getRevisionPairs(inputStream:java.io.InputStream,template:String,inline:Boolean):Seq[me.lpmg.ste.data.RevisionPair]" title="Permalink">
@@ -410,8 +414,15 @@ files.
         <span class="name">getRevisionPairs</span><span class="params">(<span name="inputStream">inputStream: <span class="extype" name="java.io.InputStream">InputStream</span></span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="inline">inline: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>
       </span>
       
-      
-    </li><li name="me.lpmg.ste.data.DataReader#getRevisionPairsFromPDS" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Parses XML data from an InputStream and returns a sequence of RevisionPair
+objects.</p><div class="fullcomment"><div class="comment cmt"><p>Parses XML data from an InputStream and returns a sequence of RevisionPair
+objects.
+</p></div><dl class="paramcmts block"><dt class="param">inputStream</dt><dd class="cmt"><p>
+  The input stream containing the XML data.</p></dd><dt class="param">template</dt><dd class="cmt"><p>
+  The template string to be used for parsing.</p></dd><dt class="param">inline</dt><dd class="cmt"><p>
+  A flag indicating whether to use inline parsing.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  A sequence of RevisionPair objects.</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.data.DataReader#getRevisionPairsFromPDS" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getRevisionPairsFromPDS(pds:org.apache.spark.input.PortableDataStream,template:String,inline:Boolean):Seq[me.lpmg.ste.data.RevisionPair]"></a><a id="getRevisionPairsFromPDS(PortableDataStream,String,Boolean):Seq[RevisionPair]"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/DataReader$.html#getRevisionPairsFromPDS(pds:org.apache.spark.input.PortableDataStream,template:String,inline:Boolean):Seq[me.lpmg.ste.data.RevisionPair]" title="Permalink">
@@ -426,8 +437,15 @@ files.
         <span class="name">getRevisionPairsFromPDS</span><span class="params">(<span name="pds">pds: <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span></span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="inline">inline: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>
       </span>
       
-      
-    </li><li name="me.lpmg.ste.data.DataReader#getRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Reads and parses XML data from a PortableDataStream and returns a sequence
+of RevisionPair objects.</p><div class="fullcomment"><div class="comment cmt"><p>Reads and parses XML data from a PortableDataStream and returns a sequence
+of RevisionPair objects.
+</p></div><dl class="paramcmts block"><dt class="param">pds</dt><dd class="cmt"><p>
+  The PortableDataStream containing the XML data.</p></dd><dt class="param">template</dt><dd class="cmt"><p>
+  The template string to be used for parsing.</p></dd><dt class="param">inline</dt><dd class="cmt"><p>
+  A flag indicating whether to use inline parsing.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  A sequence of RevisionPair objects.</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.data.DataReader#getRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getRevisions(inputStream:java.io.InputStream,template:String,inline:Boolean):Seq[me.lpmg.ste.data.Revision]"></a><a id="getRevisions(InputStream,String,Boolean):Seq[Revision]"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/DataReader$.html#getRevisions(inputStream:java.io.InputStream,template:String,inline:Boolean):Seq[me.lpmg.ste.data.Revision]" title="Permalink">
@@ -442,8 +460,15 @@ files.
         <span class="name">getRevisions</span><span class="params">(<span name="inputStream">inputStream: <span class="extype" name="java.io.InputStream">InputStream</span></span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="inline">inline: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
-      
-    </li><li name="me.lpmg.ste.data.DataReader#getRevisionsFromPDS" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Parses XML data from an InputStream and returns a sequence of Revision
+objects.</p><div class="fullcomment"><div class="comment cmt"><p>Parses XML data from an InputStream and returns a sequence of Revision
+objects.
+</p></div><dl class="paramcmts block"><dt class="param">inputStream</dt><dd class="cmt"><p>
+  The input stream containing the XML data.</p></dd><dt class="param">template</dt><dd class="cmt"><p>
+  The template string to be used for parsing.</p></dd><dt class="param">inline</dt><dd class="cmt"><p>
+  A flag indicating whether to use inline parsing.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  A sequence of Revision objects.</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.data.DataReader#getRevisionsFromPDS" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getRevisionsFromPDS(pds:org.apache.spark.input.PortableDataStream,template:String,inline:Boolean):Seq[me.lpmg.ste.data.Revision]"></a><a id="getRevisionsFromPDS(PortableDataStream,String,Boolean):Seq[Revision]"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/DataReader$.html#getRevisionsFromPDS(pds:org.apache.spark.input.PortableDataStream,template:String,inline:Boolean):Seq[me.lpmg.ste.data.Revision]" title="Permalink">
@@ -458,7 +483,14 @@ files.
         <span class="name">getRevisionsFromPDS</span><span class="params">(<span name="pds">pds: <span class="extype" name="org.apache.spark.input.PortableDataStream">PortableDataStream</span></span>, <span name="template">template: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="inline">inline: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Reads and parses XML data from a PortableDataStream and returns a sequence
+of Revision objects.</p><div class="fullcomment"><div class="comment cmt"><p>Reads and parses XML data from a PortableDataStream and returns a sequence
+of Revision objects.
+</p></div><dl class="paramcmts block"><dt class="param">pds</dt><dd class="cmt"><p>
+  The PortableDataStream containing the XML data.</p></dd><dt class="param">template</dt><dd class="cmt"><p>
+  The template string to be used for parsing.</p></dd><dt class="param">inline</dt><dd class="cmt"><p>
+  A flag indicating whether to use inline parsing.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  A sequence of Revision objects.</p></dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
@@ -554,7 +586,7 @@ files.
                 <span class="name">@IntrinsicCandidate</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="me.lpmg.ste.data.DataReader#revisionPairsToRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="me.lpmg.ste.data.DataReader#revisionPairsToRevisions" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="revisionPairsToRevisions(revisionPairs:Seq[me.lpmg.ste.data.RevisionPair]):Seq[me.lpmg.ste.data.Revision]"></a><a id="revisionPairsToRevisions(Seq[RevisionPair]):Seq[Revision]"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/DataReader$.html#revisionPairsToRevisions(revisionPairs:Seq[me.lpmg.ste.data.RevisionPair]):Seq[me.lpmg.ste.data.Revision]" title="Permalink">
@@ -569,8 +601,13 @@ files.
         <span class="name">revisionPairsToRevisions</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="scala.Seq">Seq</span>[<a href="RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
-      
-    </li><li name="me.lpmg.ste.data.DataReader#revisionPairsToRevisionsDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <p class="shortcomment cmt">Converts a sequence of RevisionPair objects to a sequence of Revision
+objects.</p><div class="fullcomment"><div class="comment cmt"><p>Converts a sequence of RevisionPair objects to a sequence of Revision
+objects.
+</p></div><dl class="paramcmts block"><dt class="param">revisionPairs</dt><dd class="cmt"><p>
+  The sequence of RevisionPair objects.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  A sequence of Revision objects.</p></dd></dl></div>
+    </li><li name="me.lpmg.ste.data.DataReader#revisionPairsToRevisionsDistributed" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="revisionPairsToRevisionsDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]"></a><a id="revisionPairsToRevisionsDistributed(RDD[RevisionPair]):RDD[Revision]"></a>
       <span class="permalink">
       <a href="../../../../me/lpmg/ste/data/DataReader$.html#revisionPairsToRevisionsDistributed(revisionPairs:org.apache.spark.rdd.RDD[me.lpmg.ste.data.RevisionPair]):org.apache.spark.rdd.RDD[me.lpmg.ste.data.Revision]" title="Permalink">
@@ -585,7 +622,12 @@ files.
         <span class="name">revisionPairsToRevisionsDistributed</span><span class="params">(<span name="revisionPairs">revisionPairs: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="RevisionPair.html" class="extype" name="me.lpmg.ste.data.RevisionPair">RevisionPair</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="Revision.html" class="extype" name="me.lpmg.ste.data.Revision">Revision</a>]</span>
       </span>
       
-      
+      <p class="shortcomment cmt">Converts a sequence of RevisionPa‚ir objects to a sequence of Revision
+objects in a distributed manner.</p><div class="fullcomment"><div class="comment cmt"><p>Converts a sequence of RevisionPa‚ir objects to a sequence of Revision
+objects in a distributed manner.
+</p></div><dl class="paramcmts block"><dt class="param">revisionPairs</dt><dd class="cmt"><p>
+  The sequence of RevisionPair objects.</p></dd><dt>returns</dt><dd class="cmt"><p>
+  A sequence of Revision objects.</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
