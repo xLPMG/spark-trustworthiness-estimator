@@ -154,7 +154,11 @@ object ProbabilityHandler {
       .zip(scaledWeights)
       .map(p => p._1.probabilityTemplateAdded * p._2)
       .sum
-    val probabilityTemplateRemoved = 1.0f - probabilityTemplateAdded
+
+    val probabilityTemplateRemoved = probs
+      .zip(scaledWeights)
+      .map(p => p._1.probabilityTemplateRemoved * p._2)
+      .sum
 
     TemplateProbabilityVector(
       probabilityTemplateAdded,
